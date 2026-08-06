@@ -1,0 +1,383 @@
+// ============================================
+// KodeKu.id — Production Database Schema (Prisma ORM)
+// Database: PostgreSQL 16
+// ============================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// --------------------------------------------
+// ENUMS
+// --------------------------------------------
+
+enum UserRole {
+  STUDENT
+  INSTRUCTOR
+  ADMIN
+}
+
+enum CourseLevel {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  CANCELLED
+  EXPIRED
+  REFUNDED
+}
+
+enum PaymentMethod {
+  QRIS
+  BCA_VA
+  MANDIRI_VA
+  BRI_VA
+  BNI_VA
+  E_WALLET
+  CREDIT_CARD
+}
+
+enum QuestionType {
+  MULTIPLE_CHOICE
+  TRUE_FALSE
+}
+
+// --------------------------------------------
+// 1. USERS & ROLES
+// --------------------------------------------
+
+model User {
+  id            String    @id @default(cuid())
+  name          String
+  email         String    @unique
+  emailVerified DateTime?
+  password      String?   // Hashed with bcrypt
+  image         String?
+  whatsapp      String?   @unique
+  role          UserRole  @default(STUDENT)
+  bio           String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relasi
+  coursesCreated   Course[]          @relation("CourseInstructor")
+  enrollments      StudentProgress[]
+  orders           Order[]
+  certificates     Certificate[]
+  reviews          Review[]
+  notifications    Notification[]
+  quizSubmissions  QuizSubmission[]
+
+  @@index([email])
+  @@index([whatsapp])
+  @@index([role])
+}
+
+// --------------------------------------------
+// 2. CATEGORIES & COURSES
+// --------------------------------------------
+
+model Category {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  slug        String   @unique
+  description String?
+  icon        String?
+  createdAt   DateTime @default(now())
+
+  courses     Course[]
+
+  @@index([slug])
+}
+
+model Course {
+  id          String      @id @default(cuid())
+  title       String
+  slug        String      @unique
+  summary     String
+  description String      @db.Text
+  price       Int         @default(0) // In IDR (Rupiah)
+  level       CourseLevel @default(BEGINNER)
+  isPublished Boolean     @default(false)
+  thumbnail   String?
+  badge       String?     // E.g. "TERLARIS", "POPULER"
+  
+  categoryId  String
+  category    Category    @relation(fields: [categoryId], references: [id])
+
+  instructorId String
+  instructor   User       @relation("CourseInstructor", fields: [instructorId], references: [id])
+
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  // Relasi
+  modules         Module[]
+  studentProgress StudentProgress[]
+  orders          Order[]
+  certificates    Certificate[]
+  reviews         Review[]
+  coupons         Coupon[]
+
+  @@index([slug])
+  @@index([categoryId])
+  @@index([instructorId])
+  @@index([isPublished])
+}
+
+// --------------------------------------------
+// 3. MODULES & LESSONS (TEXT-BASED MDX)
+// --------------------------------------------
+
+model Module {
+  id          String   @id @default(cuid())
+  title       String
+  orderIndex  Int
+  courseId    String
+  course      Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+
+  lessons     Lesson[]
+  quiz        Quiz?
+
+  @@index([courseId])
+  @@index([orderIndex])
+}
+
+model Lesson {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String
+  orderIndex  Int
+  durationMin Int      @default(10) // Reading duration estimate
+  isFree      Boolean  @default(false) // Preview lesson
+  
+  moduleId    String
+  module      Module   @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relasi
+  content     LessonContent?
+  progress    StudentProgressItem[]
+
+  @@unique([moduleId, slug])
+  @@index([moduleId])
+}
+
+model LessonContent {
+  id           String   @id @default(cuid())
+  lessonId     String   @unique
+  lesson       Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  
+  bodyMdx      String   @db.Text // Full MDX Markdown content
+  codeSnippet  String?  @db.Text // Default code for Monaco Editor Sandbox
+  codeLanguage String?  @default("javascript")
+  
+  updatedAt    DateTime @updatedAt
+}
+
+// --------------------------------------------
+// 4. QUIZ & QUESTIONS
+// --------------------------------------------
+
+model Quiz {
+  id           String   @id @default(cuid())
+  title        String
+  passScorePct Int      @default(80) // E.g. 80% to pass
+  moduleId     String   @unique
+  module       Module   @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+
+  questions    Question[]
+  submissions  QuizSubmission[]
+}
+
+model Question {
+  id          String       @id @default(cuid())
+  quizId      String
+  quiz        Quiz         @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  prompt      String       @db.Text
+  type        QuestionType @default(MULTIPLE_CHOICE)
+  orderIndex  Int
+
+  answers     Answer[]
+
+  @@index([quizId])
+}
+
+model Answer {
+  id          String   @id @default(cuid())
+  questionId  String
+  question    Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  text        String
+  isCorrect   Boolean  @default(false)
+  explanation String?  @db.Text
+}
+
+model QuizSubmission {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  quizId     String
+  quiz       Quiz     @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  score      Int
+  passed     Boolean  @default(false)
+  createdAt  DateTime @default(now())
+
+  @@index([userId])
+  @@index([quizId])
+}
+
+// --------------------------------------------
+// 5. PROGRESS & CERTIFICATES
+// --------------------------------------------
+
+model StudentProgress {
+  id           String    @id @default(cuid())
+  userId       String
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  courseId     String
+  course       Course    @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  progressPct  Int       @default(0)
+  completedAt  DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  completedLessons StudentProgressItem[]
+
+  @@unique([userId, courseId])
+  @@index([userId])
+  @@index([courseId])
+}
+
+model StudentProgressItem {
+  id         String          @id @default(cuid())
+  progressId String
+  progress   StudentProgress @relation(fields: [progressId], references: [id], onDelete: Cascade)
+  lessonId   String
+  lesson     Lesson          @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  readAt     DateTime        @default(now())
+
+  @@unique([progressId, lessonId])
+}
+
+model Certificate {
+  id            String   @id @default(cuid())
+  certificateNo String   @unique // E.g. "KODEKU-CERT-884920"
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  courseId      String
+  course        Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  pdfUrl        String?
+  issuedAt      DateTime @default(now())
+
+  @@unique([userId, courseId])
+  @@index([certificateNo])
+  @@index([userId])
+}
+
+// --------------------------------------------
+// 6. ORDERS, PAYMENTS & COUPONS
+// --------------------------------------------
+
+model Order {
+  id            String      @id @default(cuid())
+  orderNo       String      @unique // E.g. "KODEKU-ORD-991209"
+  userId        String
+  user          User        @relation(fields: [userId], references: [id])
+  courseId      String
+  course        Course      @relation(fields: [courseId], references: [id])
+  couponId      String?
+  coupon        Coupon?     @relation(fields: [couponId], references: [id])
+  
+  grossAmount   Int
+  discountAmount Int        @default(0)
+  netAmount     Int
+  status        OrderStatus @default(PENDING)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  payment       Payment?
+
+  @@index([orderNo])
+  @@index([userId])
+  @@index([status])
+}
+
+model Payment {
+  id            String        @id @default(cuid())
+  orderId       String        @unique
+  order         Order         @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  method        PaymentMethod
+  transactionId String?       @unique // Midtrans Transaction ID
+  midtransSnapToken String?
+  paidAt        DateTime?
+  createdAt     DateTime      @default(now())
+
+  @@index([transactionId])
+}
+
+model Coupon {
+  id           String    @id @default(cuid())
+  code         String    @unique
+  discountPct  Int       // E.g. 20%
+  maxDiscount  Int?
+  usageLimit   Int       @default(100)
+  usedCount    Int       @default(0)
+  expiresAt    DateTime?
+  courseId     String?
+  course       Course?   @relation(fields: [courseId], references: [id])
+  createdAt    DateTime  @default(now())
+
+  orders       Order[]
+
+  @@index([code])
+}
+
+// --------------------------------------------
+// 7. REVIEWS, NOTIFICATIONS & SETTINGS
+// --------------------------------------------
+
+model Review {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  courseId  String
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  rating    Int      // 1 to 5
+  comment   String   @db.Text
+  createdAt DateTime @default(now())
+
+  @@unique([userId, courseId])
+  @@index([courseId])
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String
+  message   String   @db.Text
+  isRead    Boolean  @default(false)
+  linkUrl   String?
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}
+
+model Setting {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String   @db.Text
+  updatedAt DateTime @updatedAt
+}

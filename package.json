@@ -1,0 +1,13 @@
+{
+  "name": "kodeku-id-platform",
+  "version": "1.0.0",
+  "description": "Platform Belajar Coding & AI Terstruktur #1 Indonesia (Text-Based EdTech)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["edtech", "coding", "ai", "dicoding-replica", "education"],
+  "author": "KodeKu.id Team",
+  "license": "MIT"
+}

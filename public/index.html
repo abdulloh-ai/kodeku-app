@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KodeKu.id — Platform Belajar Programming & AI Terstruktur</title>
+  <meta name="description" content="Belajar koding dari dasar dengan kurikulum terstruktur. Dilengkapi ruang kelas interaktif, latihan koding, dan sertifikat resmi." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Navbar Navigation -->
+  <nav class="navbar">
+    <div class="container nav-flex" style="display:flex; justify-content:space-between; align-items:center; gap:36px;">
+      <a href="index.html" class="logo" style="margin-right:28px; flex-shrink:0;">
+        <div class="logo-box">K</div>
+        <span>KodeKu.id</span>
+      </a>
+      <ul class="nav-links" style="display:flex; align-items:center; gap:18px; width:100%; justify-content:flex-end;">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#courses">Katalog Kursus</a></li>
+        <li><a href="#about">Tentang</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Kontak</a></li>
+
+        <!-- Guest State (Not Logged In) -->
+        <li class="guest-only"><button class="btn btn-outline" style="padding:7px 16px; font-size:0.85rem;" onclick="openAuthModal('login')">Masuk</button></li>
+        <li class="guest-only"><button class="btn btn-primary" style="padding:7px 16px; font-size:0.85rem;" onclick="openAuthModal('register')">Daftar Akun</button></li>
+
+        <!-- Logged In Profile Dropdown -->
+        <li class="user-only" style="display:none; position:relative;">
+          <div onclick="toggleProfileDropdown()" style="cursor:pointer; display:flex; align-items:center; gap:8px; background:var(--bg-card); border:1px solid var(--border); padding:6px 14px; border-radius:30px;">
+            <div style="width:26px; height:26px; border-radius:50%; background:var(--primary); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:0.8rem; color:#FFF;" id="navAvatarLetter">S</div>
+            <span style="font-size:0.85rem; font-weight:700; color:#FFF;" id="navStudentGreeting">Siswa</span>
+            <span style="font-size:0.75rem; color:var(--text-muted);">▼</span>
+          </div>
+          <div id="profileDropdown" style="display:none; position:absolute; right:0; top:42px; width:220px; background:var(--bg-surface); border:1px solid var(--border-accent); border-radius:14px; box-shadow:0 15px 40px rgba(0,0,0,0.6); padding:8px 0; z-index:1000;">
+            <a href="dashboard.html?tab=courses" style="display:block; padding:10px 18px; color:var(--text-main); text-decoration:none; font-size:0.88rem;">📚 Kursus Saya</a>
+            <a href="dashboard.html?tab=history" style="display:block; padding:10px 18px; color:var(--text-main); text-decoration:none; font-size:0.88rem;">📋 Riwayat Pembelian</a>
+            <a href="dashboard.html?tab=profile" style="display:block; padding:10px 18px; color:var(--text-main); text-decoration:none; font-size:0.88rem;">👤 Profil Saya</a>
+            <div id="adminDropdownLink" style="display:none;">
+              <div style="border-top:1px solid var(--border); margin:6px 0;"></div>
+              <a href="admin.html" style="display:block; padding:10px 18px; color:var(--accent-gold); font-weight:700; text-decoration:none; font-size:0.88rem;">👑 Studio Admin</a>
+            </div>
+            <div style="border-top:1px solid var(--border); margin:6px 0;"></div>
+            <button onclick="logoutStudent()" style="width:100%; text-align:left; background:none; border:none; padding:10px 18px; color:var(--accent-rose); font-size:0.88rem; font-weight:700; cursor:pointer;">🚪 Logout</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="container">
+      <span class="badge-pill">⚡ REVOLUSI BELAJAR CODING & AI 2026</span>
+      <h1>Bangun Karir & Skill Digital.<br/><span class="text-gradient">Belajar Coding & AI Terstruktur Dari Dasar.</span></h1>
+      <p>Mulai perjalanan Anda menjadi developer profesional. Dilengkapi modul pembelajaran teks interaktif, latihan koding di browser, dan sertifikat resmi.</p>
+      
+      <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+        <a href="#courses" class="btn btn-primary" style="padding:12px 26px; font-size:1rem;">Lihat Katalog Kursus →</a>
+        <a href="classroom.html?id=ai-web-dev" class="btn btn-outline" style="padding:12px 26px; font-size:1rem;">💻 Masuk Ruang Belajar Interaktif</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Course Catalog Section -->
+  <section id="courses" style="padding: 50px 0 60px;">
+    <div class="container">
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom: 24px; flex-wrap:wrap; gap:16px;">
+        <div>
+          <span style="font-size:0.8rem; color:#60A5FA; font-weight:700; text-transform:uppercase;">KATALOG TERSTRUKTUR</span>
+          <h2 style="font-size:1.8rem; font-weight:800; font-family:var(--font-heading);">Pilihan Kelas Populer</h2>
+        </div>
+        <div style="display:flex; gap:10px;">
+          <input type="text" id="searchInput" class="form-input" placeholder="🔍 Cari kelas atau topik..." style="width:240px;" onkeyup="filterCourseList()" />
+        </div>
+      </div>
+
+      <div class="grid-3" id="courseGrid">
+        <!-- Loaded dynamically from Backend REST API -->
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" style="padding: 60px 0; background: var(--bg-surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <div class="container">
+      <div class="grid-2" style="align-items:center;">
+        <div>
+          <span class="badge-pill" style="margin-bottom:12px;">TENTANG KODEKU.ID</span>
+          <h2 style="font-size:1.8rem; font-weight:800; font-family:var(--font-heading); margin-bottom:16px;">Metode Belajar Teks & Praktik 10x Lebih Cepat</h2>
+          <p style="color:var(--text-muted); margin-bottom:16px; font-size:1rem; line-height:1.8;">
+            Kami percaya bahwa belajar koding paling efektif dilakukan melalui **membaca teks modul terstruktur** dan **langsung mempraktikkannya** di editor koding. 
+            Tanpa perlu menghabiskan waktu berjam-jam menonton video panjang.
+          </p>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:10px; color:#E2E8F0; font-size:0.95rem;">
+            <li>✅ Modul Teks MDX Ringkas & Mudah Dipahami</li>
+            <li>✅ Live Code Sandbox Editor Langsung Di Browser</li>
+            <li>✅ Kuis Evaluasi Pemahaman & Kunci Jawaban</li>
+            <li>✅ Sertifikat Kelulusan Resmi Digital Ber-ID Unik</li>
+          </ul>
+        </div>
+        <div style="background:var(--bg-card); border:1px solid var(--border); padding:30px; border-radius:var(--radius-lg); text-align:center;">
+          <div style="font-size:3.5rem; margin-bottom:12px;">🎓</div>
+          <h3 style="font-size:1.4rem; font-weight:700; color:#fff;">Sertifikat Verifikasi Digital</h3>
+          <p style="color:var(--text-muted); font-size:0.9rem; margin-top:8px;">
+            Dapatkan sertifikat resmi yang terverifikasi secara publik setiap kali Anda menguasai sebuah kelas.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" style="padding: 60px 0;">
+    <div class="container" style="max-width:800px;">
+      <div style="text-align:center; margin-bottom:36px;">
+        <span class="badge-pill" style="margin-bottom:8px;">FAQ</span>
+        <h2 style="font-size:1.8rem; font-weight:800; font-family:var(--font-heading);">Pertanyaan Sering Diajukan</h2>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div class="card" style="padding:18px;">
+          <h4 style="font-size:1.05rem; font-weight:700; color:#fff; margin-bottom:6px;">❓ Apakah pemula tanpa background IT bisa ikut?</h4>
+          <p style="color:var(--text-muted); font-size:0.92rem;">Sangat bisa! Kurikulum diajarkan dari dasar nol dengan bahasa Indonesia yang simpel dan bantuan AI.</p>
+        </div>
+        <div class="card" style="padding:18px;">
+          <h4 style="font-size:1.05rem; font-weight:700; color:#fff; margin-bottom:6px;">❓ Apakah akses kelas berlaku selamanya?</h4>
+          <p style="color:var(--text-muted); font-size:0.92rem;">Ya, sekali mendaftar Anda mendapatkan akses materi teks, kuis, dan pembaruan modul selamanya tanpa biaya bulanan.</p>
+        </div>
+        <div class="card" style="padding:18px;">
+          <h4 style="font-size:1.05rem; font-weight:700; color:#fff; margin-bottom:6px;">❓ Bagaimana cara pembayarannya?</h4>
+          <p style="color:var(--text-muted); font-size:0.92rem;">Pembayaran terverifikasi otomatis via Midtrans QRIS (GoPay/OVO/DANA/ShopeePay) & Virtual Account BCA/Mandiri/BRI.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" style="padding: 60px 0; background: var(--bg-surface); border-top: 1px solid var(--border);">
+    <div class="container" style="max-width:600px; text-align:center;">
+      <span class="badge-pill" style="margin-bottom:8px;">KONTAK & BANTUAN</span>
+      <h2 style="font-size:1.8rem; font-weight:800; font-family:var(--font-heading); margin-bottom:12px;">Ada Pertanyaan? Hubungi Tim Kami</h2>
+      <p style="color:var(--text-muted); margin-bottom:24px;">Tim support KodeKu.id siap membantu Anda 24/7.</p>
+
+      <form style="display:flex; flex-direction:column; gap:12px; text-align:left;" id="contactForm" onsubmit="submitContactForm(event)">
+        <div>
+          <label class="form-label">Nama Anda</label>
+          <input type="text" class="form-input" id="contactName" placeholder="Nama Lengkap" required />
+        </div>
+        <div>
+          <label class="form-label">Email / WhatsApp</label>
+          <input type="text" class="form-input" id="contactContact" placeholder="08123456789 atau email@domain.com" required />
+        </div>
+        <div>
+          <label class="form-label">Subjek Pertanyaan</label>
+          <input type="text" class="form-input" id="contactSubject" placeholder="Contoh: Tanya Kurikulum / Pendaftaran" required />
+        </div>
+        <div>
+          <label class="form-label">Isi Pesan Anda</label>
+          <textarea class="form-input" id="contactMessage" style="height:100px; resize:vertical;" placeholder="Tuliskan pertanyaan Anda..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="justify-content:center;">Kirim Pesan Support →</button>
+        <div id="contactMsgResult" style="font-weight:700; margin-top:8px;"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="padding: 40px 0; border-top: 1px solid var(--border); text-align: center; color: var(--text-muted); font-size: 0.88rem;">
+    <div class="container">
+      <p>© 2026 KodeKu.id Platform Edukasi Programming & AI Modern Indonesia. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Modal Auth (Login / Register) -->
+  <div class="modal-overlay" id="authModal">
+    <div class="modal-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
+        <h3 style="font-size:1.2rem; font-weight:700; font-family:var(--font-heading);" id="authTitle">Masuk ke KodeKu.id</h3>
+        <button onclick="closeAuthModal()" style="background:none; border:none; color:#fff; font-size:1.4rem; cursor:pointer;">✕</button>
+      </div>
+
+      <form id="authForm">
+        <div class="form-group" id="groupName" style="display:none;">
+          <label class="form-label">Nama Lengkap</label>
+          <input type="text" class="form-input" id="authName" placeholder="Nama Anda" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Aktif / Username</label>
+          <input type="text" class="form-input" id="authEmail" placeholder="email@domain.com atau username" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Kata Sandi / Password</label>
+          <input type="password" class="form-input" id="authPassword" placeholder="Masukkan password Anda" required />
+        </div>
+        <div class="form-group" id="groupWhatsapp" style="display:none;">
+          <label class="form-label">Nomor WhatsApp</label>
+          <input type="tel" class="form-input" id="authWhatsapp" placeholder="08123456789" />
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; padding:12px; margin-top:8px;" id="authSubmitBtn">Masuk Sekarang →</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Midtrans Instant Checkout -->
+  <div class="modal-overlay" id="checkoutModal">
+    <div class="modal-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
+        <h3 style="font-size:1.2rem; font-weight:700; font-family:var(--font-heading);" id="checkoutCourseTitle">Daftar Kursus</h3>
+        <button onclick="closeCheckoutModal()" style="background:none; border:none; color:#fff; font-size:1.4rem; cursor:pointer;">✕</button>
+      </div>
+
+      <form id="checkoutForm">
+        <input type="hidden" id="checkoutCourseId" />
+        <div class="form-group">
+          <label class="form-label">Nama Siswa</label>
+          <input type="text" class="form-input" id="coName" placeholder="Nama Lengkap" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Nomor WhatsApp (Aktif)</label>
+          <input type="tel" class="form-input" id="coWhatsapp" placeholder="08123456789" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-input" id="coEmail" placeholder="nama@email.com" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Pilih Metode Pembayaran (Midtrans API)</label>
+          <select class="form-input" id="coPaymentMethod" style="cursor:pointer;">
+            <option value="QRIS (GoPay/DANA/OVO)">QRIS (GoPay / DANA / OVO / ShopeePay)</option>
+            <option value="BCA Virtual Account">BCA Virtual Account (Otomatis)</option>
+            <option value="Mandiri VA">Mandiri Virtual Account</option>
+            <option value="BRI VA">BRI Virtual Account</option>
+          </select>
+        </div>
+
+        <div style="background:rgba(16, 185, 129, 0.1); border:1px solid rgba(16, 185, 129, 0.3); padding:10px; border-radius:6px; margin-bottom:16px; font-size:0.82rem; color:#34D399;">
+          ⚡ Pembayaran terverifikasi otomatis. Setelah klik bayar, Anda langsung masuk ke Ruang Belajar.
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; padding:12px;">✅ Bayar & Masuk Ruang Belajar →</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Riwayat Pembelian Siswa Modal -->
+  <div class="modal-overlay" id="historyModal">
+    <div class="modal-card" style="max-width:640px; text-align:left;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+        <h3 style="font-size:1.3rem; font-weight:800; font-family:var(--font-heading); color:#FFF;">📋 Riwayat Kelas Yang Sudah Dibeli</h3>
+        <button class="btn btn-outline" onclick="closeHistoryModal()" style="padding:4px 10px; font-size:0.8rem;">✕ Tutup</button>
+      </div>
+      <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:16px;">Daftar seluruh kelas yang sudah dibeli dan memiliki akses permanently (tidak perlu bayar lagi):</p>
+      
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Nama Kelas Yang Dibeli</th>
+              <th>Status Akses</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="historyTableBody">
+            <!-- Loaded dynamically via JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

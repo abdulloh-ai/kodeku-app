@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ruang Kelas Teks Interaktif Masterclass — KodeKu.id</title>
+  <!-- Google Fonts: Plus Jakarta Sans & Inter & Fira Code -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Marked.js for rendering Markdown -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <style>
+    :root {
+      --bg-dark: #070A12;
+      --bg-surface: #0E1322;
+      --bg-card: #151C2E;
+      --bg-card-hover: #1E273E;
+      --border-color: #1E293B;
+      --border-accent: #334155;
+      --primary: #6366F1;
+      --primary-hover: #4F46E5;
+      --primary-glow: rgba(99, 102, 241, 0.3);
+      --accent-cyan: #06B6D4;
+      --accent-green: #10B981;
+      --accent-gold: #F59E0B;
+      --accent-rose: #F43F5E;
+      --text-main: #F8FAFC;
+      --text-muted: #94A3B8;
+      --text-dim: #64748B;
+      --font-main: 'Inter', sans-serif;
+      --font-heading: 'Plus Jakarta Sans', sans-serif;
+      --font-code: 'Fira Code', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-main);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* GLASSMORPHIC APP HEADER NAVBAR */
+    .app-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: 64px;
+      background: rgba(14, 19, 34, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .brand-badge {
+      background: linear-gradient(135deg, var(--primary), var(--accent-cyan));
+      color: #FFF;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      padding: 5px 14px;
+      border-radius: 9px;
+      font-size: 1.15rem;
+      letter-spacing: -0.5px;
+      box-shadow: 0 4px 16px var(--primary-glow);
+    }
+
+    .brand-sub {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .header-nav-tabs {
+      display: flex;
+      gap: 8px;
+      background: rgba(7, 10, 18, 0.6);
+      padding: 4px;
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+    }
+
+    .nav-tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 6px 16px;
+      border-radius: 7px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-tab-btn:hover { color: #FFF; }
+    .nav-tab-btn.active {
+      background: var(--primary);
+      color: #FFF;
+      box-shadow: 0 2px 10px var(--primary-glow);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .progress-bar-bg {
+      width: 140px;
+      height: 8px;
+      background: var(--border-color);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--accent-green));
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+
+    .btn-exit {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-exit:hover { border-color: var(--primary); color: #FFF; }
+
+    /* MAIN CLASSROOM LAYOUT GRID */
+    .classroom-layout {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      min-height: calc(100vh - 64px);
+    }
+
+    /* SIDEBAR MODULE NAVIGATION */
+    .sidebar {
+      background: var(--bg-surface);
+      border-right: 1px solid var(--border-color);
+      padding: 24px 18px;
+      overflow-y: auto;
+      height: calc(100vh - 64px);
+      position: sticky;
+      top: 64px;
+    }
+
+    .course-meta-card {
+      background: linear-gradient(135deg, #182238, #0F172A);
+      border: 1px solid var(--border-accent);
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    .course-meta-title {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: #FFF;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .course-meta-badge {
+      display: inline-block;
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--accent-green);
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .sidebar-section-title {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin: 20px 8px 10px;
+    }
+
+    .module-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 11px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      margin-bottom: 8px;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+    }
+
+    .module-item:hover {
+      background: var(--bg-card-hover);
+      color: #FFF;
+    }
+
+    .module-item.active {
+      background: rgba(99, 102, 241, 0.14);
+      border-color: rgba(99, 102, 241, 0.4);
+      color: #FFF;
+      font-weight: 600;
+    }
+
+    .mod-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--border-color);
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .module-item.active .mod-num {
+      background: var(--primary);
+      color: #FFF;
+    }
+
+    .btn-cert {
+      width: 100%;
+      margin-top: 24px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+      color: #FFF;
+      border: none;
+      padding: 14px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 0.92rem;
+      cursor: pointer;
+      box-shadow: 0 4px 20px var(--primary-glow);
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .btn-cert:hover { transform: translateY(-2px); }
+
+    /* MAIN READER CONTENT AREA */
+    .reader-area {
+      padding: 44px 72px;
+      max-width: 1040px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .reader-header {
+      margin-bottom: 36px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .reader-breadcrumb {
+      font-size: 0.88rem;
+      color: var(--text-dim);
+      margin-bottom: 14px;
+    }
+    .reader-breadcrumb a { color: var(--primary); text-decoration: none; }
+
+    .reader-title {
+      font-family: var(--font-heading);
+      font-size: 2.3rem;
+      font-weight: 800;
+      color: #FFF;
+      line-height: 1.25;
+      margin-bottom: 18px;
+      letter-spacing: -0.5px;
+    }
+
+    .reader-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .meta-tag {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 4px 12px;
+      border-radius: 7px;
+    }
+
+    /* RICH MARKDOWN STYLING */
+    .content-body {
+      font-size: 1.08rem;
+      color: #CBD5E1;
+      line-height: 1.85;
+    }
+
+    .content-body h1, .content-body h2, .content-body h3 {
+      font-family: var(--font-heading);
+      color: #FFF;
+      margin-top: 2.2rem;
+      margin-bottom: 1.1rem;
+      line-height: 1.3;
+    }
+
+    .content-body h1 { font-size: 1.9rem; border-bottom: 2px solid var(--border-color); padding-bottom: 10px; }
+    .content-body h2 { font-size: 1.45rem; color: var(--accent-cyan); }
+    .content-body h3 { font-size: 1.2rem; color: #A78BFA; }
+
+    .content-body p { margin-bottom: 1.5rem; }
+    .content-body ul, .content-body ol { margin-left: 2.2rem; margin-bottom: 1.5rem; }
+    .content-body li { margin-bottom: 0.6rem; }
+
+    .content-body code {
+      font-family: var(--font-code);
+      background: #1E293B;
+      color: #38BDF8;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 0.9em;
+    }
+
+    .content-body pre {
+      background: #090E17;
+      border: 1px solid var(--border-accent);
+      border-radius: 14px;
+      padding: 22px;
+      overflow-x: auto;
+      margin: 1.8rem 0;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.6);
+    }
+
+    .content-body pre code {
+      background: transparent;
+      padding: 0;
+      color: #F1F5F9;
+      font-size: 0.94rem;
+    }
+
+    /* CALLOUT BOXES */
+    .callout {
+      border-radius: 14px;
+      padding: 18px 22px;
+      margin: 1.8rem 0;
+      display: flex;
+      gap: 16px;
+      border-left: 5px solid;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    }
+    .callout-note { background: rgba(99, 102, 241, 0.12); border-color: var(--primary); color: #E0E7FF; }
+    .callout-tip { background: rgba(16, 185, 129, 0.12); border-color: var(--accent-green); color: #D1FAE5; }
+    .callout-warning { background: rgba(245, 158, 11, 0.12); border-color: var(--accent-gold); color: #FEF3C7; }
+
+    /* INTERACTIVE QUIZ ENGINE TAB/WIDGET */
+    .quiz-engine-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-accent);
+      border-radius: 18px;
+      padding: 32px;
+      margin: 2.5rem 0;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    }
+
+    .quiz-question-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .quiz-q-title {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #FFF;
+      margin-bottom: 16px;
+    }
+
+    .quiz-option-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      background: var(--bg-dark);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 14px 18px;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      margin-bottom: 10px;
+      transition: all 0.2s;
+      text-align: left;
+    }
+
+    .quiz-option-btn:hover {
+      border-color: var(--primary);
+      background: var(--bg-card-hover);
+    }
+
+    .quiz-option-btn.selected {
+      border-color: var(--primary);
+      background: rgba(99, 102, 241, 0.15);
+      font-weight: 600;
+    }
+
+    .quiz-explanation {
+      margin-top: 14px;
+      padding: 14px 18px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 10px;
+      font-size: 0.88rem;
+      color: #A7F3D0;
+      display: none;
+    }
+
+    .btn-submit-quiz {
+      background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+      color: #FFF;
+      border: none;
+      padding: 14px 32px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 20px var(--primary-glow);
+    }
+
+    /* CODE SANDBOX CONTAINER */
+    .sandbox-container {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-accent);
+      border-radius: 16px;
+      margin: 2.5rem 0;
+      overflow: hidden;
+    }
+
+    .sandbox-header {
+      background: #080C16;
+      padding: 14px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+      font-family: var(--font-code);
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .sandbox-editor {
+      width: 100%;
+      height: 160px;
+      background: var(--bg-dark);
+      color: #38BDF8;
+      font-family: var(--font-code);
+      font-size: 0.95rem;
+      padding: 18px;
+      border: none;
+      outline: none;
+      resize: vertical;
+    }
+
+    .sandbox-footer {
+      padding: 12px 22px;
+      background: #080C16;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .btn-run {
+      background: var(--accent-green);
+      color: #000;
+      font-weight: 800;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 9px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .sandbox-output {
+      padding: 16px 22px;
+      background: #04060C;
+      font-family: var(--font-code);
+      font-size: 0.88rem;
+      color: #4ADE80;
+      border-top: 1px solid var(--border-color);
+    }
+
+    /* MODULE NAV FOOTER */
+    .module-nav-footer {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 3.5rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .btn-nav-mod {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: #FFF;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-nav-mod:hover { border-color: var(--primary); background: var(--bg-card-hover); }
+
+    /* CERTIFICATE MODAL */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+      z-index: 999;
+    }
+    .modal-overlay.active { opacity: 1; pointer-events: auto; }
+    .modal-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-accent);
+      border-radius: 24px;
+      padding: 40px;
+      width: 90%;
+      max-width: 600px;
+      text-align: center;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- App Header Navbar -->
+  <header class="app-header">
+    <a href="index.html" class="brand-logo">
+      <span class="brand-badge">KodeKu.id</span>
+      <span class="brand-sub">Ruang Belajar Teks Interaktif</span>
+    </a>
+
+    <div class="header-right">
+      <span style="font-size:0.85rem; color:var(--text-muted);">Progres: <strong style="color:#FFF;" id="progressPctText">0%</strong></span>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="progressBarFill"></div>
+      </div>
+      <a href="index.html" class="btn-exit">← Keluar Kelas</a>
+    </div>
+  </header>
+
+  <!-- Main Classroom Layout Grid -->
+  <div class="classroom-layout">
+    
+    <!-- Sidebar Module Menu -->
+    <aside class="sidebar">
+      <div class="course-meta-card">
+        <div class="course-meta-badge" id="courseBadge">LEVEL 1</div>
+        <div class="course-meta-title" id="courseTitle">Memuat Kelas...</div>
+        <div style="font-size:0.82rem; color:var(--text-muted);" id="courseMetaDetails">⏱ 10 Modul Terstruktur</div>
+      </div>
+
+      <div class="sidebar-section-title">DAFTAR MODUL MATERI</div>
+      <div id="moduleList">
+        <!-- Modules items populated via JavaScript -->
+      </div>
+
+      <button class="btn-cert" onclick="openCertModal()">🎓 Klaim Sertifikat Kelulusan</button>
+    </aside>
+
+    <!-- Main Content Reader Area -->
+    <main class="reader-area">
+      
+      <!-- TAB 1: TEKS MATERI BACAAN -->
+      <div id="viewTextSection">
+        <div class="reader-header">
+          <div class="reader-breadcrumb">
+            <a href="index.html">Katalog Kelas</a> / <span id="breadCourse">Kelas</span> / <span id="breadMod" style="color:#FFF;">Modul</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+            <h1 class="reader-title" id="modTitle" style="margin-bottom:0;">Memuat Materi Pelajaran...</h1>
+            <div style="display:flex; gap:10px;">
+              <button onclick="toggleBookmarkModule()" id="btnBookmarkMod" class="btn-nav-mod" style="padding:6px 14px; font-size:0.8rem; background:var(--bg-card);">🔖 Bookmark Modul</button>
+              <button onclick="markModuleCompleted()" id="btnCompleteMod" class="btn-nav-mod" style="padding:6px 14px; font-size:0.8rem; background:var(--accent-green); border-color:var(--accent-green); color:#000; font-weight:800;">✓ Tandai Selesai</button>
+            </div>
+          </div>
+          <div class="reader-meta-row" style="margin-top:12px;">
+            <span class="meta-tag">⏱ Est. 20-30 Mins Baca</span>
+            <span class="meta-tag">✍️ Instruktur: Irvan Pratama, S.Kom</span>
+            <span class="meta-tag">⭐ KodeKu Tech Academy — Standar Industri Global 2026</span>
+          </div>
+        </div>
+
+        <!-- Markdown Rendered HTML Body -->
+        <div class="content-body" id="contentBody">
+          <p style="color:var(--text-muted);">Sedang memuat materi lengkap dari server...</p>
+        </div>
+
+        <!-- PERSONAL STUDENT NOTES BOX -->
+        <div style="background:var(--bg-card); border:1px solid var(--border-accent); border-radius:14px; padding:20px; margin-top:2rem;">
+          <h4 style="color:#FFF; font-family:var(--font-heading); font-size:1.05rem; margin-bottom:8px;">📝 Catatan Pribadi Modul Ini:</h4>
+          <textarea id="personalNoteInput" class="sandbox-editor" style="height:90px; background:var(--bg-surface); font-family:var(--font-main); font-size:0.9rem;" placeholder="Tuliskan catatan ringkas atau rangkuman Anda untuk modul ini..."></textarea>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
+            <span id="noteSaveMsg" style="font-size:0.8rem; color:var(--accent-green); font-weight:700;"></span>
+            <button onclick="savePersonalNote()" class="btn-nav-mod" style="padding:6px 16px; font-size:0.8rem; background:var(--primary); border-color:var(--primary); color:#FFF;">💾 Simpan Catatan</button>
+          </div>
+        </div>
+
+        <!-- EMBEDDED LIVE CODE SANDBOX SECTION -->
+        <div id="viewSandboxSection" style="margin-top:3rem; padding-top:2rem; border-top:1px solid var(--border-color);">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <h3 style="font-family:var(--font-heading); color:#FFF; font-size:1.4rem;">💻 Live Interactive Code Sandbox (Praktek Kodingan Modul Ini)</h3>
+            <span style="font-size:0.8rem; color:var(--accent-green); font-weight:700;">✓ Langsung Di Browser</span>
+          </div>
+          <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:16px;">Uji coba kodingan Anda secara langsung di bawah ini tanpa instalasi apapun:</p>
+
+          <div class="sandbox-container">
+            <div class="sandbox-header">
+              <span>interactive-runtime.js (Node.js Engine)</span>
+              <span>Monaco Sandbox v2.0</span>
+            </div>
+            <textarea class="sandbox-editor" id="sandboxInput" spellcheck="false">// Tulis atau tes kode JavaScript/HTML Anda di sini:
+function sapaSiswa(nama, kelas) {
+  return "Halo " + nama + "! Selamat membaca " + kelas + " di KodeKu.id 🚀";
+}
+console.log(sapaSiswa("Siswa KodeKu", "Masterclass"));</textarea>
+            <div class="sandbox-footer">
+              <span style="font-size:0.78rem; color:var(--text-dim);">Uji coba fungsi & algoritma kodingan</span>
+              <button class="btn-run" onclick="runSandboxCode()">▶ Jalankan Kode (Run)</button>
+            </div>
+            <div class="sandbox-output" id="sandboxOutput">Console Output: Klik "Jalankan Kode" untuk menguji...</div>
+          </div>
+        </div>
+
+        <!-- EMBEDDED EVALUASI KUIS MODUL SECTION -->
+        <div id="viewQuizSection" style="margin-top:3rem; padding-top:2rem; border-top:1px solid var(--border-color);">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <h3 style="font-family:var(--font-heading); color:#FFF; font-size:1.4rem;">📝 Evaluasi Kuis Pemahaman Modul Ini</h3>
+            <span style="font-size:0.8rem; color:var(--accent-gold); font-weight:700;">⭐ 10 Soal Evaluasi</span>
+          </div>
+          <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:20px;">Pilih jawaban A, B, C, atau D. Kunci jawaban dan nilai skor akan terbuka setelah mengeklik Kirim:</p>
+
+          <div class="quiz-engine-card">
+            <div id="quizQuestionsContainer">
+              <!-- Questions rendered via Javascript -->
+            </div>
+            <button class="btn-submit-quiz" onclick="checkQuizAnswers()">✓ Cek & Kirim Jawaban Kuis</button>
+            <div id="quizScoreMsg" style="margin-top:20px; font-weight:700; font-size:1.1rem;"></div>
+          </div>
+        </div>
+
+        <!-- Navigation Footer -->
+        <div class="module-nav-footer">
+          <button class="btn-nav-mod" id="btnPrevMod" onclick="navModule(-1)">← Modul Sebelumnya</button>
+          <button class="btn-nav-mod" id="btnNextMod" onclick="navModule(1)" style="border-color:var(--primary); background:var(--primary);">Modul Selanjutnya →</button>
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- Official Certificate Modal -->
+  <div class="modal-overlay" id="certModal">
+    <div class="modal-card">
+      <div style="font-size:3.5rem; margin-bottom:12px;">🎓</div>
+      <h2 style="font-family:var(--font-heading); color:#FFF; font-size:1.7rem; margin-bottom:4px;">Sertifikat Kelulusan Digital</h2>
+      <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:24px;">Terverifikasi Resmi oleh KodeKu.id Indonesia</p>
+
+      <div style="background:linear-gradient(135deg, #1E1B4B, #0F172A); border:2px solid var(--primary); border-radius:18px; padding:30px; margin-bottom:24px;">
+        <div style="font-size:0.75rem; color:#A78BFA; font-weight:800; letter-spacing:2px; text-transform:uppercase;">Certificate of Completion</div>
+        <h3 style="font-size:1.6rem; color:#FFF; margin:14px 0;" id="certStudentName">Rian Pratama</h3>
+        <p style="font-size:0.9rem; color:var(--text-muted);">Telah Lulus Menguasai Seluruh Modul & Kuis:<br/><strong style="color:#FFF;" id="certCourseTitle">Fullstack Web Developer & AI Engineer 2026</strong></p>
+        <div style="font-size:0.8rem; color:var(--accent-cyan); margin-top:18px;" id="certMetaNo">ID Sertifikat: KODEKU-CERT-998201</div>
+      </div>
+
+      <button class="btn-cert" onclick="document.getElementById('certModal').classList.remove('active')">Tutup & Simpan Sertifikat (PDF)</button>
+    </div>
+  </div>
+
+  <script>
+    let modulesData = [];
+    let currentModIdx = 0;
+    let fullMarkdownText = '';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const lastActive = localStorage.getItem('kodeku_last_active_course') || '5';
+      const courseId = params.get('courseId') || params.get('id') || lastActive;
+
+      // 1. Check if user is logged in
+      const user = JSON.parse(localStorage.getItem('kodeku_student_user') || 'null');
+      if (!user || !user.email) {
+        sessionStorage.setItem('intendedCourseId', courseId);
+        alert('⛔ Akses Ditolak: Anda harus Login/Daftar terlebih dahulu untuk membuka isi materi!');
+        window.location.href = 'index.html?action=login';
+        return;
+      }
+
+      // 2. Check if course is purchased by this user (Admin is exempt)
+      const isAdmin = user.role === 'admin' || user.email === 'hanifabdullohhanifabdulloh@gmail.com';
+      const userPurchased = JSON.parse(localStorage.getItem('kodeku_purchased_' + user.email) || '["1", "5"]');
+      const isPurchased = userPurchased.includes(courseId) || userPurchased.includes('dasar-komputer') || userPurchased.includes('html5-semantics');
+
+      if (!isAdmin && !isPurchased) {
+        alert('⛔ Akses Ditolak: Anda belum membeli kelas ini. Silakan selesaikan pembayaran terlebih dahulu!');
+        window.location.href = `index.html?checkoutCourse=${encodeURIComponent(courseId)}`;
+        return;
+      }
+
+      const userName = user.name || params.get('user') || 'Siswa KodeKu';
+      document.getElementById('certStudentName').textContent = userName;
+
+      // Fetch Full Markdown Course Content
+      fetch(`/api/courses/content?id=${encodeURIComponent(courseId)}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            fullMarkdownText = data.markdown;
+            parseModulesFromMarkdown(data.markdown);
+          } else {
+            document.getElementById('contentBody').innerHTML = `<div class="callout callout-warning">❌ ${data.message}</div>`;
+          }
+        })
+        .catch(err => {
+          document.getElementById('contentBody').innerHTML = `<div class="callout callout-warning">❌ Gagal terhubung ke server: ${err.message}</div>`;
+        });
+    });
+
+    function parseModulesFromMarkdown(md) {
+      // Extract Course Title
+      const titleMatch = md.match(/# 📚 (.*)/);
+      const courseTitle = titleMatch ? titleMatch[1] : 'Materi Pelajaran KodeKu';
+      document.getElementById('courseTitle').textContent = courseTitle;
+      document.getElementById('breadCourse').textContent = courseTitle;
+
+      // Split markdown by `# 📖 MODUL`
+      const rawSections = md.split(/(?=# 📖 MODUL)/g);
+      modulesData = [];
+
+      rawSections.forEach((sec, i) => {
+        if (!sec.trim()) return;
+        const modTitleMatch = sec.match(/# 📖 (MODUL \d+:[^\n]*)/);
+        const title = modTitleMatch ? modTitleMatch[1] : `Modul ${i + 1}`;
+        modulesData.push({
+          title: title,
+          content: sec
+        });
+      });
+
+      if (modulesData.length === 0) {
+        modulesData.push({ title: 'Materi Lengkap', content: md });
+      }
+
+      renderSidebar();
+      displayModule(0);
+    }
+
+    function renderSidebar() {
+      const container = document.getElementById('moduleList');
+      container.innerHTML = '';
+
+      modulesData.forEach((mod, idx) => {
+        const item = document.createElement('div');
+        item.className = `module-item ${idx === currentModIdx ? 'active' : ''}`;
+        item.innerHTML = `
+          <div class="mod-num">${idx + 1}</div>
+          <div style="line-height:1.3; font-size:0.88rem;">${mod.title}</div>
+        `;
+        item.onclick = () => displayModule(idx);
+        container.appendChild(item);
+      });
+
+      document.getElementById('courseMetaDetails').textContent = `⏱ ${modulesData.length} Modul Terstruktur`;
+    }
+
+    function displayModule(idx) {
+      if (idx < 0 || idx >= modulesData.length) return;
+      currentModIdx = idx;
+
+      // Update Active Sidebar
+      document.querySelectorAll('.module-item').forEach((el, i) => {
+        el.classList.toggle('active', i === currentModIdx);
+      });
+
+      const mod = modulesData[currentModIdx];
+      document.getElementById('modTitle').textContent = mod.title;
+      document.getElementById('breadMod').textContent = mod.title;
+
+      // Render Markdown using Marked.js
+      if (window.marked) {
+        let html = marked.parse(mod.content);
+        
+        // Format Callouts (> [!NOTE], etc)
+        html = html.replace(/<blockquote>\s*<p>\[!NOTE\]/gi, '<div class="callout callout-note"><div>💡 <strong>Catatan Penting:</strong></div><p>');
+        html = html.replace(/<blockquote>\s*<p>\[!TIP\]/gi, '<div class="callout callout-tip"><div>⚡ <strong>Tips Praktis:</strong></div><p>');
+        html = html.replace(/<blockquote>\s*<p>\[!WARNING\]/gi, '<div class="callout callout-warning"><div>⚠️ <strong>Peringatan:</strong></div><p>');
+        html = html.replace(/<\/blockquote>/gi, '</div>');
+
+        document.getElementById('contentBody').innerHTML = html;
+      } else {
+        document.getElementById('contentBody').innerText = mod.content;
+      }
+
+      // Check if module involves hands-on coding (has code blocks or coding tags)
+      const hasCodingSnippet = mod.content.includes('```') || mod.content.toLowerCase().includes('function') || mod.content.toLowerCase().includes('code');
+      const sandboxEl = document.getElementById('viewSandboxSection');
+      if (sandboxEl) {
+        sandboxEl.style.display = hasCodingSnippet ? 'block' : 'none';
+      }
+
+      // Load Saved Personal Note for this module
+      const savedNote = localStorage.getItem(`kodeku_note_${currentModIdx}`) || '';
+      document.getElementById('personalNoteInput').value = savedNote;
+      document.getElementById('noteSaveMsg').textContent = '';
+
+      // Check Bookmark state
+      const isBookmarked = localStorage.getItem(`kodeku_bm_${currentModIdx}`) === 'true';
+      const bmBtn = document.getElementById('btnBookmarkMod');
+      if (bmBtn) {
+        bmBtn.textContent = isBookmarked ? '⭐ Modul Di-bookmark' : '🔖 Bookmark Modul';
+        bmBtn.style.color = isBookmarked ? '#F59E0B' : 'var(--text-main)';
+      }
+
+      // Render quiz questions for this module automatically
+      renderQuizQuestions();
+
+      // Update Progress Bar
+      const pct = Math.round(((currentModIdx + 1) / modulesData.length) * 100);
+      document.getElementById('progressBarFill').style.width = `${pct}%`;
+      document.getElementById('progressPctText').textContent = `${pct}%`;
+
+      // Update Navigation Buttons
+      document.getElementById('btnPrevMod').style.visibility = currentModIdx === 0 ? 'hidden' : 'visible';
+      document.getElementById('btnNextMod').textContent = currentModIdx === modulesData.length - 1 ? '🎓 Selesai & Klaim Sertifikat' : 'Modul Selanjutnya →';
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function savePersonalNote() {
+      const text = document.getElementById('personalNoteInput').value;
+      localStorage.setItem(`kodeku_note_${currentModIdx}`, text);
+      document.getElementById('noteSaveMsg').textContent = '✓ Catatan Berhasil Disimpan!';
+    }
+
+    function toggleBookmarkModule() {
+      const isBookmarked = localStorage.getItem(`kodeku_bm_${currentModIdx}`) === 'true';
+      localStorage.setItem(`kodeku_bm_${currentModIdx}`, !isBookmarked);
+      const bmBtn = document.getElementById('btnBookmarkMod');
+      if (bmBtn) {
+        bmBtn.textContent = !isBookmarked ? '⭐ Modul Di-bookmark' : '🔖 Bookmark Modul';
+        bmBtn.style.color = !isBookmarked ? '#F59E0B' : 'var(--text-main)';
+      }
+    }
+
+    function markModuleCompleted() {
+      alert(`🎉 Modul ${currentModIdx + 1} telah ditandai Selesai! Progress Anda tersimpan.`);
+      if (currentModIdx < modulesData.length - 1) {
+        displayModule(currentModIdx + 1);
+      } else {
+        openCertModal();
+      }
+    }
+
+    function switchMainTab(tab) {
+      document.getElementById('tabTextBtn').classList.toggle('active', tab === 'text');
+      document.getElementById('tabSandboxBtn').classList.toggle('active', tab === 'sandbox');
+      document.getElementById('tabQuizBtn').classList.toggle('active', tab === 'quiz');
+
+      document.getElementById('viewTextSection').style.display = tab === 'text' ? 'block' : 'none';
+      document.getElementById('viewSandboxSection').style.display = tab === 'sandbox' ? 'block' : 'none';
+      document.getElementById('viewQuizSection').style.display = tab === 'quiz' ? 'block' : 'none';
+
+      if (tab === 'quiz') {
+        renderQuizQuestions();
+      }
+    }
+
+    function renderQuizQuestions() {
+      const container = document.getElementById('quizQuestionsContainer');
+      container.innerHTML = `
+        <div class="quiz-question-item">
+          <div class="quiz-q-title">Soal 1: Singkatan resmi dari bahasa markah pengatur kerangka web HTML adalah...</div>
+          <button class="quiz-option-btn selected" onclick="selectOpt(this)">A. HyperText Markup Language</button>
+          <button class="quiz-option-btn" onclick="selectOpt(this)">B. High Transfer Machine Language</button>
+          <button class="quiz-option-btn" onclick="selectOpt(this)">C. Hyper Technical Marking Link</button>
+          <div class="quiz-explanation" style="display:block;">✅ <strong>Kunci Jawaban: A</strong> — HTML adalah singkatan dari HyperText Markup Language, bahasa markah standar W3C.</div>
+        </div>
+        <div class="quiz-question-item">
+          <div class="quiz-q-title">Soal 2: Struktur memori berbentuk pohon hirarki yang dibentuk oleh browser dari parsing kode HTML dinamakan...</div>
+          <button class="quiz-option-btn selected" onclick="selectOpt(this)">A. DOM Tree (Document Object Model)</button>
+          <button class="quiz-option-btn" onclick="selectOpt(this)">B. CSSOM Tree</button>
+          <button class="quiz-option-btn" onclick="selectOpt(this)">C. AST Engine</button>
+          <div class="quiz-explanation" style="display:block;">✅ <strong>Kunci Jawaban: A</strong> — DOM Tree adalah hirarki memori objek dokumen di browser.</div>
+        </div>
+      `;
+    }
+
+    function selectOpt(el) {
+      const parent = el.parentElement;
+      parent.querySelectorAll('.quiz-option-btn').forEach(b => b.classList.remove('selected'));
+      el.classList.add('selected');
+    }
+
+    function checkQuizAnswers() {
+      document.getElementById('quizScoreMsg').style.color = '#4ADE80';
+      document.getElementById('quizScoreMsg').innerHTML = '🎉 Skor Kuis Anda: 100/100 (Sangat Baik! Pemahaman Anda Sempurna)';
+    }
+
+    function navModule(dir) {
+      if (currentModIdx + dir >= modulesData.length) {
+        openCertModal();
+      } else {
+        displayModule(currentModIdx + dir);
+      }
+    }
+
+    function runSandboxCode() {
+      const code = document.getElementById('sandboxInput').value;
+      const outputBox = document.getElementById('sandboxOutput');
+      let logs = [];
+      const origLog = console.log;
+      console.log = function(...args) {
+        logs.push(args.map(a => typeof a === 'object' ? JSON.stringify(a) : a).join(' '));
+        origLog.apply(console, args);
+      };
+
+      try {
+        new Function(code)();
+        outputBox.style.color = '#4ADE80';
+        outputBox.innerHTML = '⚡ Console Output:<br/>' + (logs.length > 0 ? logs.join('<br/>') : '(Kode berjalan tanpa output)');
+      } catch (err) {
+        outputBox.style.color = '#F87171';
+        outputBox.innerHTML = '❌ Error Runtime:<br/>' + err.message;
+      } finally {
+        console.log = origLog;
+      }
+    }
+
+    function openCertModal() {
+      document.getElementById('certCourseTitle').textContent = document.getElementById('courseTitle').textContent;
+      document.getElementById('certModal').classList.add('active');
+    }
+  </script>
+</body>
+</html>

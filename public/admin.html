@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studio Admin & Instruktur — KodeKu.id Owner Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #070A12;
+      --bg-surface: #0E1322;
+      --bg-card: #151C2E;
+      --bg-card-hover: #1E273E;
+      --border-color: #1E293B;
+      --border-accent: #334155;
+      --primary: #6366F1;
+      --primary-hover: #4F46E5;
+      --accent-cyan: #06B6D4;
+      --accent-green: #10B981;
+      --accent-gold: #F59E0B;
+      --accent-rose: #F43F5E;
+      --text-main: #F8FAFC;
+      --text-muted: #94A3B8;
+      --font-main: 'Inter', sans-serif;
+      --font-heading: 'Plus Jakarta Sans', sans-serif;
+      --font-code: 'Fira Code', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg-dark); color: var(--text-main); font-family: var(--font-main); line-height: 1.6; }
+
+    /* ADMIN AUTH LOCK OVERLAY */
+    .admin-auth-overlay {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(7, 10, 18, 0.95); backdrop-filter: blur(16px);
+      display: flex; align-items: center; justify-content: center; z-index: 9999;
+    }
+
+    .admin-auth-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-accent);
+      border-radius: 24px; padding: 40px; width: 90%; max-width: 440px; text-align: center;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+      position: relative;
+    }
+
+    .close-modal-btn {
+      position: absolute; top: 16px; right: 20px;
+      background: none; border: none; color: var(--text-muted); font-size: 1.4rem; cursor: pointer; text-decoration: none;
+    }
+    .close-modal-btn:hover { color: #FFF; }
+
+    /* NAVBAR */
+    .admin-nav {
+      height: 64px; background: var(--bg-surface); border-bottom: 1px solid var(--border-color);
+      display: flex; align-items: center; justify-content: space-between; padding: 0 28px;
+    }
+    .brand-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: #FFF; font-family: var(--font-heading); font-weight: 800; font-size: 1.1rem; }
+    .brand-badge { background: linear-gradient(135deg, var(--primary), var(--accent-cyan)); padding: 4px 10px; border-radius: 7px; font-size: 0.8rem; }
+    .nav-btn { background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-muted); padding: 6px 14px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.85rem; }
+    .nav-btn:hover { border-color: var(--primary); color: #FFF; }
+
+    .admin-container { max-width: 1280px; margin: 32px auto; padding: 0 24px; }
+
+    .owner-banner {
+      background: linear-gradient(135deg, #182238, #0F172A); border: 1px solid var(--border-accent); border-radius: 18px; padding: 28px; margin-bottom: 32px; box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    }
+
+    .admin-tabs { display: flex; gap: 12px; margin-bottom: 24px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; flex-wrap: wrap; }
+    .tab-btn { background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-muted); padding: 10px 20px; border-radius: 10px; font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: all 0.2s; }
+    .tab-btn:hover { color: #FFF; border-color: var(--primary); }
+    .tab-btn.active { background: var(--primary); color: #FFF; border-color: var(--primary); }
+
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 20px; }
+    .stat-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 14px; padding: 20px; }
+    .stat-val { font-family: var(--font-heading); font-size: 1.8rem; font-weight: 800; margin-top: 4px; }
+
+    .card-panel { background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 28px; margin-bottom: 32px; }
+    .form-group { margin-bottom: 18px; }
+    .form-label { display: block; font-size: 0.88rem; font-weight: 700; color: var(--text-main); margin-bottom: 6px; }
+    .form-control { width: 100%; background: var(--bg-dark); border: 1px solid var(--border-color); color: #FFF; padding: 12px 16px; border-radius: 10px; font-size: 0.9rem; outline: none; }
+    .form-control:focus { border-color: var(--primary); }
+    textarea.form-control { font-family: var(--font-code); font-size: 0.9rem; height: 350px; resize: vertical; line-height: 1.6; }
+
+    .btn-submit { background: linear-gradient(135deg, var(--primary), var(--primary-hover)); color: #FFF; border: none; padding: 12px 28px; border-radius: 10px; font-weight: 800; font-size: 0.95rem; cursor: pointer; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--border-color); }
+    th { background: var(--bg-card); color: var(--text-muted); font-weight: 700; }
+  </style>
+</head>
+<body>
+
+  <!-- SECURITY ADMIN LOCK OVERLAY -->
+  <div class="admin-auth-overlay" id="adminAuthLock">
+    <div class="admin-auth-card">
+      <a href="index.html" class="close-modal-btn" title="Batal & Kembali ke Halaman Utama">✕</a>
+      <div style="font-size:3.5rem; margin-bottom:12px;">🔒</div>
+      <h2 style="font-family:var(--font-heading); color:#FFF; font-size:1.5rem; margin-bottom:6px;">Akses Terkunci Admin Studio</h2>
+      <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:24px;">Masukkan Username & Kata Sandi Rahasia Pemilik untuk Membuka Panel Admin KodeKu.id</p>
+
+      <form onsubmit="handleAdminLogin(event)">
+        <div class="form-group" style="text-align:left;">
+          <label class="form-label">Username Admin:</label>
+          <input type="text" class="form-control" id="adminUser" placeholder="admin" value="admin" required />
+        </div>
+        <div class="form-group" style="text-align:left;">
+          <label class="form-label">Password Rahasia:</label>
+          <input type="password" class="form-control" id="adminPass" placeholder="admin123" value="admin123" required />
+        </div>
+        <button type="submit" class="btn-submit" style="width:100%; padding:14px; margin-top:8px;" id="btnLoginSubmit">🔓 Buka Panel Admin Studio</button>
+      </form>
+
+      <div style="margin-top:16px;">
+        <a href="index.html" style="color:var(--text-muted); font-size:0.85rem; text-decoration:none;">← Batal & Kembali ke Katalog Siswa</a>
+      </div>
+
+      <div id="adminAuthMsg" style="margin-top:14px; color:var(--accent-rose); font-weight:700; font-size:0.9rem;"></div>
+    </div>
+  </div>
+
+  <!-- ADMIN NAVBAR -->
+  <header class="admin-nav">
+    <a href="index.html" class="brand-logo">
+      <span class="brand-badge">👑 OWNER STUDIO</span>
+      <span>KodeKu.id Admin Studio</span>
+    </a>
+    <div>
+      <a href="index.html" class="nav-btn">👁️ Lihat Halaman Utama Siswa</a>
+    </div>
+  </header>
+
+  <div class="admin-container">
+    
+    <!-- OWNER HEADER BANNER -->
+    <div class="owner-banner">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+        <div>
+          <span style="color:var(--accent-cyan); font-weight:800; font-size:0.8rem; letter-spacing:1px;">STUDIO PEMILIK KELAS & MATERI</span>
+          <h1 style="font-family:var(--font-heading); font-size:1.8rem; font-weight:800; color:#FFF; margin-top:4px;">Kelola Omset, Tambah Kelas & Tulis Materi Manual</h1>
+          <p style="color:var(--text-muted); font-size:0.9rem;">Panel kontrol resmi pemilik web KodeKu.id untuk mengelola omset riil, materi pelajaran, dan pesan masuk pengunjung.</p>
+        </div>
+      </div>
+
+      <!-- METRIC CARDS -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div style="font-size:0.8rem; color:var(--text-muted); font-weight:700;">💰 TOTAL OMSET PENJUALAN</div>
+          <div class="stat-val" style="color:var(--accent-green);" id="adminRevenue">Rp 0</div>
+          <div style="font-size:0.75rem; color:var(--accent-green); margin-top:4px;">✓ Terverifikasi Otomatis</div>
+        </div>
+        <div class="stat-card">
+          <div style="font-size:0.8rem; color:var(--text-muted); font-weight:700;">👥 TOTAL SISWA TERDAFTAR</div>
+          <div class="stat-val" style="color:var(--accent-cyan);" id="adminStudents">0 Siswa</div>
+          <div style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;">Akses Ruang Kelas</div>
+        </div>
+        <div class="stat-card">
+          <div style="font-size:0.8rem; color:var(--text-muted); font-weight:700;">📚 TOTAL KELAS TERSEDIA</div>
+          <div class="stat-val" style="color:#A78BFA;" id="adminCourses">33 Kelas</div>
+          <div style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;">Dapat Ditambah Manual</div>
+        </div>
+        <div class="stat-card">
+          <div style="font-size:0.8rem; color:var(--text-muted); font-weight:700;">📩 PESAN MASUK PENGUNJUNG</div>
+          <div class="stat-val" style="color:var(--accent-gold);" id="adminMessages">0 Pesan</div>
+          <div style="font-size:0.75rem; color:var(--text-muted); margin-top:4px;">Inkuiri Kontak Web</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB NAVIGATION -->
+    <div class="admin-tabs">
+      <button class="tab-btn active" id="tabContentBtn" onclick="switchAdminTab('content')">✍️ Tulis / Edit Materi Pelajaran Manual</button>
+      <button class="tab-btn" id="tabAddCourseBtn" onclick="switchAdminTab('addCourse')">➕ Tambah Kelas Baru Manual</button>
+      <button class="tab-btn" id="tabSalesBtn" onclick="switchAdminTab('sales')">📋 Log Penjualan & Siswa</button>
+      <button class="tab-btn" id="tabMessagesBtn" onclick="switchAdminTab('messages')">📩 Pesan Masuk Pengunjung</button>
+    </div>
+
+    <!-- TAB 1: EDIT / WRITE MANUAL LESSON MATERIAL CONTENT -->
+    <div id="viewContentStudio" class="card-panel">
+      <h2 style="font-family:var(--font-heading); color:#FFF; font-size:1.4rem; margin-bottom:8px;">✍️ Editor Teks Materi Pelajaran (Manual Content Studio)</h2>
+      <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:20px;">Pilih kelas yang ingin Anda tulis atau edit materinya secara manual di bawah ini:</p>
+
+      <div class="form-group">
+        <label class="form-label">Pilih Kelas Yang Ingin Ditulis / Diedit Materinya:</label>
+        <select class="form-control" id="selectCourseForContent" onchange="loadSelectedCourseContent()">
+          <option value="1">Kelas 1: Dasar Komputer & Arsitektur Sistem 💻</option>
+          <option value="2">Kelas 2: Cara Kerja Internet & Protokol Web 🌐</option>
+          <option value="3">Kelas 3: Linux Terminal & CLI Mastery 🐧</option>
+          <option value="4">Kelas 4: Git & GitHub Version Control 🐙</option>
+          <option value="5" selected>Kelas 5: HTML5 & Web Semantics Masterclass 📄</option>
+          <option value="6">Kelas 6: CSS3, Modern Layouts & Tailwind CSS 🎨</option>
+          <option value="7">Kelas 7: UI/UX Design Fundamentals ✏️</option>
+          <option value="8">Kelas 8: Figma untuk Developer ❖</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Teks Materi Pelajaran Format Markdown/HTML (Modul 1 s/d 10 + Kuis):</label>
+        <textarea class="form-control" id="contentMarkdownInput" placeholder="Tuliskan teks materi pelajaran Anda di sini..."></textarea>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <button class="btn-submit" onclick="saveCourseContentManual()">💾 Simpan & Terbitkan Materi Ke Web</button>
+        <a href="#" id="linkPreviewClass" target="_blank" style="color:var(--accent-cyan); font-weight:700; text-decoration:none;">👁️ Pratinjau Tampilan Di Ruang Kelas Siswa →</a>
+      </div>
+      <div id="saveMsg" style="margin-top:14px; font-weight:700;"></div>
+    </div>
+
+    <!-- TAB 2: ADD NEW COURSE MANUALLY -->
+    <div id="viewAddCourse" class="card-panel" style="display:none;">
+      <h2 style="font-family:var(--font-heading); color:#FFF; font-size:1.4rem; margin-bottom:8px;">➕ Tambah Kelas Baru Secara Manual</h2>
+      <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:20px;">Isi formulir di bawah ini untuk menambahkan kelas baru ke dalam katalog web:</p>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+        <div class="form-group">
+          <label class="form-label">Judul Kelas Baru:</label>
+          <input type="text" class="form-control" id="newTitle" placeholder="Contoh: Master Golang Microservices 🚀" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Kategori Level:</label>
+          <select class="form-control" id="newCategory">
+            <option value="Level 1 — Pemula">Level 1 — Pemula</option>
+            <option value="Level 2 — Menengah (Fullstack)">Level 2 — Menengah (Fullstack)</option>
+            <option value="Level 3 — Mahir (DevOps & AI)">Level 3 — Mahir (DevOps & AI)</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+        <div class="form-group">
+          <label class="form-label">Harga Kelas (Rp):</label>
+          <input type="number" class="form-control" id="newPrice" value="149000" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Estimasi Jam Belajar:</label>
+          <input type="text" class="form-control" id="newDuration" value="16 Jam Belajar" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Deskripsi Ringkas Kelas:</label>
+        <input type="text" class="form-control" id="newDesc" placeholder="Penjelasan singkat mengenai kelas ini..." />
+      </div>
+
+      <button class="btn-submit" onclick="submitNewCourseManual()">➕ Tambahkan Kelas Ke Web</button>
+      <div id="addCourseMsg" style="margin-top:14px; font-weight:700;"></div>
+    </div>
+
+    <!-- TAB 3: LOG SALES & TRANSACTIONS -->
+    <div id="viewSales" class="card-panel" style="display:none;">
+      <h2 style="font-family:var(--font-heading); color:#FFF; font-size:1.4rem; margin-bottom:16px;">📋 Log Penjualan Transaksi Siswa</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID Transaksi</th>
+            <th>Nama Siswa</th>
+            <th>Email Siswa</th>
+            <th>Nomor WhatsApp</th>
+            <th>Kelas Dibeli</th>
+            <th>Nominal</th>
+            <th>Status</th>
+            <th>Waktu</th>
+          </tr>
+        </thead>
+        <tbody id="salesTableBody">
+          <!-- Loaded via API -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- TAB 4: CONTACT MESSAGES INBOX -->
+    <div id="viewMessages" class="card-panel" style="display:none;">
+      <h2 style="font-family:var(--font-heading); color:#FFF; font-size:1.4rem; margin-bottom:16px;">📩 Pesan Masuk Pengunjung Web (Inkuiri Kontak)</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID Pesan</th>
+            <th>Pengirim</th>
+            <th>Kontak (WA/Email)</th>
+            <th>Subjek Pertanyaan</th>
+            <th>Isi Pesan</th>
+            <th>Waktu Kirim</th>
+          </tr>
+        </thead>
+        <tbody id="messagesTableBody">
+          <!-- Loaded via API -->
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      checkAdminAuth();
+    });
+
+    function checkAdminAuth() {
+      const user = JSON.parse(localStorage.getItem('kodeku_student_user') || '{}');
+      const token = sessionStorage.getItem('kodeku_admin_token');
+      const adminLogged = localStorage.getItem('kodeku_admin_logged_in');
+
+      const isAdmin = (user && (user.role === 'admin' || user.email === 'hanifabdullohhanifabdulloh@gmail.com')) || token === 'valid' || adminLogged === 'true';
+
+      if (isAdmin) {
+        localStorage.setItem('kodeku_admin_logged_in', 'true');
+        sessionStorage.setItem('kodeku_admin_token', 'valid');
+        document.getElementById('adminAuthLock').style.display = 'none';
+        fetchAdminStats();
+        loadSelectedCourseContent();
+      } else {
+        alert('⛔ Akses Ditolak: Halaman ini khusus untuk Admin KodeKu.id!');
+        window.location.href = 'index.html';
+      }
+    }
+
+    function handleAdminLogin(e) {
+      if (e) e.preventDefault();
+      const u = document.getElementById('adminUser').value.trim();
+      const p = document.getElementById('adminPass').value.trim();
+      const msg = document.getElementById('adminAuthMsg');
+
+      if ((u === 'admin' || u === 'hanifabdullohhanifabdulloh@gmail.com') && (p === 'admin123' || p === 'hanifabdulloh2007')) {
+        localStorage.setItem('kodeku_admin_logged_in', 'true');
+        sessionStorage.setItem('kodeku_admin_token', 'valid');
+        const adminProfile = { name: 'Hanif Abdulloh (Admin)', email: 'hanifabdullohhanifabdulloh@gmail.com', role: 'admin' };
+        localStorage.setItem('kodeku_student_user', JSON.stringify(adminProfile));
+
+        document.getElementById('adminAuthLock').style.display = 'none';
+        fetchAdminStats();
+        loadSelectedCourseContent();
+      } else {
+        msg.textContent = '❌ Username atau Password Admin Salah!';
+      }
+    }
+
+    function logoutAdmin() {
+      localStorage.removeItem('kodeku_admin_logged_in');
+      sessionStorage.removeItem('kodeku_admin_token');
+      window.location.href = 'index.html';
+    }
+
+    function switchAdminTab(tab) {
+      document.getElementById('tabContentBtn').classList.toggle('active', tab === 'content');
+      document.getElementById('tabAddCourseBtn').classList.toggle('active', tab === 'addCourse');
+      document.getElementById('tabSalesBtn').classList.toggle('active', tab === 'sales');
+      document.getElementById('tabMessagesBtn').classList.toggle('active', tab === 'messages');
+
+      document.getElementById('viewContentStudio').style.display = tab === 'content' ? 'block' : 'none';
+      document.getElementById('viewAddCourse').style.display = tab === 'addCourse' ? 'block' : 'none';
+      document.getElementById('viewSales').style.display = tab === 'sales' ? 'block' : 'none';
+      document.getElementById('viewMessages').style.display = tab === 'messages' ? 'block' : 'none';
+    }
+
+    function fetchAdminStats() {
+      fetch('/api/admin/stats')
+        .then(res => res.json())
+        .then(result => {
+          if (result.success) {
+            document.getElementById('adminRevenue').textContent = 'Rp ' + result.stats.totalRevenue.toLocaleString('id-ID');
+            document.getElementById('adminStudents').textContent = result.stats.totalStudents + ' Siswa';
+            document.getElementById('adminCourses').textContent = result.stats.totalCourses + ' Kelas';
+            document.getElementById('adminMessages').textContent = (result.stats.totalMessages || 1) + ' Pesan';
+
+            renderSalesTable(result.orders);
+            renderMessagesTable(result.messages || []);
+          }
+        })
+        .catch(err => {
+          console.log('Using local fallback stats');
+        });
+    }
+
+    function loadSelectedCourseContent() {
+      const courseId = document.getElementById('selectCourseForContent').value;
+      document.getElementById('linkPreviewClass').href = `/classroom.html?courseId=${courseId}`;
+
+      fetch(`/api/courses/content?id=${encodeURIComponent(courseId)}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            document.getElementById('contentMarkdownInput').value = data.markdown;
+          } else {
+            document.getElementById('contentMarkdownInput').value = `# 📚 MATERI KELAS BARU\n\n## 📖 MODUL 1: JUDUL MODUL\n\nTulis materi pelajaran Anda di sini...`;
+          }
+        });
+    }
+
+    function saveCourseContentManual() {
+      const courseId = document.getElementById('selectCourseForContent').value;
+      const markdown = document.getElementById('contentMarkdownInput').value;
+      const msg = document.getElementById('saveMsg');
+
+      fetch('/api/admin/content', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ courseId, markdown })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          msg.style.color = '#10B981';
+          msg.textContent = '✅ ' + data.message;
+        } else {
+          msg.style.color = '#F43F5E';
+          msg.textContent = '❌ ' + data.message;
+        }
+      });
+    }
+
+    function submitNewCourseManual() {
+      const title = document.getElementById('newTitle').value;
+      const category = document.getElementById('newCategory').value;
+      const price = document.getElementById('newPrice').value;
+      const duration = document.getElementById('newDuration').value;
+      const desc = document.getElementById('newDesc').value;
+      const msg = document.getElementById('addCourseMsg');
+
+      if (!title) { alert('Harap isi judul kelas!'); return; }
+
+      fetch('/api/admin/courses', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title, category, price, duration, desc })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          msg.style.color = '#10B981';
+          msg.textContent = '✅ ' + data.message;
+          fetchAdminStats();
+        } else {
+          msg.style.color = '#F43F5E';
+          msg.textContent = '❌ ' + data.message;
+        }
+      });
+    }
+
+    function renderSalesTable(list) {
+      const tbody = document.getElementById('salesTableBody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      if (!list || list.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; color:var(--text-muted); padding:32px;">Belum ada pendaftaran siswa. Menunggu pendaftaran/pembelian manual siswa di web...</td></tr>`;
+        return;
+      }
+
+      list.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td style="font-family:var(--font-code); color:var(--accent-cyan);">${item.id}</td>
+          <td style="font-weight:700; color:#FFF;">${item.name}</td>
+          <td style="color:#CBD5E1;">✉️ ${item.email || '-'}</td>
+          <td><a href="https://wa.me/${(item.whatsapp || '').replace(/[^0-9]/g, '')}" target="_blank" style="color:var(--accent-green); text-decoration:none; font-weight:600;">📱 ${item.whatsapp || '-'}</a></td>
+          <td style="font-weight:600;">${item.courseTitle}</td>
+          <td style="font-weight:800; color:var(--accent-green);">Rp ${(item.amount || 0).toLocaleString('id-ID')}</td>
+          <td><span style="background:rgba(16,185,129,0.15); color:var(--accent-green); padding:4px 10px; border-radius:6px; font-weight:700; font-size:0.75rem;">${item.status || 'PAID'}</span></td>
+          <td style="font-size:0.8rem; color:var(--text-muted);">${item.createdAt}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function renderMessagesTable(list) {
+      const tbody = document.getElementById('messagesTableBody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      if (!list || list.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:var(--text-muted); padding:32px;">Belum ada pesan masuk dari pengunjung. Menunggu pesan manual pengunjung di web...</td></tr>`;
+        return;
+      }
+
+      list.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td style="font-family:var(--font-code); color:var(--accent-cyan);">${item.id}</td>
+          <td style="font-weight:700; color:#FFF;">${item.name}</td>
+          <td style="color:#CBD5E1;">✉️ ${item.email || '-'}</td>
+          <td style="color:var(--accent-green); font-weight:600;">📱 ${item.whatsapp || '-'}</td>
+          <td style="font-weight:600; color:#A78BFA;">${item.subject}</td>
+          <td style="font-size:0.88rem; color:var(--text-muted);">${item.message}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+  </script>
+</body>
+</html>

@@ -874,7 +874,8 @@ console.log(sapaSiswa("Siswa KodeKu", "Masterclass"));</textarea>
       document.getElementById('btnPrevMod').style.visibility = currentModIdx === 0 ? 'hidden' : 'visible';
       document.getElementById('btnNextMod').textContent = currentModIdx === modulesData.length - 1 ? '🎓 Selesai & Klaim Sertifikat' : 'Modul Selanjutnya →';
 
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Scroll instantly to top of page without smooth animation
+      window.scrollTo(0, 0);
     }
 
     function savePersonalNote() {

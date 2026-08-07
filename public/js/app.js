@@ -120,6 +120,12 @@ function getLastActiveCourse() {
 }
 
 function openClassroomDirect() {
+  const user = getStudentUser();
+  if (!user || !user.email) {
+    alert('Silakan Login atau Daftar Akun terlebih dahulu untuk membuka Ruang Belajar!');
+    openAuthModal('login');
+    return;
+  }
   const lastId = getLastActiveCourse();
   window.location.href = `classroom.html?courseId=${encodeURIComponent(lastId)}`;
 }

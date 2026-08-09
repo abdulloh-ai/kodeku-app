@@ -201,7 +201,10 @@
         </div>
         <div class="form-group">
           <label class="form-label">Kata Sandi / Password</label>
-          <input type="password" class="form-input" id="authPassword" placeholder="Masukkan password Anda" required />
+          <div style="position:relative;">
+            <input type="password" class="form-input" id="authPassword" placeholder="Masukkan password Anda" required style="padding-right:44px;" />
+            <button type="button" onclick="togglePasswordVisibility('authPassword', this)" title="Tampilkan/Sembunyikan Password" style="position:absolute; right:10px; top:50%; transform:translateY(-50%); background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:1.1rem;">👁️</button>
+          </div>
         </div>
         <div class="form-group" id="groupWhatsapp" style="display:none;">
           <label class="form-label">Nomor WhatsApp</label>

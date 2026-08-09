@@ -244,6 +244,19 @@ function filterCategory(level, btn) {
   }
 }
 
+// Toggle Password Visibility Eye Button
+function togglePasswordVisibility(inputId, btn) {
+  const input = document.getElementById(inputId);
+  if (!input) return;
+  if (input.type === 'password') {
+    input.type = 'text';
+    btn.textContent = '🙈';
+  } else {
+    input.type = 'password';
+    btn.textContent = '👁️';
+  }
+}
+
 // Modal Handlers
 function openAuthModal(mode) {
   const isReg = mode === 'register';

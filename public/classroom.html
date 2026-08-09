@@ -593,7 +593,7 @@
   <div class="classroom-layout">
     
     <!-- Sidebar Module Menu -->
-    <aside class="sidebar">
+    <aside class="sidebar" id="classroomSidebar">
       <div class="course-meta-card">
         <div class="course-meta-badge" id="courseBadge">LEVEL 1</div>
         <div class="course-meta-title" id="courseTitle">Memuat Kelas...</div>
@@ -610,6 +610,12 @@
 
     <!-- Main Content Reader Area -->
     <main class="reader-area">
+      <!-- Mobile Toggle Sidebar Drawer Button -->
+      <div style="margin-bottom:16px; display:none;" id="mobileSidebarBtnWrapper">
+        <button onclick="toggleMobileSidebarDrawer()" id="btnToggleDrawer" class="btn btn-outline" style="width:100%; padding:10px 14px; font-size:0.88rem; font-weight:700; border-color:var(--primary); color:#FFF; justify-content:center;">
+          📋 Daftar Modul (Buka/Tutup Sidebar Menu)
+        </button>
+      </div>
       
       <!-- TAB 1: TEKS MATERI BACAAN -->
       <div id="viewTextSection">
@@ -1047,6 +1053,13 @@ console.log(sapaSiswa("Siswa KodeKu", "Masterclass"));</textarea>
       } finally {
         console.log = origLog;
       }
+    }
+
+    function toggleMobileSidebarDrawer() {
+      const sb = document.getElementById('classroomSidebar');
+      if (!sb) return;
+      const isHidden = getComputedStyle(sb).display === 'none';
+      sb.style.display = isHidden ? 'block' : 'none';
     }
 
     function openCertModal() {

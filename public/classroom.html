@@ -917,35 +917,106 @@ console.log(sapaSiswa("Siswa KodeKu", "Masterclass"));</textarea>
       }
     }
 
+    let currentQuizData = [
+      {
+        q: "Soal 1: Singkatan resmi dari bahasa markah pengatur kerangka web HTML adalah...",
+        opts: ["A. HyperText Markup Language", "B. High Transfer Machine Language", "C. Hyper Technical Marking Link"],
+        correct: 0,
+        exp: "HTML adalah singkatan dari HyperText Markup Language, bahasa markah standar W3C."
+      },
+      {
+        q: "Soal 2: Struktur memori berbentuk pohon hirarki yang dibentuk oleh browser dari parsing kode HTML dinamakan...",
+        opts: ["A. DOM Tree (Document Object Model)", "B. CSSOM Tree", "C. AST Engine"],
+        correct: 0,
+        exp: "DOM Tree adalah hirarki memori objek dokumen di browser."
+      }
+    ];
+
+    let userQuizChoices = {};
+
     function renderQuizQuestions() {
       const container = document.getElementById('quizQuestionsContainer');
-      container.innerHTML = `
-        <div class="quiz-question-item">
-          <div class="quiz-q-title">Soal 1: Singkatan resmi dari bahasa markah pengatur kerangka web HTML adalah...</div>
-          <button class="quiz-option-btn selected" onclick="selectOpt(this)">A. HyperText Markup Language</button>
-          <button class="quiz-option-btn" onclick="selectOpt(this)">B. High Transfer Machine Language</button>
-          <button class="quiz-option-btn" onclick="selectOpt(this)">C. Hyper Technical Marking Link</button>
-          <div class="quiz-explanation" style="display:block;">✅ <strong>Kunci Jawaban: A</strong> — HTML adalah singkatan dari HyperText Markup Language, bahasa markah standar W3C.</div>
-        </div>
-        <div class="quiz-question-item">
-          <div class="quiz-q-title">Soal 2: Struktur memori berbentuk pohon hirarki yang dibentuk oleh browser dari parsing kode HTML dinamakan...</div>
-          <button class="quiz-option-btn selected" onclick="selectOpt(this)">A. DOM Tree (Document Object Model)</button>
-          <button class="quiz-option-btn" onclick="selectOpt(this)">B. CSSOM Tree</button>
-          <button class="quiz-option-btn" onclick="selectOpt(this)">C. AST Engine</button>
-          <div class="quiz-explanation" style="display:block;">✅ <strong>Kunci Jawaban: A</strong> — DOM Tree adalah hirarki memori objek dokumen di browser.</div>
-        </div>
-      `;
+      container.innerHTML = '';
+      userQuizChoices = {};
+
+      currentQuizData.forEach((qObj, qIdx) => {
+        const div = document.createElement('div');
+        div.className = 'quiz-question-item';
+        div.setAttribute('data-qidx', qIdx);
+
+        let optsHtml = '';
+        qObj.opts.forEach((optText, oIdx) => {
+          optsHtml += `<button type="button" class="quiz-option-btn" onclick="selectOpt(this, ${qIdx}, ${oIdx})">${optText}</button>`;
+        });
+
+        div.innerHTML = `
+          <div class="quiz-q-title">${qObj.q}</div>
+          ${optsHtml}
+          <div class="quiz-explanation" id="quizExp_${qIdx}" style="display:none; margin-top:12px; padding:10px 14px; border-radius:8px; font-weight:600;"></div>
+        `;
+        container.appendChild(div);
+      });
+
+      const scoreEl = document.getElementById('quizScoreMsg');
+      if (scoreEl) scoreEl.innerHTML = '';
     }
 
-    function selectOpt(el) {
-      const parent = el.parentElement;
+    function selectOpt(btnEl, qIdx, oIdx) {
+      const parent = btnEl.parentElement;
       parent.querySelectorAll('.quiz-option-btn').forEach(b => b.classList.remove('selected'));
-      el.classList.add('selected');
+      btnEl.classList.add('selected');
+      userQuizChoices[qIdx] = oIdx;
     }
 
     function checkQuizAnswers() {
-      document.getElementById('quizScoreMsg').style.color = '#4ADE80';
-      document.getElementById('quizScoreMsg').innerHTML = '🎉 Skor Kuis Anda: 100/100 (Sangat Baik! Pemahaman Anda Sempurna)';
+      let correctCount = 0;
+      const total = currentQuizData.length;
+
+      currentQuizData.forEach((qObj, qIdx) => {
+        const chosen = userQuizChoices[qIdx];
+        const expEl = document.getElementById(`quizExp_${qIdx}`);
+        const parent = expEl ? expEl.parentElement : null;
+
+        if (chosen === undefined) {
+          if (expEl) {
+            expEl.style.display = 'block';
+            expEl.style.background = 'rgba(245,158,11,0.15)';
+            expEl.style.color = '#F59E0B';
+            expEl.innerHTML = '⚠️ Anda belum memilih jawaban untuk soal ini.';
+          }
+          return;
+        }
+
+        const isCorrect = chosen === qObj.correct;
+        if (isCorrect) {
+          correctCount++;
+          if (expEl) {
+            expEl.style.display = 'block';
+            expEl.style.background = 'rgba(16,185,129,0.15)';
+            expEl.style.color = '#10B981';
+            expEl.innerHTML = `✅ <strong>Jawaban Anda BENAR!</strong> — ${qObj.exp}`;
+          }
+        } else {
+          if (expEl) {
+            expEl.style.display = 'block';
+            expEl.style.background = 'rgba(244,63,94,0.15)';
+            expEl.style.color = '#F43F5E';
+            expEl.innerHTML = `❌ <strong>Jawaban Anda SALAH.</strong> Jawaban yang benar adalah: <strong>${qObj.opts[qObj.correct]}</strong>. (${qObj.exp})`;
+          }
+        }
+      });
+
+      const scorePct = Math.round((correctCount / total) * 100);
+      const scoreEl = document.getElementById('quizScoreMsg');
+      if (scoreEl) {
+        if (scorePct >= 70) {
+          scoreEl.style.color = '#10B981';
+          scoreEl.innerHTML = `🎉 Skor Kuis Anda: <strong>${scorePct}/100</strong> (${correctCount} dari ${total} Soal Benar — Pemahaman Baik!)`;
+        } else {
+          scoreEl.style.color = '#F43F5E';
+          scoreEl.innerHTML = `⚠️ Skor Kuis Anda: <strong>${scorePct}/100</strong> (${correctCount} dari ${total} Soal Benar — Silakan pelajari ulang modul ini).`;
+        }
+      }
     }
 
     function navModule(dir) {

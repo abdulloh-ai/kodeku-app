@@ -394,6 +394,32 @@ Di modul ini, kita mempelajari pembuatan struktur web yang ramah SEO dan mudah d
   orders: []
 };
 
+const DB_FILE = path.join(__dirname, 'database.json');
+
+function saveDatabase() {
+  try {
+    fs.writeFileSync(DB_FILE, JSON.stringify({ users: db.users, orders: db.orders, messages: db.messages }, null, 2), 'utf-8');
+  } catch (e) {
+    console.error('Error saving database file:', e);
+  }
+}
+
+function loadDatabase() {
+  try {
+    if (fs.existsSync(DB_FILE)) {
+      const raw = fs.readFileSync(DB_FILE, 'utf-8');
+      const loaded = JSON.parse(raw);
+      if (loaded.users) db.users = loaded.users;
+      if (loaded.orders) db.orders = loaded.orders;
+      if (loaded.messages) db.messages = loaded.messages;
+    }
+  } catch (e) {
+    console.error('Error loading database file:', e);
+  }
+}
+
+loadDatabase();
+
 const server = http.createServer((req, res) => {
   const parsedUrl = new URL(req.url, `http://localhost:${PORT}`);
   let pathname = parsedUrl.pathname;
@@ -427,6 +453,7 @@ const server = http.createServer((req, res) => {
           role: 'STUDENT'
         };
         db.users.push(newUser);
+        saveDatabase();
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ success: true, message: 'Registrasi Berhasil!', user: newUser }));
       } catch (err) {
@@ -526,6 +553,7 @@ const server = http.createServer((req, res) => {
           createdAt: new Date().toLocaleString('id-ID')
         };
         db.messages.unshift(newMsg);
+        saveDatabase();
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ success: true, message: 'Pesan Anda Berhasil Terkirim ke Admin Studio!' }));
       } catch (err) {
@@ -602,6 +630,7 @@ const server = http.createServer((req, res) => {
         };
 
         db.orders.unshift(newOrder);
+        saveDatabase();
 
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({

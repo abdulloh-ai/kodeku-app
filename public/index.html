@@ -67,14 +67,22 @@
   <!-- Course Catalog Section -->
   <section id="courses" style="padding: 50px 0 60px;">
     <div class="container">
-      <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom: 24px; flex-wrap:wrap; gap:16px;">
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom: 18px; flex-wrap:wrap; gap:14px;">
         <div>
           <span style="font-size:0.8rem; color:#60A5FA; font-weight:700; text-transform:uppercase;">KATALOG TERSTRUKTUR</span>
           <h2 style="font-size:1.8rem; font-weight:800; font-family:var(--font-heading);">Pilihan Kelas Populer</h2>
         </div>
-        <div style="display:flex; gap:10px;">
-          <input type="text" id="searchInput" class="form-input" placeholder="🔍 Cari kelas atau topik..." style="width:240px;" onkeyup="filterCourseList()" />
+        <div style="width:100%; max-width:320px;">
+          <input type="text" id="searchInput" class="form-input" placeholder="🔍 Cari kelas atau topik..." style="width:100%;" onkeyup="filterCourseList()" />
         </div>
+      </div>
+
+      <!-- Mobile-Friendly Category Filter Pills -->
+      <div style="display:flex; gap:8px; margin-bottom:24px; overflow-x:auto; padding-bottom:8px; -webkit-overflow-scrolling:touch;" id="categoryPills">
+        <button class="cat-pill active" onclick="filterCategory('all', this)">🔥 Semua Kelas</button>
+        <button class="cat-pill" onclick="filterCategory('Pemula', this)">🌱 Level 1 (Pemula)</button>
+        <button class="cat-pill" onclick="filterCategory('Menengah', this)">💻 Level 2 (Menengah)</button>
+        <button class="cat-pill" onclick="filterCategory('Mahir', this)">🚀 Level 3 (Mahir)</button>
       </div>
 
       <div class="grid-3" id="courseGrid">

@@ -385,9 +385,22 @@ tr:last-child td { border-bottom: none; }
   .course-mini-card { flex-direction: column; align-items: flex-start !important; }
 }
 
-/* Small Screens / Budget Phones (max-width: 480px) */
-@media (max-width: 480px) {
-  .container { padding: 0 14px; }
-  .logo span { font-size: 1.1rem; }
-  .reader-area { padding: 16px 10px !important; }
+/* Category Filter Pills */
+.cat-pill {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 8px 16px;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+.cat-pill.active, .cat-pill:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #FFF;
+  box-shadow: 0 4px 14px rgba(99,102,241,0.4);
 }

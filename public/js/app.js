@@ -229,6 +229,21 @@ function filterCourseList() {
   renderCatalog(filtered);
 }
 
+function filterCategory(level, btn) {
+  document.querySelectorAll('.cat-pill').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+
+  if (level === 'all') {
+    renderCatalog(allCoursesCache);
+  } else {
+    const filtered = allCoursesCache.filter(c => 
+      c.level.toLowerCase().includes(level.toLowerCase()) || 
+      c.category.toLowerCase().includes(level.toLowerCase())
+    );
+    renderCatalog(filtered);
+  }
+}
+
 // Modal Handlers
 function openAuthModal(mode) {
   const isReg = mode === 'register';

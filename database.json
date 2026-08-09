@@ -1,0 +1,41 @@
+{
+  "users": [
+    {
+      "id": "usr-admin-01",
+      "name": "Hanif Abdulloh (Admin)",
+      "email": "hanifabdullohhanifabdulloh@gmail.com",
+      "password": "hanifabdulloh2007",
+      "role": "admin"
+    },
+    {
+      "id": "usr-1",
+      "name": "Rian Pratama",
+      "email": "rian@gmail.com",
+      "password": "user123",
+      "role": "student"
+    },
+    {
+      "id": "usr-2",
+      "name": "Budi Santoso",
+      "email": "budi@gmail.com",
+      "password": "user123",
+      "role": "student"
+    }
+  ],
+  "orders": [
+    {
+      "id": "ORD-737412",
+      "orderNo": "KODEKU-ORD-372126",
+      "name": "Hanif Abdulloh (Admin)",
+      "email": "hanifabdullohhanifabdulloh@gmail.com",
+      "whatsapp": "08765444333",
+      "courseId": "3",
+      "courseTitle": "3",
+      "amount": 149000,
+      "paymentMethod": "QRIS (GoPay/DANA/OVO)",
+      "status": "PAID",
+      "createdAt": "9/8/2026, 13.23.42"
+    }
+  ],
+  "messages": []
+}

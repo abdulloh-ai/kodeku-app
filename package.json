@@ -1,13 +1,13 @@
 {
-  "name": "kodeku-id-platform",
-  "version": "1.0.0",
-  "description": "Platform Belajar Coding & AI Terstruktur #1 Indonesia (Text-Based EdTech)",
+  "name": "codemik-ai-b2b-platform",
+  "version": "2.0.0",
+  "description": "Codemik AI — Autonomous WhatsApp AI Agent & Supply Chain Automation for UMKM Indonesia",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js"
   },
-  "keywords": ["edtech", "coding", "ai", "dicoding-replica", "education"],
-  "author": "KodeKu.id Team",
+  "keywords": ["codemik", "ai-supply-chain", "whatsapp-parser", "ocr-nota", "b2b-saas"],
+  "author": "Codemik AI Team",
   "license": "MIT"
 }

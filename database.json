@@ -1,41 +1,38 @@
 {
-  "users": [
+  "merchants": [
     {
-      "id": "usr-admin-01",
-      "name": "Hanif Abdulloh (Admin)",
-      "email": "hanifabdullohhanifabdulloh@gmail.com",
-      "password": "hanifabdulloh2007",
-      "role": "admin"
-    },
-    {
-      "id": "usr-1",
-      "name": "Rian Pratama",
-      "email": "rian@gmail.com",
-      "password": "user123",
-      "role": "student"
-    },
-    {
-      "id": "usr-2",
-      "name": "Budi Santoso",
-      "email": "budi@gmail.com",
-      "password": "user123",
-      "role": "student"
+      "id": "m-01",
+      "storeName": "Toko Sembako Berkah Jaya",
+      "ownerName": "Budi Santoso",
+      "phone": "081234567890",
+      "email": "berkahjaya@gmail.com",
+      "qrisInfo": "00020101021126580016ID.CO.QRIS.WWW9010000000000000",
+      "waConnected": true,
+      "waStatus": "AUTOPILOT_ACTIVE"
     }
   ],
-  "orders": [
+  "inventory": [
+    { "id": "inv-1", "sku": "BRS-5KG", "name": "Beras Rojolele 5kg", "price": 68000, "stock": 15, "unit": "karung" },
+    { "id": "inv-2", "sku": "MYK-2L", "name": "Minyak Bimoli 2L", "price": 35000, "stock": 5, "unit": "pouch" },
+    { "id": "inv-3", "sku": "GUL-1KG", "name": "Gula Pasir Gulaku 1kg", "price": 17500, "stock": 0, "unit": "kg" },
+    { "id": "inv-4", "sku": "TLR-1KG", "name": "Telur Ayam Ras 1kg", "price": 28000, "stock": 40, "unit": "kg" },
+    { "id": "inv-5", "sku": "IND-MIE", "name": "Indomie Goreng Spesi 1 Karton", "price": 112000, "stock": 25, "unit": "dus" }
+  ],
+  "invoices": [
     {
-      "id": "ORD-737412",
-      "orderNo": "KODEKU-ORD-372126",
-      "name": "Hanif Abdulloh (Admin)",
-      "email": "hanifabdullohhanifabdulloh@gmail.com",
-      "whatsapp": "08765444333",
-      "courseId": "3",
-      "courseTitle": "3",
-      "amount": 149000,
-      "paymentMethod": "QRIS (GoPay/DANA/OVO)",
-      "status": "PAID",
-      "createdAt": "9/8/2026, 13.23.42"
+      "id": "INV-8821",
+      "customerName": "Pembeli WA (085711223344)",
+      "address": "Jl. Pemuda No. 45 Surabaya",
+      "whatsapp": "085711223344",
+      "items": [
+        { "name": "Beras Rojolele 5kg", "qty": 10, "price": 68000, "subtotal": 680000 }
+      ],
+      "totalAmount": 680000,
+      "paymentStatus": "BELUM DIBAYAR",
+      "qrisUrl": "https://kodemik.com/pay/INV-8821",
+      "pdfUrl": "https://kodemik.com/pdf/INV-8821.pdf",
+      "createdAt": "2026-08-11 09:15:00"
     }
   ],
-  "messages": []
+  "ownerNotifications": []
 }

@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Codemik AI — Platform AI Otomasi Pesanan WhatsApp, Stok & Invoice UMKM</title>
-  <meta name="description" content="Ubah chat WhatsApp acak & foto nota tulisan tangan menjadi data JSON terstruktur, stok gudang otomatis, dan Invoice PDF + QRIS instan dalam 2 detik.">
-  <meta name="keywords" content="codemik, codemik ai, ai supply chain, whatsapp order parser, otomasi invoice umkm, ocr nota ai, kasir whatsapp ai">
+  <title>Codemik AI — Autonomous WA AI Agent, Stok Gudang & Auto Invoice</title>
+  <meta name="description" content="Otomasi WA AI Agent 100% tanpa copy-paste manual. Cek stok otomatis, peringatan stok menipis ke pemilik toko, dan kirim balasan Invoice PDF + QRIS ke WA pembeli.">
+  <meta name="keywords" content="codemik, codemik ai, autonomous wa ai agent, otomasi wa toko, ai vision ocr nota, stok gudang otomatis">
   
   <!-- Open Graph / SEO -->
-  <meta property="og:title" content="Codemik AI — Otomasi Pesanan WhatsApp & Invoice UMKM">
-  <meta property="og:description" content="Ekstraksi foto nota & chat WA acak jadi Invoice PDF + QRIS instan otomatis.">
+  <meta property="og:title" content="Codemik AI — Autonomous WhatsApp AI Agent">
+  <meta property="og:description" content="Otomasi WA AI Agent: Cek Stok ➔ Warning Stok Menipis ➔ Auto Balas WA Invoice PDF & QRIS.">
   <meta property="og:url" content="https://kodemik.com">
   <meta property="og:type" content="website">
 
@@ -28,6 +28,7 @@
       --accent-cyan: #06B6D4;
       --accent-green: #10B981;
       --accent-gold: #F59E0B;
+      --accent-red: #EF4444;
       --text-main: #F9FAFB;
       --text-muted: #9CA3AF;
       --border: #374151;
@@ -44,29 +45,29 @@
     }
 
     .demo-box {
-      background: linear-gradient(135deg, rgba(31, 41, 55, 0.9), rgba(17, 24, 39, 0.95));
+      background: linear-gradient(135deg, rgba(31, 41, 55, 0.95), rgba(17, 24, 39, 0.98));
       border: 1px solid var(--primary);
       border-radius: var(--radius-lg);
       padding: 24px;
       box-shadow: 0 20px 50px rgba(99, 102, 241, 0.2);
     }
-    .demo-tabs { display: flex; gap: 10px; margin-bottom: 16px; }
-    .demo-tab-btn {
-      background: var(--bg-input); border: 1px solid var(--border); color: var(--text-muted);
-      padding: 8px 16px; border-radius: 8px; font-weight: 700; font-size: 0.85rem; cursor: pointer;
-    }
-    .demo-tab-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
 
-    .json-preview {
-      background: #080C14; border: 1px solid var(--border); border-radius: var(--radius-sm);
-      padding: 16px; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; color: #38BDF8;
-      max-height: 220px; overflow-y: auto; white-space: pre-wrap;
-    }
-
-    .wa-preview-box {
+    .wa-bot-box {
       background: #0B141A; border: 1px solid #10B981; border-radius: var(--radius-md);
-      padding: 16px; font-size: 0.88rem; color: #E9EDEF;
+      padding: 18px; font-size: 0.88rem; color: #E9EDEF; min-height: 200px;
     }
+
+    .owner-alert-box {
+      background: rgba(239, 68, 68, 0.15); border: 1px solid #EF4444; border-radius: var(--radius-sm);
+      padding: 12px 16px; color: #FCA5A5; font-size: 0.82rem; font-weight: 600; margin-top: 12px;
+    }
+
+    .preset-chip {
+      background: var(--bg-card); border: 1px solid var(--border); color: var(--text-muted);
+      padding: 6px 12px; border-radius: 20px; font-size: 0.78rem; font-weight: 600; cursor: pointer;
+      transition: all 0.2s;
+    }
+    .preset-chip:hover { border-color: var(--primary); color: #fff; }
   </style>
 </head>
 <body>
@@ -80,15 +81,14 @@
       </a>
 
       <ul class="nav-links">
-        <li><a href="#demo" class="active">Uji Coba AI Demo</a></li>
-        <li><a href="#features">Fitur B2B</a></li>
+        <li><a href="#simulator" class="active">🤖 Simulator WA AI Agent</a></li>
         <li><a href="#pricing">Harga Langganan</a></li>
-        <li><a href="#merchant" onclick="openMerchantDashboard()">📊 Dashboard Toko</a></li>
+        <li><a href="#merchant" onclick="openMerchantDashboard()">📦 Input Stok & Portal Toko</a></li>
       </ul>
 
       <div style="display:flex; gap:10px;">
-        <button class="btn btn-outline" onclick="openMerchantDashboard()" style="padding:8px 16px; font-size:0.85rem;">Portal Merchant</button>
-        <button class="btn btn-primary" onclick="scrollToDemo()" style="padding:8px 16px; font-size:0.85rem;">⚡ Coba AI Sekarang</button>
+        <button class="btn btn-outline" onclick="openMerchantDashboard()" style="padding:8px 16px; font-size:0.85rem;">📦 Input Stok Gudang</button>
+        <button class="btn btn-primary" onclick="scrollToSimulator()" style="padding:8px 16px; font-size:0.85rem;">🤖 Tes WA AI Agent</button>
       </div>
     </div>
   </nav>
@@ -96,51 +96,50 @@
   <!-- Hero Section -->
   <section class="hero">
     <div class="container">
-      <span class="badge-pill">🚀 PLATFORM B2B AI SUPPLY CHAIN #1 INDONESIA</span>
-      <h1 style="max-width:850px; margin:16px auto;">Otomasi Pesanan WhatsApp & Foto Nota Toko Anda Dengan AI</h1>
-      <p style="max-width:700px; margin:0 auto 28px;">
-        Ubah chat WhatsApp acak & foto nota tulisan tangan menjadi <strong>Data JSON Terstruktur</strong>, 
-        <strong>Cek Stok Gudang Otomatis</strong>, serta <strong>PDF Invoice & Link QRIS Pembayaran</strong> instan dalam 2 detik.
+      <span class="badge-pill">🤖 AUTONOMOUS WHATSAPP AI AGENT #1 INDONESIA</span>
+      <h1 style="max-width:880px; margin:16px auto;">Otomasi WA AI Agent: Cek Stok Gudang, Warning Stok Menipis & Auto Reply Invoice</h1>
+      <p style="max-width:720px; margin:0 auto 28px;">
+        <strong>100% Otomatis Tanpa Copy-Paste Manual!</strong> Ada chat pesanan WA masuk ➔ AI Agent otomatis mencari stok di gudang. 
+        Jika stok cukup ➔ Auto-Cetak PDF Invoice & QRIS. Jika stok habis ➔ Beri peringatan ke pemilik toko & balas otomatis ke WA pembeli!
       </p>
 
-      <!-- Live Interactive AI Demo Box -->
-      <div id="demo" class="demo-box" style="max-width:920px; margin:0 auto; text-align:left;">
+      <!-- Autonomous WA AI Agent Simulator Box -->
+      <div id="simulator" class="demo-box" style="max-width:940px; margin:0 auto; text-align:left;">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:10px;">
-          <h3 style="margin:0; font-size:1.1rem; color:#FFF;">⚡ Live AI Interactive Order Parser Demo</h3>
-          <span style="font-size:0.78rem; color:var(--accent-green); font-weight:700;">🟢 Model: Codemik-Vision-v4.2-Turbo (Active)</span>
+          <h3 style="margin:0; font-size:1.15rem; color:#FFF;">🤖 Simulator WA AI Agent Otomatis (Real-Time Test)</h3>
+          <span style="font-size:0.78rem; color:var(--accent-green); font-weight:700;">🟢 Autonomous Engine: Active (Zero Manual Input)</span>
         </div>
 
         <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px;" class="grid-2">
           <!-- Left Input Column -->
           <div>
-            <label class="form-label" style="color:#FFF;">1. Masukkan Chat WA Acak / Tulis Pesanan Nota:</label>
-            <textarea id="aiInputText" class="form-input" style="height:120px; font-size:0.88rem; font-family:'Plus Jakarta Sans';" spellcheck="false">Pesen beras rojolele 10 karung, minyak bimoli 2L 5 pouch, kirim ke Toko Berkah Surabaya</textarea>
+            <label class="form-label" style="color:#FFF;">1. Simulasi Chat WA Masuk Dari Pembeli:</label>
+            <textarea id="simWaMessage" class="form-input" style="height:120px; font-size:0.88rem;" spellcheck="false">Mas pesen beras rojolele 5 karung, minyak bimoli 2L 2 pouch</textarea>
             
-            <div style="margin-top:10px; display:flex; justify-content:space-between; align-items:center;">
-              <span style="font-size:0.75rem; color:var(--text-muted);">Atau tes preset contoh:</span>
-              <button onclick="loadPresetOrder(1)" class="btn btn-outline" style="padding:4px 10px; font-size:0.75rem;">Preset Nota #1</button>
+            <div style="margin-top:10px;">
+              <span style="font-size:0.78rem; color:var(--text-muted); display:block; margin-bottom:6px;">Tes Preset Kondisi Stok Gudang:</span>
+              <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                <button onclick="setPresetMsg(1)" class="preset-chip">✅ Pesanan Stok Cukup</button>
+                <button onclick="setPresetMsg(2)" class="preset-chip" style="border-color:var(--accent-gold);">⚠️ Pesanan Stok Menipis</button>
+                <button onclick="setPresetMsg(3)" class="preset-chip" style="border-color:var(--accent-red);">❌ Pesanan Stok Habis (0)</button>
+              </div>
             </div>
 
-            <button onclick="processOrderWithAI()" id="btnProcessAI" class="btn btn-primary" style="width:100%; margin-top:14px; justify-content:center; padding:12px;">
-              ⚡ Urai Pesanan & Cetak Invoice AI (Run)
+            <button onclick="runAIAgentSimulator()" id="btnRunAgent" class="btn btn-primary" style="width:100%; margin-top:16px; justify-content:center; padding:12px; font-weight:800;">
+              🤖 Jalankan WA AI Agent Otomatis
             </button>
           </div>
 
           <!-- Right Output Column -->
           <div>
-            <div class="demo-tabs">
-              <button class="demo-tab-btn active" id="tabWaBtn" onclick="switchDemoTab('wa')">📲 WA Message & PDF Invoice</button>
-              <button class="demo-tab-btn" id="tabJsonBtn" onclick="switchDemoTab('json')">⚙️ Engine Data JSON</button>
+            <label class="form-label" style="color:#FFF;">2. Hasil Balasan WA Otomatis Ke Pembeli:</label>
+            <div class="wa-bot-box">
+              <div id="agentWaReplyText" style="white-space:pre-wrap; font-size:0.84rem;">Klik "Jalankan WA AI Agent Otomatis" untuk melihat balasan serba otomatis...</div>
             </div>
 
-            <!-- Tab 1: WA Message Preview -->
-            <div id="waPreviewTab" class="wa-preview-box">
-              <div id="waOutputText" style="white-space:pre-wrap; font-size:0.84rem;">Klik "Urai Pesanan & Cetak Invoice AI" untuk melihat hasil otomatisasi...</div>
-            </div>
-
-            <!-- Tab 2: Raw JSON Output -->
-            <div id="jsonPreviewTab" class="json-preview" style="display:none;">
-              <pre id="jsonOutputText">// Ekstraksi data JSON terstruktur AI akan muncul di sini...</pre>
+            <!-- Owner Warning Alert Box -->
+            <div id="ownerAlertContainer" style="display:none;" class="owner-alert-box">
+              <div id="ownerAlertText">⚠️ PERINGATAN GUDANG: Stok barang menipis!</div>
             </div>
           </div>
         </div>
@@ -148,84 +147,110 @@
     </div>
   </section>
 
-  <!-- Features B2B Section -->
-  <section id="features" style="padding:60px 0; background:var(--bg-surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <!-- Merchant Dashboard & Stock Input Section -->
+  <section id="merchantSection" style="padding:60px 0; background:var(--bg-surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
     <div class="container">
-      <div style="text-align:center; margin-bottom:40px;">
-        <span class="badge-pill">MENGAPA CODEMIK AI?</span>
-        <h2 style="font-size:1.8rem; font-weight:800;">Solusi Otomasi Berkelas Untuk UMKM & Distributor</h2>
+      <div style="text-align:center; margin-bottom:30px;">
+        <span class="badge-pill">MANAJEMEN STOK GUDANG TOKO</span>
+        <h2 style="font-size:1.8rem; font-weight:800;">Portal Pengisian Stok Gudang & Admin Toko</h2>
       </div>
 
-      <div class="grid-3">
+      <div style="display:grid; grid-template-columns: 1fr 2fr; gap:20px;" class="grid-2">
+        <!-- Stock Input Form -->
         <div class="course-card" style="padding:24px;">
-          <div style="font-size:2.5rem; margin-bottom:12px;">📑</div>
-          <h3 style="font-size:1.2rem; margin-bottom:8px;">AI Vision & OCR Nota</h3>
-          <p style="color:var(--text-muted); font-size:0.9rem;">Membaca foto nota tulisan tangan atau chat WA paling acak sekalipun dan mengubahnya jadi data rapi.</p>
+          <h3 style="margin-top:0; font-size:1.2rem; color:#FFF;">📦 Form Tambah Stok Barang Baru</h3>
+          <form id="addStockForm" onsubmit="handleAddNewStock(event)">
+            <div class="form-group">
+              <label class="form-label">Nama Produk / Barang</label>
+              <input type="text" id="stockName" class="form-input" placeholder="Contoh: Berak Rojolele 5kg" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Harga Jual (Rp)</label>
+              <input type="number" id="stockPrice" class="form-input" placeholder="68000" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Jumlah Stok Gudang</label>
+              <input type="number" id="stockQty" class="form-input" placeholder="100" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Satuan Unit (karung/dus/pouch/kg)</label>
+              <input type="text" id="stockUnit" class="form-input" placeholder="karung" required />
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; margin-top:10px;">
+              + Simpan Stok Ke Gudang
+            </button>
+          </form>
         </div>
 
+        <!-- Real-Time Stock Table -->
         <div class="course-card" style="padding:24px;">
-          <div style="font-size:2.5rem; margin-bottom:12px;">📦</div>
-          <h3 style="font-size:1.2rem; margin-bottom:8px;">Sinkronisasi Stok Gudang</h3>
-          <p style="color:var(--text-muted); font-size:0.9rem;">Secara otomatis memotong sisa stok barang di gudang toko Anda setiap kali invoice diterbitkan.</p>
-        </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+            <h3 style="margin:0; font-size:1.2rem; color:#FFF;">📋 Daftar Stok Gudang Real-Time</h3>
+            <button onclick="fetchInventoryData()" class="btn btn-outline" style="padding:4px 10px; font-size:0.78rem;">↻ Refresh Stok</button>
+          </div>
 
-        <div class="course-card" style="padding:24px;">
-          <div style="font-size:2.5rem; margin-bottom:12px;">💳</div>
-          <h3 style="font-size:1.2rem; margin-bottom:8px;">Auto PDF Invoice & QRIS</h3>
-          <p style="color:var(--text-muted); font-size:0.9rem;">Menerbitkan file PDF Invoice resmi toko lengkap dengan link QRIS pembayaran instan untuk pembeli.</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>SKU</th>
+                  <th>Nama Barang</th>
+                  <th>Harga</th>
+                  <th>Sisa Stok Gudang</th>
+                  <th>Status Stok</th>
+                </tr>
+              </thead>
+              <tbody id="inventoryTableMain">
+                <!-- Loaded via JS -->
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- B2B SaaS Pricing Section -->
+  <!-- Pricing Section -->
   <section id="pricing" style="padding:60px 0;">
     <div class="container">
       <div style="text-align:center; margin-bottom:40px;">
-        <span class="badge-pill">INVESTASI HEMAT LANGGANAN</span>
-        <h2 style="font-size:1.8rem; font-weight:800;">Pilihan Paket Langganan Toko</h2>
-        <p style="color:var(--text-muted); font-size:0.95rem;">Hemat hingga 90% biaya gaji karyawan admin toko dengan sistem AI otomatis.</p>
+        <span class="badge-pill">PAKET INVESTASI LANGGANAN</span>
+        <h2 style="font-size:1.8rem; font-weight:800;">Harga Langganan WA AI Agent UMKM</h2>
       </div>
 
       <div class="grid-3">
-        <!-- Starter Plan -->
-        <div class="course-card" style="padding:28px; border-color:var(--border);">
+        <div class="course-card" style="padding:28px;">
           <span style="font-size:0.8rem; color:var(--text-muted); font-weight:700;">UMKM PEMULA</span>
           <h3 style="font-size:1.4rem; margin:8px 0;">Paket Pemula</h3>
           <div style="font-size:2rem; font-weight:800; color:var(--primary); margin-bottom:16px;">Rp 149.000 <span style="font-size:0.9rem; color:var(--text-muted); font-weight:400;">/bulan</span></div>
           <ul style="list-style:none; padding:0; margin:0 0 24px; color:var(--text-muted); font-size:0.88rem; display:flex; flex-direction:column; gap:10px;">
-            <li>✓ 500 Otomasi Pesanan WA / Bulan</li>
-            <li>✓ Auto Generate PDF Invoice</li>
-            <li>✓ Link Bayar QRIS Instan</li>
-            <li>✓ Kelola Hingga 100 Produk Stok</li>
+            <li>✓ WA AI Agent Cek Stok Otomatis</li>
+            <li>✓ Auto Balas WA Invoice PDF & QRIS</li>
+            <li>✓ Hingga 500 Transaksi / Bulan</li>
           </ul>
           <button class="btn btn-outline" onclick="alert('Paket Pemula Berhasil Dipilih!')" style="width:100%; justify-content:center;">Pilih Paket Pemula</button>
         </div>
 
-        <!-- Business Plan -->
         <div class="course-card" style="padding:28px; border-color:var(--primary); background:linear-gradient(180deg, rgba(99,102,241,0.1), var(--bg-surface));">
           <span style="font-size:0.8rem; color:var(--accent-gold); font-weight:800;">🔥 PALING POPULER</span>
           <h3 style="font-size:1.4rem; margin:8px 0;">Paket Bisnis Grosir</h3>
           <div style="font-size:2rem; font-weight:800; color:#FFF; margin-bottom:16px;">Rp 299.000 <span style="font-size:0.9rem; color:var(--text-muted); font-weight:400;">/bulan</span></div>
           <ul style="list-style:none; padding:0; margin:0 0 24px; color:#FFF; font-size:0.88rem; display:flex; flex-direction:column; gap:10px;">
-            <li>✓ 3.000 Otomasi Pesanan WA / Bulan</li>
-            <li>✓ Fitur AI Vision OCR Foto Nota</li>
-            <li>✓ Auto Cut Off Stok Gudang</li>
-            <li>✓ Multi Admin Toko (3 User)</li>
+            <li>✓ Peringatan Stok Menipis Ke Pemilik Toko</li>
+            <li>✓ Auto Cut-Off Stok Gudang Real-Time</li>
+            <li>✓ Hingga 3.000 Transaksi / Bulan</li>
           </ul>
           <button class="btn btn-primary" onclick="alert('Paket Bisnis Berhasil Dipilih!')" style="width:100%; justify-content:center;">Pilih Paket Bisnis</button>
         </div>
 
-        <!-- Enterprise Plan -->
-        <div class="course-card" style="padding:28px; border-color:var(--border);">
+        <div class="course-card" style="padding:28px;">
           <span style="font-size:0.8rem; color:var(--accent-cyan); font-weight:700;">DISTRIBUTOR RAKSASA</span>
           <h3 style="font-size:1.4rem; margin:8px 0;">Paket Distributor</h3>
           <div style="font-size:2rem; font-weight:800; color:var(--accent-cyan); margin-bottom:16px;">Rp 599.000 <span style="font-size:0.9rem; color:var(--text-muted); font-weight:400;">/bulan</span></div>
           <ul style="list-style:none; padding:0; margin:0 0 24px; color:var(--text-muted); font-size:0.88rem; display:flex; flex-direction:column; gap:10px;">
-            <li>✓ Tanpa Batas Pesanan (Unlimited)</li>
+            <li>✓ Unlimited Transaksi WA AI Agent</li>
             <li>✓ Multi Gudang & Multi Cabang</li>
-            <li>✓ Integrasi Sistem Akuntansi</li>
-            <li>✓ Dukungan CS VIP 24/7</li>
+            <li>✓ Dukungan VIP 24/7</li>
           </ul>
           <button class="btn btn-outline" onclick="alert('Paket Distributor Berhasil Dipilih!')" style="width:100%; justify-content:center;">Pilih Paket Distributor</button>
         </div>
@@ -241,123 +266,99 @@
         <button onclick="closeMerchantDashboard()" style="background:none; border:none; color:#fff; font-size:1.4rem; cursor:pointer;">✕</button>
       </div>
 
-      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px; margin-bottom:20px;" class="grid-2">
-        <div style="background:var(--bg-input); border:1px solid var(--border); padding:16px; border-radius:12px;">
-          <span style="font-size:0.8rem; color:var(--text-muted);">Total Omset Terkumpul</span>
-          <div style="font-size:1.5rem; font-weight:800; color:var(--accent-green);" id="merchantRevenue">Rp 855.000</div>
-        </div>
-        <div style="background:var(--bg-input); border:1px solid var(--border); padding:16px; border-radius:12px;">
-          <span style="font-size:0.8rem; color:var(--text-muted);">Total Invoice Diterbitkan</span>
-          <div style="font-size:1.5rem; font-weight:800; color:var(--primary);" id="merchantInvoiceCount">1 Invoice</div>
-        </div>
-      </div>
+      <p style="color:var(--text-muted); font-size:0.9rem;">Kelola stok gudang toko Anda dari halaman utama atau modal ini secara instan.</p>
 
-      <h4 style="margin:0 0 10px; color:#FFF;">📦 Daftar Stok Gudang Real-Time:</h4>
-      <div class="table-wrap" style="margin-bottom:20px;">
-        <table>
-          <thead>
-            <tr>
-              <th>SKU</th>
-              <th>Nama Produk</th>
-              <th>Harga</th>
-              <th>Sisa Stok</th>
-            </tr>
-          </thead>
-          <tbody id="inventoryTableBody">
-            <!-- Loaded via JavaScript -->
-          </tbody>
-        </table>
-      </div>
-
-      <div style="display:flex; justify-content:flex-end;">
+      <div style="display:flex; justify-content:flex-end; margin-top:20px;">
         <button class="btn btn-outline" onclick="closeMerchantDashboard()">Tutup Portal</button>
       </div>
     </div>
   </div>
 
   <footer style="padding:30px 0; border-top:1px solid var(--border); text-align:center; font-size:0.85rem; color:var(--text-muted);">
-    © 2026 Codemik AI Indonesia — Platform B2B AI Supply Chain & Order Automation (https://kodemik.com)
+    © 2026 Codemik AI Indonesia — Autonomous WhatsApp AI Agent & Supply Chain (https://kodemik.com)
   </footer>
 
   <script>
-    let currentParsedData = null;
-
-    function scrollToDemo() {
-      document.getElementById('demo').scrollIntoView({ behavior: 'smooth' });
+    function scrollToSimulator() {
+      document.getElementById('simulator').scrollIntoView({ behavior: 'smooth' });
     }
 
-    function switchDemoTab(tab) {
-      document.getElementById('tabWaBtn').classList.toggle('active', tab === 'wa');
-      document.getElementById('tabJsonBtn').classList.toggle('active', tab === 'json');
-      document.getElementById('waPreviewTab').style.display = tab === 'wa' ? 'block' : 'none';
-      document.getElementById('jsonPreviewTab').style.display = tab === 'json' ? 'block' : 'none';
-    }
-
-    function loadPresetOrder(id) {
-      if (id === 1) {
-        document.getElementById('aiInputText').value = "Pesen beras rojolele 10 karung, minyak bimoli 2L 5 pouch, gula pasir 5kg, kirim ke Toko Berkah Surabaya";
+    function setPresetMsg(type) {
+      const input = document.getElementById('simWaMessage');
+      if (type === 1) {
+        input.value = "Pesen Beras Rojolele 5 karung, Indomie Goreng 2 dus";
+      } else if (type === 2) {
+        input.value = "Mas pesen Minyak Bimoli 2L 10 pouch, Telur ayam 5kg";
+      } else if (type === 3) {
+        input.value = "Pesen Gula Pasir Gulaku 10kg mas kirim hari ini";
       }
     }
 
-    async function processOrderWithAI() {
-      const inputText = document.getElementById('aiInputText').value.trim();
-      const btn = document.getElementById('btnProcessAI');
-      if (!inputText) return alert('Silakan masukkan contoh chat pesanan terlebih dahulu!');
+    async function runAIAgentSimulator() {
+      const msg = document.getElementById('simWaMessage').value.trim();
+      const btn = document.getElementById('btnRunAgent');
+      if (!msg) return alert('Silakan ketik contoh pesan WA dulu!');
 
       btn.disabled = true;
-      btn.textContent = '⏳ Mengurai Pesanan Dengan AI...';
+      btn.textContent = '🤖 WA AI Agent Sedang Mencari Stok Gudang...';
 
       try {
-        const res = await fetch('/api/ai/parse-order', {
+        const res = await fetch('/api/ai/auto-agent', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ orderText: inputText })
+          body: JSON.stringify({ messageText: msg, senderPhone: '081299887766' })
         });
         const data = await res.json();
         btn.disabled = false;
-        btn.textContent = '⚡ Urai Pesanan & Cetak Invoice AI (Run)';
+        btn.textContent = '🤖 Jalankan WA AI Agent Otomatis';
 
         if (data.success) {
-          currentParsedData = data.parsedJson;
-          renderOutputs(data.parsedJson);
+          const out = data.agentOutput;
+          document.getElementById('agentWaReplyText').textContent = out.autoWaReplyText;
+
+          // Check Owner Alerts
+          const alertContainer = document.getElementById('ownerAlertContainer');
+          const alertText = document.getElementById('ownerAlertText');
+
+          if (out.ownerNotifications && out.ownerNotifications.length > 0) {
+            alertContainer.style.display = 'block';
+            alertText.textContent = out.ownerNotifications[0].message;
+          } else {
+            alertContainer.style.display = 'none';
+          }
+
+          // Refresh Stock Table
+          fetchInventoryData();
         }
       } catch (e) {
         btn.disabled = false;
-        btn.textContent = '⚡ Urai Pesanan & Cetak Invoice AI (Run)';
-        alert('Gagal memproses AI: ' + e.message);
+        btn.textContent = '🤖 Jalankan WA AI Agent Otomatis';
+        alert('Gagal memproses AI Agent: ' + e.message);
       }
     }
 
-    function renderOutputs(json) {
-      // 1. JSON Tab Text
-      document.getElementById('jsonOutputText').textContent = JSON.stringify(json, null, 2);
-
-      // 2. Formatted WA Message Preview
-      let itemsList = '';
-      json.items.forEach((item, idx) => {
-        itemsList += `${idx + 1}. ${item.name} (${item.qty} ${item.unit}) = Rp ${item.subtotal.toLocaleString('id-ID')}\n`;
-      });
-
-      const waText = `📋 *INVOICE RESMI — ${json.customer.name.toUpperCase()}*\nStatus: ${json.paymentStatus}\nWaktu: ${new Date().toLocaleString('id-ID')}\n\n*Detail Pesanan:*\n${itemsList}-----------------------------------------\n*TOTAL BAYAR: Rp ${json.totalAmount.toLocaleString('id-ID')}*\n\n💳 *Link Bayar QRIS Instan:*\nhttps://kodemik.com/pay/INV-8821\n\n📄 *Download PDF Invoice:* \nhttps://kodemik.com/pdf/INV-8821.pdf`;
-
-      document.getElementById('waOutputText').textContent = waText;
-    }
-
-    async function openMerchantDashboard() {
-      document.getElementById('merchantModal').classList.add('active');
+    async function fetchInventoryData() {
       try {
         const res = await fetch('/api/inventory');
         const data = await res.json();
         if (data.success) {
-          const tbody = document.getElementById('inventoryTableBody');
+          const tbody = document.getElementById('inventoryTableMain');
           tbody.innerHTML = '';
           data.data.forEach(item => {
             const tr = document.createElement('tr');
+            let statusBadge = `<span style="color:#10B981; font-weight:700;">✅ Ready (${item.stock} ${item.unit})</span>`;
+            if (item.stock === 0) {
+              statusBadge = `<span style="color:#EF4444; font-weight:700;">❌ STOK HABIS (0)</span>`;
+            } else if (item.stock < 10) {
+              statusBadge = `<span style="color:#F59E0B; font-weight:700;">⚠️ STOK MENIPIS (${item.stock})</span>`;
+            }
+
             tr.innerHTML = `
               <td><code>${item.sku}</code></td>
               <td><strong>${item.name}</strong></td>
               <td>Rp ${item.price.toLocaleString('id-ID')}</td>
-              <td><span style="color:${item.stock > 20 ? '#10B981' : '#F59E0B'}; font-weight:700;">${item.stock} ${item.unit}</span></td>
+              <td><strong>${item.stock} ${item.unit}</strong></td>
+              <td>${statusBadge}</td>
             `;
             tbody.appendChild(tr);
           });
@@ -365,13 +366,40 @@
       } catch(e) {}
     }
 
+    async function handleAddNewStock(e) {
+      e.preventDefault();
+      const name = document.getElementById('stockName').value.trim();
+      const price = document.getElementById('stockPrice').value;
+      const stock = document.getElementById('stockQty').value;
+      const unit = document.getElementById('stockUnit').value.trim();
+
+      try {
+        const res = await fetch('/api/inventory/add', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, price, stock, unit })
+        });
+        const data = await res.json();
+        if (data.success) {
+          alert(data.message);
+          document.getElementById('addStockForm').reset();
+          fetchInventoryData();
+        }
+      } catch (err) {
+        alert('Gagal menambah stok: ' + err.message);
+      }
+    }
+
+    function openMerchantDashboard() {
+      document.getElementById('merchantModal').classList.add('active');
+    }
     function closeMerchantDashboard() {
       document.getElementById('merchantModal').classList.remove('active');
     }
 
-    // Initialize default demo output on page load
     window.addEventListener('DOMContentLoaded', () => {
-      processOrderWithAI();
+      fetchInventoryData();
+      runAIAgentSimulator();
     });
   </script>
 </body>

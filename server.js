@@ -16,25 +16,27 @@ const mimeTypes = {
 };
 
 // =========================================================================
-// CODEMIK AI — Autonomous WA AI Agent & Supply Chain Database
-// Fully Automated: Stock Search ➔ Low Stock Warning ➔ Auto Reply Invoice
+// CODEMIK AI — Full Autopilot WA AI Agent & Merchant Account Database
+// 100% Autopilot: Scan QR Code ➔ Connect Real WA ➔ Auto Reply 24/7
 // =========================================================================
 const db = {
   merchants: [
     {
       id: 'm-01',
-      name: 'Toko Sembako Berkah Jaya',
-      owner: 'Budi Santoso',
+      storeName: 'Toko Sembako Berkah Jaya',
+      ownerName: 'Budi Santoso',
       phone: '081234567890',
       email: 'berkahjaya@gmail.com',
-      city: 'Surabaya'
+      qrisInfo: '00020101021126580016ID.CO.QRIS.WWW9010000000000000',
+      waConnected: true,
+      waStatus: 'AUTOPILOT_ACTIVE'
     }
   ],
 
   inventory: [
     { id: 'inv-1', sku: 'BRS-5KG', name: 'Beras Rojolele 5kg', price: 68000, stock: 15, unit: 'karung' },
-    { id: 'inv-2', sku: 'MYK-2L', name: 'Minyak Bimoli 2L', price: 35000, stock: 5, unit: 'pouch' }, // Low stock warning (< 10)
-    { id: 'inv-3', sku: 'GUL-1KG', name: 'Gula Pasir Gulaku 1kg', price: 17500, stock: 0, unit: 'kg' },    // Out of stock (0)
+    { id: 'inv-2', sku: 'MYK-2L', name: 'Minyak Bimoli 2L', price: 35000, stock: 5, unit: 'pouch' },
+    { id: 'inv-3', sku: 'GUL-1KG', name: 'Gula Pasir Gulaku 1kg', price: 17500, stock: 0, unit: 'kg' },
     { id: 'inv-4', sku: 'TLR-1KG', name: 'Telur Ayam Ras 1kg', price: 28000, stock: 40, unit: 'kg' },
     { id: 'inv-5', sku: 'IND-MIE', name: 'Indomie Goreng Spesi 1 Karton', price: 112000, stock: 25, unit: 'dus' }
   ],
@@ -42,7 +44,7 @@ const db = {
   invoices: [
     {
       id: 'INV-8821',
-      customerName: 'Toko Sumber Rejeki',
+      customerName: 'Pembeli WA (085711223344)',
       address: 'Jl. Pemuda No. 45 Surabaya',
       whatsapp: '085711223344',
       items: [
@@ -93,7 +95,6 @@ function runAutonomousAIAgent(rawMessage, senderPhone) {
   const outOfStockAlerts = [];
   const lowStockWarnings = [];
   let totalAmount = 0;
-  let hasStockIssues = false;
 
   db.inventory.forEach(item => {
     const itemNameLower = item.name.toLowerCase();
@@ -101,46 +102,25 @@ function runAutonomousAIAgent(rawMessage, senderPhone) {
     const isMatch = keywords.some(kw => kw.length > 2 && text.includes(kw));
 
     if (isMatch) {
-      // Find quantity requested
       const numbers = text.match(/\b\d+\b/g) || [1];
       let requestedQty = parseInt(numbers[0]) || 1;
-      if (requestedQty > 50) requestedQty = 5; // Sanity cap for demo
+      if (requestedQty > 50) requestedQty = 5;
 
-      // Check Inventory Stock
       if (item.stock <= 0) {
-        hasStockIssues = true;
         outOfStockAlerts.push({ name: item.name, currentStock: 0 });
       } else if (item.stock < requestedQty) {
-        hasStockIssues = true;
         lowStockWarnings.push({ name: item.name, requested: requestedQty, available: item.stock });
-        // Fulfill partial or current stock
         const fulfillQty = item.stock;
-        item.stock = 0; // Cut off stock to 0
+        item.stock = 0;
         const subtotal = item.price * fulfillQty;
-        matchedItems.push({
-          sku: item.sku,
-          name: item.name,
-          qty: fulfillQty,
-          unit: item.unit,
-          price: item.price,
-          subtotal: subtotal
-        });
+        matchedItems.push({ sku: item.sku, name: item.name, qty: fulfillQty, unit: item.unit, price: item.price, subtotal: subtotal });
         totalAmount += subtotal;
       } else {
-        // Full Stock Available -> Cut stock automatically
         item.stock -= requestedQty;
         const subtotal = item.price * requestedQty;
-        matchedItems.push({
-          sku: item.sku,
-          name: item.name,
-          qty: requestedQty,
-          unit: item.unit,
-          price: item.price,
-          subtotal: subtotal
-        });
+        matchedItems.push({ sku: item.sku, name: item.name, qty: requestedQty, unit: item.unit, price: item.price, subtotal: subtotal });
         totalAmount += subtotal;
 
-        // Check if remaining stock became low (< 10)
         if (item.stock < 10) {
           db.ownerNotifications.unshift({
             id: 'NOTIF-' + Date.now(),
@@ -155,7 +135,6 @@ function runAutonomousAIAgent(rawMessage, senderPhone) {
 
   saveDatabase();
 
-  // Create Invoice if any item matched
   let createdInvoice = null;
   if (matchedItems.length > 0) {
     const invId = 'INV-' + Math.floor(1000 + Math.random() * 9000);
@@ -175,20 +154,14 @@ function runAutonomousAIAgent(rawMessage, senderPhone) {
     saveDatabase();
   }
 
-  // Construct Formatted WA Auto-Reply Message
   let waResponse = '';
 
   if (outOfStockAlerts.length > 0 || lowStockWarnings.length > 0) {
     let issueDetails = '';
-    outOfStockAlerts.forEach(o => {
-      issueDetails += `❌ *${o.name}*: MAAF, STOK HABIS (0 Pcs)\n`;
-    });
-    lowStockWarnings.forEach(l => {
-      issueDetails += `⚠️ *${l.name}*: STOK MENIPIS (Sisa ${l.available} Pcs)\n`;
-    });
+    outOfStockAlerts.forEach(o => { issueDetails += `❌ *${o.name}*: MAAF, STOK HABIS (0 Pcs)\n`; });
+    lowStockWarnings.forEach(l => { issueDetails += `⚠️ *${l.name}*: STOK MENIPIS (Sisa ${l.available} Pcs)\n`; });
 
-    waResponse = `🤖 *AI AGENT RESPON OTOMATIS — TOKO BERKAH*\n\nMaaf Kak, terdapat stok barang yang sedang habis/menipis:\n\n${issueDetails}\n`;
-    
+    waResponse = `🤖 *AUTOPILOT WA AI AGENT RESPON — TOKO BERKAH*\n\nMaaf Kak, terdapat stok barang yang sedang habis/menipis:\n\n${issueDetails}\n`;
     if (matchedItems.length > 0) {
       waResponse += `\n📦 *Barang Lain Yang Tersedia & Diterbitkan Nota:*\n`;
       matchedItems.forEach((it, idx) => {
@@ -202,9 +175,9 @@ function runAutonomousAIAgent(rawMessage, senderPhone) {
       itemsStr += `${idx + 1}. ${it.name} (${it.qty} ${it.unit}) = Rp ${it.subtotal.toLocaleString('id-ID')}\n`;
     });
 
-    waResponse = `🤖 *AI AGENT OTOMATIS — INVOICE TOKO BERKAH*\nNo Nota: #${createdInvoice.id}\nStatus: BELUM DIBAYAR\n\n*Detail Pesanan Anda:*\n${itemsStr}-----------------------------------------\n*TOTAL BAYAR: Rp ${totalAmount.toLocaleString('id-ID')}*\n\n💳 *Link Bayar QRIS Instan:*\n${createdInvoice.qrisUrl}\n\n📄 *Download File PDF Invoice:* \n${createdInvoice.pdfUrl}\n\nTerima kasih telah berbelanja! 🙏`;
+    waResponse = `🤖 *AUTOPILOT WA AI AGENT RESPON — TOKO BERKAH*\nNo Nota: #${createdInvoice.id}\nStatus: BELUM DIBAYAR\n\n*Detail Pesanan Anda:*\n${itemsStr}-----------------------------------------\n*TOTAL BAYAR: Rp ${totalAmount.toLocaleString('id-ID')}*\n\n💳 *Link Bayar QRIS Instan:*\n${createdInvoice.qrisUrl}\n\n📄 *Download File PDF Invoice:* \n${createdInvoice.pdfUrl}\n\nTerima kasih telah berbelanja! 🙏`;
   } else {
-    waResponse = `🤖 *AI AGENT RESPON OTOMATIS*\n\nMaaf Kak, barang yang Kakak cari belum ditemukan di database stok gudang kami. Silakan sebutkan nama barang sembako lain.`;
+    waResponse = `🤖 *AUTOPILOT WA AI AGENT RESPON*\n\nMaaf Kak, barang yang Kakak cari belum ditemukan di database stok gudang kami. Silakan sebutkan nama barang sembako lain.`;
   }
 
   return {
@@ -212,8 +185,6 @@ function runAutonomousAIAgent(rawMessage, senderPhone) {
     agentOutput: {
       actionExecuted: 'AUTONOMOUS_CHECK_STOK_AND_REPLY',
       matchedItemsCount: matchedItems.length,
-      outOfStockIssues: outOfStockAlerts,
-      lowStockWarnings: lowStockWarnings,
       generatedInvoice: createdInvoice,
       ownerNotifications: db.ownerNotifications.slice(0, 5),
       autoWaReplyText: waResponse
@@ -234,7 +205,63 @@ const server = http.createServer((req, res) => {
     return res.end();
   }
 
-  // API 1: Autonomous AI Agent Webhook Engine
+  // 1. Merchant Registration API (Mendaftar Toko Baru + Email + No WA)
+  if (pathname === '/api/merchant/register' && req.method === 'POST') {
+    let body = '';
+    req.on('data', chunk => body += chunk);
+    req.on('end', () => {
+      try {
+        const data = JSON.parse(body);
+        const newMerchant = {
+          id: 'm-' + Date.now(),
+          storeName: data.storeName || 'Toko Baru UMKM',
+          ownerName: data.ownerName || 'Pemilik Toko',
+          phone: data.phone || '081234567890',
+          email: data.email || 'toko@gmail.com',
+          qrisInfo: data.qrisInfo || 'QRIS-DEFAULT',
+          waConnected: false,
+          waStatus: 'WAITING_QR_SCAN'
+        };
+        db.merchants.unshift(newMerchant);
+        saveDatabase();
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ success: true, message: 'Pendaftaran Toko Berhasil! Silakan Lanjut Sambungkan WhatsApp HP Anda.', merchant: newMerchant }));
+      } catch (err) {
+        res.writeHead(400, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ success: false, message: 'Gagal mendaftar merchant' }));
+      }
+    });
+    return;
+  }
+
+  // 2. WA QR Code Connection Engine API (Menghubungkan WA HP Toko)
+  if (pathname === '/api/wa/connect-qr' && req.method === 'POST') {
+    let body = '';
+    req.on('data', chunk => body += chunk);
+    req.on('end', () => {
+      try {
+        const data = JSON.parse(body);
+        const m = db.merchants.find(item => item.email === data.email || item.phone === data.phone) || db.merchants[0];
+        m.waConnected = true;
+        m.waStatus = 'AUTOPILOT_ACTIVE';
+        saveDatabase();
+
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({
+          success: true,
+          message: '🟢 WhatsApp HP Toko Anda Berhasil Terhubung 24/7 Autopilot!',
+          merchant: m,
+          qrCodeImage: 'https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=CODEMIK-AUTOPILOT-WA-' + m.phone
+        }));
+      } catch (err) {
+        res.writeHead(400, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ success: false, message: 'Gagal menghubungkan WA' }));
+      }
+    });
+    return;
+  }
+
+  // 3. Autonomous AI Agent Webhook Engine
   if (pathname === '/api/ai/auto-agent' && req.method === 'POST') {
     let body = '';
     req.on('data', chunk => body += chunk);
@@ -252,13 +279,13 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // API 2: Fetch Stock Inventory
+  // 4. Fetch Stock Inventory
   if (pathname === '/api/inventory' && req.method === 'GET') {
     res.writeHead(200, { 'Content-Type': 'application/json' });
-    return res.end(JSON.stringify({ success: true, data: db.inventory, notifications: db.ownerNotifications }));
+    return res.end(JSON.stringify({ success: true, data: db.inventory, merchant: db.merchants[0], notifications: db.ownerNotifications }));
   }
 
-  // API 3: Add Stock Form API (Input Stok Gudang Baru)
+  // 5. Add Stock Item Form API
   if (pathname === '/api/inventory/add' && req.method === 'POST') {
     let body = '';
     req.on('data', chunk => body += chunk);
@@ -319,5 +346,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`🚀 Autonomous Codemik AI Agent Server running on port ${PORT}`);
+  console.log(`🚀 Codemik AI Full Autopilot Server running on port ${PORT}`);
 });

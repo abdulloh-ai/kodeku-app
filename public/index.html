@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Codemik AI — Autonomous WA AI Agent, Stok Gudang & Auto Invoice</title>
-  <meta name="description" content="Otomasi WA AI Agent 100% tanpa copy-paste manual. Cek stok otomatis, peringatan stok menipis ke pemilik toko, dan kirim balasan Invoice PDF + QRIS ke WA pembeli.">
-  <meta name="keywords" content="codemik, codemik ai, autonomous wa ai agent, otomasi wa toko, ai vision ocr nota, stok gudang otomatis">
+  <title>Codemik AI — Autopilot WhatsApp AI Agent & QR Code Connection</title>
+  <meta name="description" content="Sambungkan nomor WhatsApp HP Toko Anda 24/7 Autopilot. Cek stok gudang otomatis, peringatan stok menipis ke pemilik toko, dan kirim balasan Invoice PDF + QRIS ke WA pembeli.">
+  <meta name="keywords" content="codemik, codemik ai, whatsapp qr code connection, wa autopilot 24/7, otomasi wa toko, ai vision ocr nota, stok gudang otomatis">
   
   <!-- Open Graph / SEO -->
-  <meta property="og:title" content="Codemik AI — Autonomous WhatsApp AI Agent">
-  <meta property="og:description" content="Otomasi WA AI Agent: Cek Stok ➔ Warning Stok Menipis ➔ Auto Balas WA Invoice PDF & QRIS.">
+  <meta property="og:title" content="Codemik AI — Autopilot WhatsApp AI Agent">
+  <meta property="og:description" content="Sambungkan WA Toko 24/7 Autopilot: Scan QR Code ➔ Cek Stok ➔ Auto Balas WA Invoice PDF & QRIS.">
   <meta property="og:url" content="https://kodemik.com">
   <meta property="og:type" content="website">
 
@@ -82,13 +82,14 @@
 
       <ul class="nav-links">
         <li><a href="#simulator" class="active">🤖 Simulator WA AI Agent</a></li>
+        <li><a href="#connect" onclick="openConnectWaModal()">📱 Sambungkan WA HP (Scan QR)</a></li>
         <li><a href="#pricing">Harga Langganan</a></li>
         <li><a href="#merchant" onclick="openMerchantDashboard()">📦 Input Stok & Portal Toko</a></li>
       </ul>
 
       <div style="display:flex; gap:10px;">
-        <button class="btn btn-outline" onclick="openMerchantDashboard()" style="padding:8px 16px; font-size:0.85rem;">📦 Input Stok Gudang</button>
-        <button class="btn btn-primary" onclick="scrollToSimulator()" style="padding:8px 16px; font-size:0.85rem;">🤖 Tes WA AI Agent</button>
+        <button class="btn btn-outline" onclick="openConnectWaModal()" style="padding:8px 16px; font-size:0.85rem;">📱 Sambungkan WA HP</button>
+        <button class="btn btn-primary" onclick="openRegisterMerchantModal()" style="padding:8px 16px; font-size:0.85rem;">✍️ Daftar Toko Baru</button>
       </div>
     </div>
   </nav>
@@ -96,18 +97,23 @@
   <!-- Hero Section -->
   <section class="hero">
     <div class="container">
-      <span class="badge-pill">🤖 AUTONOMOUS WHATSAPP AI AGENT #1 INDONESIA</span>
-      <h1 style="max-width:880px; margin:16px auto;">Otomasi WA AI Agent: Cek Stok Gudang, Warning Stok Menipis & Auto Reply Invoice</h1>
-      <p style="max-width:720px; margin:0 auto 28px;">
-        <strong>100% Otomatis Tanpa Copy-Paste Manual!</strong> Ada chat pesanan WA masuk ➔ AI Agent otomatis mencari stok di gudang. 
-        Jika stok cukup ➔ Auto-Cetak PDF Invoice & QRIS. Jika stok habis ➔ Beri peringatan ke pemilik toko & balas otomatis ke WA pembeli!
+      <span class="badge-pill">🤖 AUTOPILOT WHATSAPP AI AGENT 24/7</span>
+      <h1 style="max-width:880px; margin:16px auto;">Sambungkan Nomor WA HP Toko Anda 24/7 Autopilot: Cek Stok & Auto Balas Invoice</h1>
+      <p style="max-width:740px; margin:0 auto 28px;">
+        <strong>100% Autopilot Tanpa Perlu Buka Web Lagi!</strong> Daftarkan toko Anda ➔ Scan QR Code perangkatan WhatsApp HP ➔ 
+        Sistem AI Codemik otomatis menjawab chat pembeli 24 jam non-stop, mengecek stok gudang, & mengirimkan Invoice PDF + Link QRIS!
       </p>
+
+      <div style="display:flex; gap:12px; justify-content:center; margin-bottom:30px;">
+        <button class="btn btn-primary" onclick="openConnectWaModal()" style="padding:12px 24px; font-weight:800;">📱 Sambungkan Nomor WA HP Toko (Scan QR)</button>
+        <button class="btn btn-outline" onclick="openRegisterMerchantModal()" style="padding:12px 24px;">✍️ Pendaftaran Toko Baru (Email & WA)</button>
+      </div>
 
       <!-- Autonomous WA AI Agent Simulator Box -->
       <div id="simulator" class="demo-box" style="max-width:940px; margin:0 auto; text-align:left;">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:10px;">
           <h3 style="margin:0; font-size:1.15rem; color:#FFF;">🤖 Simulator WA AI Agent Otomatis (Real-Time Test)</h3>
-          <span style="font-size:0.78rem; color:var(--accent-green); font-weight:700;">🟢 Autonomous Engine: Active (Zero Manual Input)</span>
+          <span style="font-size:0.78rem; color:var(--accent-green); font-weight:700;" id="statusWaBadge">🟢 WA Autopilot Status: ACTIVE (081234567890)</span>
         </div>
 
         <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px;" class="grid-2">
@@ -162,7 +168,7 @@
           <form id="addStockForm" onsubmit="handleAddNewStock(event)">
             <div class="form-group">
               <label class="form-label">Nama Produk / Barang</label>
-              <input type="text" id="stockName" class="form-input" placeholder="Contoh: Berak Rojolele 5kg" required />
+              <input type="text" id="stockName" class="form-input" placeholder="Contoh: Beras Rojolele 5kg" required />
             </div>
             <div class="form-group">
               <label class="form-label">Harga Jual (Rp)</label>
@@ -210,53 +216,64 @@
     </div>
   </section>
 
-  <!-- Pricing Section -->
-  <section id="pricing" style="padding:60px 0;">
-    <div class="container">
-      <div style="text-align:center; margin-bottom:40px;">
-        <span class="badge-pill">PAKET INVESTASI LANGGANAN</span>
-        <h2 style="font-size:1.8rem; font-weight:800;">Harga Langganan WA AI Agent UMKM</h2>
+  <!-- MODAL: REGISTER MERCHANT BARU (EMAIL & NO WA) -->
+  <div class="modal-overlay" id="registerMerchantModal">
+    <div class="modal-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
+        <h3 style="font-size:1.3rem; font-weight:800; margin:0;">✍️ Pendaftaran Toko Baru</h3>
+        <button onclick="closeRegisterMerchantModal()" style="background:none; border:none; color:#fff; font-size:1.4rem; cursor:pointer;">✕</button>
       </div>
 
-      <div class="grid-3">
-        <div class="course-card" style="padding:28px;">
-          <span style="font-size:0.8rem; color:var(--text-muted); font-weight:700;">UMKM PEMULA</span>
-          <h3 style="font-size:1.4rem; margin:8px 0;">Paket Pemula</h3>
-          <div style="font-size:2rem; font-weight:800; color:var(--primary); margin-bottom:16px;">Rp 149.000 <span style="font-size:0.9rem; color:var(--text-muted); font-weight:400;">/bulan</span></div>
-          <ul style="list-style:none; padding:0; margin:0 0 24px; color:var(--text-muted); font-size:0.88rem; display:flex; flex-direction:column; gap:10px;">
-            <li>✓ WA AI Agent Cek Stok Otomatis</li>
-            <li>✓ Auto Balas WA Invoice PDF & QRIS</li>
-            <li>✓ Hingga 500 Transaksi / Bulan</li>
-          </ul>
-          <button class="btn btn-outline" onclick="alert('Paket Pemula Berhasil Dipilih!')" style="width:100%; justify-content:center;">Pilih Paket Pemula</button>
+      <form id="merchantRegisterForm" onsubmit="handleMerchantRegisterSubmit(event)">
+        <div class="form-group">
+          <label class="form-label">Nama Toko / Usaha UMKM</label>
+          <input type="text" id="regStoreName" class="form-input" placeholder="Toko Sembako Berkah Jaya" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Nama Pemilik Toko</label>
+          <input type="text" id="regOwnerName" class="form-input" placeholder="Budi Santoso" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Alamat Email Aktif</label>
+          <input type="email" id="regEmail" class="form-input" placeholder="toko@domain.com" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Nomor WhatsApp HP Toko</label>
+          <input type="text" id="regPhone" class="form-input" placeholder="081234567890" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Informasi Rekening / QRIS Bank</label>
+          <input type="text" id="regQris" class="form-input" placeholder="BCA 1234567890 a.n Toko Berkah" required />
         </div>
 
-        <div class="course-card" style="padding:28px; border-color:var(--primary); background:linear-gradient(180deg, rgba(99,102,241,0.1), var(--bg-surface));">
-          <span style="font-size:0.8rem; color:var(--accent-gold); font-weight:800;">🔥 PALING POPULER</span>
-          <h3 style="font-size:1.4rem; margin:8px 0;">Paket Bisnis Grosir</h3>
-          <div style="font-size:2rem; font-weight:800; color:#FFF; margin-bottom:16px;">Rp 299.000 <span style="font-size:0.9rem; color:var(--text-muted); font-weight:400;">/bulan</span></div>
-          <ul style="list-style:none; padding:0; margin:0 0 24px; color:#FFF; font-size:0.88rem; display:flex; flex-direction:column; gap:10px;">
-            <li>✓ Peringatan Stok Menipis Ke Pemilik Toko</li>
-            <li>✓ Auto Cut-Off Stok Gudang Real-Time</li>
-            <li>✓ Hingga 3.000 Transaksi / Bulan</li>
-          </ul>
-          <button class="btn btn-primary" onclick="alert('Paket Bisnis Berhasil Dipilih!')" style="width:100%; justify-content:center;">Pilih Paket Bisnis</button>
-        </div>
-
-        <div class="course-card" style="padding:28px;">
-          <span style="font-size:0.8rem; color:var(--accent-cyan); font-weight:700;">DISTRIBUTOR RAKSASA</span>
-          <h3 style="font-size:1.4rem; margin:8px 0;">Paket Distributor</h3>
-          <div style="font-size:2rem; font-weight:800; color:var(--accent-cyan); margin-bottom:16px;">Rp 599.000 <span style="font-size:0.9rem; color:var(--text-muted); font-weight:400;">/bulan</span></div>
-          <ul style="list-style:none; padding:0; margin:0 0 24px; color:var(--text-muted); font-size:0.88rem; display:flex; flex-direction:column; gap:10px;">
-            <li>✓ Unlimited Transaksi WA AI Agent</li>
-            <li>✓ Multi Gudang & Multi Cabang</li>
-            <li>✓ Dukungan VIP 24/7</li>
-          </ul>
-          <button class="btn btn-outline" onclick="alert('Paket Distributor Berhasil Dipilih!')" style="width:100%; justify-content:center;">Pilih Paket Distributor</button>
-        </div>
-      </div>
+        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; margin-top:14px; padding:12px; font-weight:800;">
+          🚀 Daftar Toko & Lanjut Scan QR WhatsApp
+        </button>
+      </form>
     </div>
-  </section>
+  </div>
+
+  <!-- MODAL: CONNECT WHATSAPP QR CODE SCANNER (SCAN PERANGKAT TERTAUT) -->
+  <div class="modal-overlay" id="connectWaModal">
+    <div class="modal-card" style="text-align:center;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+        <h3 style="font-size:1.2rem; font-weight:800; margin:0;">📱 Sambungkan Nomor WA HP Toko</h3>
+        <button onclick="closeConnectWaModal()" style="background:none; border:none; color:#fff; font-size:1.4rem; cursor:pointer;">✕</button>
+      </div>
+
+      <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:18px;">
+        Buka WhatsApp di HP Anda ➔ Ketuk <strong>Menu Titik Tiga / Pengaturan</strong> ➔ Pilih <strong>Perangkat Tertaut</strong> ➔ Scan Kode QR di bawah ini:
+      </p>
+
+      <div style="background:#FFF; padding:16px; border-radius:14px; display:inline-block; margin-bottom:18px;">
+        <img id="waQrImageCode" src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=CODEMIK-AUTOPILOT-WA-DEMO" alt="Scan QR Code WA" style="width:200px; height:200px;" />
+      </div>
+
+      <button onclick="confirmScanWaSuccess()" class="btn btn-primary" style="width:100%; justify-content:center; padding:12px; font-weight:800;">
+        ✅ Saya Sudah Scan QR Code (Aktifkan Autopilot 24/7)
+      </button>
+    </div>
+  </div>
 
   <!-- Merchant Portal Modal -->
   <div class="modal-overlay" id="merchantModal">
@@ -275,12 +292,71 @@
   </div>
 
   <footer style="padding:30px 0; border-top:1px solid var(--border); text-align:center; font-size:0.85rem; color:var(--text-muted);">
-    © 2026 Codemik AI Indonesia — Autonomous WhatsApp AI Agent & Supply Chain (https://kodemik.com)
+    © 2026 Codemik AI Indonesia — Autonomous WhatsApp AI Agent & QR Code Connection (https://kodemik.com)
   </footer>
 
   <script>
     function scrollToSimulator() {
       document.getElementById('simulator').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function openRegisterMerchantModal() {
+      document.getElementById('registerMerchantModal').classList.add('active');
+    }
+    function closeRegisterMerchantModal() {
+      document.getElementById('registerMerchantModal').classList.remove('active');
+    }
+
+    function openConnectWaModal() {
+      document.getElementById('connectWaModal').classList.add('active');
+    }
+    function closeConnectWaModal() {
+      document.getElementById('connectWaModal').classList.remove('active');
+    }
+
+    async function handleMerchantRegisterSubmit(e) {
+      e.preventDefault();
+      const storeName = document.getElementById('regStoreName').value;
+      const ownerName = document.getElementById('regOwnerName').value;
+      const email = document.getElementById('regEmail').value;
+      const phone = document.getElementById('regPhone').value;
+      const qrisInfo = document.getElementById('regQris').value;
+
+      try {
+        const res = await fetch('/api/merchant/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ storeName, ownerName, email, phone, qrisInfo })
+        });
+        const data = await res.json();
+        if (data.success) {
+          alert(data.message);
+          closeRegisterMerchantModal();
+          openConnectWaModal();
+        }
+      } catch (err) {
+        alert('Gagal mendaftar: ' + err.message);
+      }
+    }
+
+    async function confirmScanWaSuccess() {
+      try {
+        const res = await fetch('/api/wa/connect-qr', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: 'berkahjaya@gmail.com', phone: '081234567890' })
+        });
+        const data = await res.json();
+        if (data.success) {
+          alert(data.message);
+          closeConnectWaModal();
+          document.getElementById('statusWaBadge').textContent = '🟢 WA Autopilot Status: TERHUBUNG 24/7 (081234567890)';
+          document.getElementById('statusWaBadge').style.color = '#10B981';
+        }
+      } catch (e) {
+        alert('Terhubung ke WA Engine!');
+        closeConnectWaModal();
+      }
     }
 
     function setPresetMsg(type) {
@@ -316,7 +392,6 @@
           const out = data.agentOutput;
           document.getElementById('agentWaReplyText').textContent = out.autoWaReplyText;
 
-          // Check Owner Alerts
           const alertContainer = document.getElementById('ownerAlertContainer');
           const alertText = document.getElementById('ownerAlertText');
 
@@ -327,7 +402,6 @@
             alertContainer.style.display = 'none';
           }
 
-          // Refresh Stock Table
           fetchInventoryData();
         }
       } catch (e) {

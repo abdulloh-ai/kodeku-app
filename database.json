@@ -1,38 +1,36 @@
 {
-  "merchants": [
+  "tenants": [
     {
-      "id": "m-01",
+      "tenantId": "tenant_01",
       "storeName": "Toko Sembako Berkah Jaya",
-      "ownerName": "Budi Santoso",
+      "ownerName": "Budi Santoso (User A)",
       "phone": "081234567890",
-      "email": "berkahjaya@gmail.com",
-      "qrisInfo": "00020101021126580016ID.CO.QRIS.WWW9010000000000000",
+      "email": "berkah@kodemik.com",
+      "qrisInfo": "QRIS-BCA-00129",
+      "activeWorkflow": "Otomasi WA Sales & Auto Invoice",
+      "waConnected": true,
+      "waStatus": "AUTOPILOT_ACTIVE"
+    },
+    {
+      "tenantId": "tenant_02",
+      "storeName": "Hijab & Fashion Store Cantik",
+      "ownerName": "Siti Rahma (User B)",
+      "phone": "085799887766",
+      "email": "hijab@kodemik.com",
+      "qrisInfo": "QRIS-MANDIRI-9988",
+      "activeWorkflow": "AI Customer Support 24/7",
       "waConnected": true,
       "waStatus": "AUTOPILOT_ACTIVE"
     }
   ],
   "inventory": [
-    { "id": "inv-1", "sku": "BRS-5KG", "name": "Beras Rojolele 5kg", "price": 68000, "stock": 15, "unit": "karung" },
-    { "id": "inv-2", "sku": "MYK-2L", "name": "Minyak Bimoli 2L", "price": 35000, "stock": 5, "unit": "pouch" },
-    { "id": "inv-3", "sku": "GUL-1KG", "name": "Gula Pasir Gulaku 1kg", "price": 17500, "stock": 0, "unit": "kg" },
-    { "id": "inv-4", "sku": "TLR-1KG", "name": "Telur Ayam Ras 1kg", "price": 28000, "stock": 40, "unit": "kg" },
-    { "id": "inv-5", "sku": "IND-MIE", "name": "Indomie Goreng Spesi 1 Karton", "price": 112000, "stock": 25, "unit": "dus" }
+    { "id": "inv-1", "tenantId": "tenant_01", "sku": "BRS-5KG", "name": "Beras Rojolele 5kg", "price": 68000, "stock": 15, "unit": "karung" },
+    { "id": "inv-2", "tenantId": "tenant_01", "sku": "MYK-2L", "name": "Minyak Bimoli 2L", "price": 35000, "stock": 4, "unit": "pouch" },
+    { "id": "inv-3", "tenantId": "tenant_01", "sku": "GUL-1KG", "name": "Gula Pasir Gulaku 1kg", "price": 17500, "stock": 0, "unit": "kg" },
+    { "id": "inv-4", "tenantId": "tenant_02", "sku": "HJB-PASH", "name": "Hijab Pashmina Silk Premium", "price": 85000, "stock": 30, "unit": "pcs" },
+    { "id": "inv-5", "tenantId": "tenant_02", "sku": "GMS-ELEG", "name": "Gamis Brokat Modern XL", "price": 245000, "stock": 12, "unit": "pcs" },
+    { "id": "inv-6", "tenantId": "tenant_02", "sku": "SCR-SILK", "name": "Scarf Segiempat Voal", "price": 45000, "stock": 0, "unit": "pcs" }
   ],
-  "invoices": [
-    {
-      "id": "INV-8821",
-      "customerName": "Pembeli WA (085711223344)",
-      "address": "Jl. Pemuda No. 45 Surabaya",
-      "whatsapp": "085711223344",
-      "items": [
-        { "name": "Beras Rojolele 5kg", "qty": 10, "price": 68000, "subtotal": 680000 }
-      ],
-      "totalAmount": 680000,
-      "paymentStatus": "BELUM DIBAYAR",
-      "qrisUrl": "https://kodemik.com/pay/INV-8821",
-      "pdfUrl": "https://kodemik.com/pdf/INV-8821.pdf",
-      "createdAt": "2026-08-11 09:15:00"
-    }
-  ],
+  "invoices": [],
   "ownerNotifications": []
 }

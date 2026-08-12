@@ -47,43 +47,15 @@ const db = {
 
   // Stock items scoped strictly by tenantId
   inventory: [
-    // User A (Toko Sembako)
     { id: 'inv-1', tenantId: 'tenant_01', sku: 'BRS-5KG', name: 'Beras Rojolele 5kg', price: 68000, stock: 15, unit: 'karung' },
     { id: 'inv-2', tenantId: 'tenant_01', sku: 'MYK-2L', name: 'Minyak Bimoli 2L', price: 35000, stock: 4, unit: 'pouch' },
     { id: 'inv-3', tenantId: 'tenant_01', sku: 'GUL-1KG', name: 'Gula Pasir Gulaku 1kg', price: 17500, stock: 0, unit: 'kg' },
-
-    // User B (Toko Fashion Hijab)
     { id: 'inv-4', tenantId: 'tenant_02', sku: 'HJB-PASH', name: 'Hijab Pashmina Silk Premium', price: 85000, stock: 30, unit: 'pcs' },
     { id: 'inv-5', tenantId: 'tenant_02', sku: 'GMS-ELEG', name: 'Gamis Brokat Modern XL', price: 245000, stock: 12, unit: 'pcs' },
     { id: 'inv-6', tenantId: 'tenant_02', sku: 'SCR-SILK', name: 'Scarf Segiempat Voal', price: 45000, stock: 0, unit: 'pcs' }
   ],
 
-  // Invoices scoped strictly by tenantId
-  invoices: [
-    {
-      id: 'INV-A-101',
-      tenantId: 'tenant_01',
-      customerName: 'Pembeli WA Sembako (0812990011)',
-      items: [{ name: 'Beras Rojolele 5kg', qty: 5, price: 68000, subtotal: 340000 }],
-      totalAmount: 340000,
-      paymentStatus: 'LUNAS',
-      qrisUrl: 'https://kodemik.com/pay/INV-A-101',
-      pdfUrl: 'https://kodemik.com/pdf/INV-A-101.pdf',
-      createdAt: '2026-08-12 18:10:00'
-    },
-    {
-      id: 'INV-B-202',
-      tenantId: 'tenant_02',
-      customerName: 'Pelanggan Hijab (0856443322)',
-      items: [{ name: 'Hijab Pashmina Silk Premium', qty: 2, price: 85000, subtotal: 170000 }],
-      totalAmount: 170000,
-      paymentStatus: 'BELUM DIBAYAR',
-      qrisUrl: 'https://kodemik.com/pay/INV-B-202',
-      pdfUrl: 'https://kodemik.com/pdf/INV-B-202.pdf',
-      createdAt: '2026-08-12 18:30:00'
-    }
-  ],
-
+  invoices: [],
   ownerNotifications: []
 };
 
@@ -120,7 +92,6 @@ function runMultiTenantAIAgent(rawMessage, activeTenantId) {
   const tenantObj = db.tenants.find(t => t.tenantId === tid) || db.tenants[0];
   const text = (rawMessage || '').toLowerCase();
   
-  // Filter inventory ONLY for active tenant
   const tenantStock = db.inventory.filter(item => item.tenantId === tid);
 
   const matchedItems = [];
@@ -237,13 +208,11 @@ const server = http.createServer((req, res) => {
     return res.end();
   }
 
-  // 1. Fetch Tenants List API
   if (pathname === '/api/tenants' && req.method === 'GET') {
     res.writeHead(200, { 'Content-Type': 'application/json' });
     return res.end(JSON.stringify({ success: true, data: db.tenants }));
   }
 
-  // 2. Fetch Tenant Isolated Inventory
   if (pathname === '/api/inventory' && req.method === 'GET') {
     const tid = parsedUrl.searchParams.get('tenantId') || 'tenant_01';
     const tenantObj = db.tenants.find(t => t.tenantId === tid) || db.tenants[0];
@@ -261,7 +230,6 @@ const server = http.createServer((req, res) => {
     }));
   }
 
-  // 3. Add Item to Tenant Isolated Inventory API
   if (pathname === '/api/inventory/add' && req.method === 'POST') {
     let body = '';
     req.on('data', chunk => body += chunk);
@@ -290,7 +258,6 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // 4. Run Multi-Tenant AI Agent API
   if (pathname === '/api/ai/auto-agent' && req.method === 'POST') {
     let body = '';
     req.on('data', chunk => body += chunk);
@@ -308,7 +275,6 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // Static File Serving
   let filePath = path.join(PUBLIC_DIR, pathname === '/' ? 'index.html' : pathname);
 
   if (!path.extname(filePath)) {

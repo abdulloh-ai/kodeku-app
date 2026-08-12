@@ -1,13 +1,13 @@
 {
-  "name": "codemik-ai-b2b-platform",
-  "version": "2.0.0",
-  "description": "Codemik AI — Autonomous WhatsApp AI Agent & Supply Chain Automation for UMKM Indonesia",
+  "name": "codemik-ai-multi-tenant-saas",
+  "version": "3.0.0",
+  "description": "Codemik AI — Bespoke Multi-Tenant AI Automation Engine & Middleware Platform",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js"
   },
-  "keywords": ["codemik", "ai-supply-chain", "whatsapp-parser", "ocr-nota", "b2b-saas"],
+  "keywords": ["codemik", "ai-saas", "multi-tenant", "n8n-middleware", "workflow-engine"],
   "author": "Codemik AI Team",
   "license": "MIT"
 }

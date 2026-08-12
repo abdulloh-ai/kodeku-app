@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Codemik AI — Handcrafted Multi-Tenant AI Automation Engine</title>
-  <meta name="description" content="Platform Perantara Otomasi AI SaaS Multi-Tenant. Terisolasi mandiri 100% per user. Workflow node engine AI tanpa koding.">
+  <title>Codemik AI — Apple-Style Bento Grid Multi-Tenant AI Platform</title>
+  <meta name="description" content="Platform Perantara Otomasi AI SaaS Multi-Tenant. Apple Bento Grid Layout. Terisolasi mandiri 100% per user.">
   
   <link rel="stylesheet" href="css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,196 +13,224 @@
 </head>
 <body>
 
-  <!-- Top Bar Navbar -->
-  <header class="top-bar">
-    <div class="app-container top-bar-flex">
-      <a href="index.html" class="brand-wrapper">
-        <div class="brand-icon">C</div>
-        <span class="brand-name">Codemik<span style="color:var(--accent-cyan);">.AI</span></span>
+  <!-- Bento Top Navbar -->
+  <header class="bento-nav">
+    <div class="bento-container bento-nav-flex">
+      <a href="index.html" class="bento-logo">
+        <div class="bento-logo-icon">C</div>
+        <span class="bento-logo-text">Codemik<span style="color:var(--accent-cyan);">.AI</span></span>
       </a>
 
-      <div style="display:flex; align-items:center; gap:16px;">
-        <div class="system-status-pill">
+      <div style="display:flex; align-items:center; gap:14px;">
+        <span class="bento-badge" style="background:rgba(16,185,129,0.1); border-color:rgba(16,185,129,0.3); color:var(--accent-emerald);">
           <span style="width:7px; height:7px; border-radius:50%; background:var(--accent-emerald); display:inline-block;"></span>
-          SYSTEM OPERATIONAL 99.99%
-        </div>
-        <button onclick="openMerchantModal()" class="custom-btn btn-ghost" style="padding:8px 16px; font-size:0.82rem;">
-          ⚙️ Portal Toko Saya
+          OPERATIONAL 99.99%
+        </span>
+        <button onclick="openMerchantModal()" class="bento-btn bento-btn-ghost" style="padding:7px 14px; font-size:0.82rem;">
+          ⚙️ Portal Stok Toko
         </button>
       </div>
     </div>
   </header>
 
-  <!-- Hero & Interactive Studio Workspace -->
-  <main class="app-container" style="padding-top:40px; padding-bottom:60px;">
-    
-    <!-- Hero Title Header -->
-    <div style="max-width:850px; margin:0 auto 40px; text-align:center;">
-      <div style="display:inline-flex; align-items:center; gap:8px; padding:6px 14px; border-radius:20px; background:rgba(99,102,241,0.12); border:1px solid rgba(99,102,241,0.3); color:#A5B4FC; font-size:0.78rem; font-weight:700; font-family:var(--font-mono); margin-bottom:14px;">
-        ⚡ MULTI-TENANT WORKFLOW ENGINE (NO-CODE MIDDLEWARE)
-      </div>
-      <h1 style="font-size:2.8rem; font-weight:800; letter-spacing:-1px; line-height:1.2; margin-bottom:14px;">
-        Otomasi AI Agent Perantara Terisolasi Mandiri 100% Per User
-      </h1>
-      <p style="color:var(--text-secondary); font-size:1.05rem; margin:0 auto;">
-        Ubah chat WA & foto nota acak menjadi data stok terurai & Invoice PDF + QRIS otomatis. Data setiap toko dikunci aman di kamarnya sendiri.
-      </p>
-    </div>
+  <!-- Hero Header -->
+  <div class="bento-container" style="padding-top:40px; text-align:center;">
+    <span class="bento-badge" style="margin-bottom:12px;">🍱 BENTO GRID ARCHITECTURE (NO-CODE AI SAAS)</span>
+    <h1 style="font-size:3rem; font-weight:800; letter-spacing:-1.2px; line-height:1.15; margin-bottom:12px; max-width:860px; margin-left:auto; margin-right:auto;">
+      Otomasi AI Agent Perantara Terisolasi Mandiri 100% Per User
+    </h1>
+    <p style="color:var(--text-muted); font-size:1.05rem; max-width:720px; margin:0 auto 20px;">
+      Bebas dari resiko data tertukar. Setiap toko memiliki kamar terisolasi mandiri dengan AI Agent & stok tersendiri.
+    </p>
+  </div>
 
-    <!-- Studio Canvas -->
-    <div class="studio-canvas">
-      
-      <!-- Studio Header / Workspace Switcher -->
-      <div class="studio-header">
-        <div style="display:flex; align-items:center; gap:12px;">
-          <span style="color:var(--text-muted); font-size:0.8rem; font-family:var(--font-mono); font-weight:700;">WORKSPACE CONTEXT:</span>
-          <div class="tenant-pill-group">
-            <button onclick="switchTenantContext('tenant_01')" id="btnTenant01" class="tenant-selector-btn active">
-              🏢 User A: Toko Sembako Berkah (Kamar 101)
-            </button>
-            <button onclick="switchTenantContext('tenant_02')" id="btnTenant02" class="tenant-selector-btn">
-              🌸 User B: Hijab Fashion Store Cantik (Kamar 102)
-            </button>
-          </div>
-        </div>
+  <!-- Bento Grid Main Stage -->
+  <main class="bento-container">
+    <div class="bento-grid">
 
-        <div style="font-size:0.8rem; font-family:var(--font-mono); color:var(--accent-emerald);" id="activeTenantStatusText">
-          🟢 WORKFLOW STATUS: ACTIVE (ISOLATED EXECUTION)
-        </div>
-      </div>
-
-      <!-- Studio Body Content -->
-      <div style="padding:24px;">
-        
-        <!-- Workflow Node Graph Visualization -->
-        <div class="node-graph-container">
-          
-          <!-- Node 1: Trigger -->
-          <div class="node-card">
-            <div class="node-header">
-              <span class="node-tag" style="background:rgba(6,182,212,0.15); color:var(--accent-cyan);">NODE 01 — INPUT TRIGGER</span>
-              <span style="font-size:0.75rem; color:var(--text-muted);">WhatsApp API / OCR</span>
-            </div>
-            <h4 style="margin:0 0 8px; font-size:0.95rem; color:#FFF;">📥 Receiver Event Chat WA</h4>
-            <p style="font-size:0.82rem; color:var(--text-secondary); margin-bottom:12px;" id="node1Desc">
-              Menerima pesan WA / foto nota pembeli Toko Sembako Berkah.
-            </p>
-            <textarea id="simWaMessage" class="form-input" style="height:80px; font-size:0.82rem; font-family:var(--font-mono);" spellcheck="false">Pesen beras rojolele 5 karung, minyak bimoli 2L 2 pouch</textarea>
-          </div>
-
-          <!-- Node 2: AI Parser & Scoper -->
-          <div class="node-card">
-            <div class="node-header">
-              <span class="node-tag" style="background:rgba(99,102,241,0.15); color:var(--primary-light);">NODE 02 — ISOLATED AI ENGINE</span>
-              <span style="font-size:0.75rem; color:var(--text-muted);">Scoped DB Check</span>
-            </div>
-            <h4 style="margin:0 0 8px; font-size:0.95rem; color:#FFF;">🤖 AI JSON & Stock Scoper</h4>
-            <p style="font-size:0.82rem; color:var(--text-secondary); margin-bottom:12px;">
-              Mengecek stok gudang yang hanya ber-label Tenant ID aktif.
-            </p>
-            <button onclick="runMultiTenantAgent()" id="btnRunAgent" class="custom-btn btn-indigo" style="width:100%; justify-content:center; padding:10px; font-size:0.82rem;">
-              ⚡ Execute AI Node (Run)
-            </button>
-          </div>
-
-          <!-- Node 3: Output Generator -->
-          <div class="node-card">
-            <div class="node-header">
-              <span class="node-tag" style="background:rgba(16,185,129,0.15); color:var(--accent-emerald);">NODE 03 — OUTPUT GENERATOR</span>
-              <span style="font-size:0.75rem; color:var(--text-muted);">PDF + QRIS Link</span>
-            </div>
-            <h4 style="margin:0 0 8px; font-size:0.95rem; color:#FFF;">📄 Auto Invoice & Reply</h4>
-            <p style="font-size:0.82rem; color:var(--text-secondary); margin-bottom:12px;">
-              Membuatkan balasan WA + PDF Invoice + Link QRIS instan.
-            </p>
-            <div style="font-size:0.78rem; font-family:var(--font-mono); color:var(--accent-emerald);" id="node3Status">
-              ✓ Ready for Dispatch
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Terminal Output Window & Data Table Grid -->
-        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;" class="grid-2">
-          
-          <!-- Terminal Execution Log -->
+      <!-- BENTO TILE 1 (SPAN 2): MULTI-TENANT ENGINE SANDBOX -->
+      <div class="bento-item bento-span-2">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
           <div>
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-              <span style="font-size:0.8rem; font-weight:700; font-family:var(--font-mono); color:var(--text-secondary);">💻 EXECUTION LOG (REAL-TIME STREAM):</span>
-              <span style="font-size:0.75rem; color:var(--accent-cyan); font-family:var(--font-mono);" id="logTenantLabel">Context: tenant_01</span>
-            </div>
-
-            <div class="terminal-window">
-              <pre id="agentWaReplyText" style="white-space:pre-wrap; margin:0;">Pilih User A atau User B di atas, lalu klik "Execute AI Node (Run)" untuk melihat bukti data terisolasi...</pre>
-            </div>
+            <span class="bento-badge" style="margin-bottom:6px;">BENTO TILE 01</span>
+            <h3 style="font-size:1.2rem; font-weight:800; color:#FFF; margin:0;">🤖 Multi-Tenant AI Agent Sandbox</h3>
           </div>
-
-          <!-- Stock Table Per Tenant -->
-          <div>
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-              <span style="font-size:0.8rem; font-weight:700; font-family:var(--font-mono); color:var(--text-secondary);" id="stockTableTitle">📋 STOK TERISOLASI (USER A - KAMAR 101):</span>
-              <button onclick="fetchTenantInventory()" class="custom-btn btn-ghost" style="padding:3px 8px; font-size:0.75rem;">↻ Refresh</button>
-            </div>
-
-            <div class="data-table-container">
-              <table>
-                <thead>
-                  <tr>
-                    <th>SKU</th>
-                    <th>Nama Barang</th>
-                    <th>Harga</th>
-                    <th>Sisa Stok</th>
-                  </tr>
-                </thead>
-                <tbody id="inventoryTableMain">
-                  <!-- Loaded via JS -->
-                </tbody>
-              </table>
-            </div>
-          </div>
-
+          <span style="font-size:0.78rem; font-family:var(--font-mono); color:var(--accent-emerald);" id="activeTenantStatusText">
+            🟢 CONTEXT: USER A (KAMAR 101)
+          </span>
         </div>
 
+        <!-- Tenant Switcher Pills -->
+        <div style="display:flex; gap:10px; margin-bottom:18px; flex-wrap:wrap;">
+          <button onclick="switchTenantContext('tenant_01')" id="btnTenant01" class="tenant-btn-pill active">
+            🏢 User A: Toko Sembako Berkah (Kamar 101)
+          </button>
+          <button onclick="switchTenantContext('tenant_02')" id="btnTenant02" class="tenant-btn-pill">
+            🌸 User B: Hijab Fashion Store (Kamar 102)
+          </button>
+        </div>
+
+        <!-- Input & Terminal Outputs -->
+        <div style="display:grid; grid-template-columns: 1fr 1.2fr; gap:16px;" class="grid-2">
+          <div>
+            <label style="display:block; font-size:0.8rem; font-weight:600; color:var(--text-muted); margin-bottom:6px;" id="simInputLabel">Input Chat WA Pembeli User A:</label>
+            <textarea id="simWaMessage" style="width:100%; height:90px; padding:12px; background:var(--bg-inner); border:1px solid var(--hairline-border); border-radius:10px; color:#FFF; font-family:var(--font-mono); font-size:0.82rem; outline:none;" spellcheck="false">Pesen beras rojolele 5 karung, minyak bimoli 2L 2 pouch</textarea>
+            
+            <button onclick="runMultiTenantAgent()" id="btnRunAgent" class="bento-btn bento-btn-primary" style="width:100%; margin-top:10px; justify-content:center; padding:10px;">
+              ⚡ Execute Isolated AI Node
+            </button>
+          </div>
+
+          <div>
+            <label style="display:block; font-size:0.8rem; font-weight:600; color:var(--text-muted); margin-bottom:6px;">Hasil Balasan WA Agent (Terisolasi):</label>
+            <div class="bento-terminal">
+              <pre id="agentWaReplyText" style="white-space:pre-wrap; margin:0;">Pilih User A atau User B di atas, lalu klik "Execute Isolated AI Node" untuk melihat bukti data terisolasi...</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BENTO TILE 2 (SPAN 1): SYSTEM METRICS & SECURITY TILE -->
+      <div class="bento-item" style="display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <span class="bento-badge" style="margin-bottom:10px;">BENTO TILE 02</span>
+          <h3 style="font-size:1.15rem; font-weight:800; color:#FFF; margin-bottom:12px;">🛡️ Penyekatan 100% Mandiri</h3>
+          <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:20px;">
+            Setiap data stok, transaksi, & log AI terisolasi ketat ber-label Tenant ID.
+          </p>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <div style="background:var(--bg-inner); border:1px solid var(--hairline-border); padding:12px 16px; border-radius:12px; display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:0.82rem; color:var(--text-muted);">Isolasi Data User</span>
+            <span style="font-family:var(--font-mono); font-weight:800; color:var(--accent-emerald);">100% Mandiri</span>
+          </div>
+          <div style="background:var(--bg-inner); border:1px solid var(--hairline-border); padding:12px 16px; border-radius:12px; display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:0.82rem; color:var(--text-muted);">AI Latency</span>
+            <span style="font-family:var(--font-mono); font-weight:800; color:var(--accent-cyan);">0.15 Detik</span>
+          </div>
+          <div style="background:var(--bg-inner); border:1px solid var(--hairline-border); padding:12px 16px; border-radius:12px; display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:0.82rem; color:var(--text-muted);">Worker Queue</span>
+            <span style="font-family:var(--font-mono); font-weight:800; color:var(--primary-light);">Redis Active</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- BENTO TILE 3 (SPAN 1): 1-CLICK WORKFLOW TEMPLATES -->
+      <div class="bento-item">
+        <span class="bento-badge" style="margin-bottom:10px;">BENTO TILE 03</span>
+        <h3 style="font-size:1.15rem; font-weight:800; color:#FFF; margin-bottom:10px;">⚡ Katalog Template AI</h3>
+        <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:16px;">Aktifkan workflow otomasi tanpa perlu koding.</p>
+
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div style="background:var(--bg-inner); border:1px solid var(--hairline-border); padding:10px 14px; border-radius:10px; display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:0.84rem; color:#FFF;">📲 WA Sales & Auto Invoice</span>
+            <button onclick="alert('Template WA Sales Berhasil Diaktifkan!')" class="bento-btn bento-btn-primary" style="padding:4px 10px; font-size:0.75rem;">Aktifkan</button>
+          </div>
+          <div style="background:var(--bg-inner); border:1px solid var(--hairline-border); padding:10px 14px; border-radius:10px; display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:0.84rem; color:#FFF;">🤖 AI Customer Support</span>
+            <button onclick="alert('Template AI Customer Support Berhasil Diaktifkan!')" class="bento-btn bento-btn-primary" style="padding:4px 10px; font-size:0.75rem;">Aktifkan</button>
+          </div>
+          <div style="background:var(--bg-inner); border:1px solid var(--hairline-border); padding:10px 14px; border-radius:10px; display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:0.84rem; color:#FFF;">📊 Follow-up & Link QRIS</span>
+            <button onclick="alert('Template Follow-up Berhasil Diaktifkan!')" class="bento-btn bento-btn-primary" style="padding:4px 10px; font-size:0.75rem;">Aktifkan</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- BENTO TILE 4 (SPAN 2): ISOLATED DATA MATRIX TABLE -->
+      <div class="bento-item bento-span-2">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+          <div>
+            <span class="bento-badge" style="margin-bottom:6px;">BENTO TILE 04</span>
+            <h3 style="font-size:1.15rem; font-weight:800; color:#FFF; margin:0;" id="tableStockTitle">📋 Data Stok Terisolasi (Kamar 101 - User A)</h3>
+          </div>
+          <button onclick="fetchTenantInventory()" class="bento-btn bento-btn-ghost" style="padding:4px 10px; font-size:0.78rem;">↻ Refresh</button>
+        </div>
+
+        <div style="background:var(--bg-inner); border:1px solid var(--hairline-border); border-radius:var(--radius-inner); overflow:hidden;">
+          <table class="bento-table">
+            <thead>
+              <tr>
+                <th>SKU</th>
+                <th>Nama Produk</th>
+                <th>Harga Jual</th>
+                <th>Status Stok</th>
+              </tr>
+            </thead>
+            <tbody id="inventoryTableMain">
+              <!-- Loaded via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- BENTO TILE 5 (SPAN 3): ENTERPRISE PRICING BENTO GRID -->
+      <div class="bento-item bento-span-3" style="text-align:center;">
+        <span class="bento-badge" style="margin-bottom:10px;">BENTO TILE 05 — PRICING SAAS</span>
+        <h3 style="font-size:1.5rem; font-weight:800; color:#FFF; margin-bottom:20px;">Paket Sewa Middleware AI SaaS</h3>
+
+        <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:16px;" class="grid-3">
+          <div style="background:var(--bg-inner); border:1px solid var(--hairline-border); padding:20px; border-radius:16px; text-align:left;">
+            <span style="font-size:0.78rem; color:var(--text-muted); font-weight:700;">UMKM PEMULA</span>
+            <h4 style="margin:4px 0; font-size:1.2rem;">Paket Pemula</h4>
+            <div style="font-size:1.6rem; font-weight:800; color:var(--primary-light); margin-bottom:12px;">Rp 149.000 <span style="font-size:0.8rem; color:var(--text-muted); font-weight:400;">/bln</span></div>
+            <button onclick="alert('Paket Dipilih!')" class="bento-btn bento-btn-ghost" style="width:100%; justify-content:center; font-size:0.8rem;">Pilih Pemula</button>
+          </div>
+
+          <div style="background:linear-gradient(180deg, rgba(99,102,241,0.15), var(--bg-inner)); border:1px solid var(--primary); padding:20px; border-radius:16px; text-align:left;">
+            <span style="font-size:0.78rem; color:var(--accent-gold); font-weight:800;">🔥 POPULER</span>
+            <h4 style="margin:4px 0; font-size:1.2rem;">Paket Bisnis Grosir</h4>
+            <div style="font-size:1.6rem; font-weight:800; color:#FFF; margin-bottom:12px;">Rp 299.000 <span style="font-size:0.8rem; color:var(--text-muted); font-weight:400;">/bln</span></div>
+            <button onclick="alert('Paket Dipilih!')" class="bento-btn bento-btn-primary" style="width:100%; justify-content:center; font-size:0.8rem;">Pilih Bisnis</button>
+          </div>
+
+          <div style="background:var(--bg-inner); border:1px solid var(--hairline-border); padding:20px; border-radius:16px; text-align:left;">
+            <span style="font-size:0.78rem; color:var(--accent-cyan); font-weight:700;">DISTRIBUTOR RAKSASA</span>
+            <h4 style="margin:4px 0; font-size:1.2rem;">Paket Enterprise</h4>
+            <div style="font-size:1.6rem; font-weight:800; color:var(--accent-cyan); margin-bottom:12px;">Rp 599.000 <span style="font-size:0.8rem; color:var(--text-muted); font-weight:400;">/bln</span></div>
+            <button onclick="alert('Paket Dipilih!')" class="bento-btn bento-btn-ghost" style="width:100%; justify-content:center; font-size:0.8rem;">Pilih Enterprise</button>
+          </div>
+        </div>
       </div>
 
     </div>
-
   </main>
 
   <!-- Merchant Portal Modal -->
   <div class="modal-backdrop" id="merchantModal">
-    <div class="modal-panel">
+    <div class="modal-bento-card">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
-        <h3 style="font-size:1.2rem; font-weight:800; margin:0;" id="merchantModalTitle">📦 Portal Form Tambah Stok Barang</h3>
+        <h3 style="font-size:1.2rem; font-weight:800; margin:0;">📦 Form Tambah Stok Barang</h3>
         <button onclick="closeMerchantModal()" style="background:none; border:none; color:#fff; font-size:1.4rem; cursor:pointer;">✕</button>
       </div>
 
       <form id="addStockForm" onsubmit="handleAddNewStock(event)">
-        <div class="form-group">
-          <label class="form-label">Nama Produk Barang</label>
-          <input type="text" id="stockName" class="form-input" placeholder="Contoh: Barang Baru" required />
+        <div style="margin-bottom:12px;">
+          <label style="display:block; font-size:0.8rem; color:var(--text-muted); margin-bottom:4px;">Nama Produk Barang</label>
+          <input type="text" id="stockName" style="width:100%; padding:10px; background:var(--bg-inner); border:1px solid var(--hairline-border); border-radius:8px; color:#FFF;" placeholder="Contoh: Barang Baru" required />
         </div>
-        <div class="form-group">
-          <label class="form-label">Harga Jual (Rp)</label>
-          <input type="number" id="stockPrice" class="form-input" placeholder="50000" required />
+        <div style="margin-bottom:12px;">
+          <label style="display:block; font-size:0.8rem; color:var(--text-muted); margin-bottom:4px;">Harga Jual (Rp)</label>
+          <input type="number" id="stockPrice" style="width:100%; padding:10px; background:var(--bg-inner); border:1px solid var(--hairline-border); border-radius:8px; color:#FFF;" placeholder="50000" required />
         </div>
-        <div class="form-group">
-          <label class="form-label">Jumlah Stok Gudang</label>
-          <input type="number" id="stockQty" class="form-input" placeholder="50" required />
+        <div style="margin-bottom:12px;">
+          <label style="display:block; font-size:0.8rem; color:var(--text-muted); margin-bottom:4px;">Jumlah Stok Gudang</label>
+          <input type="number" id="stockQty" style="width:100%; padding:10px; background:var(--bg-inner); border:1px solid var(--hairline-border); border-radius:8px; color:#FFF;" placeholder="50" required />
         </div>
-        <div class="form-group">
-          <label class="form-label">Satuan Unit (pcs/karung/dus/kg)</label>
-          <input type="text" id="stockUnit" class="form-input" placeholder="pcs" required />
+        <div style="margin-bottom:14px;">
+          <label style="display:block; font-size:0.8rem; color:var(--text-muted); margin-bottom:4px;">Satuan Unit (pcs/karung/dus/kg)</label>
+          <input type="text" id="stockUnit" style="width:100%; padding:10px; background:var(--bg-inner); border:1px solid var(--hairline-border); border-radius:8px; color:#FFF;" placeholder="pcs" required />
         </div>
-        <button type="submit" class="custom-btn btn-indigo" style="width:100%; justify-content:center; margin-top:10px;">
+        <button type="submit" class="bento-btn bento-btn-primary" style="width:100%; justify-content:center;">
           + Simpan Stok Ke Kamar Toko
         </button>
       </form>
     </div>
   </div>
 
-  <footer style="padding:30px 0; border-top:1px solid var(--border-light); text-align:center; font-size:0.85rem; color:var(--text-muted);">
-    © 2026 Codemik AI — Bespoke Multi-Tenant AI Automation Workflow Engine (https://kodemik.com)
+  <footer style="padding:30px 0; border-top:1px solid var(--hairline-border); text-align:center; font-size:0.85rem; color:var(--text-muted);">
+    © 2026 Codemik AI — Apple Bento Grid Multi-Tenant AI Platform (https://kodemik.com)
   </footer>
 
   <script>
@@ -221,21 +249,15 @@
       document.getElementById('btnTenant02').classList.toggle('active', tid === 'tenant_02');
 
       const simInput = document.getElementById('simWaMessage');
-      const node1Desc = document.getElementById('node1Desc');
-      const logLabel = document.getElementById('logTenantLabel');
 
       if (tid === 'tenant_01') {
-        document.getElementById('activeTenantStatusText').textContent = '🟢 WORKFLOW STATUS: ACTIVE (USER A — KAMAR 101)';
-        node1Desc.textContent = 'Menerima pesan WA / foto nota pembeli Toko Sembako Berkah.';
+        document.getElementById('activeTenantStatusText').textContent = '🟢 CONTEXT: USER A (KAMAR 101)';
         simInput.value = "Pesen beras rojolele 5 karung, minyak bimoli 2L 2 pouch";
-        logLabel.textContent = 'Context: tenant_01 (User A)';
-        document.getElementById('stockTableTitle').textContent = '📋 STOK TERISOLASI (USER A - KAMAR 101):';
+        document.getElementById('tableStockTitle').textContent = '📋 Data Stok Terisolasi (Kamar 101 - User A)';
       } else {
-        document.getElementById('activeTenantStatusText').textContent = '🌸 WORKFLOW STATUS: ACTIVE (USER B — KAMAR 102)';
-        node1Desc.textContent = 'Menerima pesan WA / foto nota pembeli Hijab Fashion Store Cantik.';
+        document.getElementById('activeTenantStatusText').textContent = '🌸 CONTEXT: USER B (KAMAR 102)';
         simInput.value = "Halo sis pesen Hijab Pashmina Silk 2 pcs, Gamis Brokat 1 pcs";
-        logLabel.textContent = 'Context: tenant_02 (User B)';
-        document.getElementById('stockTableTitle').textContent = '📋 STOK TERISOLASI (USER B - KAMAR 102):';
+        document.getElementById('tableStockTitle').textContent = '📋 Data Stok Terisolasi (Kamar 102 - User B)';
       }
 
       fetchTenantInventory();
@@ -258,7 +280,7 @@
         });
         const data = await res.json();
         btn.disabled = false;
-        btn.textContent = '⚡ Execute AI Node (Run)';
+        btn.textContent = '⚡ Execute Isolated AI Node';
 
         if (data.success) {
           document.getElementById('agentWaReplyText').textContent = data.agentOutput.autoWaReplyText;
@@ -266,7 +288,7 @@
         }
       } catch (e) {
         btn.disabled = false;
-        btn.textContent = '⚡ Execute AI Node (Run)';
+        btn.textContent = '⚡ Execute Isolated AI Node';
         alert('Gagal memproses node: ' + e.message);
       }
     }

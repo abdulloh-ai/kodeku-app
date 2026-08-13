@@ -3,263 +3,336 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>YouTube — Beranda</title>
-  <meta name="description" content="Kloning Tampilan Web YouTube Resmi Dark Mode (Pixel-Perfect UI)">
+  <title>Dicoding Indonesia — Bangun Karir Sebagai Developer Profesional</title>
+  <meta name="description" content="Platform Belajar Koding Berbasis Teks Terstruktur #1 Indonesia (Dicoding Replica UI)">
   
   <link rel="stylesheet" href="css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- YouTube Top Navigation Header -->
-  <header class="yt-header">
-    <div class="yt-brand-left">
-      <button class="yt-icon-btn">☰</button>
-      <a href="index.html" class="yt-logo">
-        <svg height="20" viewBox="0 0 28 20" width="28" style="fill:#FF0000;">
-          <path d="M27.9727 3.12324C27.6435 1.89323 26.6768 0.926623 25.4468 0.597366C23.219 0 14 0 14 0C14 0 4.78103 0 2.55318 0.597366C1.32317 0.926623 0.35656 1.89323 0.0273038 3.12324C0 5.35109 0 10 0 10C0 10 0 14.6489 0.0273038 16.8768C0.35656 18.1068 1.32317 19.0734 2.55318 19.4026C4.78103 20 14 20 14 20C14 20 23.219 20 25.4468 19.4026C26.6768 19.0734 27.6435 18.1068 27.9727 16.8768C28 14.6489 28 10 28 10C28 10 28 5.35109 27.9727 3.12324Z"/>
-          <path d="M11.2 14.2857L18.2 10L11.2 5.71429V14.2857Z" fill="white"/>
-        </svg>
-        <span>YouTube</span>
-        <span class="yt-logo-badge">ID</span>
+  <!-- Dicoding Header Navigation -->
+  <nav class="dc-navbar">
+    <div class="dc-nav-flex">
+      <a href="index.html" class="dc-brand">
+        <div class="dc-brand-icon">d</div>
+        <span class="dc-brand-logo">dicoding</span>
       </a>
-    </div>
 
-    <!-- Center Search Bar -->
-    <div class="yt-search-center">
-      <div class="yt-search-box">
-        <input type="text" class="yt-search-input" placeholder="Telusuri" value="Belajar Koding Web Fullstack">
+      <ul class="dc-nav-links">
+        <li><a href="#katalog" class="active">Katalog Kelas</a></li>
+        <li><a href="#katalog">Alur Belajar</a></li>
+        <li><a href="#katalog">Berlangganan</a></li>
+        <li><a href="#katalog">Dicoding Jobs</a></li>
+      </ul>
+
+      <div style="display:flex; gap:12px;">
+        <button class="dc-btn dc-btn-outline" onclick="openClassroomModal('dasar-web')">Masuk</button>
+        <button class="dc-btn dc-btn-primary" onclick="openClassroomModal('dasar-web')">Daftar</button>
       </div>
-      <button class="yt-search-btn" title="Telusuri">🔍</button>
-      <button class="yt-mic-btn" title="Telusuri dengan suara">🎙️</button>
     </div>
+  </nav>
 
-    <!-- Right Controls -->
-    <div class="yt-controls-right">
-      <button class="yt-create-btn">
-        <span style="font-size:18px;">+</span> Buat
-      </button>
-      <button class="yt-icon-btn" title="Notifikasi">🔔</button>
-      <div class="yt-avatar" title="Akun Pengguna">H</div>
+  <!-- Dicoding Hero Banner -->
+  <section class="dc-hero">
+    <div class="dc-hero-container">
+      <span style="display:inline-block; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); padding:6px 16px; border-radius:20px; font-size:0.8rem; font-weight:700; color:#93c5fd;">
+        🚀 PLATFORM BELAJAR CODING #1 INDONESIA
+      </span>
+      <h1>Bangun Karir Sebagai Developer Profesional</h1>
+      <p>
+        Kurikulum standar industri dunia yang disusun bersama Google, AWS, Microsoft, dan perusahaan teknologi terkemuka Indonesia.
+      </p>
+      <div style="display:flex; gap:12px; justify-content:center;">
+        <a href="#katalog" class="dc-btn dc-btn-primary" style="padding:12px 28px; font-size:1rem;">Lihat Katalog Kelas</a>
+        <button onclick="openClassroomModal('dasar-web')" class="dc-btn dc-btn-outline" style="padding:12px 28px; font-size:1rem;">Mulai Belajar Gratis</button>
+      </div>
     </div>
-  </header>
+  </section>
 
-  <!-- YouTube Main Layout Body -->
-  <div class="yt-main-layout">
-    
-    <!-- Left Navigation Sidebar -->
-    <aside class="yt-sidebar">
-      <a href="#" class="yt-nav-item active">
-        <span class="yt-nav-icon">🏠</span>
-        <span>Beranda</span>
-      </a>
-      <a href="#" class="yt-nav-item">
-        <span class="yt-nav-icon">🩳</span>
-        <span>Shorts</span>
-      </a>
-      <a href="#" class="yt-nav-item">
-        <span class="yt-nav-icon">📺</span>
-        <span>Subskripsi</span>
-      </a>
-
-      <div class="yt-divider"></div>
-
-      <a href="#" class="yt-nav-item">
-        <span class="yt-nav-icon">📚</span>
-        <span>Anda (Koleksi)</span>
-      </a>
-      <a href="#" class="yt-nav-item">
-        <span class="yt-nav-icon">📜</span>
-        <span>Histori</span>
-      </a>
-
-      <div class="yt-divider"></div>
-
-      <span style="font-size:14px; font-weight:700; padding:8px 12px; color:var(--yt-text-primary);">Eksplorasi</span>
-      <a href="#" class="yt-nav-item">
-        <span class="yt-nav-icon">🎵</span>
-        <span>Musik</span>
-      </a>
-      <a href="#" class="yt-nav-item">
-        <span class="yt-nav-icon">🎮</span>
-        <span>Game</span>
-      </a>
-      <a href="#" class="yt-nav-item">
-        <span class="yt-nav-icon">📰</span>
-        <span>Berita</span>
-      </a>
-    </aside>
-
-    <!-- Right Feed Content Area -->
-    <main class="yt-content-feed">
-      
-      <!-- Filter Chips Bar -->
-      <div class="yt-chips-bar">
-        <button class="yt-chip active">Semua</button>
-        <button class="yt-chip">Musik</button>
-        <button class="yt-chip">Kecerdasan Buatan (AI)</button>
-        <button class="yt-chip">Pemrograman Komputer</button>
-        <button class="yt-chip">Live</button>
-        <button class="yt-chip">Game</button>
-        <button class="yt-chip">Pelajaran</button>
-        <button class="yt-chip">Baru diunggah</button>
-        <button class="yt-chip">Tontonan baru</button>
-      </div>
-
-      <!-- Video Grid (8 Authentic Videos) -->
-      <div class="yt-video-grid">
-        
-        <!-- Video Card 1 -->
-        <div class="yt-video-card">
-          <div class="yt-thumbnail-wrapper">
-            <div style="width:100%; height:100%; background:linear-gradient(135deg, #1E1B4B, #4338CA); display:flex; align-items:center; justify-content:center; color:#A5B4FC; font-weight:800; font-size:18px;">
-              💻 FULLSTACK KODING 2026
-            </div>
-            <span class="yt-duration-badge">24:15</span>
-          </div>
-          <div class="yt-video-info">
-            <div class="yt-channel-avatar" style="background:#4F46E5;">T</div>
-            <div class="yt-video-details">
-              <h3 class="yt-video-title">Belajar Koding Web Fullstack Dari Nol Sampai Mahir 2026 (HTML, CSS, JS, Node.js)</h3>
-              <div class="yt-channel-name">TeknoID Studio ✓</div>
-              <div class="yt-video-views">1,4 Jt x ditonton • 3 hari yang lalu</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Video Card 2 -->
-        <div class="yt-video-card">
-          <div class="yt-thumbnail-wrapper">
-            <div style="width:100%; height:100%; background:linear-gradient(135deg, #064E3B, #047857); display:flex; align-items:center; justify-content:center; color:#6EE7B7; font-weight:800; font-size:18px;">
-              🤖 AI AGENT & N8N TUTORIAL
-            </div>
-            <span class="yt-duration-badge">18:40</span>
-          </div>
-          <div class="yt-video-info">
-            <div class="yt-channel-avatar" style="background:#059669;">K</div>
-            <div class="yt-video-details">
-              <h3 class="yt-video-title">Cara Kerja AI Agent & n8n Automation Untuk Otomasi WhatsApp Toko UMKM</h3>
-              <div class="yt-channel-name">Kodemik Studio ✓</div>
-              <div class="yt-video-views">850 Rb x ditonton • 1 minggu yang lalu</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Video Card 3 -->
-        <div class="yt-video-card">
-          <div class="yt-thumbnail-wrapper">
-            <div style="width:100%; height:100%; background:linear-gradient(135deg, #78350F, #B45309); display:flex; align-items:center; justify-content:center; color:#FDE68A; font-weight:800; font-size:18px;">
-              🚀 RAHASIA SAAS UNICORN
-            </div>
-            <span class="yt-duration-badge">15:02</span>
-          </div>
-          <div class="yt-video-info">
-            <div class="yt-channel-avatar" style="background:#D97706;">B</div>
-            <div class="yt-video-details">
-              <h3 class="yt-video-title">Kisah Sukses Membangun Bisnis Software SaaS Dari Garasi Rumah Sampai Triliunan</h3>
-              <div class="yt-channel-name">BisnisDigital ID ✓</div>
-              <div class="yt-video-views">2,1 Jt x ditonton • 2 minggu yang lalu</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Video Card 4 -->
-        <div class="yt-video-card">
-          <div class="yt-thumbnail-wrapper">
-            <div style="width:100%; height:100%; background:linear-gradient(135deg, #581C87, #7E22CE); display:flex; align-items:center; justify-content:center; color:#E9D5FF; font-weight:800; font-size:18px;">
-              🎵 LO-FI MUSIK SANTAI 24/7
-            </div>
-            <span class="yt-duration-badge">LIVE</span>
-          </div>
-          <div class="yt-video-info">
-            <div class="yt-channel-avatar" style="background:#9333EA;">L</div>
-            <div class="yt-video-details">
-              <h3 class="yt-video-title">Koleksi Musik Lo-Fi Chill Beats Untuk Kerja, Koding & Belajar 24/7 Non-Stop</h3>
-              <div class="yt-channel-name">Lofi Vibes ID ✓</div>
-              <div class="yt-video-views">12 Rb menonton sekarang</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Video Card 5 -->
-        <div class="yt-video-card">
-          <div class="yt-thumbnail-wrapper">
-            <div style="width:100%; height:100%; background:linear-gradient(135deg, #831843, #BE185D); display:flex; align-items:center; justify-content:center; color:#FBCFE8; font-weight:800; font-size:18px;">
-              💻 REVIEW LAPTOP TOP 2026
-            </div>
-            <span class="yt-duration-badge">12:10</span>
-          </div>
-          <div class="yt-video-info">
-            <div class="yt-channel-avatar" style="background:#E11D48;">G</div>
-            <div class="yt-video-details">
-              <h3 class="yt-video-title">Review Laptop Koding & Editing Paling Murah & Kencang Tahun 2026!</h3>
-              <div class="yt-channel-name">GadgetIn Replica ✓</div>
-              <div class="yt-video-views">3,5 Jt x ditonton • 5 hari yang lalu</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Video Card 6 -->
-        <div class="yt-video-card">
-          <div class="yt-thumbnail-wrapper">
-            <div style="width:100%; height:100%; background:linear-gradient(135deg, #134E4A, #0F766E); display:flex; align-items:center; justify-content:center; color:#99F6E4; font-weight:800; font-size:18px;">
-              🎨 FIGMA TO TAILWIND UI
-            </div>
-            <span class="yt-duration-badge">31:05</span>
-          </div>
-          <div class="yt-video-info">
-            <div class="yt-channel-avatar" style="background:#0D9488;">D</div>
-            <div class="yt-video-details">
-              <h3 class="yt-video-title">Mengubah Desain Figma Menjadi Web Kodingan Asli Menggunakan HTML & CSS</h3>
-              <div class="yt-channel-name">DesignPro Indonesia ✓</div>
-              <div class="yt-video-views">420 Rb x ditonton • 4 hari yang lalu</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Video Card 7 -->
-        <div class="yt-video-card">
-          <div class="yt-thumbnail-wrapper">
-            <div style="width:100%; height:100%; background:linear-gradient(135deg, #312E81, #4338CA); display:flex; align-items:center; justify-content:center; color:#C7D2FE; font-weight:800; font-size:18px;">
-              ⚡ TIPS STRUKTUR DATA
-            </div>
-            <span class="yt-duration-badge">14:50</span>
-          </div>
-          <div class="yt-video-info">
-            <div class="yt-channel-avatar" style="background:#4338CA;">C</div>
-            <div class="yt-video-details">
-              <h3 class="yt-video-title">Trik Cepat Menguasai Algoritma & Struktur Data Untuk Wawancara Kerja Software Engineer</h3>
-              <div class="yt-channel-name">CodeMaster ID ✓</div>
-              <div class="yt-video-views">670 Rb x ditonton • 1 bulan yang lalu</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Video Card 8 -->
-        <div class="yt-video-card">
-          <div class="yt-thumbnail-wrapper">
-            <div style="width:100%; height:100%; background:linear-gradient(135deg, #701A75, #A21CAF); display:flex; align-items:center; justify-content:center; color:#F5D0FE; font-weight:800; font-size:18px;">
-              🚀 TIP PERJALANAN STARTUP
-            </div>
-            <span class="yt-duration-badge">22:30</span>
-          </div>
-          <div class="yt-video-info">
-            <div class="yt-channel-avatar" style="background:#C026D3;">F</div>
-            <div class="yt-video-details">
-              <h3 class="yt-video-title">Tips Mendapatkan Investor Pertama Untuk Startup Aplikasi Android & Web Anda</h3>
-              <div class="yt-channel-name">FounderTalks ID ✓</div>
-              <div class="yt-video-views">980 Rb x ditonton • 2 minggu yang lalu</div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    </main>
-
+  <!-- Learning Path Filter Bar -->
+  <div class="dc-paths-bar">
+    <div class="dc-paths-flex">
+      <button class="dc-path-chip active" onclick="filterCategory('semua')">🔥 Semua Kelas (6)</button>
+      <button class="dc-path-chip" onclick="filterCategory('web')">🌐 Front-End Web</button>
+      <button class="dc-path-chip" onclick="filterCategory('backend')">⚙️ Back-End Developer</button>
+      <button class="dc-path-chip" onclick="filterCategory('ai')">🤖 Machine Learning & AI</button>
+      <button class="dc-path-chip" onclick="filterCategory('android')">📱 Android Developer</button>
+    </div>
   </div>
 
+  <!-- Course Catalog Section -->
+  <main class="dc-catalog-container" id="katalog">
+    <div style="margin-bottom:24px;">
+      <h2 style="font-family:var(--font-heading); font-size:1.6rem; font-weight:700; color:var(--dc-navy);">Katalog Kelas Pemrograman</h2>
+      <p style="color:var(--dc-text-muted); font-size:0.92rem;">Pilih kelas koding terstruktur sesuai alur minat karir Anda.</p>
+    </div>
+
+    <!-- Course Cards Grid -->
+    <div class="dc-grid-3" id="courseGrid">
+      
+      <!-- Card 1: Dasar Pemrograman Web -->
+      <div class="dc-course-card" onclick="openClassroomModal('dasar-web')">
+        <div class="dc-card-banner">
+          <div class="dc-card-icon">🌐</div>
+        </div>
+        <div class="dc-card-body">
+          <span class="dc-level-badge dc-level-pemula">PEMULA</span>
+          <h3 class="dc-course-title">Belajar Dasar Pemrograman Web</h3>
+          <p style="color:var(--dc-text-secondary); font-size:0.88rem; margin-bottom:14px;">
+            Mempelajari fondasi utama pembuatan website menggunakan HTML, CSS, dan Flexbox standar industri.
+          </p>
+          <div class="dc-course-meta">
+            <span>⭐ 4.9 (1.200 Rating)</span>
+            <span>👥 120.000 Siswa</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: React Web Apps -->
+      <div class="dc-course-card" onclick="openClassroomModal('react-web')">
+        <div class="dc-card-banner" style="background:linear-gradient(135deg, #0f172a, #1e3a8a);">
+          <div class="dc-card-icon">⚛️</div>
+        </div>
+        <div class="dc-card-body">
+          <span class="dc-level-badge dc-level-menengah">MENENGAH</span>
+          <h3 class="dc-course-title">Belajar Membuat Aplikasi Web dengan React</h3>
+          <p style="color:var(--dc-text-secondary); font-size:0.88rem; margin-bottom:14px;">
+            Membangun aplikasi web single-page (SPA) modern yang reaktif menggunakan React JS, State, & Props.
+          </p>
+          <div class="dc-course-meta">
+            <span>⭐ 4.9 (850 Rating)</span>
+            <span>👥 45.000 Siswa</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Fundamental Front-End -->
+      <div class="dc-course-card" onclick="openClassroomModal('frontend-fund')">
+        <div class="dc-card-banner" style="background:linear-gradient(135deg, #064e3b, #047857);">
+          <div class="dc-card-icon">🚀</div>
+        </div>
+        <div class="dc-card-body">
+          <span class="dc-level-badge dc-level-menengah">MENENGAH</span>
+          <h3 class="dc-course-title">Belajar Fundamental Front-End Web Development</h3>
+          <p style="color:var(--dc-text-secondary); font-size:0.88rem; margin-bottom:14px;">
+            Menguasai ES6 JavaScript, Web Components, Custom Element, Fetch API, dan Webpack.
+          </p>
+          <div class="dc-course-meta">
+            <span>⭐ 4.8 (920 Rating)</span>
+            <span>👥 68.000 Siswa</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: RESTful API Node.js -->
+      <div class="dc-course-card" onclick="openClassroomModal('backend-node')">
+        <div class="dc-card-banner" style="background:linear-gradient(135deg, #312e81, #4338ca);">
+          <div class="dc-card-icon">⚙️</div>
+        </div>
+        <div class="dc-card-body">
+          <span class="dc-level-badge dc-level-menengah">MENENGAH</span>
+          <h3 class="dc-course-title">Belajar Membangun RESTful API dengan Node.js</h3>
+          <p style="color:var(--dc-text-secondary); font-size:0.88rem; margin-bottom:14px;">
+            Membuat backend API server HTTP instan, pengolahan JSON database, dan autentikasi user.
+          </p>
+          <div class="dc-course-meta">
+            <span>⭐ 4.9 (1.100 Rating)</span>
+            <span>👥 52.000 Siswa</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5: Machine Learning Pemula -->
+      <div class="dc-course-card" onclick="openClassroomModal('ai-ml')">
+        <div class="dc-card-banner" style="background:linear-gradient(135deg, #701a75, #a21caf);">
+          <div class="dc-card-icon">🤖</div>
+        </div>
+        <div class="dc-card-body">
+          <span class="dc-level-badge dc-level-pemula">PEMULA</span>
+          <h3 class="dc-course-title">Belajar Machine Learning untuk Pemula</h3>
+          <p style="color:var(--dc-text-secondary); font-size:0.88rem; margin-bottom:14px;">
+            Mengenal dasar kecerdasan buatan (AI), Python, Regresi, Klasifikasi Data, & TensorFlow.
+          </p>
+          <div class="dc-course-meta">
+            <span>⭐ 4.9 (1.400 Rating)</span>
+            <span>👥 85.000 Siswa</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6: Pemrograman Android -->
+      <div class="dc-course-card" onclick="openClassroomModal('android-dev')">
+        <div class="dc-card-banner" style="background:linear-gradient(135deg, #14532d, #15803d);">
+          <div class="dc-card-icon">📱</div>
+        </div>
+        <div class="dc-card-body">
+          <span class="dc-level-badge dc-level-pemula">PEMULA</span>
+          <h3 class="dc-course-title">Belajar Dasar Pemrograman Android</h3>
+          <p style="color:var(--dc-text-secondary); font-size:0.88rem; margin-bottom:14px;">
+            Membuat aplikasi mobile Android native pertama Anda menggunakan bahasa Kotlin & Android Studio.
+          </p>
+          <div class="dc-course-meta">
+            <span>⭐ 4.9 (1.800 Rating)</span>
+            <span>👥 95.000 Siswa</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Dicoding Classroom Reading Modal -->
+  <div class="dc-modal-overlay" id="classroomModal">
+    <div class="dc-modal-classroom">
+      <!-- Classroom Top Bar -->
+      <div class="dc-classroom-header">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div class="dc-brand-icon">d</div>
+          <div>
+            <h4 style="margin:0; font-family:var(--font-heading); font-size:1.05rem;" id="modalCourseTitle">Belajar Dasar Pemrograman Web</h4>
+            <span style="font-size:0.75rem; color:#94a3b8;">Modul 1 dari 5 • Progress 20%</span>
+          </div>
+        </div>
+        <button onclick="closeClassroomModal()" style="background:none; border:none; color:#fff; font-size:1.5rem; cursor:pointer;">✕</button>
+      </div>
+
+      <!-- Classroom Main Layout Body -->
+      <div class="dc-classroom-body">
+        <!-- Left Sidebar Modules -->
+        <aside class="dc-classroom-sidebar">
+          <h5 style="color:var(--dc-text-muted); font-size:0.75rem; font-weight:700; text-transform:uppercase; margin-bottom:10px;">DAFTAR MODUL MATERI</h5>
+          <div class="dc-module-item active" onclick="loadLessonContent(1)">
+            <span>1.</span> Pengenalan HTML5 & Tag Semantic
+          </div>
+          <div class="dc-module-item" onclick="loadLessonContent(2)">
+            <span>2.</span> Pengenalan CSS3 & Flexbox Grid
+          </div>
+          <div class="dc-module-item" onclick="loadLessonContent(3)">
+            <span>3.</span> JavaScript Dasar & Manipulasi DOM
+          </div>
+          <div class="dc-module-item" onclick="loadLessonContent(4)">
+            <span>4.</span> Quiz Pilihan Ganda Pemahaman
+          </div>
+          <div class="dc-module-item" onclick="loadLessonContent(5)">
+            <span>5.</span> Klaim Sertifikat Kelulusan Digital
+          </div>
+        </aside>
+
+        <!-- Right Content Reading Area -->
+        <main class="dc-classroom-content">
+          <div id="lessonReadingArea">
+            <h2 style="font-family:var(--font-heading); color:var(--dc-navy); margin-bottom:14px;">1. Pengenalan HTML5 & Tag Semantic</h2>
+            <p style="color:var(--dc-text-secondary); margin-bottom:16px;">
+              HTML (HyperText Markup Language) adalah bahasa standar yang digunakan untuk membuat dan menyusun halaman web. 
+              Tag HTML5 semantic membantu mesin pencari (SEO) dan browser memahami struktur dokumen web Anda secara tepat.
+            </p>
+
+            <h4 style="color:var(--dc-navy); margin-bottom:8px;">Contoh Kode HTML5 Semantic:</h4>
+            <div style="background:#0f172a; color:#38bdf8; padding:16px; border-radius:8px; font-family:var(--font-mono); font-size:0.85rem; margin-bottom:20px; white-space:pre;">
+&lt;header class="navbar"&gt;
+  &lt;h1&gt;Selamat Datang Di Web Saya&lt;/h1&gt;
+&lt;/header&gt;
+
+&lt;main class="content"&gt;
+  &lt;article&gt;
+    &lt;h2&gt;Judul Artikel Materi&lt;/h2&gt;
+    &lt;p&gt;Ini adalah isi paragraf materi koding.&lt;/p&gt;
+  &lt;/article&gt;
+&lt;/main&gt;</div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--dc-border); padding-top:20px;">
+              <button class="dc-btn dc-btn-outline" style="background:#e2e8f0; color:var(--dc-navy);" disabled>← Sebelumnya</button>
+              <button class="dc-btn dc-btn-primary" onclick="loadLessonContent(2)">Selanjutnya: CSS3 & Flexbox →</button>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dicoding Footer -->
+  <footer style="background:var(--dc-navy-dark); color:#94a3b8; padding:40px 0; text-align:center; font-size:0.88rem;">
+    © 2026 Dicoding Indonesia Replica — Platform Belajar Koding Berbasis Teks Terstruktur #1 Indonesia (https://kodemik.com)
+  </footer>
+
+  <script>
+    function openClassroomModal(courseId) {
+      document.getElementById('classroomModal').classList.add('active');
+    }
+    function closeClassroomModal() {
+      document.getElementById('classroomModal').classList.remove('active');
+    }
+
+    function filterCategory(cat) {
+      const chips = document.querySelectorAll('.dc-path-chip');
+      chips.forEach(c => c.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+
+    function loadLessonContent(modId) {
+      const area = document.getElementById('lessonReadingArea');
+      const items = document.querySelectorAll('.dc-module-item');
+      items.forEach(i => i.classList.remove('active'));
+      if(items[modId-1]) items[modId-1].classList.add('active');
+
+      if (modId === 1) {
+        area.innerHTML = `
+          <h2 style="font-family:var(--font-heading); color:var(--dc-navy); margin-bottom:14px;">1. Pengenalan HTML5 & Tag Semantic</h2>
+          <p style="color:var(--dc-text-secondary); margin-bottom:16px;">
+            HTML (HyperText Markup Language) adalah bahasa standar yang digunakan untuk membuat dan menyusun halaman web.
+          </p>
+          <div style="background:#0f172a; color:#38bdf8; padding:16px; border-radius:8px; font-family:var(--font-mono); font-size:0.85rem; margin-bottom:20px; white-space:pre;">&lt;header&gt;\n  &lt;h1&gt;Dicoding Indonesia&lt;/h1&gt;\n&lt;/header&gt;</div>
+          <button class="dc-btn dc-btn-primary" onclick="loadLessonContent(2)">Selanjutnya: CSS3 & Flexbox →</button>
+        `;
+      } else if (modId === 2) {
+        area.innerHTML = `
+          <h2 style="font-family:var(--font-heading); color:var(--dc-navy); margin-bottom:14px;">2. Pengenalan CSS3 & Flexbox Grid</h2>
+          <p style="color:var(--dc-text-secondary); margin-bottom:16px;">
+            CSS3 digunakan untuk menghias dan menata tata letak elemen HTML agar tampil cantik dan responsif di layar HP maupun laptop.
+          </p>
+          <div style="background:#0f172a; color:#34d399; padding:16px; border-radius:8px; font-family:var(--font-mono); font-size:0.85rem; margin-bottom:20px; white-space:pre;">.navbar {\n  display: flex;\n  justify-content: space-between;\n  background: #2d3e50;\n}</div>
+          <button class="dc-btn dc-btn-primary" onclick="loadLessonContent(3)">Selanjutnya: JavaScript Dasar →</button>
+        `;
+      } else if (modId === 3) {
+        area.innerHTML = `
+          <h2 style="font-family:var(--font-heading); color:var(--dc-navy); margin-bottom:14px;">3. JavaScript Dasar & Manipulasi DOM</h2>
+          <p style="color:var(--dc-text-secondary); margin-bottom:16px;">
+            JavaScript memberikan logika dan interaksi dinamis pada halaman web Anda.
+          </p>
+          <div style="background:#0f172a; color:#fde047; padding:16px; border-radius:8px; font-family:var(--font-mono); font-size:0.85rem; margin-bottom:20px; white-space:pre;">document.querySelector('.btn').addEventListener('click', () =&gt; {\n  alert('Selamat Belajar Koding di Dicoding!');\n});</div>
+          <button class="dc-btn dc-btn-primary" onclick="loadLessonContent(4)">Selanjutnya: Quiz Pilihan Ganda →</button>
+        `;
+      } else if (modId === 4) {
+        area.innerHTML = `
+          <h2 style="font-family:var(--font-heading); color:var(--dc-navy); margin-bottom:14px;">4. Quiz Pilihan Ganda Pemahaman</h2>
+          <p style="color:var(--dc-text-secondary); margin-bottom:16px;">Uji pemahaman Anda dari materi yang telah dipelajari.</p>
+          <div style="background:#f1f5f9; padding:20px; border-radius:12px; margin-bottom:20px;">
+            <h4 style="margin-bottom:12px;">Soal: Tag manakah yang digunakan untuk membuat judul utama di HTML5?</h4>
+            <label style="display:block; margin-bottom:8px;"><input type="radio" name="q1"> A. &lt;p&gt;</label>
+            <label style="display:block; margin-bottom:8px;"><input type="radio" name="q1"> B. &lt;h1&gt; (Jawaban Benar)</label>
+            <label style="display:block; margin-bottom:8px;"><input type="radio" name="q1"> C. &lt;div&gt;</label>
+          </div>
+          <button class="dc-btn dc-btn-primary" onclick="alert('Selamat! Skor Anda 100/100!'); loadLessonContent(5);">Kirim Jawaban Quiz</button>
+        `;
+      } else if (modId === 5) {
+        area.innerHTML = `
+          <div style="text-align:center; padding:30px 0;">
+            <div style="font-size:3rem; margin-bottom:12px;">🏆</div>
+            <h2 style="font-family:var(--font-heading); color:var(--dc-navy); margin-bottom:8px;">Selamat! Anda Lulus Kelas Ini!</h2>
+            <p style="color:var(--dc-text-secondary); margin-bottom:20px;">Sertifikat kelulusan digital Anda telah resmi diterbitkan oleh Dicoding Indonesia.</p>
+            <div style="border:4px double #2d3e50; padding:24px; border-radius:16px; background:#fafafa; display:inline-block; max-width:500px;">
+              <h3 style="color:#2d3e50; font-family:var(--font-heading);">SERTIFIKAT KELULUSAN DIGITAL</h3>
+              <p style="margin:10px 0; font-size:0.9rem;">Diberikan Kepada Siswa Berprestasi:</p>
+              <h4 style="font-size:1.3rem; color:#2563eb;">USER DICODING INDONESIA</h4>
+              <p style="font-size:0.85rem; color:#64748b; margin-top:10px;">Atas kelulusan kelas: Belajar Dasar Pemrograman Web</p>
+            </div>
+          </div>
+        `;
+      }
+    }
+  </script>
 </body>
 </html>

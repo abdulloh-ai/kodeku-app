@@ -1,6 +1,6 @@
 /* =========================================================================
-   CODEMIK — Refined Modern SaaS IT Education Platform Design System
-   Theme Palette: Pure White (#FFFFFF) + Deep Navy (#0F172A) + Solid Blue (#2563EB)
+   CODEMIK — Official Light Theme SaaS IT Education Platform Design System
+   Palette: #F8FAFC (BG), #FFFFFF (Surface), #0F172A (Text), #2563EB (Primary Blue)
    ========================================================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
@@ -60,7 +60,7 @@ body {
 
 .container { max-width: 1260px; margin: 0 auto; padding: 0 28px; }
 
-/* Navbar (Putih + Navy Touches) */
+/* Navbar */
 .navbar {
   position: sticky; top: 0; z-index: 1000;
   background-color: var(--bg-surface);
@@ -87,7 +87,7 @@ body {
 }
 .nav-links a:hover, .nav-links a.active { color: var(--primary-blue); font-weight: 700; }
 
-/* Buttons System (Biru Solid Tegas) */
+/* Buttons System */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   padding: 11px 22px; border-radius: var(--radius-sm); font-weight: 700; font-size: 0.9rem;
@@ -114,7 +114,7 @@ body {
 }
 .btn-secondary:hover { background: #DBEAFE; }
 
-/* Hero Section (Diperbesar & Subtle Visual Coding) */
+/* Hero Section */
 .hero {
   padding: 70px 0 60px; background: var(--bg-main); position: relative; overflow: hidden;
 }
@@ -140,7 +140,6 @@ body {
   margin-bottom: 18px;
 }
 
-/* Hero Live Practice Widget (Sesuai Permintaan: Diperbesar) */
 .hero-widget-card {
   background: var(--bg-navy-dark); border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-lg); padding: 28px; box-shadow: var(--shadow-md);
@@ -152,7 +151,7 @@ body {
   min-height: 160px; white-space: pre-wrap; margin: 16px 0; border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Category Navigation (Active Biru Solid, Inactive Putih Border) */
+/* Category Navigation */
 .cat-chips-bar { display: flex; gap: 12px; overflow-x: auto; margin-bottom: 44px; padding-bottom: 4px; }
 .cat-chip {
   background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--text-secondary);
@@ -204,7 +203,7 @@ body {
 .lesson-view { display: none; margin-bottom: 60px; }
 .lesson-view.active { display: block; }
 
-.lesson-layout { display: grid; grid-template-columns: 290px 1fr; gap: 28px; min-height: 80vh; }
+.lesson-layout { display: grid; grid-template-columns: 310px 1fr; gap: 28px; min-height: 80vh; }
 
 .lesson-sidebar {
   background: var(--bg-surface); border: 1px solid var(--border-color);
@@ -214,14 +213,14 @@ body {
 
 .lesson-main-content {
   background: var(--bg-surface); border: 1px solid var(--border-color);
-  border-radius: var(--radius-md); padding: 40px; max-width: 880px; margin: 0 auto; width: 100%;
+  border-radius: var(--radius-md); padding: 40px; max-width: 900px; margin: 0 auto; width: 100%;
   box-shadow: var(--shadow-sm);
 }
 
 .module-nav-item {
-  padding: 11px 16px; border-radius: var(--radius-sm); font-size: 0.9rem;
+  padding: 10px 14px; border-radius: var(--radius-sm); font-size: 0.86rem;
   color: var(--text-secondary); margin-bottom: 6px; cursor: pointer; display: flex; align-items: center; gap: 10px;
-  transition: var(--transition);
+  transition: var(--transition); line-height: 1.35;
 }
 .module-nav-item:hover { background: var(--bg-subtle); color: var(--text-primary); }
 .module-nav-item.active {
@@ -229,13 +228,19 @@ body {
   color: var(--primary-blue); font-weight: 700;
 }
 
-.lesson-article h2 { font-size: 1.9rem; font-weight: 800; color: var(--bg-navy-dark); margin-bottom: 16px; }
-.lesson-article p { color: var(--text-secondary); font-size: 1.04rem; line-height: 1.7; margin-bottom: 22px; }
+/* Rich Course Typography Styles */
+.lesson-article h2 { font-size: 1.85rem; font-weight: 800; color: var(--bg-navy-dark); margin: 24px 0 14px; }
+.lesson-article h3 { font-size: 1.35rem; font-weight: 700; color: var(--bg-navy-dark); margin: 20px 0 10px; }
+.lesson-article h4 { font-size: 1.1rem; font-weight: 700; color: var(--primary-blue); margin: 16px 0 8px; }
+
+.lesson-article p { color: var(--text-secondary); font-size: 1.02rem; line-height: 1.7; margin-bottom: 18px; }
+.lesson-article ul, .lesson-article ol { margin: 0 0 20px 24px; color: var(--text-secondary); }
+.lesson-article li { margin-bottom: 8px; font-size: 0.98rem; }
 
 .callout-box {
   background: var(--blue-light); border-left: 4px solid var(--primary-blue);
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 18px 22px;
-  color: var(--bg-navy-dark); font-size: 0.94rem; margin: 26px 0;
+  color: var(--bg-navy-dark); font-size: 0.94rem; margin: 24px 0;
 }
 
 .code-block-pro {
@@ -243,6 +248,35 @@ body {
   padding: 20px; font-family: var(--font-mono); font-size: 0.88rem;
   white-space: pre-wrap; margin: 22px 0; overflow-x: auto;
 }
+
+/* Styled HTML Tables in Course Material */
+.pro-table {
+  width: 100%; border-collapse: collapse; margin: 20px 0 24px; font-size: 0.92rem;
+  background: var(--bg-surface); border-radius: 8px; overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+.pro-table th {
+  background: var(--bg-navy-dark); color: #FFFFFF; text-align: left; padding: 12px 16px;
+  font-weight: 700; font-family: var(--font-mono); font-size: 0.85rem;
+}
+.pro-table td {
+  padding: 12px 16px; border-bottom: 1px solid var(--border-color); color: var(--text-primary);
+}
+.pro-table tr:last-child td { border-bottom: none; }
+.pro-table tr:nth-child(even) { background: var(--bg-subtle); }
+
+/* Interactive Quiz Box */
+.quiz-container {
+  background: var(--blue-light); border: 1px solid rgba(37, 99, 235, 0.2);
+  border-radius: var(--radius-md); padding: 24px; margin: 28px 0;
+}
+.quiz-option-label {
+  display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 8px;
+  background: #FFFFFF; border: 1px solid var(--border-color); margin-bottom: 10px;
+  cursor: pointer; transition: var(--transition); font-weight: 500; font-size: 0.94rem;
+}
+.quiz-option-label:hover { border-color: var(--primary-blue); background: #F8FAFC; }
+.quiz-option-label input { accent-color: var(--primary-blue); width: 18px; height: 18px; }
 
 /* Dashboard View */
 .dashboard-view { display: none; margin-bottom: 60px; }

@@ -108,16 +108,14 @@
             <span style="font-size:0.78rem; color:var(--success); font-weight:700;">● REALTIME ACTIVE</span>
           </div>
 
-          <div class="sandbox-editor-big" id="heroEditorInput" contenteditable="true" spellcheck="false">// Kodemik Interactive Code Sandbox Engine
-function KodemikApp() {
-  const [status, setStatus] = React.useState("READY");
-  return (
-    &lt;div class="badge"&gt;
-      &lt;h2&gt;Selamat Datang Di Kodemik! 👋&lt;/h2&gt;
-      &lt;p&gt;Status Belajar Koding: {status}&lt;/p&gt;
-    &lt;/div&gt;
-  );
-}</div>
+          <div class="sandbox-editor-big" id="heroEditorInput" contenteditable="true" spellcheck="false">// Kodemik Modul HTML Pemula
+&lt;!DOCTYPE html&gt;
+&lt;html lang="id"&gt;
+&lt;body&gt;
+  &lt;h1 style="color:#2563EB;"&gt;Selamat Datang di Kodemik! 👋&lt;/h1&gt;
+  &lt;p&gt;Saya siap belajar koding dari nol.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
 
           <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.05); padding:12px 16px; border-radius:8px; border:1px solid rgba(255,255,255,0.1);">
             <span style="font-size:0.85rem; color:#A5B4FC; font-weight:600;">Status Kodemik Sandbox: 100% Passed</span>
@@ -264,7 +262,7 @@ function KodemikApp() {
           <div>
             <span class="level-badge level-beginner" style="margin-bottom:6px;">PEMULA</span>
             <h4 style="color:var(--bg-navy-dark); margin:0 0 4px;">Belajar Dasar Pemrograman Web</h4>
-            <span style="font-size:0.82rem; color:var(--text-muted);">Modul 2 dari 5 • Progress 45%</span>
+            <span style="font-size:0.82rem; color:var(--text-muted);">Modul 1 dari 8 • Progress 45%</span>
           </div>
           <button onclick="showView('lesson')" class="btn btn-primary" style="padding:8px 16px;">Lanjutkan</button>
         </div>
@@ -291,31 +289,46 @@ function KodemikApp() {
     </div>
   </div>
 
-  <!-- VIEW 3: LESSON READING VIEW -->
+  <!-- VIEW 3: LESSON READING VIEW (KODEMIK OFFICIAL CURRICULUM MODUL 1) -->
   <div id="lessonView" class="lesson-view container">
     <div class="lesson-layout">
       
-      <!-- Left Sidebar Course Navigation -->
+      <!-- Left Sidebar Course Navigation (Modul 1 Topics) -->
       <aside class="lesson-sidebar">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-          <span style="font-size:0.75rem; font-weight:700; font-family:var(--font-mono); color:var(--text-muted);">STRUKTUR MODUL KODEMIK</span>
-          <span style="font-size:0.75rem; color:var(--success); font-weight:700;">45% Complete</span>
+          <span style="font-size:0.75rem; font-weight:700; font-family:var(--font-mono); color:var(--text-muted);">MODUL 1: WEB & HTML</span>
+          <span style="font-size:0.75rem; color:var(--success); font-weight:700;">8 Topik</span>
         </div>
 
-        <div class="module-nav-item active" onclick="loadLessonModule(1)">
-          <span>1.</span> Pengenalan HTML5 & Tag Semantic
+        <div class="module-nav-item active" onclick="loadLessonTopic(1.1)">
+          <span>1.1</span> Bagaimana Website Bekerja
         </div>
-        <div class="module-nav-item" onclick="loadLessonModule(2)">
-          <span>2.</span> Pengenalan CSS3 & Flexbox Layout
+        <div class="module-nav-item" onclick="loadLessonTopic(1.2)">
+          <span>1.2</span> Struktur Dasar HTML
         </div>
-        <div class="module-nav-item" onclick="loadLessonModule(3)">
-          <span>3.</span> Manipulasi DOM dengan JavaScript
+        <div class="module-nav-item" onclick="loadLessonTopic(1.3)">
+          <span>1.3</span> Teks & Heading
         </div>
-        <div class="module-nav-item" onclick="loadLessonModule(4)">
-          <span>4.</span> Quiz Pilihan Ganda Pemahaman
+        <div class="module-nav-item" onclick="loadLessonTopic(1.4)">
+          <span>1.4</span> List & Link
         </div>
-        <div class="module-nav-item" onclick="loadLessonModule(5)">
-          <span>5.</span> Klaim Sertifikat Kelulusan Digital
+        <div class="module-nav-item" onclick="loadLessonTopic(1.5)">
+          <span>1.5</span> Gambar & Atribut
+        </div>
+        <div class="module-nav-item" onclick="loadLessonTopic(1.6)">
+          <span>1.6</span> Tabel Sederhana
+        </div>
+        <div class="module-nav-item" onclick="loadLessonTopic(1.7)">
+          <span>1.7</span> Form Dasar
+        </div>
+        <div class="module-nav-item" onclick="loadLessonTopic(1.8)">
+          <span>1.8</span> Elemen Semantic HTML5
+        </div>
+        <div class="module-nav-item" onclick="loadLessonTopic(1.9)">
+          <span>🚀</span> Mini Project: "Tentang Saya"
+        </div>
+        <div class="module-nav-item" onclick="loadLessonTopic(1.10)">
+          <span>🏆</span> Ringkasan & Sertifikat
         </div>
 
         <button onclick="showView('catalog')" class="btn btn-outline" style="width:100%; margin-top:20px; font-size:0.8rem;">
@@ -326,48 +339,7 @@ function KodemikApp() {
       <!-- Main Readable Lesson Content Area -->
       <main class="lesson-main-content">
         <article class="lesson-article" id="lessonArticleBody">
-          
-          <h2>1. Pengenalan HTML5 & Tag Semantic</h2>
-          <p>
-            HTML (HyperText Markup Language) adalah bahasa standar dasar yang digunakan untuk menyusun elemen dan dokumen halaman web. 
-            Tag HTML5 semantic membantu mesin pencari (SEO) dan browser memahami hierarki dokumen web Anda secara tepat.
-          </p>
-
-          <div class="callout-box">
-            💡 <strong>Tips Penting Kodemik:</strong> Selalu gunakan tag semantic seperti <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, dan <code>&lt;footer&gt;</code> daripada menggunakan tag <code>&lt;div&gt;</code> secara berlebihan!
-          </div>
-
-          <h3 style="color:var(--bg-navy-dark); font-size:1.2rem; margin-bottom:10px;">Contoh Kode HTML5 Semantic:</h3>
-          <div class="code-block-pro">&lt;header class="navbar"&gt;
-  &lt;h1&gt;Selamat Datang Di Kodemik&lt;/h1&gt;
-&lt;/header&gt;
-
-&lt;main class="content"&gt;
-  &lt;article&gt;
-    &lt;h2&gt;Judul Artikel Materi Koding&lt;/h2&gt;
-    &lt;p&gt;Ini adalah isi paragraf materi koding di Kodemik.&lt;/p&gt;
-  &lt;/article&gt;
-&lt;/main&gt;</div>
-
-          <!-- Interactive Coding Sandbox -->
-          <div class="coding-sandbox" style="background:var(--bg-navy-dark); border-radius:12px; overflow:hidden; margin:28px 0;">
-            <div style="background:#1E293B; padding:12px 18px; display:flex; justify-content:space-between; align-items:center;">
-              <span style="font-family:var(--font-mono); font-size:0.8rem; color:#94A3B8;">⚡ KODEMIK INTERACTIVE CODING SANDBOX</span>
-              <button onclick="runSandboxCode()" class="btn btn-primary" style="padding:4px 12px; font-size:0.78rem;">▶ Run Code</button>
-            </div>
-            <div style="padding:18px; font-family:var(--font-mono); font-size:0.86rem; color:#38BDF8; min-height:140px;" id="sandboxEditorInput" contenteditable="true" spellcheck="false">&lt;h1 style="color:#2563EB;"&gt;Halo, Saya Belajar Koding di Kodemik!&lt;/h1&gt;</div>
-            <div style="background:#04060A; padding:14px 18px; font-family:var(--font-mono); font-size:0.82rem; color:#34D399;" id="sandboxOutputArea">
-              ✓ Output Code: <span style="color:#38BDF8; font-weight:700;">Halo, Saya Belajar Koding di Kodemik!</span>
-            </div>
-          </div>
-
-          <!-- Lesson Action Navigation -->
-          <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border-color); padding-top:24px; margin-top:30px;">
-            <button class="btn btn-outline" disabled>← Sebelumnya</button>
-            <button class="btn btn-secondary" onclick="alert('Modul Berhasil Ditandai Selesai!')">✓ Tandai Selesai</button>
-            <button class="btn btn-primary" onclick="loadLessonModule(2)">Berikutnya: CSS3 & Flexbox →</button>
-          </div>
-
+          <!-- Rendered dynamically by loadLessonTopic(topicId) -->
         </article>
       </main>
 
@@ -467,64 +439,378 @@ function KodemikApp() {
       }
     }
 
-    function loadLessonModule(modId) {
+    // =========================================================================
+    // KODEMIK CURRICULUM — MODUL 1: PENGANTAR WEB & HTML TOPICS LOADER
+    // =========================================================================
+    function loadLessonTopic(topicId) {
       const items = document.querySelectorAll('.module-nav-item');
       items.forEach(i => i.classList.remove('active'));
-      if(items[modId-1]) items[modId-1].classList.add('active');
-
+      
       const article = document.getElementById('lessonArticleBody');
-      if (modId === 1) {
+
+      if (topicId === 1.1) {
+        if(items[0]) items[0].classList.add('active');
         article.innerHTML = `
-          <h2>1. Pengenalan HTML5 & Tag Semantic</h2>
-          <p>HTML (HyperText Markup Language) adalah bahasa standar dasar yang digunakan untuk menyusun elemen dan dokumen halaman web.</p>
-          <div class="callout-box">💡 <strong>Tips Penting Kodemik:</strong> Selalu gunakan tag semantic seperti &lt;header&gt;, &lt;main&gt;, dan &lt;footer&gt;!</div>
-          <div class="code-block-pro">&lt;header class="navbar"&gt;\n  &lt;h1&gt;Selamat Datang Di Kodemik&lt;/h1&gt;\n&lt;/header&gt;</div>
-          <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border-color); padding-top:24px; margin-top:30px;">
+          <span class="badge-pill">PEMULA • MODUL 1.1</span>
+          <h2>Topik 1.1 — Bagaimana Website Bekerja</h2>
+          
+          <div class="callout-box">
+            🎯 <strong>Tujuan Pembelajaran:</strong> Setelah mempelajari topik ini, kamu akan mampu menjelaskan alur kerja website dari browser hingga server, membedakan peran HTML, CSS, dan JavaScript, serta memahami istilah client, server, request, dan response.
+          </div>
+
+          <h3>📖 Penjelasan Konsep</h3>
+          <p>
+            Bayangkan kamu memesan makanan di restoran. Kamu (pelanggan) memberi pesanan ke pelayan, pelayan meneruskan ke dapur, dapur memasak, lalu makanan dikirim kembali ke kamu. Website bekerja dengan cara yang mirip:
+          </p>
+          <ul>
+            <li><strong>Client (Browser)</strong> = Kamu, yang memesan (mengetik alamat website atau klik link).</li>
+            <li><strong>Request</strong> = Pesanan yang dikirim oleh browser ke server.</li>
+            <li><strong>Server</strong> = "Dapur" yang menyimpan file website dan memprosesnya.</li>
+            <li><strong>Response</strong> = Hasil yang dikirim kembali oleh server (berupa file HTML, CSS, gambar, dll).</li>
+          </ul>
+
+          <h4>Tiga Teknologi Inti Web (Front-End):</h4>
+          <table class="pro-table">
+            <thead>
+              <tr>
+                <th>Teknologi</th>
+                <th>Fungsi</th>
+                <th>Analogi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>HTML</strong></td>
+                <td>Struktur & Konten (apa yang ada di halaman)</td>
+                <td>Kerangka / Tulang Bangunan</td>
+              </tr>
+              <tr>
+                <td><strong>CSS</strong></td>
+                <td>Tampilan & Gaya (warna, ukuran, layout)</td>
+                <td>Cat, Dekorasi, Interior</td>
+              </tr>
+              <tr>
+                <td><strong>JavaScript</strong></td>
+                <td>Interaktivitas & Logika (aksi saat diklik, dll)</td>
+                <td>Listrik & Sistem yang membuat rumah "hidup"</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>🌍 Contoh Penggunaan di Dunia Nyata</h3>
+          <p>
+            Saat kamu membuka Instagram di browser, HTML membentuk struktur (kotak foto, tombol like), CSS mengatur warnanya, dan JavaScript membuat tombol like bisa diklik dan berubah tanpa perlu reload halaman!
+          </p>
+
+          <h3>⚠️ Kesalahan Umum</h3>
+          <table class="pro-table">
+            <thead>
+              <tr>
+                <th>Kesalahan</th>
+                <th>Penjelasan & Perbaikan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Mengira HTML adalah "bahasa pemrograman"</td>
+                <td>HTML adalah bahasa markup untuk struktur, bukan untuk logika/pemrograman. Logika ada di JavaScript.</td>
+              </tr>
+              <tr>
+                <td>Mengira CSS bisa dipakai tanpa HTML</td>
+                <td>CSS selalu bekerja di atas struktur HTML — CSS tidak bisa berdiri sendiri.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="quiz-container">
+            <h4>❓ Quiz Pemahaman Topik 1.1</h4>
+            <p><strong>Soal: Apa fungsi utama HTML dalam sebuah website?</strong></p>
+            <label class="quiz-option-label"><input type="radio" name="q1_1" value="A"> A. Mengatur warna dan tampilan</label>
+            <label class="quiz-option-label"><input type="radio" name="q1_1" value="B"> B. Menyusun struktur dan konten halaman (Jawaban Benar)</label>
+            <label class="quiz-option-label"><input type="radio" name="q1_1" value="C"> C. Membuat animasi interaktif</label>
+            <button class="btn btn-primary" style="margin-top:10px;" onclick="checkQuizAnswer('q1_1', 'B', 'Selamat! Jawaban kamu B adalah BENAR. HTML menyusun struktur & konten!')">Kirim Jawaban</button>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border-color); padding-top:24px;">
             <button class="btn btn-outline" disabled>← Sebelumnya</button>
-            <button class="btn btn-primary" onclick="loadLessonModule(2)">Berikutnya: CSS3 & Flexbox →</button>
+            <button class="btn btn-primary" onclick="loadLessonTopic(1.2)">Berikutnya: 1.2 Struktur Dasar HTML →</button>
           </div>
         `;
-      } else if (modId === 2) {
+      } else if (topicId === 1.2) {
+        if(items[1]) items[1].classList.add('active');
         article.innerHTML = `
-          <h2>2. Pengenalan CSS3 & Flexbox Layout</h2>
-          <p>CSS3 digunakan untuk menghias dan menata tata letak elemen HTML agar tampil cantik dan responsif di layar HP maupun laptop.</p>
-          <div class="code-block-pro">.navbar {\n  display: flex;\n  justify-content: space-between;\n  background: #0f172a;\n}</div>
-          <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border-color); padding-top:24px; margin-top:30px;">
-            <button class="btn btn-outline" onclick="loadLessonModule(1)">← Sebelumnya</button>
-            <button class="btn btn-primary" onclick="loadLessonModule(3)">Berikutnya: JavaScript DOM →</button>
+          <span class="badge-pill">PEMULA • MODUL 1.2</span>
+          <h2>Topik 1.2 — Struktur Dasar HTML</h2>
+          
+          <div class="callout-box">
+            🎯 <strong>Tujuan Pembelajaran:</strong> Memahami elemen wajib dalam setiap dokumen HTML, mampu menulis dokumen HTML kosong yang valid, serta memahami konsep tag, elemen, dan atribut.
+          </div>
+
+          <h3>💻 Contoh Kode Kerangka HTML5</h3>
+          <div class="code-block-pro">&lt;!DOCTYPE html&gt;
+&lt;html lang="id"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Halaman Pertamaku&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Selamat Datang!&lt;/h1&gt;
+    &lt;p&gt;Ini adalah paragraf pertama saya.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+
+          <h3>🔍 Penjelasan Kode</h3>
+          <ul>
+            <li><code>&lt;!DOCTYPE html&gt;</code> — Memberi tahu browser bahwa dokumen ini menggunakan standar HTML5. Wajib di baris pertama.</li>
+            <li><code>&lt;html lang="id"&gt;</code> — Elemen pembungkus seluruh halaman dengan bahasa Bahasa Indonesia.</li>
+            <li><code>&lt;head&gt;</code> — Bagian informasi "belakang layar" yang tidak tampil langsung di layar.</li>
+            <li><code>&lt;body&gt;</code> — Semua konten visual yang dilihat pengguna diletakkan di sini.</li>
+          </ul>
+
+          <div class="coding-sandbox">
+            <div class="sandbox-header">
+              <span style="font-family:var(--font-mono); font-size:0.8rem; color:#94A3B8;">⚡ KODEMIK SANDBOX TOPIK 1.2</span>
+              <button onclick="runSandboxCode()" class="btn btn-primary" style="padding:4px 12px; font-size:0.78rem;">▶ Run Sandbox</button>
+            </div>
+            <div class="sandbox-editor" id="sandboxEditorInput" contenteditable="true" spellcheck="false">&lt;h1 style="color:#2563EB;"&gt;Latihan HTML 1.2&lt;/h1&gt;
+&lt;p&gt;Selamat belajar struktur HTML5 di Kodemik!&lt;/p&gt;</div>
+            <div class="sandbox-output" id="sandboxOutputArea">
+              ✓ Output Code: <span style="color:#38BDF8; font-weight:700;">Render Ready</span>
+            </div>
+          </div>
+
+          <div class="quiz-container">
+            <h4>❓ Quiz Pemahaman Topik 1.2</h4>
+            <p><strong>Soal: Bagian mana yang isinya TIDAK tampil langsung di layar browser?</strong></p>
+            <label class="quiz-option-label"><input type="radio" name="q1_2" value="A"> A. &lt;body&gt;</label>
+            <label class="quiz-option-label"><input type="radio" name="q1_2" value="B"> B. &lt;head&gt; (Jawaban Benar)</label>
+            <label class="quiz-option-label"><input type="radio" name="q1_2" value="C"> C. &lt;h1&gt;</label>
+            <button class="btn btn-primary" style="margin-top:10px;" onclick="checkQuizAnswer('q1_2', 'B', 'Selamat! Jawaban kamu B adalah BENAR. Element <head> tidak tampil di layar!')">Kirim Jawaban</button>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border-color); padding-top:24px;">
+            <button class="btn btn-outline" onclick="loadLessonTopic(1.1)">← Sebelumnya</button>
+            <button class="btn btn-primary" onclick="loadLessonTopic(1.3)">Berikutnya: 1.3 Teks & Heading →</button>
           </div>
         `;
-      } else if (modId === 3) {
+      } else if (topicId === 1.3) {
+        if(items[2]) items[2].classList.add('active');
         article.innerHTML = `
-          <h2>3. Manipulasi DOM dengan JavaScript</h2>
-          <p>JavaScript memberikan logika dan interaksi dinamis pada halaman web Anda.</p>
-          <div class="code-block-pro">document.querySelector('.btn').addEventListener('click', () =&gt; {\n  alert('Selamat Belajar Koding di Kodemik!');\n});</div>
-          <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border-color); padding-top:24px; margin-top:30px;">
-            <button class="btn btn-outline" onclick="loadLessonModule(2)">← Sebelumnya</button>
-            <button class="btn btn-primary" onclick="loadLessonModule(4)">Berikutnya: Quiz Pemahaman →</button>
+          <span class="badge-pill">PEMULA • MODUL 1.3</span>
+          <h2>Topik 1.3 — Teks & Heading</h2>
+          
+          <p>
+            Heading (<code>&lt;h1&gt;</code> sampai <code>&lt;h6&gt;</code>) digunakan untuk membuat judul dan sub-judul. <code>&lt;h1&gt;</code> adalah judul paling penting secara semantik.
+          </p>
+
+          <div class="code-block-pro">&lt;h1&gt;Toko Buku Nusantara&lt;/h1&gt;
+&lt;h2&gt;Kategori: Fiksi&lt;/h2&gt;
+
+&lt;p&gt;Buku ini &lt;strong&gt;sangat direkomendasikan&lt;/strong&gt; oleh pembaca.
+Ceritanya &lt;em&gt;mengharukan&lt;/em&gt; dan penuh makna.&lt;/p&gt;
+
+&lt;hr&gt;
+&lt;p&gt;Ini paragraf setelah garis pembatas.&lt;/p&gt;</div>
+
+          <div class="quiz-container">
+            <h4>❓ Quiz Pemahaman Topik 1.3</h4>
+            <p><strong>Soal: Tag mana yang digunakan untuk penekanan semantik (tampil miring)?</strong></p>
+            <label class="quiz-option-label"><input type="radio" name="q1_3" value="A"> A. &lt;i&gt;</label>
+            <label class="quiz-option-label"><input type="radio" name="q1_3" value="B"> B. &lt;em&gt; (Jawaban Benar)</label>
+            <label class="quiz-option-label"><input type="radio" name="q1_3" value="C"> C. &lt;u&gt;</label>
+            <button class="btn btn-primary" style="margin-top:10px;" onclick="checkQuizAnswer('q1_3', 'B', 'Benar! Tag <em> digunakan untuk penekanan semantik!')">Kirim Jawaban</button>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border-color); padding-top:24px;">
+            <button class="btn btn-outline" onclick="loadLessonTopic(1.2)">← Sebelumnya</button>
+            <button class="btn btn-primary" onclick="loadLessonTopic(1.4)">Berikutnya: 1.4 List & Link →</button>
           </div>
         `;
-      } else if (modId === 4) {
+      } else if (topicId === 1.4) {
+        if(items[3]) items[3].classList.add('active');
         article.innerHTML = `
-          <h2>4. Quiz Pilihan Ganda Pemahaman Kodemik</h2>
-          <p>Uji pemahaman Anda dari materi yang telah dipelajari.</p>
-          <div style="background:var(--bg-subtle); padding:20px; border-radius:12px; margin:20px 0;">
-            <h4 style="margin-bottom:12px; color:var(--bg-navy-dark);">Soal: Tag manakah yang digunakan untuk membuat judul utama di HTML5?</h4>
-            <label style="display:block; margin-bottom:8px; color:var(--text-secondary);"><input type="radio" name="q1"> A. &lt;p&gt;</label>
-            <label style="display:block; margin-bottom:8px; color:var(--text-secondary);"><input type="radio" name="q1"> B. &lt;h1&gt; (Jawaban Benar)</label>
-            <label style="display:block; margin-bottom:8px; color:var(--text-secondary);"><input type="radio" name="q1"> C. &lt;div&gt;</label>
+          <span class="badge-pill">PEMULA • MODUL 1.4</span>
+          <h2>Topik 1.4 — List & Link</h2>
+          
+          <p>
+            List digunakan untuk mengelompokkan item: <code>&lt;ul&gt;</code> untuk daftar tanpa urutan (bullet point) dan <code>&lt;ol&gt;</code> untuk daftar berurutan (angka). Link menggunakan tag <code>&lt;a href=""&gt;</code>.
+          </p>
+
+          <div class="code-block-pro">&lt;h2&gt;Bahan-bahan&lt;/h2&gt;
+&lt;ul&gt;
+    &lt;li&gt;2 butir telur&lt;/li&gt;
+    &lt;li&gt;1 sdt garam&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Kunjungi &lt;a href="https://kodemik.com" target="_blank"&gt;situs Kodemik&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Hubungi via &lt;a href="mailto:info@kodemik.com"&gt;email&lt;/a&gt;.&lt;/p&gt;</div>
+
+          <div class="quiz-container">
+            <h4>❓ Quiz Pemahaman Topik 1.4</h4>
+            <p><strong>Soal: Tag apa yang membuat link membuka aplikasi email pengguna?</strong></p>
+            <label class="quiz-option-label"><input type="radio" name="q1_4" value="A"> A. &lt;a href="email:..."&gt;</label>
+            <label class="quiz-option-label"><input type="radio" name="q1_4" value="B"> B. &lt;a href="mailto:..."&gt; (Jawaban Benar)</label>
+            <button class="btn btn-primary" style="margin-top:10px;" onclick="checkQuizAnswer('q1_4', 'B', 'Tepat sekali! mailto: digunakan untuk aplikasi email!')">Kirim Jawaban</button>
           </div>
-          <button class="btn btn-primary" onclick="alert('Selamat! Skor Anda 100/100!'); loadLessonModule(5);">Kirim Jawaban Quiz</button>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border-color); padding-top:24px;">
+            <button class="btn btn-outline" onclick="loadLessonTopic(1.3)">← Sebelumnya</button>
+            <button class="btn btn-primary" onclick="loadLessonTopic(1.5)">Berikutnya: 1.5 Gambar & Atribut →</button>
+          </div>
         `;
-      } else if (modId === 5) {
+      } else if (topicId === 1.5) {
+        if(items[4]) items[4].classList.add('active');
         article.innerHTML = `
-          <div style="text-align:center; padding:30px 0;">
+          <span class="badge-pill">PEMULA • MODUL 1.5</span>
+          <h2>Topik 1.5 — Gambar & Atribut</h2>
+          <p>Tag <code>&lt;img&gt;</code> adalah elemen kosong yang menampilkan gambar dengan atribut <code>src</code> dan <code>alt</code>.</p>
+          <div class="code-block-pro">&lt;img src="foto-produk.jpg" alt="Sepatu lari warna merah" width="300" height="200"&gt;</div>
+
+          <div class="quiz-container">
+            <h4>❓ Quiz Pemahaman Topik 1.5</h4>
+            <p><strong>Soal: Mengapa atribut alt pada &lt;img&gt; penting?</strong></p>
+            <label class="quiz-option-label"><input type="radio" name="q1_5" value="A"> A. Untuk mempercantik tampilan</label>
+            <label class="quiz-option-label"><input type="radio" name="q1_5" value="B"> B. Untuk aksesibilitas & teks pengganti jika gambar gagal dimuat (Benar)</label>
+            <button class="btn btn-primary" style="margin-top:10px;" onclick="checkQuizAnswer('q1_5', 'B', 'Benar sekali! Atribut alt sangat penting untuk aksesibilitas & SEO!')">Kirim Jawaban</button>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border-color); padding-top:24px;">
+            <button class="btn btn-outline" onclick="loadLessonTopic(1.4)">← Sebelumnya</button>
+            <button class="btn btn-primary" onclick="loadLessonTopic(1.6)">Berikutnya: 1.6 Tabel Sederhana →</button>
+          </div>
+        `;
+      } else if (topicId === 1.6) {
+        if(items[5]) items[5].classList.add('active');
+        article.innerHTML = `
+          <span class="badge-pill">PEMULA • MODUL 1.6</span>
+          <h2>Topik 1.6 — Tabel Sederhana</h2>
+          <p>Tabel digunakan untuk menampilkan data tabular baris (<code>&lt;tr&gt;</code>) dan kolom (<code>&lt;td&gt;</code> / <code>&lt;th&gt;</code>).</p>
+          <div class="code-block-pro">&lt;table border="1"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;&lt;th&gt;Produk&lt;/th&gt;&lt;th&gt;Harga&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;&lt;td&gt;Sepatu&lt;/td&gt;&lt;td&gt;Rp 350.000&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</div>
+
+          <div class="quiz-container">
+            <h4>❓ Quiz Pemahaman Topik 1.6</h4>
+            <p><strong>Soal: Apakah &lt;table&gt; boleh digunakan untuk mengatur layout halaman web?</strong></p>
+            <label class="quiz-option-label"><input type="radio" name="q1_6" value="A"> A. Ya, itu cara terbaik</label>
+            <label class="quiz-option-label"><input type="radio" name="q1_6" value="B"> B. Tidak dianjurkan; gunakan CSS Flexbox/Grid (Benar)</label>
+            <button class="btn btn-primary" style="margin-top:10px;" onclick="checkQuizAnswer('q1_6', 'B', 'Jawaban B Benar! Tabel hanya untuk data, bukan layout!')">Kirim Jawaban</button>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border-color); padding-top:24px;">
+            <button class="btn btn-outline" onclick="loadLessonTopic(1.5)">← Sebelumnya</button>
+            <button class="btn btn-primary" onclick="loadLessonTopic(1.7)">Berikutnya: 1.7 Form Dasar →</button>
+          </div>
+        `;
+      } else if (topicId === 1.7) {
+        if(items[6]) items[6].classList.add('active');
+        article.innerHTML = `
+          <span class="badge-pill">PEMULA • MODUL 1.7</span>
+          <h2>Topik 1.7 — Form Dasar</h2>
+          <p>Form mengumpulkan input pengiriman data dari pengguna seperti <code>&lt;input type="text"&gt;</code>, <code>&lt;select&gt;</code>, dan <code>&lt;button&gt;</code>.</p>
+          <div class="code-block-pro">&lt;form action="/submit" method="POST"&gt;
+    &lt;label for="nama"&gt;Nama Lengkap:&lt;/label&gt;
+    &lt;input type="text" id="nama" name="nama" required&gt;
+    &lt;button type="submit"&gt;Daftar&lt;/button&gt;
+&lt;/form&gt;</div>
+
+          <div class="quiz-container">
+            <h4>❓ Quiz Pemahaman Topik 1.7</h4>
+            <p><strong>Soal: Apa fungsi atribut name pada elemen &lt;input&gt;?</strong></p>
+            <label class="quiz-option-label"><input type="radio" name="q1_7" value="A"> A. Menentukan warna input</label>
+            <label class="quiz-option-label"><input type="radio" name="q1_7" value="B"> B. Sebagai identitas data saat dikirim ke server (Benar)</label>
+            <button class="btn btn-primary" style="margin-top:10px;" onclick="checkQuizAnswer('q1_7', 'B', 'Tepat! Atribut name digunakan server untuk mengenali data!')">Kirim Jawaban</button>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border-color); padding-top:24px;">
+            <button class="btn btn-outline" onclick="loadLessonTopic(1.6)">← Sebelumnya</button>
+            <button class="btn btn-primary" onclick="loadLessonTopic(1.8)">Berikutnya: 1.8 Elemen Semantic →</button>
+          </div>
+        `;
+      } else if (topicId === 1.8) {
+        if(items[7]) items[7].classList.add('active');
+        article.innerHTML = `
+          <span class="badge-pill">PEMULA • MODUL 1.8</span>
+          <h2>Topik 1.8 — Elemen Semantic HTML5</h2>
+          <p>Elemen semantik memberi makna struktur yang jelas: <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;aside&gt;</code>, <code>&lt;footer&gt;</code>.</p>
+          <div class="code-block-pro">&lt;header&gt;&lt;h1&gt;Blog Kodemik&lt;/h1&gt;&lt;/header&gt;
+&lt;main&gt;&lt;article&gt;&lt;p&gt;Isi artikel koding.&lt;/p&gt;&lt;/article&gt;&lt;/main&gt;
+&lt;footer&gt;&lt;p&gt;&copy; 2026 Kodemik&lt;/p&gt;&lt;/footer&gt;</div>
+
+          <div class="quiz-container">
+            <h4>❓ Quiz Pemahaman Topik 1.8</h4>
+            <p><strong>Soal: Elemen semantik manakah yang hanya boleh digunakan satu kali per halaman?</strong></p>
+            <label class="quiz-option-label"><input type="radio" name="q1_8" value="A"> A. &lt;section&gt;</label>
+            <label class="quiz-option-label"><input type="radio" name="q1_8" value="B"> B. &lt;main&gt; (Jawaban Benar)</label>
+            <button class="btn btn-primary" style="margin-top:10px;" onclick="checkQuizAnswer('q1_8', 'B', 'Benar! <main> hanya boleh digunakan 1x per halaman!')">Kirim Jawaban</button>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border-color); padding-top:24px;">
+            <button class="btn btn-outline" onclick="loadLessonTopic(1.7)">← Sebelumnya</button>
+            <button class="btn btn-primary" onclick="loadLessonTopic(1.9)">Berikutnya: Mini Project Modul 1 →</button>
+          </div>
+        `;
+      } else if (topicId === 1.9) {
+        if(items[8]) items[8].classList.add('active');
+        article.innerHTML = `
+          <span class="badge-pill">MINI PROJECT • MODUL 1</span>
+          <h2>🎯 Mini Project Modul 1: Halaman "Tentang Saya"</h2>
+          <p>Gabungkan semua yang telah dipelajari di Modul 1 ke dalam file <code>tentang-saya.html</code>!</p>
+          
+          <div class="callout-box">
+            📋 <strong>Checklist Persyaratan Project:</strong>
+            <ul style="margin-top:10px; padding-left:20px;">
+              <li>✓ Struktur dokumen HTML5 lengkap valid</li>
+              <li>✓ Menggunakan elemen semantik (header, nav, main, footer)</li>
+              <li>✓ Minimal 1 heading h1 dan 2 heading h2</li>
+              <li>✓ Minimal 2 paragraf berisi strong dan em</li>
+              <li>✓ Minimal 1 gambar dengan alt text benar</li>
+              <li>✓ 1 unordered list (hobi) dan 1 ordered list (riwayat)</li>
+              <li>✓ 1 tabel data sederhana & 1 form kontak sederhana</li>
+            </ul>
+          </div>
+
+          <button class="btn btn-primary" style="width:100%; justify-content:center; padding:12px; margin-top:10px;" onclick="loadLessonTopic(1.10)">
+            ✅ Saya Sudah Selesaikan Project → Klaim Sertifikat
+          </button>
+        `;
+      } else if (topicId === 1.10) {
+        if(items[9]) items[9].classList.add('active');
+        article.innerHTML = `
+          <div style="text-align:center; padding:20px 0;">
             <div style="font-size:3.5rem; margin-bottom:12px;">🏆</div>
-            <h2 style="color:var(--bg-navy-dark); margin-bottom:8px;">Selamat! Anda Lulus Modul Ini!</h2>
-            <p style="color:var(--text-secondary); margin-bottom:20px;">Sertifikat kelulusan digital Anda telah resmi diterbitkan oleh Kodemik Indonesia.</p>
-            <button class="btn btn-primary" onclick="alert('Mendownload Sertifikat PDF...')">📄 Download Sertifikat Digital Kodemik</button>
+            <h2 style="color:var(--bg-navy-dark); margin-bottom:8px;">Selamat! Kamu Lulus Modul 1 Pengantar Web & HTML!</h2>
+            <p style="color:var(--text-secondary); margin-bottom:20px;">Sertifikat kelulusan digital kamu telah diterbitkan resmi oleh Kodemik Indonesia.</p>
+            
+            <div style="border:2px solid var(--primary-blue); padding:24px; border-radius:16px; background:var(--blue-light); display:inline-block; max-width:500px; margin-bottom:20px;">
+              <h3 style="color:var(--primary-blue);">SERTIFIKAT KELULUSAN DIGITAL</h3>
+              <p style="margin:8px 0; font-size:0.9rem;">Diberikan Kepada:</p>
+              <h4 style="font-size:1.3rem; color:var(--bg-navy-dark);">HANIF ABDULLOH</h4>
+              <p style="font-size:0.85rem; color:var(--text-secondary); margin-top:8px;">Atas Kelulusan: Modul 1 Pengantar Web & HTML Kodemik</p>
+            </div>
+            <br>
+            <button class="btn btn-primary" onclick="alert('Mendownload Sertifikat Digital PDF Kodemik...')">📄 Download Sertifikat PDF Kodemik</button>
           </div>
         `;
+      }
+    }
+
+    function checkQuizAnswer(quizName, correctVal, successMsg) {
+      const selected = document.querySelector(`input[name="${quizName}"]:checked`);
+      if (!selected) {
+        alert('Pilih salah satu jawaban quiz terlebih dahulu!');
+        return;
+      }
+      if (selected.value === correctVal) {
+        alert(successMsg);
+      } else {
+        alert('Jawaban kamu belum tepat. Coba baca ulang materinya dan coba lagi!');
       }
     }
 
@@ -559,6 +845,7 @@ function KodemikApp() {
 
     window.addEventListener('DOMContentLoaded', () => {
       fetchCourseCatalog();
+      loadLessonTopic(1.1);
     });
   </script>
 </body>

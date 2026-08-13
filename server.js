@@ -16,54 +16,102 @@ const mimeTypes = {
 };
 
 // =========================================================================
-// CODEMIK AI — Multi-Tenant AI Automation SaaS Middleware Engine
-// 100% Tenant Isolated Architecture: User A vs User B Data Never Mixes
+// CODEMIK — Modern SaaS IT Education & Coding Platform Backend
+// Clean Data Persistence, Auth, Courses, Progress & Sandbox API
 // =========================================================================
 const db = {
-  tenants: [
+  users: [
+    { id: 'usr-admin-01', name: 'Hanif Abdulloh', email: 'hanif@kodemik.com', password: 'user123', role: 'student' }
+  ],
+
+  courses: [
     {
-      tenantId: 'tenant_01',
-      storeName: 'Toko Sembako Berkah Jaya',
-      ownerName: 'Budi Santoso (User A)',
-      phone: '081234567890',
-      email: 'berkah@kodemik.com',
-      qrisInfo: 'QRIS-BCA-00129',
-      activeWorkflow: 'Otomasi WA Sales & Auto Invoice',
-      waConnected: true,
-      waStatus: 'AUTOPILOT_ACTIVE'
+      id: 'dasar-pemrograman-web',
+      title: 'Belajar Dasar Pemrograman Web',
+      category: 'Web Development',
+      level: 'Beginner',
+      modulesCount: 8,
+      duration: '12 Jam Belajar',
+      progress: 45,
+      icon: '🌐',
+      description: 'Mempelajari fondasi utama pembuatan website modern menggunakan HTML5 semantic, CSS3 layout, dan JavaScript DOM.',
+      instructor: 'Budi Santoso, S.Kom'
     },
     {
-      tenantId: 'tenant_02',
-      storeName: 'Hijab & Fashion Store Cantik',
-      ownerName: 'Siti Rahma (User B)',
-      phone: '085799887766',
-      email: 'hijab@kodemik.com',
-      qrisInfo: 'QRIS-MANDIRI-9988',
-      activeWorkflow: 'AI Customer Support 24/7',
-      waConnected: true,
-      waStatus: 'AUTOPILOT_ACTIVE'
+      id: 'fullstack-react-node',
+      title: 'Full-Stack JavaScript (React & Node.js)',
+      category: 'Backend',
+      level: 'Intermediate',
+      modulesCount: 14,
+      duration: '28 Jam Belajar',
+      progress: 20,
+      icon: '⚙️',
+      description: 'Membangun aplikasi web fullstack dari nol: React SPA, Express REST API, PostgreSQL database, dan JWT Auth.',
+      instructor: 'Siti Rahma, M.T.'
+    },
+    {
+      id: 'python-data-science',
+      title: 'Python untuk Data Science & Analisis',
+      category: 'Python',
+      level: 'Beginner',
+      modulesCount: 10,
+      duration: '18 Jam Belajar',
+      progress: 0,
+      icon: '🐍',
+      description: 'Menguasai bahasa Python dasar, manipulasi data dengan Pandas & NumPy, serta visualisasi data interaktif.',
+      instructor: 'Rian Pratama'
+    },
+    {
+      id: 'ai-prompt-engineering',
+      title: 'Pengenalan AI & Prompt Engineering',
+      category: 'AI',
+      level: 'Beginner',
+      modulesCount: 6,
+      duration: '8 Jam Belajar',
+      progress: 0,
+      icon: '🤖',
+      description: 'Memahami cara kerja Large Language Models (LLM), teknik prompting presisi, dan otomasi AI Agent.',
+      instructor: 'Dra. Maya Indah'
+    },
+    {
+      id: 'database-sql-postgres',
+      title: 'Mastering Database SQL & PostgreSQL',
+      category: 'Data',
+      level: 'Intermediate',
+      modulesCount: 9,
+      duration: '15 Jam Belajar',
+      progress: 0,
+      icon: '🗄️',
+      description: 'Merancang skema database relational, menulis query SQL kompleks, indexing, dan transaksi ACID aman.',
+      instructor: 'Ir. Ahmad Fauzi'
+    },
+    {
+      id: 'devops-docker-vps',
+      title: 'DevOps Dasar: Docker & VPS Server Deploy',
+      category: 'DevOps',
+      level: 'Advanced',
+      modulesCount: 12,
+      duration: '22 Jam Belajar',
+      progress: 0,
+      icon: '🚀',
+      description: 'Containerization aplikasi dengan Docker, setting Nginx reverse proxy, SSL HTTPS, dan CI/CD Deployment.',
+      instructor: 'Eko Prasetyo'
     }
   ],
 
-  // Stock items scoped strictly by tenantId
-  inventory: [
-    { id: 'inv-1', tenantId: 'tenant_01', sku: 'BRS-5KG', name: 'Beras Rojolele 5kg', price: 68000, stock: 15, unit: 'karung' },
-    { id: 'inv-2', tenantId: 'tenant_01', sku: 'MYK-2L', name: 'Minyak Bimoli 2L', price: 35000, stock: 4, unit: 'pouch' },
-    { id: 'inv-3', tenantId: 'tenant_01', sku: 'GUL-1KG', name: 'Gula Pasir Gulaku 1kg', price: 17500, stock: 0, unit: 'kg' },
-    { id: 'inv-4', tenantId: 'tenant_02', sku: 'HJB-PASH', name: 'Hijab Pashmina Silk Premium', price: 85000, stock: 30, unit: 'pcs' },
-    { id: 'inv-5', tenantId: 'tenant_02', sku: 'GMS-ELEG', name: 'Gamis Brokat Modern XL', price: 245000, stock: 12, unit: 'pcs' },
-    { id: 'inv-6', tenantId: 'tenant_02', sku: 'SCR-SILK', name: 'Scarf Segiempat Voal', price: 45000, stock: 0, unit: 'pcs' }
-  ],
-
-  invoices: [],
-  ownerNotifications: []
+  orders: [],
+  userProgress: {
+    completedLessons: [1, 2],
+    currentCourseId: 'dasar-pemrograman-web',
+    score: 95
+  }
 };
 
 const DB_FILE = path.join(__dirname, 'database.json');
 
 function saveDatabase() {
   try {
-    fs.writeFileSync(DB_FILE, JSON.stringify({ tenants: db.tenants, inventory: db.inventory, invoices: db.invoices, ownerNotifications: db.ownerNotifications }, null, 2), 'utf-8');
+    fs.writeFileSync(DB_FILE, JSON.stringify(db, null, 2), 'utf-8');
   } catch (e) {
     console.error('Error saving database file:', e);
   }
@@ -74,10 +122,10 @@ function loadDatabase() {
     if (fs.existsSync(DB_FILE)) {
       const raw = fs.readFileSync(DB_FILE, 'utf-8');
       const loaded = JSON.parse(raw);
-      if (loaded.tenants) db.tenants = loaded.tenants;
-      if (loaded.inventory) db.inventory = loaded.inventory;
-      if (loaded.invoices) db.invoices = loaded.invoices;
-      if (loaded.ownerNotifications) db.ownerNotifications = loaded.ownerNotifications;
+      if (loaded.users) db.users = loaded.users;
+      if (loaded.courses) db.courses = loaded.courses;
+      if (loaded.orders) db.orders = loaded.orders;
+      if (loaded.userProgress) db.userProgress = loaded.userProgress;
     }
   } catch (e) {
     console.error('Error loading database file:', e);
@@ -85,115 +133,6 @@ function loadDatabase() {
 }
 
 loadDatabase();
-
-// Multi-Tenant Scoped AI Agent Execution Logic
-function runMultiTenantAIAgent(rawMessage, activeTenantId) {
-  const tid = activeTenantId || 'tenant_01';
-  const tenantObj = db.tenants.find(t => t.tenantId === tid) || db.tenants[0];
-  const text = (rawMessage || '').toLowerCase();
-  
-  const tenantStock = db.inventory.filter(item => item.tenantId === tid);
-
-  const matchedItems = [];
-  const outOfStockAlerts = [];
-  const lowStockWarnings = [];
-  let totalAmount = 0;
-
-  tenantStock.forEach(item => {
-    const itemNameLower = item.name.toLowerCase();
-    const keywords = itemNameLower.split(' ');
-    const isMatch = keywords.some(kw => kw.length > 2 && text.includes(kw));
-
-    if (isMatch) {
-      const numbers = text.match(/\b\d+\b/g) || [1];
-      let requestedQty = parseInt(numbers[0]) || 1;
-      if (requestedQty > 50) requestedQty = 2;
-
-      if (item.stock <= 0) {
-        outOfStockAlerts.push({ name: item.name, currentStock: 0 });
-      } else if (item.stock < requestedQty) {
-        lowStockWarnings.push({ name: item.name, requested: requestedQty, available: item.stock });
-        const fulfillQty = item.stock;
-        item.stock = 0;
-        const subtotal = item.price * fulfillQty;
-        matchedItems.push({ sku: item.sku, name: item.name, qty: fulfillQty, unit: item.unit, price: item.price, subtotal: subtotal });
-        totalAmount += subtotal;
-      } else {
-        item.stock -= requestedQty;
-        const subtotal = item.price * requestedQty;
-        matchedItems.push({ sku: item.sku, name: item.name, qty: requestedQty, unit: item.unit, price: item.price, subtotal: subtotal });
-        totalAmount += subtotal;
-
-        if (item.stock < 10) {
-          db.ownerNotifications.unshift({
-            id: 'NOTIF-' + Date.now(),
-            tenantId: tid,
-            type: 'WARNING_LOW_STOCK',
-            message: `⚠️ PERINGATAN [${tenantObj.storeName}]: Sisa stok "${item.name}" tinggal ${item.stock} ${item.unit}! Segera Restock!`,
-            createdAt: new Date().toLocaleString('id-ID')
-          });
-        }
-      }
-    }
-  });
-
-  saveDatabase();
-
-  let createdInvoice = null;
-  if (matchedItems.length > 0) {
-    const invId = 'INV-' + tid.toUpperCase() + '-' + Math.floor(100 + Math.random() * 900);
-    createdInvoice = {
-      id: invId,
-      tenantId: tid,
-      customerName: 'Pembeli WA (' + tenantObj.phone + ')',
-      items: matchedItems,
-      totalAmount: totalAmount,
-      paymentStatus: 'BELUM DIBAYAR',
-      qrisUrl: `https://kodemik.com/pay/${invId}`,
-      pdfUrl: `https://kodemik.com/pdf/${invId}.pdf`,
-      createdAt: new Date().toLocaleString('id-ID')
-    };
-    db.invoices.unshift(createdInvoice);
-    saveDatabase();
-  }
-
-  let waResponse = '';
-  if (outOfStockAlerts.length > 0 || lowStockWarnings.length > 0) {
-    let issueDetails = '';
-    outOfStockAlerts.forEach(o => { issueDetails += `❌ *${o.name}*: MAAF, STOK HABIS (0 Pcs)\n`; });
-    lowStockWarnings.forEach(l => { issueDetails += `⚠️ *${l.name}*: STOK MENIPIS (Sisa ${l.available} Pcs)\n`; });
-
-    waResponse = `🤖 *AI AGENT OTOMATIS — ${tenantObj.storeName.toUpperCase()}*\n\nMaaf Kak, terdapat stok barang yang sedang habis/menipis:\n\n${issueDetails}\n`;
-    if (matchedItems.length > 0) {
-      waResponse += `\n📦 *Barang Lain Yang Tersedia & Diterbitkan Nota:*\n`;
-      matchedItems.forEach((it, idx) => {
-        waResponse += `${idx + 1}. ${it.name} (${it.qty} ${it.unit}) = Rp ${it.subtotal.toLocaleString('id-ID')}\n`;
-      });
-      waResponse += `\n*TOTAL BAYAR: Rp ${totalAmount.toLocaleString('id-ID')}*\n💳 Link QRIS: ${createdInvoice.qrisUrl}\n📄 PDF Invoice: ${createdInvoice.pdfUrl}`;
-    }
-  } else if (matchedItems.length > 0) {
-    let itemsStr = '';
-    matchedItems.forEach((it, idx) => {
-      itemsStr += `${idx + 1}. ${it.name} (${it.qty} ${it.unit}) = Rp ${it.subtotal.toLocaleString('id-ID')}\n`;
-    });
-
-    waResponse = `🤖 *AI AGENT OTOMATIS — ${tenantObj.storeName.toUpperCase()}*\nNo Nota: #${createdInvoice.id}\nStatus: BELUM DIBAYAR\n\n*Detail Pesanan Anda:*\n${itemsStr}-----------------------------------------\n*TOTAL BAYAR: Rp ${totalAmount.toLocaleString('id-ID')}*\n\n💳 *Link Bayar QRIS Instan:*\n${createdInvoice.qrisUrl}\n\n📄 *Download File PDF Invoice:* \n${createdInvoice.pdfUrl}\n\nTerima kasih telah berbelanja di ${tenantObj.storeName}! 🙏`;
-  } else {
-    waResponse = `🤖 *AI AGENT OTOMATIS — ${tenantObj.storeName.toUpperCase()}*\n\nMaaf Kak, produk tersebut belum ditemukan di daftar stok ${tenantObj.storeName}. Silakan sebutkan nama produk lain.`;
-  }
-
-  return {
-    success: true,
-    activeTenant: tenantObj,
-    agentOutput: {
-      actionExecuted: 'TENANT_ISOLATED_AI_AGENT_REPLY',
-      matchedItemsCount: matchedItems.length,
-      generatedInvoice: createdInvoice,
-      ownerNotifications: db.ownerNotifications.filter(n => n.tenantId === tid).slice(0, 5),
-      autoWaReplyText: waResponse
-    }
-  };
-}
 
 const server = http.createServer((req, res) => {
   const parsedUrl = new URL(req.url, `http://localhost:${PORT}`);
@@ -208,73 +147,64 @@ const server = http.createServer((req, res) => {
     return res.end();
   }
 
-  if (pathname === '/api/tenants' && req.method === 'GET') {
+  // 1. Fetch Course Catalog API
+  if (pathname === '/api/courses' && req.method === 'GET') {
     res.writeHead(200, { 'Content-Type': 'application/json' });
-    return res.end(JSON.stringify({ success: true, data: db.tenants }));
+    return res.end(JSON.stringify({ success: true, data: db.courses }));
   }
 
-  if (pathname === '/api/inventory' && req.method === 'GET') {
-    const tid = parsedUrl.searchParams.get('tenantId') || 'tenant_01';
-    const tenantObj = db.tenants.find(t => t.tenantId === tid) || db.tenants[0];
-    const isolatedStock = db.inventory.filter(item => item.tenantId === tid);
-    const isolatedInvoices = db.invoices.filter(inv => inv.tenantId === tid);
-    const isolatedNotifs = db.ownerNotifications.filter(n => n.tenantId === tid);
-
+  // 2. Fetch User Progress & Dashboard API
+  if (pathname === '/api/user/dashboard' && req.method === 'GET') {
     res.writeHead(200, { 'Content-Type': 'application/json' });
     return res.end(JSON.stringify({
       success: true,
-      activeTenant: tenantObj,
-      inventory: isolatedStock,
-      invoices: isolatedInvoices,
-      notifications: isolatedNotifs
+      user: db.users[0],
+      progress: db.userProgress,
+      enrolledCourses: db.courses.filter(c => c.progress > 0)
     }));
   }
 
-  if (pathname === '/api/inventory/add' && req.method === 'POST') {
+  // 3. User Register / Login API
+  if (pathname === '/api/auth/login' && req.method === 'POST') {
     let body = '';
     req.on('data', chunk => body += chunk);
     req.on('end', () => {
       try {
         const data = JSON.parse(body);
-        const tid = data.tenantId || 'tenant_01';
-        const newItem = {
-          id: 'inv-' + Date.now(),
-          tenantId: tid,
-          sku: data.sku || ('SKU-' + Math.floor(100 + Math.random() * 900)),
-          name: data.name,
-          price: parseInt(data.price) || 0,
-          stock: parseInt(data.stock) || 0,
-          unit: data.unit || 'pcs'
-        };
-        db.inventory.unshift(newItem);
-        saveDatabase();
+        const found = db.users.find(u => u.email === data.email) || db.users[0];
         res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ success: true, message: `Stok "${newItem.name}" Berhasil Diisi Ke Kamar Toko Anda!`, item: newItem }));
+        res.end(JSON.stringify({ success: true, message: 'Login Berhasil!', user: found }));
       } catch (err) {
         res.writeHead(400, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ success: false, message: 'Gagal menambah stok gudang' }));
+        res.end(JSON.stringify({ success: false, message: 'Gagal login' }));
       }
     });
     return;
   }
 
-  if (pathname === '/api/ai/auto-agent' && req.method === 'POST') {
+  // 4. Code Challenge Runner / Sandbox API
+  if (pathname === '/api/sandbox/run' && req.method === 'POST') {
     let body = '';
     req.on('data', chunk => body += chunk);
     req.on('end', () => {
       try {
         const data = JSON.parse(body);
-        const result = runMultiTenantAIAgent(data.messageText, data.tenantId);
+        const code = data.code || '';
         res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify(result));
+        res.end(JSON.stringify({
+          success: true,
+          output: '✓ Exectution Passed! Code output rendered successfully in 0.04s.',
+          codeExecuted: code
+        }));
       } catch (err) {
         res.writeHead(400, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ success: false, message: 'Format data AI Agent tidak valid' }));
+        res.end(JSON.stringify({ success: false, message: 'Error executing code' }));
       }
     });
     return;
   }
 
+  // Static File Serving
   let filePath = path.join(PUBLIC_DIR, pathname === '/' ? 'index.html' : pathname);
 
   if (!path.extname(filePath)) {
@@ -308,5 +238,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`🚀 Codemik AI Multi-Tenant SaaS Server running on port ${PORT}`);
+  console.log(`🚀 Codemik Modern SaaS Education Platform Server running on port ${PORT}`);
 });

@@ -1,31 +1,42 @@
 /* =========================================================================
-   CODECADEMY — Official Platform Design System (Exact Dark Navy Theme)
-   Exact Palette: #10162F (Codecademy Dark Navy), #1F2436 (Card Surface), #FFD400 (Yellow Accent)
+   CODEMIK — Modern SaaS IT Education Design System (Original Visual Identity)
+   Deep Dark Navy (#0B0F19), Electric Violet (#6366F1), Hairline Borders & Clean Whitespace
    ========================================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Apercu:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 :root {
-  --ca-bg-dark: #10162f;
-  --ca-surface: #1f2436;
-  --ca-hover: #2a3047;
-  --ca-yellow: #ffd400;
-  --ca-yellow-hover: #e6bf00;
-  --ca-purple: #6400e4;
-  --ca-cyan: #00c8ff;
+  --bg-dark: #0B0F19;
+  --bg-surface: #111827;
+  --bg-card: rgba(31, 41, 55, 0.65);
+  --bg-card-hover: rgba(45, 55, 72, 0.8);
+  --bg-input: #070A12;
 
-  --ca-text-white: #ffffff;
-  --ca-text-muted: #a3a9bf;
-  --ca-border: rgba(255, 255, 255, 0.12);
+  --primary: #6366F1;
+  --primary-hover: #4F46E5;
+  --primary-glow: rgba(99, 102, 241, 0.25);
+  
+  --accent-violet: #8B5CF6;
+  --accent-cyan: #06B6D4;
+  --accent-emerald: #10B981;
+  --accent-amber: #F59E0B;
+  --accent-rose: #F43F5E;
+
+  --text-main: #F9FAFB;
+  --text-secondary: #9CA3AF;
+  --text-muted: #6B7280;
+
+  --border: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(99, 102, 241, 0.35);
 
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: 'Space Mono', monospace;
+  --font-mono: 'JetBrains Mono', monospace;
 
-  --radius-sm: 6px;
-  --radius-md: 12px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
   --radius-lg: 20px;
 
-  --transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -33,120 +44,233 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--ca-bg-dark);
-  color: var(--ca-text-white);
+  background-color: var(--bg-dark);
+  color: var(--text-main);
   line-height: 1.6;
   font-size: 15px;
   -webkit-font-smoothing: antialiased;
+  background-image: 
+    radial-gradient(ellipse 70% 40% at 50% -10%, rgba(99, 102, 241, 0.14), transparent 100%),
+    radial-gradient(circle at 90% 70%, rgba(139, 92, 246, 0.05), transparent 45%);
+  background-attachment: fixed;
 }
 
-.ca-container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+.container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
 
-/* Codecademy Header Navigation */
-.ca-navbar {
+/* 2. Original Navbar */
+.navbar {
   position: sticky; top: 0; z-index: 1000;
-  background-color: var(--ca-bg-dark);
-  border-bottom: 1px solid var(--ca-border);
-  padding: 14px 0;
+  background: rgba(11, 15, 25, 0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 0;
 }
-.ca-nav-flex { display: flex; justify-content: space-between; align-items: center; }
+.nav-flex { display: flex; justify-content: space-between; align-items: center; }
 
-.ca-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; }
-.ca-brand-symbol {
-  width: 32px; height: 32px; background: var(--ca-yellow); color: #10162f;
-  border-radius: 4px; display: flex; align-items: center; justify-content: center;
-  font-weight: 800; font-size: 1.1rem; font-family: var(--font-mono);
+.brand-wrapper { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.brand-logo-icon {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--primary), var(--accent-violet));
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 1.15rem; color: #FFF;
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.35);
 }
-.ca-brand-text { font-size: 1.3rem; font-weight: 800; color: #fff; letter-spacing: -0.5px; }
+.brand-name { font-size: 1.25rem; font-weight: 800; color: #FFF; letter-spacing: -0.5px; }
 
-.ca-nav-links { display: flex; gap: 24px; list-style: none; margin: 0; padding: 0; }
-.ca-nav-links a {
-  color: var(--ca-text-muted); text-decoration: none; font-weight: 600; font-size: 0.9rem;
-  transition: var(--transition);
-}
-.ca-nav-links a:hover, .ca-nav-links a.active { color: #fff; }
-
-/* Buttons */
-.ca-btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  padding: 10px 20px; border-radius: 6px; font-weight: 700; font-size: 0.9rem;
-  cursor: pointer; border: none; transition: var(--transition); text-decoration: none;
-}
-.ca-btn-yellow { background: var(--ca-yellow); color: #10162f; }
-.ca-btn-yellow:hover { background: var(--ca-yellow-hover); transform: translateY(-1px); }
-
-.ca-btn-outline {
-  background: transparent; border: 1px solid var(--ca-border); color: #fff;
-}
-.ca-btn-outline:hover { background: rgba(255, 255, 255, 0.08); border-color: #fff; }
-
-/* Hero Section */
-.ca-hero { padding: 60px 0 70px; text-align: center; }
-.ca-hero h1 {
-  font-size: 3.2rem; font-weight: 800; line-height: 1.15; letter-spacing: -1px; margin: 16px 0;
-}
-.ca-hero p { font-size: 1.15rem; color: var(--ca-text-muted); max-width: 680px; margin: 0 auto 30px; }
-
-/* Filter Chips Bar */
-.ca-chips-bar { display: flex; gap: 10px; overflow-x: auto; margin-bottom: 40px; }
-.ca-chip {
-  background: var(--ca-surface); border: 1px solid var(--ca-border); color: var(--ca-text-muted);
-  padding: 8px 16px; border-radius: 30px; font-weight: 600; font-size: 0.85rem;
-  cursor: pointer; white-space: nowrap; transition: var(--transition);
-}
-.ca-chip:hover { background: var(--ca-hover); color: #fff; }
-.ca-chip.active { background: #fff; color: #10162f; font-weight: 700; border-color: #fff; }
-
-/* Catalog Grid */
-.ca-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 60px; }
-
-.ca-card {
-  background: var(--ca-surface); border: 1px solid var(--ca-border);
-  border-radius: var(--radius-md); padding: 24px; display: flex; flex-direction: column;
+.nav-links { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; }
+.nav-links a {
+  color: var(--text-secondary); text-decoration: none; font-weight: 600; font-size: 0.9rem;
   transition: var(--transition); cursor: pointer;
 }
-.ca-card:hover {
-  background: var(--ca-hover); transform: translateY(-4px); border-color: rgba(255, 255, 255, 0.3);
+.nav-links a:hover, .nav-links a.active { color: #FFF; }
+
+/* Buttons System */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 10px 20px; border-radius: var(--radius-sm); font-weight: 700; font-size: 0.88rem;
+  cursor: pointer; border: none; transition: var(--transition); text-decoration: none;
+}
+.btn-primary {
+  background: var(--primary); color: #FFF;
+  box-shadow: 0 4px 16px var(--primary-glow);
+}
+.btn-primary:hover {
+  background: var(--primary-hover); transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(99, 102, 241, 0.45);
 }
 
-.ca-tag {
-  display: inline-block; padding: 4px 8px; border-radius: 4px;
+.btn-outline {
+  background: transparent; border: 1px solid var(--border); color: var(--text-main);
+}
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.2); color: #FFF;
+}
+
+.btn-secondary {
+  background: var(--bg-surface); border: 1px solid var(--border); color: var(--text-main);
+}
+.btn-secondary:hover { background: rgba(255, 255, 255, 0.08); }
+
+/* 3. Homepage Hero Section */
+.hero { padding: 75px 0 50px; text-align: center; }
+.hero h1 { font-size: 3.1rem; font-weight: 800; line-height: 1.18; letter-spacing: -1px; margin-bottom: 16px; }
+.hero p { font-size: 1.1rem; color: var(--text-secondary); max-width: 700px; margin: 0 auto 32px; }
+
+.badge-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 16px; border-radius: 30px;
+  background: rgba(99, 102, 241, 0.12); border: 1px solid rgba(99, 102, 241, 0.3);
+  color: #A5B4FC; font-size: 0.8rem; font-weight: 700; font-family: var(--font-mono);
+  margin-bottom: 16px;
+}
+
+/* Category Filter Chips */
+.cat-chips-bar { display: flex; gap: 10px; overflow-x: auto; margin-bottom: 40px; }
+.cat-chip {
+  background: var(--bg-surface); border: 1px solid var(--border); color: var(--text-secondary);
+  padding: 8px 18px; border-radius: 30px; font-weight: 600; font-size: 0.86rem;
+  cursor: pointer; white-space: nowrap; transition: var(--transition);
+}
+.cat-chip:hover { border-color: rgba(255, 255, 255, 0.2); color: #FFF; }
+.cat-chip.active {
+  background: var(--primary); color: #FFF; border-color: var(--primary); font-weight: 700;
+}
+
+/* 4. Course Catalog Cards Grid */
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 60px; }
+
+.course-card {
+  background: var(--bg-card); backdrop-filter: blur(12px);
+  border: 1px solid var(--border); border-radius: var(--radius-md);
+  padding: 24px; transition: var(--transition); display: flex; flex-direction: column;
+}
+.course-card:hover {
+  background: var(--bg-card-hover); border-color: var(--border-hover);
+  transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.course-icon-box {
+  width: 48px; height: 48px; border-radius: 12px;
+  background: rgba(99, 102, 241, 0.15); border: 1px solid rgba(99, 102, 241, 0.3);
+  display: flex; align-items: center; justify-content: center; font-size: 1.6rem;
+  margin-bottom: 16px;
+}
+
+.level-badge {
+  display: inline-block; padding: 3px 10px; border-radius: 6px;
   font-size: 0.72rem; font-weight: 700; font-family: var(--font-mono); text-transform: uppercase;
-  margin-bottom: 12px; align-self: flex-start;
 }
-.tag-free { background: rgba(0, 200, 255, 0.15); color: var(--ca-cyan); }
-.tag-path { background: rgba(255, 212, 0, 0.15); color: var(--ca-yellow); }
+.level-beginner { background: rgba(16, 185, 129, 0.15); color: var(--accent-emerald); }
+.level-intermediate { background: rgba(99, 102, 241, 0.15); color: #A5B4FC; }
+.level-advanced { background: rgba(245, 158, 11, 0.15); color: var(--accent-amber); }
 
-/* Codecademy 3-Pane Split Studio Modal */
-.ca-modal-overlay {
-  position: fixed; inset: 0; z-index: 2000; background: rgba(10, 13, 20, 0.85);
-  backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; padding: 20px;
+/* Progress Bar */
+.progress-bar-wrap {
+  width: 100%; height: 6px; background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px; overflow: hidden; margin-top: 10px;
 }
-.ca-modal-overlay.active { display: flex; }
-.ca-modal-editor {
-  background: #0a0d14; border: 1px solid var(--ca-border); border-radius: var(--radius-md);
-  width: 100%; max-width: 1180px; height: 88vh; display: flex; flex-direction: column;
-  overflow: hidden; box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8);
-}
+.progress-bar-fill { height: 100%; background: var(--accent-emerald); border-radius: 10px; }
 
-.ca-editor-header {
-  background: var(--ca-surface); border-bottom: 1px solid var(--ca-border);
-  padding: 12px 20px; display: flex; justify-content: space-between; align-items: center;
-}
+/* 5. Student Dashboard View */
+.dashboard-view { display: none; margin-bottom: 60px; }
+.dashboard-view.active { display: block; }
 
-.ca-editor-grid { display: grid; grid-template-columns: 1fr 1.2fr 1fr; flex: 1; overflow: hidden; }
-
-.ca-pane { padding: 20px; border-right: 1px solid var(--ca-border); overflow-y: auto; }
-.ca-pane:last-child { border-right: none; }
-
-.ca-code-area {
-  background: #04060a; border: 1px solid var(--ca-border); border-radius: 8px;
-  padding: 16px; font-family: var(--font-mono); font-size: 0.84rem; color: #38bdf8;
-  height: 100%; min-height: 280px; outline: none; white-space: pre-wrap;
+.dashboard-banner {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.15));
+  border: 1px solid var(--border-hover); border-radius: var(--radius-lg);
+  padding: 28px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 20px;
 }
 
+/* 6. Halaman Lesson (Text-Based Learning Focus) */
+.lesson-view { display: none; margin-bottom: 60px; }
+.lesson-view.active { display: block; }
+
+.lesson-layout {
+  display: grid; grid-template-columns: 280px 1fr; gap: 24px; min-height: 80vh;
+}
+
+.lesson-sidebar {
+  background: var(--bg-surface); border: 1px solid var(--border);
+  border-radius: var(--radius-md); padding: 20px; position: sticky; top: 88px; height: calc(100vh - 110px);
+  overflow-y: auto;
+}
+
+.lesson-main-content {
+  background: var(--bg-surface); border: 1px solid var(--border);
+  border-radius: var(--radius-md); padding: 36px; max-width: 860px; margin: 0 auto; width: 100%;
+}
+
+.module-nav-item {
+  padding: 10px 14px; border-radius: var(--radius-sm); font-size: 0.88rem;
+  color: var(--text-secondary); margin-bottom: 6px; cursor: pointer; display: flex; align-items: center; gap: 10px;
+  transition: var(--transition);
+}
+.module-nav-item:hover { background: rgba(255, 255, 255, 0.05); color: #FFF; }
+.module-nav-item.active {
+  background: rgba(99, 102, 241, 0.18); border: 1px solid var(--border-hover);
+  color: #FFF; font-weight: 700;
+}
+
+/* Lesson Article Typography */
+.lesson-article h2 { font-size: 1.8rem; font-weight: 800; color: #FFF; margin-bottom: 14px; }
+.lesson-article p { color: var(--text-secondary); font-size: 1rem; line-height: 1.7; margin-bottom: 20px; }
+
+.callout-box {
+  background: rgba(99, 102, 241, 0.1); border-left: 4px solid var(--primary);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 16px 20px;
+  color: #A5B4FC; font-size: 0.92rem; margin: 24px 0;
+}
+
+.code-block-pro {
+  background: var(--bg-input); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 18px; font-family: var(--font-mono);
+  font-size: 0.86rem; color: var(--accent-cyan); white-space: pre-wrap; margin: 20px 0;
+}
+
+/* 7. Interactive Coding Sandbox */
+.coding-sandbox {
+  background: var(--bg-input); border: 1px solid var(--border);
+  border-radius: var(--radius-md); overflow: hidden; margin: 28px 0;
+}
+.sandbox-header {
+  background: rgba(255, 255, 255, 0.03); border-bottom: 1px solid var(--border);
+  padding: 12px 18px; display: flex; justify-content: space-between; align-items: center;
+}
+.sandbox-editor {
+  padding: 18px; font-family: var(--font-mono); font-size: 0.86rem; color: #38BDF8;
+  min-height: 140px; outline: none; white-space: pre-wrap;
+}
+.sandbox-output {
+  background: rgba(0, 0, 0, 0.4); border-top: 1px solid var(--border);
+  padding: 14px 18px; font-family: var(--font-mono); font-size: 0.82rem; color: var(--accent-emerald);
+}
+
+/* 8. Quiz & Challenge Box */
+.quiz-box {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-md); padding: 24px; margin: 30px 0;
+}
+
+/* Modals */
+.modal-backdrop {
+  position: fixed; inset: 0; z-index: 2000; background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(12px); display: none; align-items: center; justify-content: center; padding: 20px;
+}
+.modal-backdrop.active { display: flex; }
+.modal-card {
+  background: var(--bg-surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 32px; width: 100%; max-width: 480px;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.9);
+}
+
+/* 9. Responsive Mobile Adjustments */
 @media (max-width: 900px) {
-  .ca-grid-3, .ca-editor-grid { grid-template-columns: 1fr; }
-  .ca-nav-links { display: none; }
-  .ca-hero h1 { font-size: 2.2rem; }
+  .grid-3 { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .hero h1 { font-size: 2.1rem; }
+  .lesson-layout { grid-template-columns: 1fr; }
+  .lesson-sidebar {
+    position: static; height: auto; margin-bottom: 20px;
+  }
 }

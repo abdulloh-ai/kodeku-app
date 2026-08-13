@@ -3,353 +3,263 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Codemik AI — Apple-Style Bento Grid Multi-Tenant AI Platform</title>
-  <meta name="description" content="Platform Perantara Otomasi AI SaaS Multi-Tenant. Apple Bento Grid Layout. Terisolasi mandiri 100% per user.">
+  <title>YouTube — Beranda</title>
+  <meta name="description" content="Kloning Tampilan Web YouTube Resmi Dark Mode (Pixel-Perfect UI)">
   
   <link rel="stylesheet" href="css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- Bento Top Navbar -->
-  <header class="bento-nav">
-    <div class="bento-container bento-nav-flex">
-      <a href="index.html" class="bento-logo">
-        <div class="bento-logo-icon">C</div>
-        <span class="bento-logo-text">Codemik<span style="color:var(--accent-cyan);">.AI</span></span>
+  <!-- YouTube Top Navigation Header -->
+  <header class="yt-header">
+    <div class="yt-brand-left">
+      <button class="yt-icon-btn">☰</button>
+      <a href="index.html" class="yt-logo">
+        <svg height="20" viewBox="0 0 28 20" width="28" style="fill:#FF0000;">
+          <path d="M27.9727 3.12324C27.6435 1.89323 26.6768 0.926623 25.4468 0.597366C23.219 0 14 0 14 0C14 0 4.78103 0 2.55318 0.597366C1.32317 0.926623 0.35656 1.89323 0.0273038 3.12324C0 5.35109 0 10 0 10C0 10 0 14.6489 0.0273038 16.8768C0.35656 18.1068 1.32317 19.0734 2.55318 19.4026C4.78103 20 14 20 14 20C14 20 23.219 20 25.4468 19.4026C26.6768 19.0734 27.6435 18.1068 27.9727 16.8768C28 14.6489 28 10 28 10C28 10 28 5.35109 27.9727 3.12324Z"/>
+          <path d="M11.2 14.2857L18.2 10L11.2 5.71429V14.2857Z" fill="white"/>
+        </svg>
+        <span>YouTube</span>
+        <span class="yt-logo-badge">ID</span>
       </a>
+    </div>
 
-      <div style="display:flex; align-items:center; gap:14px;">
-        <span class="bento-badge" style="background:rgba(16,185,129,0.1); border-color:rgba(16,185,129,0.3); color:var(--accent-emerald);">
-          <span style="width:7px; height:7px; border-radius:50%; background:var(--accent-emerald); display:inline-block;"></span>
-          OPERATIONAL 99.99%
-        </span>
-        <button onclick="openMerchantModal()" class="bento-btn bento-btn-ghost" style="padding:7px 14px; font-size:0.82rem;">
-          ⚙️ Portal Stok Toko
-        </button>
+    <!-- Center Search Bar -->
+    <div class="yt-search-center">
+      <div class="yt-search-box">
+        <input type="text" class="yt-search-input" placeholder="Telusuri" value="Belajar Koding Web Fullstack">
       </div>
+      <button class="yt-search-btn" title="Telusuri">🔍</button>
+      <button class="yt-mic-btn" title="Telusuri dengan suara">🎙️</button>
+    </div>
+
+    <!-- Right Controls -->
+    <div class="yt-controls-right">
+      <button class="yt-create-btn">
+        <span style="font-size:18px;">+</span> Buat
+      </button>
+      <button class="yt-icon-btn" title="Notifikasi">🔔</button>
+      <div class="yt-avatar" title="Akun Pengguna">H</div>
     </div>
   </header>
 
-  <!-- Hero Header -->
-  <div class="bento-container" style="padding-top:40px; text-align:center;">
-    <span class="bento-badge" style="margin-bottom:12px;">🍱 BENTO GRID ARCHITECTURE (NO-CODE AI SAAS)</span>
-    <h1 style="font-size:3rem; font-weight:800; letter-spacing:-1.2px; line-height:1.15; margin-bottom:12px; max-width:860px; margin-left:auto; margin-right:auto;">
-      Otomasi AI Agent Perantara Terisolasi Mandiri 100% Per User
-    </h1>
-    <p style="color:var(--text-muted); font-size:1.05rem; max-width:720px; margin:0 auto 20px;">
-      Bebas dari resiko data tertukar. Setiap toko memiliki kamar terisolasi mandiri dengan AI Agent & stok tersendiri.
-    </p>
-  </div>
+  <!-- YouTube Main Layout Body -->
+  <div class="yt-main-layout">
+    
+    <!-- Left Navigation Sidebar -->
+    <aside class="yt-sidebar">
+      <a href="#" class="yt-nav-item active">
+        <span class="yt-nav-icon">🏠</span>
+        <span>Beranda</span>
+      </a>
+      <a href="#" class="yt-nav-item">
+        <span class="yt-nav-icon">🩳</span>
+        <span>Shorts</span>
+      </a>
+      <a href="#" class="yt-nav-item">
+        <span class="yt-nav-icon">📺</span>
+        <span>Subskripsi</span>
+      </a>
 
-  <!-- Bento Grid Main Stage -->
-  <main class="bento-container">
-    <div class="bento-grid">
+      <div class="yt-divider"></div>
 
-      <!-- BENTO TILE 1 (SPAN 2): MULTI-TENANT ENGINE SANDBOX -->
-      <div class="bento-item bento-span-2">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;">
-          <div>
-            <span class="bento-badge" style="margin-bottom:6px;">BENTO TILE 01</span>
-            <h3 style="font-size:1.2rem; font-weight:800; color:#FFF; margin:0;">🤖 Multi-Tenant AI Agent Sandbox</h3>
+      <a href="#" class="yt-nav-item">
+        <span class="yt-nav-icon">📚</span>
+        <span>Anda (Koleksi)</span>
+      </a>
+      <a href="#" class="yt-nav-item">
+        <span class="yt-nav-icon">📜</span>
+        <span>Histori</span>
+      </a>
+
+      <div class="yt-divider"></div>
+
+      <span style="font-size:14px; font-weight:700; padding:8px 12px; color:var(--yt-text-primary);">Eksplorasi</span>
+      <a href="#" class="yt-nav-item">
+        <span class="yt-nav-icon">🎵</span>
+        <span>Musik</span>
+      </a>
+      <a href="#" class="yt-nav-item">
+        <span class="yt-nav-icon">🎮</span>
+        <span>Game</span>
+      </a>
+      <a href="#" class="yt-nav-item">
+        <span class="yt-nav-icon">📰</span>
+        <span>Berita</span>
+      </a>
+    </aside>
+
+    <!-- Right Feed Content Area -->
+    <main class="yt-content-feed">
+      
+      <!-- Filter Chips Bar -->
+      <div class="yt-chips-bar">
+        <button class="yt-chip active">Semua</button>
+        <button class="yt-chip">Musik</button>
+        <button class="yt-chip">Kecerdasan Buatan (AI)</button>
+        <button class="yt-chip">Pemrograman Komputer</button>
+        <button class="yt-chip">Live</button>
+        <button class="yt-chip">Game</button>
+        <button class="yt-chip">Pelajaran</button>
+        <button class="yt-chip">Baru diunggah</button>
+        <button class="yt-chip">Tontonan baru</button>
+      </div>
+
+      <!-- Video Grid (8 Authentic Videos) -->
+      <div class="yt-video-grid">
+        
+        <!-- Video Card 1 -->
+        <div class="yt-video-card">
+          <div class="yt-thumbnail-wrapper">
+            <div style="width:100%; height:100%; background:linear-gradient(135deg, #1E1B4B, #4338CA); display:flex; align-items:center; justify-content:center; color:#A5B4FC; font-weight:800; font-size:18px;">
+              💻 FULLSTACK KODING 2026
+            </div>
+            <span class="yt-duration-badge">24:15</span>
           </div>
-          <span style="font-size:0.78rem; font-family:var(--font-mono); color:var(--accent-emerald);" id="activeTenantStatusText">
-            🟢 CONTEXT: USER A (KAMAR 101)
-          </span>
-        </div>
-
-        <!-- Tenant Switcher Pills -->
-        <div style="display:flex; gap:10px; margin-bottom:18px; flex-wrap:wrap;">
-          <button onclick="switchTenantContext('tenant_01')" id="btnTenant01" class="tenant-btn-pill active">
-            🏢 User A: Toko Sembako Berkah (Kamar 101)
-          </button>
-          <button onclick="switchTenantContext('tenant_02')" id="btnTenant02" class="tenant-btn-pill">
-            🌸 User B: Hijab Fashion Store (Kamar 102)
-          </button>
-        </div>
-
-        <!-- Input & Terminal Outputs -->
-        <div style="display:grid; grid-template-columns: 1fr 1.2fr; gap:16px;" class="grid-2">
-          <div>
-            <label style="display:block; font-size:0.8rem; font-weight:600; color:var(--text-muted); margin-bottom:6px;" id="simInputLabel">Input Chat WA Pembeli User A:</label>
-            <textarea id="simWaMessage" style="width:100%; height:90px; padding:12px; background:var(--bg-inner); border:1px solid var(--hairline-border); border-radius:10px; color:#FFF; font-family:var(--font-mono); font-size:0.82rem; outline:none;" spellcheck="false">Pesen beras rojolele 5 karung, minyak bimoli 2L 2 pouch</textarea>
-            
-            <button onclick="runMultiTenantAgent()" id="btnRunAgent" class="bento-btn bento-btn-primary" style="width:100%; margin-top:10px; justify-content:center; padding:10px;">
-              ⚡ Execute Isolated AI Node
-            </button>
-          </div>
-
-          <div>
-            <label style="display:block; font-size:0.8rem; font-weight:600; color:var(--text-muted); margin-bottom:6px;">Hasil Balasan WA Agent (Terisolasi):</label>
-            <div class="bento-terminal">
-              <pre id="agentWaReplyText" style="white-space:pre-wrap; margin:0;">Pilih User A atau User B di atas, lalu klik "Execute Isolated AI Node" untuk melihat bukti data terisolasi...</pre>
+          <div class="yt-video-info">
+            <div class="yt-channel-avatar" style="background:#4F46E5;">T</div>
+            <div class="yt-video-details">
+              <h3 class="yt-video-title">Belajar Koding Web Fullstack Dari Nol Sampai Mahir 2026 (HTML, CSS, JS, Node.js)</h3>
+              <div class="yt-channel-name">TeknoID Studio ✓</div>
+              <div class="yt-video-views">1,4 Jt x ditonton • 3 hari yang lalu</div>
             </div>
           </div>
         </div>
+
+        <!-- Video Card 2 -->
+        <div class="yt-video-card">
+          <div class="yt-thumbnail-wrapper">
+            <div style="width:100%; height:100%; background:linear-gradient(135deg, #064E3B, #047857); display:flex; align-items:center; justify-content:center; color:#6EE7B7; font-weight:800; font-size:18px;">
+              🤖 AI AGENT & N8N TUTORIAL
+            </div>
+            <span class="yt-duration-badge">18:40</span>
+          </div>
+          <div class="yt-video-info">
+            <div class="yt-channel-avatar" style="background:#059669;">K</div>
+            <div class="yt-video-details">
+              <h3 class="yt-video-title">Cara Kerja AI Agent & n8n Automation Untuk Otomasi WhatsApp Toko UMKM</h3>
+              <div class="yt-channel-name">Kodemik Studio ✓</div>
+              <div class="yt-video-views">850 Rb x ditonton • 1 minggu yang lalu</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Video Card 3 -->
+        <div class="yt-video-card">
+          <div class="yt-thumbnail-wrapper">
+            <div style="width:100%; height:100%; background:linear-gradient(135deg, #78350F, #B45309); display:flex; align-items:center; justify-content:center; color:#FDE68A; font-weight:800; font-size:18px;">
+              🚀 RAHASIA SAAS UNICORN
+            </div>
+            <span class="yt-duration-badge">15:02</span>
+          </div>
+          <div class="yt-video-info">
+            <div class="yt-channel-avatar" style="background:#D97706;">B</div>
+            <div class="yt-video-details">
+              <h3 class="yt-video-title">Kisah Sukses Membangun Bisnis Software SaaS Dari Garasi Rumah Sampai Triliunan</h3>
+              <div class="yt-channel-name">BisnisDigital ID ✓</div>
+              <div class="yt-video-views">2,1 Jt x ditonton • 2 minggu yang lalu</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Video Card 4 -->
+        <div class="yt-video-card">
+          <div class="yt-thumbnail-wrapper">
+            <div style="width:100%; height:100%; background:linear-gradient(135deg, #581C87, #7E22CE); display:flex; align-items:center; justify-content:center; color:#E9D5FF; font-weight:800; font-size:18px;">
+              🎵 LO-FI MUSIK SANTAI 24/7
+            </div>
+            <span class="yt-duration-badge">LIVE</span>
+          </div>
+          <div class="yt-video-info">
+            <div class="yt-channel-avatar" style="background:#9333EA;">L</div>
+            <div class="yt-video-details">
+              <h3 class="yt-video-title">Koleksi Musik Lo-Fi Chill Beats Untuk Kerja, Koding & Belajar 24/7 Non-Stop</h3>
+              <div class="yt-channel-name">Lofi Vibes ID ✓</div>
+              <div class="yt-video-views">12 Rb menonton sekarang</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Video Card 5 -->
+        <div class="yt-video-card">
+          <div class="yt-thumbnail-wrapper">
+            <div style="width:100%; height:100%; background:linear-gradient(135deg, #831843, #BE185D); display:flex; align-items:center; justify-content:center; color:#FBCFE8; font-weight:800; font-size:18px;">
+              💻 REVIEW LAPTOP TOP 2026
+            </div>
+            <span class="yt-duration-badge">12:10</span>
+          </div>
+          <div class="yt-video-info">
+            <div class="yt-channel-avatar" style="background:#E11D48;">G</div>
+            <div class="yt-video-details">
+              <h3 class="yt-video-title">Review Laptop Koding & Editing Paling Murah & Kencang Tahun 2026!</h3>
+              <div class="yt-channel-name">GadgetIn Replica ✓</div>
+              <div class="yt-video-views">3,5 Jt x ditonton • 5 hari yang lalu</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Video Card 6 -->
+        <div class="yt-video-card">
+          <div class="yt-thumbnail-wrapper">
+            <div style="width:100%; height:100%; background:linear-gradient(135deg, #134E4A, #0F766E); display:flex; align-items:center; justify-content:center; color:#99F6E4; font-weight:800; font-size:18px;">
+              🎨 FIGMA TO TAILWIND UI
+            </div>
+            <span class="yt-duration-badge">31:05</span>
+          </div>
+          <div class="yt-video-info">
+            <div class="yt-channel-avatar" style="background:#0D9488;">D</div>
+            <div class="yt-video-details">
+              <h3 class="yt-video-title">Mengubah Desain Figma Menjadi Web Kodingan Asli Menggunakan HTML & CSS</h3>
+              <div class="yt-channel-name">DesignPro Indonesia ✓</div>
+              <div class="yt-video-views">420 Rb x ditonton • 4 hari yang lalu</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Video Card 7 -->
+        <div class="yt-video-card">
+          <div class="yt-thumbnail-wrapper">
+            <div style="width:100%; height:100%; background:linear-gradient(135deg, #312E81, #4338CA); display:flex; align-items:center; justify-content:center; color:#C7D2FE; font-weight:800; font-size:18px;">
+              ⚡ TIPS STRUKTUR DATA
+            </div>
+            <span class="yt-duration-badge">14:50</span>
+          </div>
+          <div class="yt-video-info">
+            <div class="yt-channel-avatar" style="background:#4338CA;">C</div>
+            <div class="yt-video-details">
+              <h3 class="yt-video-title">Trik Cepat Menguasai Algoritma & Struktur Data Untuk Wawancara Kerja Software Engineer</h3>
+              <div class="yt-channel-name">CodeMaster ID ✓</div>
+              <div class="yt-video-views">670 Rb x ditonton • 1 bulan yang lalu</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Video Card 8 -->
+        <div class="yt-video-card">
+          <div class="yt-thumbnail-wrapper">
+            <div style="width:100%; height:100%; background:linear-gradient(135deg, #701A75, #A21CAF); display:flex; align-items:center; justify-content:center; color:#F5D0FE; font-weight:800; font-size:18px;">
+              🚀 TIP PERJALANAN STARTUP
+            </div>
+            <span class="yt-duration-badge">22:30</span>
+          </div>
+          <div class="yt-video-info">
+            <div class="yt-channel-avatar" style="background:#C026D3;">F</div>
+            <div class="yt-video-details">
+              <h3 class="yt-video-title">Tips Mendapatkan Investor Pertama Untuk Startup Aplikasi Android & Web Anda</h3>
+              <div class="yt-channel-name">FounderTalks ID ✓</div>
+              <div class="yt-video-views">980 Rb x ditonton • 2 minggu yang lalu</div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
-      <!-- BENTO TILE 2 (SPAN 1): SYSTEM METRICS & SECURITY TILE -->
-      <div class="bento-item" style="display:flex; flex-direction:column; justify-content:space-between;">
-        <div>
-          <span class="bento-badge" style="margin-bottom:10px;">BENTO TILE 02</span>
-          <h3 style="font-size:1.15rem; font-weight:800; color:#FFF; margin-bottom:12px;">🛡️ Penyekatan 100% Mandiri</h3>
-          <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:20px;">
-            Setiap data stok, transaksi, & log AI terisolasi ketat ber-label Tenant ID.
-          </p>
-        </div>
+    </main>
 
-        <div style="display:flex; flex-direction:column; gap:12px;">
-          <div style="background:var(--bg-inner); border:1px solid var(--hairline-border); padding:12px 16px; border-radius:12px; display:flex; justify-content:space-between; align-items:center;">
-            <span style="font-size:0.82rem; color:var(--text-muted);">Isolasi Data User</span>
-            <span style="font-family:var(--font-mono); font-weight:800; color:var(--accent-emerald);">100% Mandiri</span>
-          </div>
-          <div style="background:var(--bg-inner); border:1px solid var(--hairline-border); padding:12px 16px; border-radius:12px; display:flex; justify-content:space-between; align-items:center;">
-            <span style="font-size:0.82rem; color:var(--text-muted);">AI Latency</span>
-            <span style="font-family:var(--font-mono); font-weight:800; color:var(--accent-cyan);">0.15 Detik</span>
-          </div>
-          <div style="background:var(--bg-inner); border:1px solid var(--hairline-border); padding:12px 16px; border-radius:12px; display:flex; justify-content:space-between; align-items:center;">
-            <span style="font-size:0.82rem; color:var(--text-muted);">Worker Queue</span>
-            <span style="font-family:var(--font-mono); font-weight:800; color:var(--primary-light);">Redis Active</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- BENTO TILE 3 (SPAN 1): 1-CLICK WORKFLOW TEMPLATES -->
-      <div class="bento-item">
-        <span class="bento-badge" style="margin-bottom:10px;">BENTO TILE 03</span>
-        <h3 style="font-size:1.15rem; font-weight:800; color:#FFF; margin-bottom:10px;">⚡ Katalog Template AI</h3>
-        <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:16px;">Aktifkan workflow otomasi tanpa perlu koding.</p>
-
-        <div style="display:flex; flex-direction:column; gap:10px;">
-          <div style="background:var(--bg-inner); border:1px solid var(--hairline-border); padding:10px 14px; border-radius:10px; display:flex; justify-content:space-between; align-items:center;">
-            <span style="font-size:0.84rem; color:#FFF;">📲 WA Sales & Auto Invoice</span>
-            <button onclick="alert('Template WA Sales Berhasil Diaktifkan!')" class="bento-btn bento-btn-primary" style="padding:4px 10px; font-size:0.75rem;">Aktifkan</button>
-          </div>
-          <div style="background:var(--bg-inner); border:1px solid var(--hairline-border); padding:10px 14px; border-radius:10px; display:flex; justify-content:space-between; align-items:center;">
-            <span style="font-size:0.84rem; color:#FFF;">🤖 AI Customer Support</span>
-            <button onclick="alert('Template AI Customer Support Berhasil Diaktifkan!')" class="bento-btn bento-btn-primary" style="padding:4px 10px; font-size:0.75rem;">Aktifkan</button>
-          </div>
-          <div style="background:var(--bg-inner); border:1px solid var(--hairline-border); padding:10px 14px; border-radius:10px; display:flex; justify-content:space-between; align-items:center;">
-            <span style="font-size:0.84rem; color:#FFF;">📊 Follow-up & Link QRIS</span>
-            <button onclick="alert('Template Follow-up Berhasil Diaktifkan!')" class="bento-btn bento-btn-primary" style="padding:4px 10px; font-size:0.75rem;">Aktifkan</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- BENTO TILE 4 (SPAN 2): ISOLATED DATA MATRIX TABLE -->
-      <div class="bento-item bento-span-2">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-          <div>
-            <span class="bento-badge" style="margin-bottom:6px;">BENTO TILE 04</span>
-            <h3 style="font-size:1.15rem; font-weight:800; color:#FFF; margin:0;" id="tableStockTitle">📋 Data Stok Terisolasi (Kamar 101 - User A)</h3>
-          </div>
-          <button onclick="fetchTenantInventory()" class="bento-btn bento-btn-ghost" style="padding:4px 10px; font-size:0.78rem;">↻ Refresh</button>
-        </div>
-
-        <div style="background:var(--bg-inner); border:1px solid var(--hairline-border); border-radius:var(--radius-inner); overflow:hidden;">
-          <table class="bento-table">
-            <thead>
-              <tr>
-                <th>SKU</th>
-                <th>Nama Produk</th>
-                <th>Harga Jual</th>
-                <th>Status Stok</th>
-              </tr>
-            </thead>
-            <tbody id="inventoryTableMain">
-              <!-- Loaded via JS -->
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- BENTO TILE 5 (SPAN 3): ENTERPRISE PRICING BENTO GRID -->
-      <div class="bento-item bento-span-3" style="text-align:center;">
-        <span class="bento-badge" style="margin-bottom:10px;">BENTO TILE 05 — PRICING SAAS</span>
-        <h3 style="font-size:1.5rem; font-weight:800; color:#FFF; margin-bottom:20px;">Paket Sewa Middleware AI SaaS</h3>
-
-        <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:16px;" class="grid-3">
-          <div style="background:var(--bg-inner); border:1px solid var(--hairline-border); padding:20px; border-radius:16px; text-align:left;">
-            <span style="font-size:0.78rem; color:var(--text-muted); font-weight:700;">UMKM PEMULA</span>
-            <h4 style="margin:4px 0; font-size:1.2rem;">Paket Pemula</h4>
-            <div style="font-size:1.6rem; font-weight:800; color:var(--primary-light); margin-bottom:12px;">Rp 149.000 <span style="font-size:0.8rem; color:var(--text-muted); font-weight:400;">/bln</span></div>
-            <button onclick="alert('Paket Dipilih!')" class="bento-btn bento-btn-ghost" style="width:100%; justify-content:center; font-size:0.8rem;">Pilih Pemula</button>
-          </div>
-
-          <div style="background:linear-gradient(180deg, rgba(99,102,241,0.15), var(--bg-inner)); border:1px solid var(--primary); padding:20px; border-radius:16px; text-align:left;">
-            <span style="font-size:0.78rem; color:var(--accent-gold); font-weight:800;">🔥 POPULER</span>
-            <h4 style="margin:4px 0; font-size:1.2rem;">Paket Bisnis Grosir</h4>
-            <div style="font-size:1.6rem; font-weight:800; color:#FFF; margin-bottom:12px;">Rp 299.000 <span style="font-size:0.8rem; color:var(--text-muted); font-weight:400;">/bln</span></div>
-            <button onclick="alert('Paket Dipilih!')" class="bento-btn bento-btn-primary" style="width:100%; justify-content:center; font-size:0.8rem;">Pilih Bisnis</button>
-          </div>
-
-          <div style="background:var(--bg-inner); border:1px solid var(--hairline-border); padding:20px; border-radius:16px; text-align:left;">
-            <span style="font-size:0.78rem; color:var(--accent-cyan); font-weight:700;">DISTRIBUTOR RAKSASA</span>
-            <h4 style="margin:4px 0; font-size:1.2rem;">Paket Enterprise</h4>
-            <div style="font-size:1.6rem; font-weight:800; color:var(--accent-cyan); margin-bottom:12px;">Rp 599.000 <span style="font-size:0.8rem; color:var(--text-muted); font-weight:400;">/bln</span></div>
-            <button onclick="alert('Paket Dipilih!')" class="bento-btn bento-btn-ghost" style="width:100%; justify-content:center; font-size:0.8rem;">Pilih Enterprise</button>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </main>
-
-  <!-- Merchant Portal Modal -->
-  <div class="modal-backdrop" id="merchantModal">
-    <div class="modal-bento-card">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
-        <h3 style="font-size:1.2rem; font-weight:800; margin:0;">📦 Form Tambah Stok Barang</h3>
-        <button onclick="closeMerchantModal()" style="background:none; border:none; color:#fff; font-size:1.4rem; cursor:pointer;">✕</button>
-      </div>
-
-      <form id="addStockForm" onsubmit="handleAddNewStock(event)">
-        <div style="margin-bottom:12px;">
-          <label style="display:block; font-size:0.8rem; color:var(--text-muted); margin-bottom:4px;">Nama Produk Barang</label>
-          <input type="text" id="stockName" style="width:100%; padding:10px; background:var(--bg-inner); border:1px solid var(--hairline-border); border-radius:8px; color:#FFF;" placeholder="Contoh: Barang Baru" required />
-        </div>
-        <div style="margin-bottom:12px;">
-          <label style="display:block; font-size:0.8rem; color:var(--text-muted); margin-bottom:4px;">Harga Jual (Rp)</label>
-          <input type="number" id="stockPrice" style="width:100%; padding:10px; background:var(--bg-inner); border:1px solid var(--hairline-border); border-radius:8px; color:#FFF;" placeholder="50000" required />
-        </div>
-        <div style="margin-bottom:12px;">
-          <label style="display:block; font-size:0.8rem; color:var(--text-muted); margin-bottom:4px;">Jumlah Stok Gudang</label>
-          <input type="number" id="stockQty" style="width:100%; padding:10px; background:var(--bg-inner); border:1px solid var(--hairline-border); border-radius:8px; color:#FFF;" placeholder="50" required />
-        </div>
-        <div style="margin-bottom:14px;">
-          <label style="display:block; font-size:0.8rem; color:var(--text-muted); margin-bottom:4px;">Satuan Unit (pcs/karung/dus/kg)</label>
-          <input type="text" id="stockUnit" style="width:100%; padding:10px; background:var(--bg-inner); border:1px solid var(--hairline-border); border-radius:8px; color:#FFF;" placeholder="pcs" required />
-        </div>
-        <button type="submit" class="bento-btn bento-btn-primary" style="width:100%; justify-content:center;">
-          + Simpan Stok Ke Kamar Toko
-        </button>
-      </form>
-    </div>
   </div>
 
-  <footer style="padding:30px 0; border-top:1px solid var(--hairline-border); text-align:center; font-size:0.85rem; color:var(--text-muted);">
-    © 2026 Codemik AI — Apple Bento Grid Multi-Tenant AI Platform (https://kodemik.com)
-  </footer>
-
-  <script>
-    let activeTenantId = 'tenant_01';
-
-    function openMerchantModal() {
-      document.getElementById('merchantModal').classList.add('active');
-    }
-    function closeMerchantModal() {
-      document.getElementById('merchantModal').classList.remove('active');
-    }
-
-    function switchTenantContext(tid) {
-      activeTenantId = tid;
-      document.getElementById('btnTenant01').classList.toggle('active', tid === 'tenant_01');
-      document.getElementById('btnTenant02').classList.toggle('active', tid === 'tenant_02');
-
-      const simInput = document.getElementById('simWaMessage');
-
-      if (tid === 'tenant_01') {
-        document.getElementById('activeTenantStatusText').textContent = '🟢 CONTEXT: USER A (KAMAR 101)';
-        simInput.value = "Pesen beras rojolele 5 karung, minyak bimoli 2L 2 pouch";
-        document.getElementById('tableStockTitle').textContent = '📋 Data Stok Terisolasi (Kamar 101 - User A)';
-      } else {
-        document.getElementById('activeTenantStatusText').textContent = '🌸 CONTEXT: USER B (KAMAR 102)';
-        simInput.value = "Halo sis pesen Hijab Pashmina Silk 2 pcs, Gamis Brokat 1 pcs";
-        document.getElementById('tableStockTitle').textContent = '📋 Data Stok Terisolasi (Kamar 102 - User B)';
-      }
-
-      fetchTenantInventory();
-      runMultiTenantAgent();
-    }
-
-    async function runMultiTenantAgent() {
-      const msg = document.getElementById('simWaMessage').value.trim();
-      const btn = document.getElementById('btnRunAgent');
-      if (!msg) return alert('Masukkan pesan WA dulu!');
-
-      btn.disabled = true;
-      btn.textContent = '⚡ Executing Node...';
-
-      try {
-        const res = await fetch('/api/ai/auto-agent', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ messageText: msg, tenantId: activeTenantId })
-        });
-        const data = await res.json();
-        btn.disabled = false;
-        btn.textContent = '⚡ Execute Isolated AI Node';
-
-        if (data.success) {
-          document.getElementById('agentWaReplyText').textContent = data.agentOutput.autoWaReplyText;
-          fetchTenantInventory();
-        }
-      } catch (e) {
-        btn.disabled = false;
-        btn.textContent = '⚡ Execute Isolated AI Node';
-        alert('Gagal memproses node: ' + e.message);
-      }
-    }
-
-    async function fetchTenantInventory() {
-      try {
-        const res = await fetch(`/api/inventory?tenantId=${activeTenantId}`);
-        const data = await res.json();
-        if (data.success) {
-          const tbody = document.getElementById('inventoryTableMain');
-          tbody.innerHTML = '';
-          data.inventory.forEach(item => {
-            const tr = document.createElement('tr');
-            let statusBadge = `<span style="color:#10B981; font-weight:700;">✅ Ready (${item.stock} ${item.unit})</span>`;
-            if (item.stock === 0) {
-              statusBadge = `<span style="color:#EF4444; font-weight:700;">❌ STOK HABIS (0)</span>`;
-            } else if (item.stock < 10) {
-              statusBadge = `<span style="color:#F59E0B; font-weight:700;">⚠️ MENIPIS (${item.stock})</span>`;
-            }
-
-            tr.innerHTML = `
-              <td><code>${item.sku}</code></td>
-              <td><strong>${item.name}</strong></td>
-              <td>Rp ${item.price.toLocaleString('id-ID')}</td>
-              <td>${statusBadge}</td>
-            `;
-            tbody.appendChild(tr);
-          });
-        }
-      } catch(e) {}
-    }
-
-    async function handleAddNewStock(e) {
-      e.preventDefault();
-      const name = document.getElementById('stockName').value.trim();
-      const price = document.getElementById('stockPrice').value;
-      const stock = document.getElementById('stockQty').value;
-      const unit = document.getElementById('stockUnit').value.trim();
-
-      try {
-        const res = await fetch('/api/inventory/add', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, price, stock, unit, tenantId: activeTenantId })
-        });
-        const data = await res.json();
-        if (data.success) {
-          alert(data.message);
-          document.getElementById('addStockForm').reset();
-          closeMerchantModal();
-          fetchTenantInventory();
-        }
-      } catch (err) {
-        alert('Gagal menambah stok: ' + err.message);
-      }
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-      fetchTenantInventory();
-      runMultiTenantAgent();
-    });
-  </script>
 </body>
 </html>

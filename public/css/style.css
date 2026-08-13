@@ -1,188 +1,235 @@
 /* =========================================================================
-   CODEMIK AI — Apple & Stripe Bento Grid Design System (Ultra-Premium SaaS)
-   OLED Pure Black (#030508), Asymmetric Bento Containers & Hairline Glow Borders
+   YOUTUBE CLONE — Authentic Official Dark Mode Design System
+   Exact Colors: #0F0F0F (BG), #212121 (Cards/Search), #FF0000 (YouTube Red)
    ========================================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
 :root {
-  --bg-oled: #030508;
-  --bg-bento: rgba(13, 17, 26, 0.75);
-  --bg-bento-hover: rgba(22, 29, 44, 0.85);
-  --bg-inner: #070B12;
-
-  --primary: #6366F1;
-  --primary-glow: rgba(99, 102, 241, 0.35);
-
-  --accent-cyan: #06B6D4;
-  --accent-emerald: #10B981;
-  --accent-gold: #F59E0B;
-  --accent-rose: #F43F5E;
-
-  --text-white: #FFFFFF;
-  --text-muted: #94A3B8;
-  --text-dim: #64748B;
-
-  --hairline-border: rgba(255, 255, 255, 0.08);
-  --hairline-border-hover: rgba(99, 102, 241, 0.4);
-
-  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-
-  --radius-bento: 24px;
-  --radius-inner: 14px;
-  --radius-pill: 30px;
-
-  --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  --yt-bg: #0f0f0f;
+  --yt-surface: #212121;
+  --yt-hover: #272727;
+  --yt-active: #3f3f3f;
+  --yt-border: rgba(255, 255, 255, 0.1);
+  --yt-red: #ff0000;
+  --yt-text-primary: #f1f1f1;
+  --yt-text-secondary: #aaaaaa;
+  --font-yt: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: var(--font-sans);
-  background-color: var(--bg-oled);
-  color: var(--text-white);
-  line-height: 1.6;
-  font-size: 14.5px;
-  -webkit-font-smoothing: antialiased;
-  background-image: 
-    radial-gradient(ellipse 70% 45% at 50% -10%, rgba(99, 102, 241, 0.18), transparent 100%),
-    radial-gradient(circle at 85% 70%, rgba(6, 182, 212, 0.06), transparent 40%);
-  background-attachment: fixed;
+html, body {
+  background-color: var(--yt-bg);
+  color: var(--yt-text-primary);
+  font-family: var(--font-yt);
+  font-size: 14px;
+  overflow-x: hidden;
 }
 
-/* App Container */
-.bento-container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
-
-/* Bento Top Header Navbar */
-.bento-nav {
+/* YouTube Top Navigation Bar */
+.yt-header {
   position: sticky; top: 0; z-index: 1000;
-  background: rgba(3, 5, 8, 0.85);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--hairline-border);
-  padding: 16px 0;
+  background-color: var(--yt-bg);
+  height: 56px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 16px;
 }
-.bento-nav-flex { display: flex; justify-content: space-between; align-items: center; }
 
-.bento-logo {
-  display: flex; align-items: center; gap: 12px; text-decoration: none;
+.yt-brand-left {
+  display: flex; align-items: center; gap: 16px;
 }
-.bento-logo-icon {
-  width: 38px; height: 38px; border-radius: 12px;
-  background: linear-gradient(135deg, var(--primary), var(--accent-cyan));
+
+.yt-icon-btn {
+  background: none; border: none; color: var(--yt-text-primary);
+  width: 40px; height: 40px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  font-weight: 800; font-size: 1.2rem; color: #FFF;
-  box-shadow: 0 0 25px rgba(99, 102, 241, 0.4);
+  cursor: pointer; font-size: 18px; transition: background 0.2s;
 }
-.bento-logo-text { font-size: 1.25rem; font-weight: 800; color: #FFF; letter-spacing: -0.5px; }
+.yt-icon-btn:hover { background: var(--yt-hover); }
 
-/* Bento Grid System Layout */
-.bento-grid {
+.yt-logo {
+  display: flex; align-items: center; gap: 4px; text-decoration: none; color: #fff;
+  font-weight: 700; font-size: 18px; letter-spacing: -0.5px;
+}
+
+.yt-logo-badge {
+  font-size: 10px; color: var(--yt-text-secondary); margin-left: 2px; font-weight: 400; align-self: flex-start;
+}
+
+/* Center Search Area */
+.yt-search-center {
+  display: flex; align-items: center; gap: 12px; max-width: 720px; width: 100%;
+}
+
+.yt-search-box {
+  display: flex; align-items: center; flex: 1;
+  background: #121212; border: 1px solid #303030; border-radius: 40px 0 0 40px;
+  padding: 0 16px; height: 40px;
+}
+
+.yt-search-input {
+  width: 100%; background: none; border: none; color: #fff;
+  font-size: 16px; outline: none; font-family: var(--font-yt);
+}
+
+.yt-search-btn {
+  background: #222222; border: 1px solid #303030; border-left: none;
+  border-radius: 0 40px 40px 0; width: 64px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; cursor: pointer; font-size: 18px;
+}
+.yt-search-btn:hover { background: var(--yt-hover); }
+
+.yt-mic-btn {
+  background: #181818; border: none; color: #fff;
+  width: 40px; height: 40px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 16px;
+}
+.yt-mic-btn:hover { background: var(--yt-hover); }
+
+/* Right User Controls */
+.yt-controls-right {
+  display: flex; align-items: center; gap: 8px;
+}
+
+.yt-create-btn {
+  display: flex; align-items: center; gap: 6px;
+  background: #272727; border: none; color: #fff;
+  padding: 8px 14px; border-radius: 20px; font-weight: 500; font-size: 14px;
+  cursor: pointer;
+}
+.yt-create-btn:hover { background: #3f3f3f; }
+
+.yt-avatar {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: linear-gradient(135deg, #FF0000, #990000);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; color: #fff; font-size: 14px; cursor: pointer;
+}
+
+/* Main Layout Grid */
+.yt-main-layout {
+  display: flex; min-height: calc(100vh - 56px);
+}
+
+/* Left Sidebar Navigation */
+.yt-sidebar {
+  width: 240px; background: var(--yt-bg);
+  padding: 12px; display: flex; flex-direction: column; gap: 4px;
+  position: sticky; top: 56px; height: calc(100vh - 56px); overflow-y: auto;
+  flex-shrink: 0;
+}
+
+.yt-nav-item {
+  display: flex; align-items: center; gap: 24px;
+  padding: 10px 12px; border-radius: 10px;
+  color: var(--yt-text-primary); text-decoration: none;
+  font-size: 14px; font-weight: 400; cursor: pointer; transition: background 0.15s;
+}
+.yt-nav-item:hover { background: var(--yt-hover); }
+.yt-nav-item.active {
+  background: var(--yt-hover); font-weight: 700;
+}
+.yt-nav-icon { font-size: 20px; width: 24px; text-align: center; }
+
+.yt-divider {
+  height: 1px; background: var(--yt-border); margin: 12px 0;
+}
+
+/* Right Content Feed */
+.yt-content-feed {
+  flex: 1; padding: 0 24px 40px; overflow-x: hidden;
+}
+
+/* Horizontal Recommendation Chips */
+.yt-chips-bar {
+  position: sticky; top: 56px; z-index: 900; background: var(--yt-bg);
+  padding: 12px 0; display: flex; gap: 12px; overflow-x: auto;
+  scrollbar-width: none;
+}
+.yt-chips-bar::-webkit-scrollbar { display: none; }
+
+.yt-chip {
+  background: #272727; color: var(--yt-text-primary); border: none;
+  padding: 6px 12px; border-radius: 8px; font-size: 14px; font-weight: 500;
+  cursor: pointer; white-space: nowrap; transition: background 0.2s;
+}
+.yt-chip:hover { background: #3f3f3f; }
+.yt-chip.active {
+  background: #f1f1f1; color: #0f0f0f; font-weight: 600;
+}
+
+/* Video Grid Layout */
+.yt-video-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  margin-top: 30px;
-  margin-bottom: 60px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px 16px; margin-top: 16px;
 }
 
-.bento-item {
-  background: var(--bg-bento);
-  backdrop-filter: blur(16px);
-  border: 1px solid var(--hairline-border);
-  border-radius: var(--radius-bento);
-  padding: 28px;
-  position: relative;
-  overflow: hidden;
-  transition: var(--transition);
-}
-.bento-item:hover {
-  background: var(--bg-bento-hover);
-  border-color: var(--hairline-border-hover);
-  transform: translateY(-4px);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(99, 102, 241, 0.15);
+/* Video Card Styling */
+.yt-video-card {
+  display: flex; flex-direction: column; cursor: pointer;
 }
 
-/* Bento Column Spans */
-.bento-span-2 { grid-column: span 2; }
-.bento-span-3 { grid-column: span 3; }
-
-/* Bento Cards Elements */
-.bento-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 5px 14px; border-radius: var(--radius-pill);
-  background: rgba(99, 102, 241, 0.12); border: 1px solid rgba(99, 102, 241, 0.3);
-  color: #A5B4FC; font-size: 0.78rem; font-weight: 700; font-family: var(--font-mono);
+.yt-thumbnail-wrapper {
+  position: relative; width: 100%; aspect-ratio: 16 / 9;
+  border-radius: 12px; overflow: hidden; background: #212121;
+}
+.yt-thumbnail-img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.2s;
+}
+.yt-video-card:hover .yt-thumbnail-img {
+  transform: scale(1.03);
 }
 
-.tenant-btn-pill {
-  background: rgba(255, 255, 255, 0.04); border: 1px solid var(--hairline-border);
-  color: var(--text-muted); padding: 8px 16px; border-radius: 10px;
-  font-weight: 700; font-size: 0.84rem; cursor: pointer; transition: var(--transition);
-}
-.tenant-btn-pill.active {
-  background: linear-gradient(135deg, var(--primary), #4F46E5);
-  color: #FFF; border-color: transparent;
-  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
+.yt-duration-badge {
+  position: absolute; bottom: 8px; right: 8px;
+  background: rgba(0, 0, 0, 0.8); color: #fff;
+  padding: 3px 6px; border-radius: 4px; font-size: 12px;
+  font-weight: 500; font-family: var(--font-yt);
 }
 
-/* Terminal & Tables Inside Bento */
-.bento-terminal {
-  background: var(--bg-inner); border: 1px solid var(--hairline-border);
-  border-radius: var(--radius-inner); padding: 18px;
-  font-family: var(--font-mono); font-size: 0.84rem; color: #38BDF8;
-  min-height: 200px; max-height: 260px; overflow-y: auto;
+/* Video Details Meta */
+.yt-video-info {
+  display: flex; gap: 12px; margin-top: 12px;
 }
 
-.bento-table {
-  width: 100%; border-collapse: collapse; text-align: left; font-size: 0.86rem;
-}
-.bento-table th {
-  background: rgba(255, 255, 255, 0.03); padding: 12px 16px; color: var(--text-muted);
-  font-weight: 700; border-bottom: 1px solid var(--hairline-border);
-}
-.bento-table td {
-  padding: 12px 16px; border-bottom: 1px solid var(--hairline-border); color: var(--text-white);
-}
-.bento-table tr:last-child td { border-bottom: none; }
-
-/* Custom Buttons */
-.bento-btn {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 10px 20px; border-radius: 10px; font-weight: 700;
-  font-size: 0.88rem; cursor: pointer; border: none; transition: var(--transition);
-  text-decoration: none;
-}
-.bento-btn-primary {
-  background: linear-gradient(135deg, var(--primary), #4F46E5);
-  color: #FFF; box-shadow: 0 4px 20px var(--primary-glow);
-}
-.bento-btn-primary:hover {
-  transform: translateY(-2px); box-shadow: 0 8px 30px rgba(99, 102, 241, 0.5);
+.yt-channel-avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  flex-shrink: 0; background: #333;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; color: #fff; font-size: 14px;
 }
 
-.bento-btn-ghost {
-  background: rgba(255, 255, 255, 0.05); border: 1px solid var(--hairline-border);
-  color: var(--text-white);
-}
-.bento-btn-ghost:hover {
-  background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.2);
+.yt-video-details {
+  display: flex; flex-direction: column; gap: 4px; overflow: hidden;
 }
 
-/* Modals */
-.modal-backdrop {
-  position: fixed; inset: 0; z-index: 2000; background: rgba(0, 0, 0, 0.82);
-  backdrop-filter: blur(12px); display: none; align-items: center; justify-content: center; padding: 20px;
-}
-.modal-backdrop.active { display: flex; }
-.modal-bento-card {
-  background: #0B0F19; border: 1px solid var(--hairline-border);
-  border-radius: var(--radius-bento); padding: 32px; width: 100%; max-width: 520px;
-  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.9);
+.yt-video-title {
+  font-size: 16px; font-weight: 600; color: var(--yt-text-primary);
+  line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; overflow: hidden;
 }
 
-/* Responsive Media Queries */
-@media (max-width: 960px) {
-  .bento-grid { grid-template-columns: 1fr; }
-  .bento-span-2, .bento-span-3 { grid-column: span 1; }
+.yt-channel-name {
+  font-size: 12px; color: var(--yt-text-secondary); margin-top: 2px;
+  display: flex; align-items: center; gap: 4px;
+}
+
+.yt-video-views {
+  font-size: 12px; color: var(--yt-text-secondary);
+}
+
+/* Responsive Handling */
+@media (max-width: 1100px) {
+  .yt-sidebar { width: 72px; padding: 4px; }
+  .yt-nav-item { flex-direction: column; gap: 6px; font-size: 10px; padding: 12px 4px; text-align: center; }
+  .yt-nav-item span:not(.yt-nav-icon) { display: block; }
+}
+
+@media (max-width: 650px) {
+  .yt-sidebar { display: none; }
+  .yt-search-center { max-width: 200px; }
 }

@@ -1,42 +1,48 @@
 /* =========================================================================
-   CODEMIK — Modern SaaS IT Education Design System (Original Visual Identity)
-   Deep Dark Navy (#0B0F19), Electric Violet (#6366F1), Hairline Borders & Clean Whitespace
+   CODEMIK — Official Light Theme SaaS IT Education Platform Design System
+   Palette: #F8FAFC (BG), #FFFFFF (Surface), #0F172A (Text), #2563EB (Primary Blue)
    ========================================================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 :root {
-  --bg-dark: #0B0F19;
-  --bg-surface: #111827;
-  --bg-card: rgba(31, 41, 55, 0.65);
-  --bg-card-hover: rgba(45, 55, 72, 0.8);
-  --bg-input: #070A12;
+  --bg-main: #F8FAFC;
+  --bg-surface: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-subtle: #F1F5F9;
+  --bg-input: #F8FAFC;
 
-  --primary: #6366F1;
-  --primary-hover: #4F46E5;
-  --primary-glow: rgba(99, 102, 241, 0.25);
-  
-  --accent-violet: #8B5CF6;
+  --text-primary: #0F172A;
+  --text-secondary: #64748B;
+  --text-muted: #94A3B8;
+
+  --primary-blue: #2563EB;
+  --blue-hover: #1D4ED8;
+  --blue-light: #EFF6FF;
+  --primary-glow: rgba(37, 99, 235, 0.15);
+
   --accent-cyan: #06B6D4;
-  --accent-emerald: #10B981;
-  --accent-amber: #F59E0B;
-  --accent-rose: #F43F5E;
+  --border-color: #E2E8F0;
+  --border-hover: #CBD5E1;
 
-  --text-main: #F9FAFB;
-  --text-secondary: #9CA3AF;
-  --text-muted: #6B7280;
-
-  --border: rgba(255, 255, 255, 0.08);
-  --border-hover: rgba(99, 102, 241, 0.35);
+  --success: #10B981;
+  --success-bg: #ECFDF5;
+  --amber: #F59E0B;
+  --amber-bg: #FFFBEB;
+  --error: #EF4444;
 
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
   --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
 
-  --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 4px 20px rgba(15, 23, 42, 0.06);
+  --shadow-hover: 0 12px 30px rgba(15, 23, 42, 0.1);
+
+  --transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -44,45 +50,41 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--bg-dark);
-  color: var(--text-main);
-  line-height: 1.6;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  line-height: 1.65;
   font-size: 15px;
   -webkit-font-smoothing: antialiased;
-  background-image: 
-    radial-gradient(ellipse 70% 40% at 50% -10%, rgba(99, 102, 241, 0.14), transparent 100%),
-    radial-gradient(circle at 90% 70%, rgba(139, 92, 246, 0.05), transparent 45%);
-  background-attachment: fixed;
 }
 
 .container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
 
-/* 2. Original Navbar */
+/* 3. Navbar (Light Theme) */
 .navbar {
   position: sticky; top: 0; z-index: 1000;
-  background: rgba(11, 15, 25, 0.85);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
-  padding: 16px 0;
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border-color);
+  padding: 14px 0;
+  box-shadow: var(--shadow-sm);
 }
 .nav-flex { display: flex; justify-content: space-between; align-items: center; }
 
 .brand-wrapper { display: flex; align-items: center; gap: 10px; text-decoration: none; }
 .brand-logo-icon {
   width: 36px; height: 36px; border-radius: 10px;
-  background: linear-gradient(135deg, var(--primary), var(--accent-violet));
+  background: var(--primary-blue);
   display: flex; align-items: center; justify-content: center;
-  font-weight: 800; font-size: 1.15rem; color: #FFF;
-  box-shadow: 0 0 20px rgba(99, 102, 241, 0.35);
+  font-weight: 800; font-size: 1.15rem; color: #FFFFFF;
+  box-shadow: 0 4px 12px var(--primary-glow);
 }
-.brand-name { font-size: 1.25rem; font-weight: 800; color: #FFF; letter-spacing: -0.5px; }
+.brand-name { font-size: 1.25rem; font-weight: 800; color: var(--text-primary); letter-spacing: -0.5px; }
 
 .nav-links { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; }
 .nav-links a {
   color: var(--text-secondary); text-decoration: none; font-weight: 600; font-size: 0.9rem;
   transition: var(--transition); cursor: pointer;
 }
-.nav-links a:hover, .nav-links a.active { color: #FFF; }
+.nav-links a:hover, .nav-links a.active { color: var(--primary-blue); }
 
 /* Buttons System */
 .btn {
@@ -91,68 +93,78 @@ body {
   cursor: pointer; border: none; transition: var(--transition); text-decoration: none;
 }
 .btn-primary {
-  background: var(--primary); color: #FFF;
-  box-shadow: 0 4px 16px var(--primary-glow);
+  background: var(--primary-blue); color: #FFFFFF;
+  box-shadow: 0 4px 14px var(--primary-glow);
 }
 .btn-primary:hover {
-  background: var(--primary-hover); transform: translateY(-1px);
-  box-shadow: 0 6px 24px rgba(99, 102, 241, 0.45);
+  background: var(--blue-hover); transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
 }
 
 .btn-outline {
-  background: transparent; border: 1px solid var(--border); color: var(--text-main);
+  background: transparent; border: 1px solid var(--border-color); color: var(--text-primary);
 }
 .btn-outline:hover {
-  background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.2); color: #FFF;
+  background: var(--bg-subtle); border-color: var(--border-hover); color: var(--primary-blue);
 }
 
 .btn-secondary {
-  background: var(--bg-surface); border: 1px solid var(--border); color: var(--text-main);
+  background: var(--blue-light); color: var(--primary-blue); border: 1px solid rgba(37, 99, 235, 0.15);
 }
-.btn-secondary:hover { background: rgba(255, 255, 255, 0.08); }
+.btn-secondary:hover { background: #DBEAFE; }
 
-/* 3. Homepage Hero Section */
-.hero { padding: 75px 0 50px; text-align: center; }
-.hero h1 { font-size: 3.1rem; font-weight: 800; line-height: 1.18; letter-spacing: -1px; margin-bottom: 16px; }
-.hero p { font-size: 1.1rem; color: var(--text-secondary); max-width: 700px; margin: 0 auto 32px; }
+/* 4. Hero Section */
+.hero { padding: 65px 0 50px; background: var(--bg-main); }
+.hero-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center; }
+
+.hero h1 {
+  font-size: 3rem; font-weight: 800; line-height: 1.18; letter-spacing: -1px;
+  color: var(--text-primary); margin-bottom: 16px;
+}
+.hero p { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 30px; line-height: 1.6; }
 
 .badge-pill {
   display: inline-flex; align-items: center; gap: 8px;
-  padding: 6px 16px; border-radius: 30px;
-  background: rgba(99, 102, 241, 0.12); border: 1px solid rgba(99, 102, 241, 0.3);
-  color: #A5B4FC; font-size: 0.8rem; font-weight: 700; font-family: var(--font-mono);
+  padding: 6px 14px; border-radius: 30px;
+  background: var(--blue-light); border: 1px solid rgba(37, 99, 235, 0.2);
+  color: var(--primary-blue); font-size: 0.8rem; font-weight: 700; font-family: var(--font-mono);
   margin-bottom: 16px;
 }
 
-/* Category Filter Chips */
+/* Original Tech Preview Card in Hero Right */
+.hero-widget-card {
+  background: var(--bg-surface); border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow-md);
+}
+
+/* 5. Category Navigation Chips */
 .cat-chips-bar { display: flex; gap: 10px; overflow-x: auto; margin-bottom: 40px; }
 .cat-chip {
-  background: var(--bg-surface); border: 1px solid var(--border); color: var(--text-secondary);
+  background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--text-secondary);
   padding: 8px 18px; border-radius: 30px; font-weight: 600; font-size: 0.86rem;
   cursor: pointer; white-space: nowrap; transition: var(--transition);
 }
-.cat-chip:hover { border-color: rgba(255, 255, 255, 0.2); color: #FFF; }
+.cat-chip:hover { border-color: var(--border-hover); color: var(--text-primary); }
 .cat-chip.active {
-  background: var(--primary); color: #FFF; border-color: var(--primary); font-weight: 700;
+  background: var(--primary-blue); color: #FFFFFF; border-color: var(--primary-blue); font-weight: 700;
 }
 
-/* 4. Course Catalog Cards Grid */
+/* 6. Course Catalog Cards Grid */
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 60px; }
 
 .course-card {
-  background: var(--bg-card); backdrop-filter: blur(12px);
-  border: 1px solid var(--border); border-radius: var(--radius-md);
-  padding: 24px; transition: var(--transition); display: flex; flex-direction: column;
+  background: var(--bg-surface); border: 1px solid var(--border-color);
+  border-radius: var(--radius-md); padding: 24px; transition: var(--transition);
+  display: flex; flex-direction: column; box-shadow: var(--shadow-sm); cursor: pointer;
 }
 .course-card:hover {
-  background: var(--bg-card-hover); border-color: var(--border-hover);
-  transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  transform: translateY(-4px); box-shadow: var(--shadow-hover); border-color: var(--border-hover);
 }
 
 .course-icon-box {
   width: 48px; height: 48px; border-radius: 12px;
-  background: rgba(99, 102, 241, 0.15); border: 1px solid rgba(99, 102, 241, 0.3);
-  display: flex; align-items: center; justify-content: center; font-size: 1.6rem;
+  background: var(--blue-light); border: 1px solid rgba(37, 99, 235, 0.15);
+  display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
   margin-bottom: 16px;
 }
 
@@ -160,29 +172,18 @@ body {
   display: inline-block; padding: 3px 10px; border-radius: 6px;
   font-size: 0.72rem; font-weight: 700; font-family: var(--font-mono); text-transform: uppercase;
 }
-.level-beginner { background: rgba(16, 185, 129, 0.15); color: var(--accent-emerald); }
-.level-intermediate { background: rgba(99, 102, 241, 0.15); color: #A5B4FC; }
-.level-advanced { background: rgba(245, 158, 11, 0.15); color: var(--accent-amber); }
+.level-beginner { background: var(--success-bg); color: var(--success); }
+.level-intermediate { background: var(--blue-light); color: var(--primary-blue); }
+.level-advanced { background: var(--amber-bg); color: var(--amber); }
 
 /* Progress Bar */
 .progress-bar-wrap {
-  width: 100%; height: 6px; background: rgba(255, 255, 255, 0.08);
+  width: 100%; height: 6px; background: var(--bg-subtle);
   border-radius: 10px; overflow: hidden; margin-top: 10px;
 }
-.progress-bar-fill { height: 100%; background: var(--accent-emerald); border-radius: 10px; }
+.progress-bar-fill { height: 100%; background: var(--primary-blue); border-radius: 10px; }
 
-/* 5. Student Dashboard View */
-.dashboard-view { display: none; margin-bottom: 60px; }
-.dashboard-view.active { display: block; }
-
-.dashboard-banner {
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.15));
-  border: 1px solid var(--border-hover); border-radius: var(--radius-lg);
-  padding: 28px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center;
-  flex-wrap: wrap; gap: 20px;
-}
-
-/* 6. Halaman Lesson (Text-Based Learning Focus) */
+/* 8. Lesson Page Layout */
 .lesson-view { display: none; margin-bottom: 60px; }
 .lesson-view.active { display: block; }
 
@@ -191,14 +192,15 @@ body {
 }
 
 .lesson-sidebar {
-  background: var(--bg-surface); border: 1px solid var(--border);
+  background: var(--bg-surface); border: 1px solid var(--border-color);
   border-radius: var(--radius-md); padding: 20px; position: sticky; top: 88px; height: calc(100vh - 110px);
-  overflow-y: auto;
+  overflow-y: auto; box-shadow: var(--shadow-sm);
 }
 
 .lesson-main-content {
-  background: var(--bg-surface); border: 1px solid var(--border);
+  background: var(--bg-surface); border: 1px solid var(--border-color);
   border-radius: var(--radius-md); padding: 36px; max-width: 860px; margin: 0 auto; width: 100%;
+  box-shadow: var(--shadow-sm);
 }
 
 .module-nav-item {
@@ -206,35 +208,34 @@ body {
   color: var(--text-secondary); margin-bottom: 6px; cursor: pointer; display: flex; align-items: center; gap: 10px;
   transition: var(--transition);
 }
-.module-nav-item:hover { background: rgba(255, 255, 255, 0.05); color: #FFF; }
+.module-nav-item:hover { background: var(--bg-subtle); color: var(--text-primary); }
 .module-nav-item.active {
-  background: rgba(99, 102, 241, 0.18); border: 1px solid var(--border-hover);
-  color: #FFF; font-weight: 700;
+  background: var(--blue-light); border: 1px solid rgba(37, 99, 235, 0.2);
+  color: var(--primary-blue); font-weight: 700;
 }
 
-/* Lesson Article Typography */
-.lesson-article h2 { font-size: 1.8rem; font-weight: 800; color: #FFF; margin-bottom: 14px; }
-.lesson-article p { color: var(--text-secondary); font-size: 1rem; line-height: 1.7; margin-bottom: 20px; }
+/* Lesson Article Typography (Comfortable Reading) */
+.lesson-article h2 { font-size: 1.8rem; font-weight: 800; color: var(--text-primary); margin-bottom: 14px; }
+.lesson-article p { color: var(--text-secondary); font-size: 1.02rem; line-height: 1.7; margin-bottom: 20px; }
 
 .callout-box {
-  background: rgba(99, 102, 241, 0.1); border-left: 4px solid var(--primary);
+  background: var(--blue-light); border-left: 4px solid var(--primary-blue);
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 16px 20px;
-  color: #A5B4FC; font-size: 0.92rem; margin: 24px 0;
+  color: var(--text-primary); font-size: 0.92rem; margin: 24px 0;
 }
 
 .code-block-pro {
-  background: var(--bg-input); border: 1px solid var(--border);
-  border-radius: var(--radius-sm); padding: 18px; font-family: var(--font-mono);
-  font-size: 0.86rem; color: var(--accent-cyan); white-space: pre-wrap; margin: 20px 0;
+  background: #0F172A; color: #38BDF8; border-radius: var(--radius-sm);
+  padding: 18px; font-family: var(--font-mono); font-size: 0.86rem;
+  white-space: pre-wrap; margin: 20px 0; overflow-x: auto;
 }
 
-/* 7. Interactive Coding Sandbox */
+/* Coding Sandbox */
 .coding-sandbox {
-  background: var(--bg-input); border: 1px solid var(--border);
-  border-radius: var(--radius-md); overflow: hidden; margin: 28px 0;
+  background: #0F172A; border-radius: var(--radius-md); overflow: hidden; margin: 28px 0;
 }
 .sandbox-header {
-  background: rgba(255, 255, 255, 0.03); border-bottom: 1px solid var(--border);
+  background: #1E293B; border-bottom: 1px solid #334155;
   padding: 12px 18px; display: flex; justify-content: space-between; align-items: center;
 }
 .sandbox-editor {
@@ -242,35 +243,46 @@ body {
   min-height: 140px; outline: none; white-space: pre-wrap;
 }
 .sandbox-output {
-  background: rgba(0, 0, 0, 0.4); border-top: 1px solid var(--border);
-  padding: 14px 18px; font-family: var(--font-mono); font-size: 0.82rem; color: var(--accent-emerald);
+  background: #04060A; border-top: 1px solid #334155;
+  padding: 14px 18px; font-family: var(--font-mono); font-size: 0.82rem; color: #34D399;
 }
 
-/* 8. Quiz & Challenge Box */
-.quiz-box {
-  background: var(--bg-card); border: 1px solid var(--border);
-  border-radius: var(--radius-md); padding: 24px; margin: 30px 0;
+/* Student Dashboard View */
+.dashboard-view { display: none; margin-bottom: 60px; }
+.dashboard-view.active { display: block; }
+
+.dashboard-banner {
+  background: var(--blue-light); border: 1px solid rgba(37, 99, 235, 0.2);
+  border-radius: var(--radius-lg); padding: 28px; margin-bottom: 30px;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;
 }
 
 /* Modals */
 .modal-backdrop {
-  position: fixed; inset: 0; z-index: 2000; background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(12px); display: none; align-items: center; justify-content: center; padding: 20px;
+  position: fixed; inset: 0; z-index: 2000; background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; padding: 20px;
 }
 .modal-backdrop.active { display: flex; }
 .modal-card {
-  background: var(--bg-surface); border: 1px solid var(--border);
+  background: var(--bg-surface); border: 1px solid var(--border-color);
   border-radius: var(--radius-lg); padding: 32px; width: 100%; max-width: 480px;
-  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.9);
+  box-shadow: 0 25px 50px rgba(15, 23, 42, 0.15);
 }
 
-/* 9. Responsive Mobile Adjustments */
+.form-group { margin-bottom: 16px; }
+.form-label { display: block; font-size: 0.84rem; font-weight: 600; color: var(--text-primary); margin-bottom: 6px; }
+.form-input {
+  width: 100%; padding: 10px 14px; border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm); font-size: 0.9rem; background: var(--bg-input);
+  color: var(--text-primary); outline: none; transition: var(--transition);
+}
+.form-input:focus { border-color: var(--primary-blue); box-shadow: 0 0 0 3px var(--primary-glow); }
+
+/* Responsive Mobile Adjustments */
 @media (max-width: 900px) {
-  .grid-3 { grid-template-columns: 1fr; }
+  .hero-grid, .grid-3 { grid-template-columns: 1fr; }
   .nav-links { display: none; }
   .hero h1 { font-size: 2.1rem; }
   .lesson-layout { grid-template-columns: 1fr; }
-  .lesson-sidebar {
-    position: static; height: auto; margin-bottom: 20px;
-  }
+  .lesson-sidebar { position: static; height: auto; margin-bottom: 20px; }
 }

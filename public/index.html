@@ -4,16 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Codemik — Belajar IT dari Nol hingga Siap Membangun</title>
-  <meta name="description" content="Platform belajar IT & koding terstruktur berbasis teks, praktik coding interaktif, quiz, dan real project.">
+  <meta name="description" content="Platform Edukasi IT & Koding Modern, Terstruktur, Berbasis Teks, Praktik Interaktif, & Project Nyata.">
   
   <link rel="stylesheet" href="css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- Original Navbar -->
+  <!-- 3. Light Theme Navbar -->
   <nav class="navbar">
     <div class="container nav-flex">
       <a href="index.html" class="brand-wrapper">
@@ -31,47 +31,68 @@
 
       <div style="display:flex; gap:12px; align-items:center;">
         <button class="btn btn-outline" onclick="openAuthModal()">Masuk</button>
-        <button class="btn btn-primary" onclick="showView('dashboard')">📊 Dashboard Siswa</button>
+        <button class="btn btn-primary" onclick="showView('dashboard')">Mulai Belajar</button>
       </div>
     </div>
   </nav>
 
-  <!-- VIEW 1: HOMEPAGE & CATALOG VIEW -->
+  <!-- VIEW 1: CATALOG & HOMEPAGE VIEW -->
   <div id="catalogView">
     
-    <!-- Hero Section -->
+    <!-- 4. Hero Section (Light Theme) -->
     <section class="hero">
-      <div class="container">
-        <span class="badge-pill">🚀 PLATFORM BELAJAR IT SAAS #1 INDONESIA</span>
-        <h1>Belajar IT dari Nol hingga Siap Membangun</h1>
-        <p>
-          Siswa belajar melalui materi singkat berbasis teks yang nyaman dibaca, praktik coding interaktif langsung di browser, quiz pemahaman, dan real project industri.
-        </p>
-        <div style="display:flex; gap:12px; justify-content:center;">
-          <button onclick="showView('lesson')" class="btn btn-primary" style="padding:12px 28px; font-size:1rem;">Mulai Belajar</button>
-          <button onclick="showView('dashboard')" class="btn btn-outline" style="padding:12px 28px; font-size:1rem;">Lihat Roadmap</button>
+      <div class="container hero-grid">
+        <div>
+          <span class="badge-pill">🚀 PLATFORM EDUKASI IT MODERN INDONESIA</span>
+          <h1>Belajar IT dari Nol hingga Siap Membangun</h1>
+          <p>
+            Pelajari skill IT melalui materi terstruktur berbasis teks yang nyaman dibaca, praktik coding langsung di browser, quiz pemahaman, dan project nyata.
+          </p>
+          <div style="display:flex; gap:12px;">
+            <button onclick="showView('lesson')" class="btn btn-primary" style="padding:12px 28px; font-size:1rem;">Mulai Belajar</button>
+            <button onclick="showView('dashboard')" class="btn btn-secondary" style="padding:12px 28px; font-size:1rem;">Lihat Roadmap</button>
+          </div>
+        </div>
+
+        <!-- Hero Right Tech Visual Widget -->
+        <div class="hero-widget-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+            <span style="font-family:var(--font-mono); font-size:0.8rem; font-weight:700; color:var(--primary-blue);">⚡ LIVE PRACTICE ENGINE</span>
+            <span style="font-size:0.75rem; color:var(--success); font-weight:700;">● READY</span>
+          </div>
+
+          <div style="background:#0F172A; border-radius:10px; padding:16px; font-family:var(--font-mono); font-size:0.82rem; color:#38BDF8; margin-bottom:14px; white-space:pre;">
+// Modul 01: React Component
+function CourseApp() {
+  return &lt;h1&gt;Halo Codemik! 👋&lt;/h1&gt;;
+}</div>
+
+          <div style="background:var(--blue-light); border:1px solid rgba(37,99,235,0.2); padding:12px; border-radius:8px; display:flex; align-items:center; justify-content:space-between;">
+            <span style="font-weight:700; font-size:0.88rem; color:var(--primary-blue);">Hasil Render: Halo Codemik! 👋</span>
+            <span class="level-badge level-beginner">100% PASSED</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Category Chips Filter -->
-    <div class="container">
+    <!-- 5. Category Navigation Chips -->
+    <div class="container" style="margin-top:20px;">
       <div class="cat-chips-bar">
-        <button class="cat-chip active" onclick="filterCategory('all')">🔥 Semua Kursus</button>
-        <button class="cat-chip" onclick="filterCategory('Web Development')">🌐 Web Development</button>
-        <button class="cat-chip" onclick="filterCategory('Python')">🐍 Python</button>
-        <button class="cat-chip" onclick="filterCategory('AI')">🤖 AI</button>
-        <button class="cat-chip" onclick="filterCategory('Data')">📊 Data</button>
-        <button class="cat-chip" onclick="filterCategory('Backend')">⚙️ Backend</button>
-        <button class="cat-chip" onclick="filterCategory('DevOps')">🚀 DevOps</button>
+        <button class="cat-chip active" onclick="filterCategory('all')">Semua</button>
+        <button class="cat-chip" onclick="filterCategory('Web Development')">Web Development</button>
+        <button class="cat-chip" onclick="filterCategory('Python')">Python</button>
+        <button class="cat-chip" onclick="filterCategory('AI')">AI</button>
+        <button class="cat-chip" onclick="filterCategory('Data')">Data</button>
+        <button class="cat-chip" onclick="filterCategory('Backend')">Backend</button>
+        <button class="cat-chip" onclick="filterCategory('DevOps')">DevOps</button>
       </div>
     </div>
 
-    <!-- Course Catalog Grid -->
+    <!-- 6. Course Catalog Cards Grid -->
     <main class="container">
       <div style="margin-bottom:24px;">
-        <h2 style="font-size:1.8rem; font-weight:800; color:#FFF;">Katalog Kursus IT Terstruktur</h2>
-        <p style="color:var(--text-secondary); font-size:0.92rem;">Pilih modul koding sesuai alur karir yang Anda targetkan.</p>
+        <h2 style="font-size:1.8rem; font-weight:800; color:var(--text-primary);">Katalog Kursus Terstruktur</h2>
+        <p style="color:var(--text-secondary); font-size:0.92rem;">Pilih modul koding sesuai target karir Anda.</p>
       </div>
 
       <div class="grid-3" id="courseCatalogGrid">
@@ -80,11 +101,11 @@
     </main>
 
     <!-- Pricing Section -->
-    <section id="harga" style="padding:60px 0; background:var(--bg-surface); border-top:1px solid var(--border);">
+    <section id="harga" style="padding:60px 0; background:var(--bg-surface); border-top:1px solid var(--border-color);">
       <div class="container">
         <div style="text-align:center; margin-bottom:40px;">
-          <span class="badge-pill">PAKET INVESTASI LANGGANAN</span>
-          <h2 style="font-size:1.8rem; font-weight:800;">Harga Belajar Terjangkau</h2>
+          <span class="badge-pill">PAKET INVESTASI BELAJAR</span>
+          <h2 style="font-size:1.8rem; font-weight:800;">Harga Belajar Transparan</h2>
           <p style="color:var(--text-secondary);">Akses seluruh modul koding, praktik editor, dan sertifikat digital.</p>
         </div>
 
@@ -92,7 +113,7 @@
           <div class="course-card" style="padding:28px;">
             <span class="level-badge level-beginner" style="margin-bottom:10px;">BULANAN</span>
             <h3 style="font-size:1.3rem; margin:6px 0;">Paket Bulanan</h3>
-            <div style="font-size:1.8rem; font-weight:800; color:var(--primary); margin-bottom:16px;">Rp 99.000 <span style="font-size:0.85rem; color:var(--text-secondary); font-weight:400;">/bulan</span></div>
+            <div style="font-size:1.8rem; font-weight:800; color:var(--primary-blue); margin-bottom:16px;">Rp 99.000 <span style="font-size:0.85rem; color:var(--text-secondary); font-weight:400;">/bulan</span></div>
             <ul style="list-style:none; padding:0; margin:0 0 24px; color:var(--text-secondary); font-size:0.88rem; display:flex; flex-direction:column; gap:10px;">
               <li>✓ Akses Seluruh Modul Teks</li>
               <li>✓ Interactive Code Sandbox</li>
@@ -101,11 +122,11 @@
             <button class="btn btn-outline" onclick="openAuthModal()" style="width:100%;">Pilih Paket Bulanan</button>
           </div>
 
-          <div class="course-card" style="padding:28px; border-color:var(--primary); background:linear-gradient(180deg, rgba(99,102,241,0.12), var(--bg-surface));">
+          <div class="course-card" style="padding:28px; border-color:var(--primary-blue); background:var(--blue-light);">
             <span class="level-badge level-intermediate" style="margin-bottom:10px;">🔥 TAHUNAN (HEMAT 40%)</span>
-            <h3 style="font-size:1.3rem; margin:6px 0;">Paket Tahunan</h3>
-            <div style="font-size:1.8rem; font-weight:800; color:#FFF; margin-bottom:16px;">Rp 699.000 <span style="font-size:0.85rem; color:var(--text-secondary); font-weight:400;">/tahun</span></div>
-            <ul style="list-style:none; padding:0; margin:0 0 24px; color:#FFF; font-size:0.88rem; display:flex; flex-direction:column; gap:10px;">
+            <h3 style="font-size:1.3rem; margin:6px 0; color:var(--primary-blue);">Paket Tahunan</h3>
+            <div style="font-size:1.8rem; font-weight:800; color:var(--primary-blue); margin-bottom:16px;">Rp 699.000 <span style="font-size:0.85rem; color:var(--text-secondary); font-weight:400;">/tahun</span></div>
+            <ul style="list-style:none; padding:0; margin:0 0 24px; color:var(--text-primary); font-size:0.88rem; display:flex; flex-direction:column; gap:10px;">
               <li>✓ Akses Seluruh Modul & Project</li>
               <li>✓ Code Reviewer Support</li>
               <li>✓ Prioritas Tanya Jawab Mentor</li>
@@ -117,7 +138,7 @@
           <div class="course-card" style="padding:28px;">
             <span class="level-badge level-advanced" style="margin-bottom:10px;">LIFETIME</span>
             <h3 style="font-size:1.3rem; margin:6px 0;">Akses Seumur Hidup</h3>
-            <div style="font-size:1.8rem; font-weight:800; color:var(--accent-amber); margin-bottom:16px;">Rp 1.299.000 <span style="font-size:0.85rem; color:var(--text-secondary); font-weight:400;">sekali bayar</span></div>
+            <div style="font-size:1.8rem; font-weight:800; color:var(--amber); margin-bottom:16px;">Rp 1.299.000 <span style="font-size:0.85rem; color:var(--text-secondary); font-weight:400;">sekali bayar</span></div>
             <ul style="list-style:none; padding:0; margin:0 0 24px; color:var(--text-secondary); font-size:0.88rem; display:flex; flex-direction:column; gap:10px;">
               <li>✓ Akses Seumur Hidup Tanpa Batas</li>
               <li>✓ Update Modul Kursus Baru Gratis</li>
@@ -135,7 +156,7 @@
     <div class="dashboard-banner">
       <div>
         <span class="badge-pill">📊 PORTAL DASHBOARD SISWA</span>
-        <h2 style="font-size:1.8rem; font-weight:800; color:#FFF; margin:6px 0 4px;">Selamat Datang Kembali, Hanif Abdulloh!</h2>
+        <h2 style="font-size:1.8rem; font-weight:800; color:var(--primary-blue); margin:6px 0 4px;">Selamat Datang Kembali, Hanif Abdulloh!</h2>
         <p style="color:var(--text-secondary); margin:0;">Lanjutkan pembelajaran Anda untuk menyelesaikan alur Web Developer.</p>
       </div>
 
@@ -146,31 +167,31 @@
     <div class="grid-3" style="margin-bottom:30px;">
       <div class="course-card" style="padding:20px;">
         <span style="font-size:0.8rem; color:var(--text-muted); font-weight:700;">TOTAL PROGRESS</span>
-        <div style="font-size:1.8rem; font-weight:800; color:var(--accent-emerald); margin:4px 0;">45% Selesai</div>
+        <div style="font-size:1.8rem; font-weight:800; color:var(--success); margin:4px 0;">45% Selesai</div>
         <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:45%;"></div></div>
       </div>
 
       <div class="course-card" style="padding:20px;">
         <span style="font-size:0.8rem; color:var(--text-muted); font-weight:700;">KURSUS AKTIF</span>
-        <div style="font-size:1.8rem; font-weight:800; color:var(--primary); margin:4px 0;">2 Kursus</div>
+        <div style="font-size:1.8rem; font-weight:800; color:var(--primary-blue); margin:4px 0;">2 Kursus</div>
         <span style="font-size:0.82rem; color:var(--text-secondary);">Belajar Dasar Web & React</span>
       </div>
 
       <div class="course-card" style="padding:20px;">
         <span style="font-size:0.8rem; color:var(--text-muted); font-weight:700;">ACHIEVEMENT BADGES</span>
-        <div style="font-size:1.8rem; font-weight:800; color:var(--accent-amber); margin:4px 0;">3 Lencana</div>
+        <div style="font-size:1.8rem; font-weight:800; color:var(--amber); margin:4px 0;">3 Lencana</div>
         <span style="font-size:0.82rem; color:var(--text-secondary);">HTML Master, CSS Layout, DOM Expert</span>
       </div>
     </div>
 
     <!-- Enrolled Courses & Roadmap -->
-    <div style="display:grid; grid-template-columns: 2fr 1fr; gap:24px;" class="grid-2">
+    <div style="display:grid; grid-template-columns: 2fr 1fr; gap:24px;">
       <div>
-        <h3 style="font-size:1.2rem; font-weight:800; color:#FFF; margin-bottom:16px;">Kursus Yang Sedang Dipelajari</h3>
+        <h3 style="font-size:1.2rem; font-weight:800; color:var(--text-primary); margin-bottom:16px;">Kursus Yang Sedang Dipelajari</h3>
         <div class="course-card" style="padding:20px; margin-bottom:16px; flex-direction:row; justify-content:space-between; align-items:center;">
           <div>
             <span class="level-badge level-beginner" style="margin-bottom:6px;">PEMULA</span>
-            <h4 style="color:#FFF; margin:0 0 4px;">Belajar Dasar Pemrograman Web</h4>
+            <h4 style="color:var(--text-primary); margin:0 0 4px;">Belajar Dasar Pemrograman Web</h4>
             <span style="font-size:0.82rem; color:var(--text-muted);">Modul 2 dari 5 • Progress 45%</span>
           </div>
           <button onclick="showView('lesson')" class="btn btn-primary" style="padding:8px 16px;">Lanjutkan</button>
@@ -179,7 +200,7 @@
         <div class="course-card" style="padding:20px; flex-direction:row; justify-content:space-between; align-items:center;">
           <div>
             <span class="level-badge level-intermediate" style="margin-bottom:6px;">MENENGAH</span>
-            <h4 style="color:#FFF; margin:0 0 4px;">Full-Stack JavaScript (React & Node.js)</h4>
+            <h4 style="color:var(--text-primary); margin:0 0 4px;">Full-Stack JavaScript (React & Node.js)</h4>
             <span style="font-size:0.82rem; color:var(--text-muted);">Modul 1 dari 14 • Progress 20%</span>
           </div>
           <button onclick="showView('lesson')" class="btn btn-secondary" style="padding:8px 16px;">Lanjutkan</button>
@@ -187,10 +208,10 @@
       </div>
 
       <div>
-        <h3 style="font-size:1.2rem; font-weight:800; color:#FFF; margin-bottom:16px;">Sertifikat Digital Anda</h3>
+        <h3 style="font-size:1.2rem; font-weight:800; color:var(--text-primary); margin-bottom:16px;">Sertifikat Digital Anda</h3>
         <div class="course-card" style="padding:20px; text-align:center;">
           <div style="font-size:2.5rem; margin-bottom:8px;">🏆</div>
-          <h4 style="color:#FFF; margin-bottom:6px;">Sertifikat Kelulusan HTML & CSS</h4>
+          <h4 style="color:var(--text-primary); margin-bottom:6px;">Sertifikat Kelulusan HTML & CSS</h4>
           <p style="font-size:0.82rem; color:var(--text-secondary); margin-bottom:14px;">Diterbitkan resmi oleh Codemik Indonesia.</p>
           <button onclick="alert('Mendownload Sertifikat Kelulusan Digital (PDF)...')" class="btn btn-outline" style="width:100%;">📄 Download PDF</button>
         </div>
@@ -202,11 +223,11 @@
   <div id="lessonView" class="lesson-view container">
     <div class="lesson-layout">
       
-      <!-- Left Sidebar Modules Navigation (Collapsible Drawer on Mobile) -->
+      <!-- Left Sidebar Course Navigation -->
       <aside class="lesson-sidebar">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
           <span style="font-size:0.75rem; font-weight:700; font-family:var(--font-mono); color:var(--text-muted);">STRUKTUR MODUL</span>
-          <span style="font-size:0.75rem; color:var(--accent-emerald); font-weight:700;">45% Complete</span>
+          <span style="font-size:0.75rem; color:var(--success); font-weight:700;">45% Complete</span>
         </div>
 
         <div class="module-nav-item active" onclick="loadLessonModule(1)">
@@ -244,7 +265,7 @@
             💡 <strong>Tips Penting:</strong> Selalu gunakan tag semantic seperti <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, dan <code>&lt;footer&gt;</code> daripada menggunakan tag <code>&lt;div&gt;</code> secara berlebihan!
           </div>
 
-          <h3 style="color:#FFF; font-size:1.2rem; margin-bottom:10px;">Contoh Kode HTML5 Semantic:</h3>
+          <h3 style="color:var(--text-primary); font-size:1.2rem; margin-bottom:10px;">Contoh Kode HTML5 Semantic:</h3>
           <div class="code-block-pro">&lt;header class="navbar"&gt;
   &lt;h1&gt;Selamat Datang Di Web Saya&lt;/h1&gt;
 &lt;/header&gt;
@@ -259,17 +280,17 @@
           <!-- Interactive Coding Sandbox -->
           <div class="coding-sandbox">
             <div class="sandbox-header">
-              <span style="font-family:var(--font-mono); font-size:0.8rem; color:var(--text-muted);">⚡ INTERACTIVE CODING SANDBOX</span>
+              <span style="font-family:var(--font-mono); font-size:0.8rem; color:#94A3B8;">⚡ INTERACTIVE CODING SANDBOX</span>
               <button onclick="runSandboxCode()" class="btn btn-primary" style="padding:4px 12px; font-size:0.78rem;">▶ Run Code</button>
             </div>
-            <div class="sandbox-editor" id="sandboxEditorInput" contenteditable="true" spellcheck="false">&lt;h1 style="color:#6366F1;"&gt;Halo, Saya Belajar Koding di Codemik!&lt;/h1&gt;</div>
+            <div class="sandbox-editor" id="sandboxEditorInput" contenteditable="true" spellcheck="false">&lt;h1 style="color:#2563EB;"&gt;Halo, Saya Belajar Koding di Codemik!&lt;/h1&gt;</div>
             <div class="sandbox-output" id="sandboxOutputArea">
-              ✓ Output Code: <span style="color:#6366F1; font-weight:700;">Halo, Saya Belajar Koding di Codemik!</span>
+              ✓ Output Code: <span style="color:#38BDF8; font-weight:700;">Halo, Saya Belajar Koding di Codemik!</span>
             </div>
           </div>
 
           <!-- Lesson Action Navigation -->
-          <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); padding-top:24px; margin-top:30px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border-color); padding-top:24px; margin-top:30px;">
             <button class="btn btn-outline" disabled>← Sebelumnya</button>
             <button class="btn btn-secondary" onclick="alert('Modul Berhasil Ditandai Selesai!')">✓ Tandai Selesai</button>
             <button class="btn btn-primary" onclick="loadLessonModule(2)">Berikutnya: CSS3 & Flexbox →</button>
@@ -285,8 +306,8 @@
   <div class="modal-backdrop" id="authModal">
     <div class="modal-card">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
-        <h3 style="font-size:1.3rem; font-weight:800; margin:0;">Masuk Ke Akun Codemik</h3>
-        <button onclick="closeAuthModal()" style="background:none; border:none; color:#fff; font-size:1.4rem; cursor:pointer;">✕</button>
+        <h3 style="font-size:1.3rem; font-weight:800; margin:0; color:var(--text-primary);">Masuk Ke Akun Codemik</h3>
+        <button onclick="closeAuthModal()" style="background:none; border:none; color:var(--text-muted); font-size:1.4rem; cursor:pointer;">✕</button>
       </div>
 
       <form id="loginForm" onsubmit="handleLoginSubmit(event)">
@@ -305,7 +326,7 @@
     </div>
   </div>
 
-  <footer style="padding:40px 0; border-top:1px solid var(--border); text-align:center; font-size:0.85rem; color:var(--text-muted);">
+  <footer style="padding:40px 0; background:var(--bg-surface); border-top:1px solid var(--border-color); text-align:center; font-size:0.85rem; color:var(--text-secondary); margin-top:60px;">
     © 2026 Codemik — Modern SaaS IT Education & Coding Platform (https://kodemik.com)
   </footer>
 
@@ -348,9 +369,9 @@
         card.innerHTML = `
           <div class="course-icon-box">${c.icon}</div>
           <span class="level-badge ${lvlClass}" style="margin-bottom:10px;">${c.level}</span>
-          <h3 style="font-size:1.15rem; font-weight:800; color:#FFF; margin-bottom:8px;">${c.title}</h3>
+          <h3 style="font-size:1.15rem; font-weight:800; color:var(--text-primary); margin-bottom:8px;">${c.title}</h3>
           <p style="color:var(--text-secondary); font-size:0.88rem; margin-bottom:16px;">${c.description}</p>
-          <div style="margin-top:auto; padding-top:14px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center;">
+          <div style="margin-top:auto; padding-top:14px; border-top:1px solid var(--border-color); display:flex; justify-content:space-between; align-items:center;">
             <span style="font-size:0.8rem; color:var(--text-muted); font-family:var(--font-mono);">${c.modulesCount} Modul • ${c.duration}</span>
             <button class="btn btn-primary" style="padding:6px 14px; font-size:0.8rem;">Mulai</button>
           </div>
@@ -384,7 +405,7 @@
           <p>HTML (HyperText Markup Language) adalah bahasa standar dasar yang digunakan untuk menyusun elemen dan dokumen halaman web.</p>
           <div class="callout-box">💡 <strong>Tips Penting:</strong> Selalu gunakan tag semantic seperti &lt;header&gt;, &lt;main&gt;, dan &lt;footer&gt;!</div>
           <div class="code-block-pro">&lt;header class="navbar"&gt;\n  &lt;h1&gt;Selamat Datang Di Web Saya&lt;/h1&gt;\n&lt;/header&gt;</div>
-          <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); padding-top:24px; margin-top:30px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border-color); padding-top:24px; margin-top:30px;">
             <button class="btn btn-outline" disabled>← Sebelumnya</button>
             <button class="btn btn-primary" onclick="loadLessonModule(2)">Berikutnya: CSS3 & Flexbox →</button>
           </div>
@@ -393,8 +414,8 @@
         article.innerHTML = `
           <h2>2. Pengenalan CSS3 & Flexbox Layout</h2>
           <p>CSS3 digunakan untuk menghias dan menata tata letak elemen HTML agar tampil cantik dan responsif di layar HP maupun laptop.</p>
-          <div class="code-block-pro">.navbar {\n  display: flex;\n  justify-content: space-between;\n  background: #0b0f19;\n}</div>
-          <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); padding-top:24px; margin-top:30px;">
+          <div class="code-block-pro">.navbar {\n  display: flex;\n  justify-content: space-between;\n  background: #0f172a;\n}</div>
+          <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border-color); padding-top:24px; margin-top:30px;">
             <button class="btn btn-outline" onclick="loadLessonModule(1)">← Sebelumnya</button>
             <button class="btn btn-primary" onclick="loadLessonModule(3)">Berikutnya: JavaScript DOM →</button>
           </div>
@@ -404,7 +425,7 @@
           <h2>3. Manipulasi DOM dengan JavaScript</h2>
           <p>JavaScript memberikan logika dan interaksi dinamis pada halaman web Anda.</p>
           <div class="code-block-pro">document.querySelector('.btn').addEventListener('click', () =&gt; {\n  alert('Selamat Belajar Koding!');\n});</div>
-          <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); padding-top:24px; margin-top:30px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border-color); padding-top:24px; margin-top:30px;">
             <button class="btn btn-outline" onclick="loadLessonModule(2)">← Sebelumnya</button>
             <button class="btn btn-primary" onclick="loadLessonModule(4)">Berikutnya: Quiz Pemahaman →</button>
           </div>
@@ -413,8 +434,8 @@
         article.innerHTML = `
           <h2>4. Quiz Pilihan Ganda Pemahaman</h2>
           <p>Uji pemahaman Anda dari materi yang telah dipelajari.</p>
-          <div class="quiz-box">
-            <h4 style="margin-bottom:12px; color:#FFF;">Soal: Tag manakah yang digunakan untuk membuat judul utama di HTML5?</h4>
+          <div style="background:var(--bg-subtle); padding:20px; border-radius:12px; margin:20px 0;">
+            <h4 style="margin-bottom:12px; color:var(--text-primary);">Soal: Tag manakah yang digunakan untuk membuat judul utama di HTML5?</h4>
             <label style="display:block; margin-bottom:8px; color:var(--text-secondary);"><input type="radio" name="q1"> A. &lt;p&gt;</label>
             <label style="display:block; margin-bottom:8px; color:var(--text-secondary);"><input type="radio" name="q1"> B. &lt;h1&gt; (Jawaban Benar)</label>
             <label style="display:block; margin-bottom:8px; color:var(--text-secondary);"><input type="radio" name="q1"> C. &lt;div&gt;</label>
@@ -425,7 +446,7 @@
         article.innerHTML = `
           <div style="text-align:center; padding:30px 0;">
             <div style="font-size:3.5rem; margin-bottom:12px;">🏆</div>
-            <h2 style="color:#FFF; margin-bottom:8px;">Selamat! Anda Lulus Modul Ini!</h2>
+            <h2 style="color:var(--text-primary); margin-bottom:8px;">Selamat! Anda Lulus Modul Ini!</h2>
             <p style="color:var(--text-secondary); margin-bottom:20px;">Sertifikat kelulusan digital Anda telah resmi diterbitkan oleh Codemik Indonesia.</p>
             <button class="btn btn-primary" onclick="alert('Mendownload Sertifikat PDF...')">📄 Download Sertifikat Digital</button>
           </div>
@@ -443,10 +464,10 @@
         });
         const data = await res.json();
         if (data.success) {
-          document.getElementById('sandboxOutputArea').innerHTML = `✓ Output Code: <span style="color:#6366F1; font-weight:700;">${code}</span>`;
+          document.getElementById('sandboxOutputArea').innerHTML = `✓ Output Code: <span style="color:#38BDF8; font-weight:700;">${code}</span>`;
         }
       } catch (e) {
-        document.getElementById('sandboxOutputArea').innerHTML = `✓ Output Code: <span style="color:#6366F1; font-weight:700;">${code}</span>`;
+        document.getElementById('sandboxOutputArea').innerHTML = `✓ Output Code: <span style="color:#38BDF8; font-weight:700;">${code}</span>`;
       }
     }
 

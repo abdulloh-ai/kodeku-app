@@ -440,7 +440,7 @@
     }
 
     // =========================================================================
-    // KODEMIK CURRICULUM — TOPIK 1.1 BAGAIMANA WEBSITE BEKERJA (100% VERBATIM)
+    // KODEMIK CURRICULUM — VERBATIM TOPICS LOADER
     // =========================================================================
     function loadLessonTopic(topicId) {
       const items = document.querySelectorAll('.module-nav-item');
@@ -581,14 +581,152 @@
 
           <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border-color); padding-top:24px; margin-top:30px;">
             <button class="btn btn-outline" disabled>← Sebelumnya</button>
-            <button class="btn btn-primary" onclick="alert('Topik 1.1 Selesai! Mari lanjut ke Topik 1.2.')">Selesai Topik 1.1 → Lanjut Topik 1.2</button>
+            <button class="btn btn-primary" onclick="loadLessonTopic(1.2)">Selesai Topik 1.1 → Lanjut Topik 1.2</button>
+          </div>
+        `;
+      } else if (topicId === 1.2) {
+        if(items[1]) items[1].classList.add('active');
+        article.innerHTML = `
+          <span class="badge-pill">PEMULA • MODUL 1.2</span>
+          <h2>Topik 1.2 — Struktur Dasar HTML</h2>
+          
+          <div class="callout-box">
+            🎯 <strong>Tujuan Pembelajaran</strong><br>
+            Setelah mempelajari topik ini, kamu akan mampu:
+            <ul style="margin-top:6px; margin-bottom:0;">
+              <li>Memahami elemen wajib dalam setiap dokumen HTML</li>
+              <li>Mampu menulis dokumen HTML kosong yang valid</li>
+              <li>Memahami konsep tag, elemen, dan atribut</li>
+            </ul>
+          </div>
+
+          <h3>📖 Penjelasan Konsep</h3>
+          <p>
+            Setiap dokumen HTML punya "kerangka wajib" yang selalu sama. Anggap ini seperti format surat resmi — selalu ada kop surat, pembuka, isi, dan penutup.
+          </p>
+
+          <p><em>Istilah penting:</em></p>
+          <ul>
+            <li><em>Tag</em>: penanda pembuka/penutup, contoh <code>&lt;p&gt;</code> dan <code>&lt;/p&gt;</code></li>
+            <li><em>Elemen</em>: gabungan tag pembuka + isi + tag penutup, contoh <code>&lt;p&gt;Halo&lt;/p&gt;</code></li>
+            <li><em>Atribut</em>: informasi tambahan pada tag pembuka, contoh <code>lang="id"</code></li>
+          </ul>
+
+          <h3>💻 Contoh Kode</h3>
+          <div class="code-block-pro">&lt;!DOCTYPE html&gt;
+&lt;html lang="id"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Halaman Pertamaku&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Selamat Datang!&lt;/h1&gt;
+    &lt;p&gt;Ini adalah paragraf pertama saya.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+
+          <h3>🔍 Penjelasan Setiap Bagian Kode</h3>
+          <ul>
+            <li><code>&lt;!DOCTYPE html&gt;</code> — memberi tahu browser bahwa dokumen ini menggunakan standar HTML5. Wajib ada di baris paling atas.</li>
+            <li><code>&lt;html lang="id"&gt;</code> — elemen pembungkus seluruh halaman. Atribut <code>lang="id"</code> menandakan bahasa konten adalah Bahasa Indonesia (membantu aksesibilitas & mesin pencari).</li>
+            <li><code>&lt;head&gt;</code> — bagian "belakang layar" yang berisi informasi tentang halaman, tidak tampil langsung di layar.</li>
+            <li><code>&lt;meta charset="UTF-8"&gt;</code> — memastikan karakter khusus (misalnya huruf é, simbol Rp) tampil dengan benar.</li>
+            <li><code>&lt;meta name="viewport" ...&gt;</code> — mengatur agar halaman tampil proporsional di perangkat mobile.</li>
+            <li><code>&lt;title&gt;</code> — teks yang muncul di tab browser.</li>
+            <li><code>&lt;body&gt;</code> — semua konten yang benar-benar dilihat pengguna diletakkan di sini.</li>
+            <li><code>&lt;h1&gt;</code> — heading (judul) level 1, biasanya judul utama halaman.</li>
+            <li><code>&lt;p&gt;</code> — paragraf teks biasa.</li>
+          </ul>
+
+          <h3>🌍 Contoh Penggunaan di Dunia Nyata</h3>
+          <p>
+            Setiap halaman web yang pernah kamu kunjungi — Tokopedia, Kompas, Wikipedia — semuanya dibangun di atas kerangka dasar ini. Perbedaannya hanya pada isi <code>&lt;body&gt;</code> yang jauh lebih kompleks.
+          </p>
+
+          <h3>⚠️ Kesalahan Umum</h3>
+          <table class="pro-table">
+            <thead>
+              <tr>
+                <th>Kesalahan</th>
+                <th>Perbaikan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Lupa &lt;!DOCTYPE html&gt;</td>
+                <td>Browser mungkin menampilkan halaman dalam "quirks mode" yang perilakunya tidak konsisten. Selalu tulis di baris pertama.</td>
+              </tr>
+              <tr>
+                <td>Menaruh teks langsung di &lt;head&gt;</td>
+                <td>Teks di &lt;head&gt; tidak akan tampil di halaman. Semua konten visual harus di &lt;body&gt;.</td>
+              </tr>
+              <tr>
+                <td>Lupa menutup tag, misal &lt;p&gt;Teks tanpa &lt;/p&gt;</td>
+                <td>Browser modern cukup toleran, tapi ini kebiasaan buruk yang bisa merusak struktur pada elemen bersarang. Selalu tutup tag.</td>
+              </tr>
+              <tr>
+                <td>Menulis lebih dari satu &lt;body&gt; atau &lt;html&gt;</td>
+                <td>Setiap dokumen hanya boleh punya satu &lt;html&gt;, satu &lt;head&gt;, satu &lt;body&gt;.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>📝 Latihan Praktik</h3>
+          <p>
+            Buat file index.html dengan struktur dasar HTML5 lengkap, judul tab "Latihan Pertama", dan isi body berupa heading nama kamu serta satu paragraf perkenalan singkat.
+          </p>
+
+          <div class="coding-sandbox">
+            <div class="sandbox-header">
+              <span style="font-family:var(--font-mono); font-size:0.8rem; color:#94A3B8;">⚡ KODEMIK SANDBOX TOPIK 1.2</span>
+              <button onclick="runSandboxCode()" class="btn btn-primary" style="padding:4px 12px; font-size:0.78rem;">▶ Run Sandbox</button>
+            </div>
+            <div class="sandbox-editor" id="sandboxEditorInput" contenteditable="true" spellcheck="false">&lt;!DOCTYPE html&gt;
+&lt;html lang="id"&gt;
+&lt;head&gt;
+    &lt;title&gt;Latihan Pertama&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1 style="color:#2563EB;"&gt;Nama Saya: Hanif&lt;/h1&gt;
+    &lt;p&gt;Halo, saya sedang belajar koding di Kodemik.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+            <div class="sandbox-output" id="sandboxOutputArea">
+              ✓ Output Code: <span style="color:#38BDF8; font-weight:700;">Render Ready</span>
+            </div>
+          </div>
+
+          <div class="quiz-container">
+            <h3>❓ Quiz Topik 1.2</h3>
+            
+            <p style="margin-top:14px;"><strong>1. Bagian mana yang isinya TIDAK tampil langsung di layar browser?</strong></p>
+            <label class="quiz-option-label"><input type="radio" name="q2_1" value="A"> A. &lt;body&gt;</label>
+            <label class="quiz-option-label"><input type="radio" name="q2_1" value="B"> B. &lt;head&gt;</label>
+            <label class="quiz-option-label"><input type="radio" name="q2_1" value="C"> C. &lt;h1&gt;</label>
+            <label class="quiz-option-label"><input type="radio" name="q2_1" value="D"> D. &lt;p&gt;</label>
+            <p style="font-size:0.85rem; color:var(--primary-blue); margin:6px 0 16px;"><em>Penjelasan: Jawaban B — &lt;head&gt; berisi informasi belakang layar.</em></p>
+
+            <p><strong>2. Atribut lang="id" pada tag &lt;html&gt; berfungsi untuk?</strong></p>
+            <label class="quiz-option-label"><input type="radio" name="q2_2" value="A"> A. Mengatur ukuran font</label>
+            <label class="quiz-option-label"><input type="radio" name="q2_2" value="B"> B. Menentukan bahasa konten halaman</label>
+            <label class="quiz-option-label"><input type="radio" name="q2_2" value="C"> C. Membuat halaman responsif</label>
+            <label class="quiz-option-label"><input type="radio" name="q2_2" value="D"> D. Menyimpan judul tab</label>
+            <p style="font-size:0.85rem; color:var(--primary-blue); margin:6px 0 16px;"><em>Penjelasan: Jawaban B — Menentukan bahasa konten (id = Indonesia).</em></p>
+
+            <button class="btn btn-primary" style="margin-top:12px;" onclick="checkTopik1_2Quiz()">Check Jawaban Quiz Topik 1.2</button>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border-color); padding-top:24px; margin-top:30px;">
+            <button class="btn btn-outline" onclick="loadLessonTopic(1.1)">← Sebelumnya</button>
+            <button class="btn btn-primary" onclick="alert('Topik 1.2 Selesai! Mari lanjut ke Topik 1.3.')">Selesai Topik 1.2 → Lanjut Topik 1.3</button>
           </div>
         `;
       } else {
         article.innerHTML = `
           <div style="text-align:center; padding:40px 0;">
             <h3>Topik sedang disiapkan...</h3>
-            <p style="color:var(--text-secondary);">Silakan cek Topik 1.1 yang sudah 100% lengkap utuh!</p>
+            <p style="color:var(--text-secondary);">Silakan cek Topik 1.1 dan Topik 1.2 yang sudah 100% lengkap utuh!</p>
           </div>
         `;
       }
@@ -613,6 +751,26 @@
         alert('🎉 LUAR BIASA! Skor Kamu 3/3 (100% BENAR)! Topik 1.1 berhasil dikuasai sempurna!');
       } else {
         alert(`Skor Kamu: ${score}/3. Periksa kembali jawaban yang belum tepat dan coba lagi!`);
+      }
+    }
+
+    function checkTopik1_2Quiz() {
+      const q1 = document.querySelector('input[name="q2_1"]:checked');
+      const q2 = document.querySelector('input[name="q2_2"]:checked');
+
+      if (!q1 || !q2) {
+        alert('Mohon isi semua 2 soal quiz Topik 1.2 terlebih dahulu!');
+        return;
+      }
+
+      let score = 0;
+      if (q1.value === 'B') score += 1;
+      if (q2.value === 'B') score += 1;
+
+      if (score === 2) {
+        alert('🎉 LUAR BIASA! Skor Kamu 2/2 (100% BENAR)! Topik 1.2 berhasil dikuasai sempurna!');
+      } else {
+        alert(`Skor Kamu: ${score}/2. Periksa kembali jawaban yang belum tepat dan coba lagi!`);
       }
     }
 

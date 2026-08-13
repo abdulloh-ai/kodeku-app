@@ -1,36 +1,41 @@
 /* =========================================================================
-   DICODING INDONESIA — Authentic Official Platform Design System
-   Exact Brand Palette: #2D3E50 (Navy Dark), #2C3E50 (Brand Header), #16A34A (Green Badge)
+   ULTIMATE HYBRID IT EDTECH UI — Best of Scrimba + Codecademy + Dicoding + BWA
+   Dark Cosmic Slate (#080C14), Glassmorphism, 3-Pane Split Studio, & Neon Badges
    ========================================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 :root {
-  --dc-navy: #2d3e50;
-  --dc-navy-dark: #1e293b;
-  --dc-bg-light: #f8fafc;
-  --dc-card-bg: #ffffff;
-  --dc-border: #e2e8f0;
+  --bg-slate: #080C14;
+  --bg-panel: #0E1524;
+  --bg-card: rgba(18, 26, 43, 0.8);
+  --bg-card-hover: rgba(28, 40, 66, 0.9);
+  --bg-input: #060910;
 
-  --dc-blue: #2563eb;
-  --dc-blue-hover: #1d4ed8;
-  --dc-green: #16a34a;
-  --dc-amber: #d97706;
+  --primary: #6366F1;
+  --primary-hover: #4F46E5;
+  --primary-glow: rgba(99, 102, 241, 0.4);
 
-  --dc-text-primary: #0f172a;
-  --dc-text-secondary: #475569;
-  --dc-text-muted: #64748b;
+  --accent-cyan: #06B6D4;
+  --accent-emerald: #10B981;
+  --accent-amber: #F59E0B;
+  --accent-purple: #A855F7;
+  --accent-rose: #F43F5E;
+
+  --text-white: #FFFFFF;
+  --text-muted: #94A3B8;
+  --text-dim: #64748B;
+
+  --border: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(99, 102, 241, 0.4);
 
   --font-sans: 'Plus Jakarta Sans', sans-serif;
-  --font-heading: 'Quicksand', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
-  --radius-sm: 6px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
 
-  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.05);
-  --shadow-hover: 0 12px 30px rgba(0, 0, 0, 0.1);
   --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -39,175 +44,142 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--dc-bg-light);
-  color: var(--dc-text-primary);
+  background-color: var(--bg-slate);
+  color: var(--text-white);
   line-height: 1.6;
-  font-size: 15px;
+  font-size: 14.5px;
   -webkit-font-smoothing: antialiased;
+  background-image: 
+    radial-gradient(ellipse 80% 50% at 50% -15%, rgba(99, 102, 241, 0.2), transparent 100%),
+    radial-gradient(circle at 85% 75%, rgba(6, 182, 212, 0.08), transparent 45%);
+  background-attachment: fixed;
 }
 
-/* Dicoding Header Navigation */
-.dc-navbar {
+.ed-container { max-width: 1300px; margin: 0 auto; padding: 0 24px; }
+
+/* Navbar (Codecademy + Scrimba Style) */
+.ed-nav {
   position: sticky; top: 0; z-index: 1000;
-  background-color: var(--dc-navy);
-  color: #fff;
+  background: rgba(8, 12, 20, 0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
   padding: 14px 0;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
 }
-.dc-nav-flex {
-  max-width: 1240px; margin: 0 auto; padding: 0 24px;
-  display: flex; justify-content: space-between; align-items: center;
-}
+.ed-nav-flex { display: flex; justify-content: space-between; align-items: center; }
 
-.dc-brand {
-  display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff;
+.ed-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; }
+.ed-brand-icon {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--primary), var(--accent-cyan));
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 1.1rem; color: #fff;
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
 }
-.dc-brand-logo {
-  font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700;
-  letter-spacing: -0.5px; color: #fff; display: flex; align-items: center; gap: 6px;
-}
-.dc-brand-icon {
-  background: var(--dc-blue); color: #fff;
-  width: 32px; height: 32px; border-radius: 8px;
-  display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem;
-}
+.ed-brand-title { font-size: 1.25rem; font-weight: 800; color: #fff; letter-spacing: -0.5px; }
 
-.dc-nav-links { display: flex; gap: 24px; list-style: none; margin: 0; padding: 0; }
-.dc-nav-links a {
-  color: #cbd5e1; text-decoration: none; font-weight: 600; font-size: 0.9rem;
+.ed-nav-links { display: flex; gap: 24px; list-style: none; margin: 0; padding: 0; }
+.ed-nav-links a {
+  color: var(--text-muted); text-decoration: none; font-weight: 600; font-size: 0.9rem;
   transition: var(--transition);
 }
-.dc-nav-links a:hover, .dc-nav-links a.active { color: #fff; }
+.ed-nav-links a:hover, .ed-nav-links a.active { color: #fff; }
 
-/* Dicoding Hero Section */
-.dc-hero {
-  background: linear-gradient(135deg, var(--dc-navy-dark), var(--dc-navy));
-  color: #fff; padding: 70px 0 80px; text-align: center;
-}
-.dc-hero-container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
-.dc-hero h1 {
-  font-family: var(--font-heading); font-size: 2.8rem; font-weight: 700;
-  line-height: 1.25; margin: 16px 0 20px;
-}
-.dc-hero p {
-  font-size: 1.1rem; color: #94a3b8; max-width: 700px; margin: 0 auto 30px;
+/* Scrimba-style Feature Pill */
+.scrimba-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 16px; border-radius: 30px;
+  background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3);
+  color: var(--accent-emerald); font-size: 0.8rem; font-weight: 700; font-family: var(--font-mono);
 }
 
-/* Learning Path Filter Pills */
-.dc-paths-bar {
-  max-width: 1240px; margin: -30px auto 40px; padding: 0 24px; position: relative; z-index: 100;
+/* Codecademy 3-Pane Split Studio Sandbox */
+.studio-3pane {
+  background: var(--bg-panel); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7); margin-bottom: 50px;
 }
-.dc-paths-flex {
-  background: #fff; border-radius: var(--radius-md); padding: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); display: flex; gap: 10px; overflow-x: auto;
+.studio-header {
+  background: rgba(255, 255, 255, 0.03); border-bottom: 1px solid var(--border);
+  padding: 14px 20px; display: flex; justify-content: space-between; align-items: center;
 }
-.dc-path-chip {
-  background: #f1f5f9; border: 1px solid var(--dc-border); color: var(--dc-text-secondary);
-  padding: 8px 16px; border-radius: 8px; font-weight: 600; font-size: 0.85rem;
-  cursor: pointer; white-space: nowrap; transition: var(--transition);
+.studio-grid {
+  display: grid; grid-template-columns: 1fr 1.2fr 1fr; min-height: 380px;
 }
-.dc-path-chip:hover { background: #e2e8f0; color: var(--dc-text-primary); }
-.dc-path-chip.active {
-  background: var(--dc-navy); color: #fff; border-color: var(--dc-navy);
+.studio-pane {
+  padding: 20px; border-right: 1px solid var(--border); overflow-y: auto;
+}
+.studio-pane:last-child { border-right: none; }
+
+/* Editor Code Mirror Feel */
+.code-editor-box {
+  background: #04060A; border: 1px solid var(--border); border-radius: 10px;
+  padding: 16px; font-family: var(--font-mono); font-size: 0.84rem; color: #38BDF8;
+  height: 280px; overflow-y: auto; white-space: pre-wrap;
 }
 
-/* Course Grid Section */
-.dc-catalog-container { max-width: 1240px; margin: 0 auto 60px; padding: 0 24px; }
-
-.dc-grid-3 {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+/* Frontend Masters Masterclass Cards */
+.masterclass-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 60px;
+}
+.master-card {
+  background: var(--bg-card); backdrop-filter: blur(16px);
+  border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: 24px; transition: var(--transition); display: flex; flex-direction: column;
+}
+.master-card:hover {
+  background: var(--bg-card-hover); border-color: var(--border-hover);
+  transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.5);
 }
 
-.dc-course-card {
-  background: var(--dc-card-bg); border: 1px solid var(--dc-border);
-  border-radius: var(--radius-md); overflow: hidden; display: flex; flex-direction: column;
-  transition: var(--transition); box-shadow: var(--shadow-card); cursor: pointer;
-}
-.dc-course-card:hover {
-  transform: translateY(-5px); box-shadow: var(--shadow-hover); border-color: #cbd5e1;
+.instructor-avatar {
+  width: 48px; height: 48px; border-radius: 50%; background: #334155;
+  display: flex; align-items: center; justify-content: center; font-weight: 800;
+  color: #fff; font-size: 1.1rem; border: 2px solid var(--primary);
 }
 
-.dc-card-banner {
-  height: 150px; background: linear-gradient(135deg, #1e293b, #334155);
-  display: flex; align-items: center; justify-content: center; position: relative; padding: 20px;
+/* Dicoding Level Badges */
+.badge-level {
+  display: inline-block; padding: 4px 10px; border-radius: 6px;
+  font-size: 0.75rem; font-weight: 700; font-family: var(--font-mono);
 }
-.dc-card-icon {
-  width: 64px; height: 64px; border-radius: 16px; background: #fff;
-  display: flex; align-items: center; justify-content: center; font-size: 2rem;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-}
+.badge-pemula { background: rgba(16, 185, 129, 0.15); color: var(--accent-emerald); }
+.badge-menengah { background: rgba(99, 102, 241, 0.15); color: #A5B4FC; }
 
-.dc-card-body { padding: 20px; display: flex; flex-direction: column; flex: 1; }
-
-.dc-level-badge {
-  display: inline-block; padding: 4px 10px; border-radius: 4px;
-  font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin-bottom: 10px;
-  align-self: flex-start;
-}
-.dc-level-pemula { background: #dcfce7; color: var(--dc-green); }
-.dc-level-menengah { background: #dbeafe; color: var(--dc-blue); }
-.dc-level-mahir { background: #fef3c7; color: var(--dc-amber); }
-
-.dc-course-title {
-  font-family: var(--font-heading); font-size: 1.15rem; font-weight: 700;
-  color: var(--dc-text-primary); margin-bottom: 8px; line-height: 1.35;
-}
-
-.dc-course-meta {
-  display: flex; align-items: center; gap: 14px; font-size: 0.82rem;
-  color: var(--dc-text-muted); margin-top: auto; padding-top: 14px; border-top: 1px solid var(--dc-border);
-}
-
-/* Dicoding Buttons */
-.dc-btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  padding: 10px 20px; border-radius: 8px; font-weight: 700; font-size: 0.9rem;
+/* Custom Buttons */
+.ed-btn {
+  display: inline-flex; align-items: center; gap: 8px; justify-content: center;
+  padding: 10px 22px; border-radius: 10px; font-weight: 700; font-size: 0.88rem;
   cursor: pointer; border: none; transition: var(--transition); text-decoration: none;
 }
-.dc-btn-primary { background: var(--dc-blue); color: #fff; }
-.dc-btn-primary:hover { background: var(--dc-blue-hover); }
-
-.dc-btn-outline {
-  background: transparent; border: 1px solid rgba(255, 255, 255, 0.3); color: #fff;
+.ed-btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+  color: #fff; box-shadow: 0 4px 20px var(--primary-glow);
 }
-.dc-btn-outline:hover { background: rgba(255, 255, 255, 0.1); }
-
-/* Dicoding Classroom Reader Modal */
-.dc-modal-overlay {
-  position: fixed; inset: 0; z-index: 2000; background: rgba(15, 23, 42, 0.8);
-  backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; padding: 20px;
-}
-.dc-modal-overlay.active { display: flex; }
-.dc-modal-classroom {
-  background: #fff; border-radius: var(--radius-lg); width: 100%; max-width: 1000px;
-  height: 85vh; display: flex; flex-direction: column; overflow: hidden;
-  box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+.ed-btn-primary:hover {
+  transform: translateY(-2px); box-shadow: 0 8px 30px rgba(99, 102, 241, 0.6);
 }
 
-.dc-classroom-header {
-  background: var(--dc-navy); color: #fff; padding: 16px 24px;
-  display: flex; justify-content: space-between; align-items: center;
+.ed-btn-ghost {
+  background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border);
+  color: var(--text-white);
+}
+.ed-btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.2);
 }
 
-.dc-classroom-body { display: flex; flex: 1; overflow: hidden; }
-.dc-classroom-sidebar {
-  width: 280px; background: #f8fafc; border-right: 1px solid var(--dc-border);
-  padding: 16px; overflow-y: auto; flex-shrink: 0;
+/* Modals */
+.modal-backdrop {
+  position: fixed; inset: 0; z-index: 2000; background: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(12px); display: none; align-items: center; justify-content: center; padding: 20px;
 }
-.dc-classroom-content {
-  flex: 1; padding: 28px; overflow-y: auto; background: #fff;
+.modal-backdrop.active { display: flex; }
+.modal-panel {
+  background: var(--bg-panel); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 32px; width: 100%; max-width: 900px;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.9);
 }
 
-.dc-module-item {
-  padding: 10px 12px; border-radius: 8px; font-size: 0.88rem; color: var(--dc-text-secondary);
-  margin-bottom: 6px; cursor: pointer; display: flex; align-items: center; gap: 10px;
-}
-.dc-module-item:hover { background: #e2e8f0; }
-.dc-module-item.active { background: #dbeafe; color: var(--dc-blue); font-weight: 700; }
-
-/* Responsive Grid */
-@media (max-width: 900px) {
-  .dc-grid-3 { grid-template-columns: 1fr; }
-  .dc-nav-links { display: none; }
-  .dc-hero h1 { font-size: 2rem; }
+@media (max-width: 960px) {
+  .studio-grid, .masterclass-grid { grid-template-columns: 1fr; }
+  .ed-nav-links { display: none; }
 }

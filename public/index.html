@@ -3,335 +3,245 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dicoding Indonesia — Bangun Karir Sebagai Developer Profesional</title>
-  <meta name="description" content="Platform Belajar Koding Berbasis Teks Terstruktur #1 Indonesia (Dicoding Replica UI)">
+  <title>Codemik EdTech — Ultimate Hybrid IT Learning Platform</title>
+  <meta name="description" content="Gabungan Terbaik Dari Scrimba + Codecademy + Frontend Masters + Dicoding + BuildWithAngga">
   
   <link rel="stylesheet" href="css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- Dicoding Header Navigation -->
-  <nav class="dc-navbar">
-    <div class="dc-nav-flex">
-      <a href="index.html" class="dc-brand">
-        <div class="dc-brand-icon">d</div>
-        <span class="dc-brand-logo">dicoding</span>
+  <!-- Hybrid Top Navbar (Codecademy + Scrimba Header) -->
+  <nav class="ed-nav">
+    <div class="ed-container ed-nav-flex">
+      <a href="index.html" class="ed-brand">
+        <div class="ed-brand-icon">C</div>
+        <span class="ed-brand-title">Codemik<span style="color:var(--accent-cyan);">.EdTech</span></span>
       </a>
 
-      <ul class="dc-nav-links">
-        <li><a href="#katalog" class="active">Katalog Kelas</a></li>
-        <li><a href="#katalog">Alur Belajar</a></li>
-        <li><a href="#katalog">Berlangganan</a></li>
-        <li><a href="#katalog">Dicoding Jobs</a></li>
+      <ul class="ed-nav-links">
+        <li><a href="#studio" class="active">⚡ 3-Pane Code Studio</a></li>
+        <li><a href="#masterclass">🎓 Masterclass Katalog</a></li>
+        <li><a href="#masterclass">Alur Karir</a></li>
+        <li><a href="#masterclass">Sertifikasi Digital</a></li>
       </ul>
 
-      <div style="display:flex; gap:12px;">
-        <button class="dc-btn dc-btn-outline" onclick="openClassroomModal('dasar-web')">Masuk</button>
-        <button class="dc-btn dc-btn-primary" onclick="openClassroomModal('dasar-web')">Daftar</button>
+      <div style="display:flex; gap:10px;">
+        <span class="scrimba-pill">
+          ▶ INTERACTIVE CODE SCREENCAST (SCRIMBA ENGINE)
+        </span>
+        <button onclick="openFullStudioModal()" class="ed-btn ed-btn-primary" style="padding:8px 16px; font-size:0.85rem;">Mulai Belajar</button>
       </div>
     </div>
   </nav>
 
-  <!-- Dicoding Hero Banner -->
-  <section class="dc-hero">
-    <div class="dc-hero-container">
-      <span style="display:inline-block; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); padding:6px 16px; border-radius:20px; font-size:0.8rem; font-weight:700; color:#93c5fd;">
-        🚀 PLATFORM BELAJAR CODING #1 INDONESIA
-      </span>
-      <h1>Bangun Karir Sebagai Developer Profesional</h1>
-      <p>
-        Kurikulum standar industri dunia yang disusun bersama Google, AWS, Microsoft, dan perusahaan teknologi terkemuka Indonesia.
-      </p>
-      <div style="display:flex; gap:12px; justify-content:center;">
-        <a href="#katalog" class="dc-btn dc-btn-primary" style="padding:12px 28px; font-size:1rem;">Lihat Katalog Kelas</a>
-        <button onclick="openClassroomModal('dasar-web')" class="dc-btn dc-btn-outline" style="padding:12px 28px; font-size:1rem;">Mulai Belajar Gratis</button>
-      </div>
-    </div>
+  <!-- Hero Header -->
+  <section class="ed-container" style="padding-top:40px; text-align:center;">
+    <span class="scrimba-pill" style="margin-bottom:14px;">
+      🏆 HYBRID EDTECH PLATFORM: SCRIMBA + CODECADEMY + DICODING + FRONTEND MASTERS
+    </span>
+    <h1 style="font-size:3rem; font-weight:800; letter-spacing:-1.2px; line-height:1.15; margin-bottom:14px; max-width:880px; margin-left:auto; margin-right:auto;">
+      Platform Belajar Koding Paling Canggih & Interaktif Di Dunia
+    </h1>
+    <p style="color:var(--text-muted); font-size:1.05rem; max-width:740px; margin:0 auto 30px;">
+      Gabungan video interaktif Scrimba, editor koding 3-Pane Codecademy, instruktur masterclass Frontend Masters, & kurikulum terstruktur resmi Dicoding.
+    </p>
   </section>
 
-  <!-- Learning Path Filter Bar -->
-  <div class="dc-paths-bar">
-    <div class="dc-paths-flex">
-      <button class="dc-path-chip active" onclick="filterCategory('semua')">🔥 Semua Kelas (6)</button>
-      <button class="dc-path-chip" onclick="filterCategory('web')">🌐 Front-End Web</button>
-      <button class="dc-path-chip" onclick="filterCategory('backend')">⚙️ Back-End Developer</button>
-      <button class="dc-path-chip" onclick="filterCategory('ai')">🤖 Machine Learning & AI</button>
-      <button class="dc-path-chip" onclick="filterCategory('android')">📱 Android Developer</button>
-    </div>
-  </div>
-
-  <!-- Course Catalog Section -->
-  <main class="dc-catalog-container" id="katalog">
-    <div style="margin-bottom:24px;">
-      <h2 style="font-family:var(--font-heading); font-size:1.6rem; font-weight:700; color:var(--dc-navy);">Katalog Kelas Pemrograman</h2>
-      <p style="color:var(--dc-text-muted); font-size:0.92rem;">Pilih kelas koding terstruktur sesuai alur minat karir Anda.</p>
+  <!-- SECTION 1: CODECADEMY STYLE 3-PANE SPLIT STUDIO SANDBOX -->
+  <main class="ed-container" id="studio">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+      <div>
+        <span style="font-size:0.75rem; font-family:var(--font-mono); color:var(--accent-cyan); font-weight:700;">[ CODECADEMY 3-PANE STUDIO ENGINE ]</span>
+        <h3 style="font-size:1.3rem; font-weight:800; color:#fff; margin:2px 0 0;">Studio Koding Interaktif 3 Panel (Live Screencast)</h3>
+      </div>
+      <button onclick="runCodeInStudio()" class="ed-btn ed-btn-primary" style="padding:8px 18px;">
+        ▶ Jalankan Kode (Run Sandbox)
+      </button>
     </div>
 
-    <!-- Course Cards Grid -->
-    <div class="dc-grid-3" id="courseGrid">
-      
-      <!-- Card 1: Dasar Pemrograman Web -->
-      <div class="dc-course-card" onclick="openClassroomModal('dasar-web')">
-        <div class="dc-card-banner">
-          <div class="dc-card-icon">🌐</div>
-        </div>
-        <div class="dc-card-body">
-          <span class="dc-level-badge dc-level-pemula">PEMULA</span>
-          <h3 class="dc-course-title">Belajar Dasar Pemrograman Web</h3>
-          <p style="color:var(--dc-text-secondary); font-size:0.88rem; margin-bottom:14px;">
-            Mempelajari fondasi utama pembuatan website menggunakan HTML, CSS, dan Flexbox standar industri.
-          </p>
-          <div class="dc-course-meta">
-            <span>⭐ 4.9 (1.200 Rating)</span>
-            <span>👥 120.000 Siswa</span>
-          </div>
-        </div>
+    <!-- 3-Pane Grid -->
+    <div class="studio-3pane">
+      <div class="studio-header">
+        <span style="font-family:var(--font-mono); font-size:0.8rem; color:var(--text-muted);">MODUL 01: FRONTEND WEB DEVELOPMENT — HTML5 & REACT COMPONENT</span>
+        <span style="font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-emerald);">🟢 LIVE CODE ENGINE ACTIVE</span>
       </div>
 
-      <!-- Card 2: React Web Apps -->
-      <div class="dc-course-card" onclick="openClassroomModal('react-web')">
-        <div class="dc-card-banner" style="background:linear-gradient(135deg, #0f172a, #1e3a8a);">
-          <div class="dc-card-icon">⚛️</div>
-        </div>
-        <div class="dc-card-body">
-          <span class="dc-level-badge dc-level-menengah">MENENGAH</span>
-          <h3 class="dc-course-title">Belajar Membuat Aplikasi Web dengan React</h3>
-          <p style="color:var(--dc-text-secondary); font-size:0.88rem; margin-bottom:14px;">
-            Membangun aplikasi web single-page (SPA) modern yang reaktif menggunakan React JS, State, & Props.
+      <div class="studio-grid">
+        
+        <!-- Pane 1: Dicoding Text Reading Lesson -->
+        <div class="studio-pane">
+          <span class="badge-level badge-pemula" style="margin-bottom:8px;">MODUL BACAAN</span>
+          <h4 style="color:#fff; margin-bottom:8px; font-size:1rem;">1. Komponen React & DOM</h4>
+          <p style="font-size:0.84rem; color:var(--text-muted); margin-bottom:12px;">
+            React menggunakan komponen untuk membangun antarmuka web reaktif. Ubah variabel kode di panel tengah untuk melihat hasilnya di panel kanan!
           </p>
-          <div class="dc-course-meta">
-            <span>⭐ 4.9 (850 Rating)</span>
-            <span>👥 45.000 Siswa</span>
+          <div style="background:rgba(99,102,241,0.1); border:1px solid var(--primary); padding:10px; border-radius:8px; font-size:0.78rem; color:#A5B4FC;">
+            💡 <strong>Fitur Scrimba:</strong> Klik video instruktur di bawah dan Anda bisa langsung mengetik di dalam kodingan videonya!
           </div>
         </div>
-      </div>
 
-      <!-- Card 3: Fundamental Front-End -->
-      <div class="dc-course-card" onclick="openClassroomModal('frontend-fund')">
-        <div class="dc-card-banner" style="background:linear-gradient(135deg, #064e3b, #047857);">
-          <div class="dc-card-icon">🚀</div>
+        <!-- Pane 2: Codecademy Code Editor Pane -->
+        <div class="studio-pane">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <span style="font-size:0.75rem; font-family:var(--font-mono); color:var(--text-muted);">index.jsx (Live Editor)</span>
+            <span style="font-size:0.75rem; color:var(--accent-cyan);">React 18</span>
+          </div>
+
+          <div class="code-editor-box" id="codeEditorInput" contenteditable="true" spellcheck="false">// Scrimba + Codecademy Live Code Editor
+function WelcomeBadge() {
+  const [name, setName] = React.useState("Siswa Codemik");
+  
+  return (
+    &lt;div class="welcome-box"&gt;
+      &lt;h2&gt;Halo, {name}! 👋&lt;/h2&gt;
+      &lt;p&gt;Selamat Datang Di Studio Koding!&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}</div>
         </div>
-        <div class="dc-card-body">
-          <span class="dc-level-badge dc-level-menengah">MENENGAH</span>
-          <h3 class="dc-course-title">Belajar Fundamental Front-End Web Development</h3>
-          <p style="color:var(--dc-text-secondary); font-size:0.88rem; margin-bottom:14px;">
-            Menguasai ES6 JavaScript, Web Components, Custom Element, Fetch API, dan Webpack.
-          </p>
-          <div class="dc-course-meta">
-            <span>⭐ 4.8 (920 Rating)</span>
-            <span>👥 68.000 Siswa</span>
+
+        <!-- Pane 3: Real-Time Browser Output Preview -->
+        <div class="studio-pane">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <span style="font-size:0.75rem; font-family:var(--font-mono); color:var(--text-muted);">Browser Output Preview</span>
+            <span style="font-size:0.75rem; color:var(--accent-emerald);">● 60 FPS</span>
+          </div>
+
+          <div style="background:#04060A; border:1px solid var(--border); border-radius:10px; padding:16px; min-height:280px;" id="browserPreviewOutput">
+            <div style="background:linear-gradient(135deg, rgba(99,102,241,0.2), rgba(6,182,212,0.2)); border:1px solid var(--primary); padding:16px; border-radius:12px;">
+              <h3 style="color:#fff; margin-bottom:6px;">Halo, Siswa Codemik! 👋</h3>
+              <p style="color:var(--text-muted); font-size:0.85rem;">Selamat Datang Di Studio Koding Interaktif!</p>
+              <span style="display:inline-block; margin-top:10px; background:var(--accent-emerald); color:#000; padding:3px 8px; border-radius:4px; font-weight:800; font-size:0.75rem;">STATUS: PASSED 100%</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Card 4: RESTful API Node.js -->
-      <div class="dc-course-card" onclick="openClassroomModal('backend-node')">
-        <div class="dc-card-banner" style="background:linear-gradient(135deg, #312e81, #4338ca);">
-          <div class="dc-card-icon">⚙️</div>
-        </div>
-        <div class="dc-card-body">
-          <span class="dc-level-badge dc-level-menengah">MENENGAH</span>
-          <h3 class="dc-course-title">Belajar Membangun RESTful API dengan Node.js</h3>
-          <p style="color:var(--dc-text-secondary); font-size:0.88rem; margin-bottom:14px;">
-            Membuat backend API server HTTP instan, pengolahan JSON database, dan autentikasi user.
-          </p>
-          <div class="dc-course-meta">
-            <span>⭐ 4.9 (1.100 Rating)</span>
-            <span>👥 52.000 Siswa</span>
-          </div>
-        </div>
       </div>
-
-      <!-- Card 5: Machine Learning Pemula -->
-      <div class="dc-course-card" onclick="openClassroomModal('ai-ml')">
-        <div class="dc-card-banner" style="background:linear-gradient(135deg, #701a75, #a21caf);">
-          <div class="dc-card-icon">🤖</div>
-        </div>
-        <div class="dc-card-body">
-          <span class="dc-level-badge dc-level-pemula">PEMULA</span>
-          <h3 class="dc-course-title">Belajar Machine Learning untuk Pemula</h3>
-          <p style="color:var(--dc-text-secondary); font-size:0.88rem; margin-bottom:14px;">
-            Mengenal dasar kecerdasan buatan (AI), Python, Regresi, Klasifikasi Data, & TensorFlow.
-          </p>
-          <div class="dc-course-meta">
-            <span>⭐ 4.9 (1.400 Rating)</span>
-            <span>👥 85.000 Siswa</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 6: Pemrograman Android -->
-      <div class="dc-course-card" onclick="openClassroomModal('android-dev')">
-        <div class="dc-card-banner" style="background:linear-gradient(135deg, #14532d, #15803d);">
-          <div class="dc-card-icon">📱</div>
-        </div>
-        <div class="dc-card-body">
-          <span class="dc-level-badge dc-level-pemula">PEMULA</span>
-          <h3 class="dc-course-title">Belajar Dasar Pemrograman Android</h3>
-          <p style="color:var(--dc-text-secondary); font-size:0.88rem; margin-bottom:14px;">
-            Membuat aplikasi mobile Android native pertama Anda menggunakan bahasa Kotlin & Android Studio.
-          </p>
-          <div class="dc-course-meta">
-            <span>⭐ 4.9 (1.800 Rating)</span>
-            <span>👥 95.000 Siswa</span>
-          </div>
-        </div>
-      </div>
-
     </div>
   </main>
 
-  <!-- Dicoding Classroom Reading Modal -->
-  <div class="dc-modal-overlay" id="classroomModal">
-    <div class="dc-modal-classroom">
-      <!-- Classroom Top Bar -->
-      <div class="dc-classroom-header">
-        <div style="display:flex; align-items:center; gap:12px;">
-          <div class="dc-brand-icon">d</div>
+  <!-- SECTION 2: FRONTEND MASTERS + DICODING MASTERCLASS CATALOG GRID -->
+  <section class="ed-container" id="masterclass">
+    <div style="margin-bottom:30px;">
+      <span style="font-size:0.75rem; font-family:var(--font-mono); color:var(--accent-purple); font-weight:700;">[ FRONTEND MASTERS + DICODING KATALOG ]</span>
+      <h2 style="font-size:1.8rem; font-weight:800; color:#fff; margin:2px 0 0;">Masterclass Koding Standar Industri Dunia</h2>
+      <p style="color:var(--text-muted); font-size:0.92rem;">Diajar langsung oleh Principal Engineer Netflix, Google, & Mentor Resmi Dicoding.</p>
+    </div>
+
+    <!-- Masterclass Cards Grid -->
+    <div class="masterclass-grid">
+      
+      <!-- Card 1 -->
+      <div class="master-card" onclick="openFullStudioModal()">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+          <span class="badge-level badge-pemula">PEMULA • DICODING</span>
+          <span style="font-size:0.8rem; color:var(--accent-amber); font-weight:700;">⭐ 4.9 (1.400)</span>
+        </div>
+        <h3 style="font-size:1.2rem; font-weight:800; color:#fff; margin-bottom:8px; line-height:1.3;">
+          Fullstack Web Development 2026 (React, Node.js, PostgreSQL)
+        </h3>
+        <p style="color:var(--text-muted); font-size:0.86rem; margin-bottom:18px;">
+          Membangun aplikasi web SaaS modern dari nol hingga deploy ke VPS dengan arsitektur multi-tenant.
+        </p>
+        
+        <div style="margin-top:auto; display:flex; align-items:center; gap:12px; padding-top:14px; border-top:1px solid var(--border);">
+          <div class="instructor-avatar">S</div>
           <div>
-            <h4 style="margin:0; font-family:var(--font-heading); font-size:1.05rem;" id="modalCourseTitle">Belajar Dasar Pemrograman Web</h4>
-            <span style="font-size:0.75rem; color:#94a3b8;">Modul 1 dari 5 • Progress 20%</span>
+            <div style="font-weight:700; font-size:0.88rem; color:#fff;">Sarah Jenkins</div>
+            <div style="font-size:0.75rem; color:var(--text-muted);">Ex-Principal Engineer Netflix</div>
           </div>
         </div>
-        <button onclick="closeClassroomModal()" style="background:none; border:none; color:#fff; font-size:1.5rem; cursor:pointer;">✕</button>
       </div>
 
-      <!-- Classroom Main Layout Body -->
-      <div class="dc-classroom-body">
-        <!-- Left Sidebar Modules -->
-        <aside class="dc-classroom-sidebar">
-          <h5 style="color:var(--dc-text-muted); font-size:0.75rem; font-weight:700; text-transform:uppercase; margin-bottom:10px;">DAFTAR MODUL MATERI</h5>
-          <div class="dc-module-item active" onclick="loadLessonContent(1)">
-            <span>1.</span> Pengenalan HTML5 & Tag Semantic
-          </div>
-          <div class="dc-module-item" onclick="loadLessonContent(2)">
-            <span>2.</span> Pengenalan CSS3 & Flexbox Grid
-          </div>
-          <div class="dc-module-item" onclick="loadLessonContent(3)">
-            <span>3.</span> JavaScript Dasar & Manipulasi DOM
-          </div>
-          <div class="dc-module-item" onclick="loadLessonContent(4)">
-            <span>4.</span> Quiz Pilihan Ganda Pemahaman
-          </div>
-          <div class="dc-module-item" onclick="loadLessonContent(5)">
-            <span>5.</span> Klaim Sertifikat Kelulusan Digital
-          </div>
-        </aside>
+      <!-- Card 2 -->
+      <div class="master-card" onclick="openFullStudioModal()">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+          <span class="badge-level badge-menengah">MENENGAH • SCRIMBA</span>
+          <span style="font-size:0.8rem; color:var(--accent-amber); font-weight:700;">⭐ 4.9 (980)</span>
+        </div>
+        <h3 style="font-size:1.2rem; font-weight:800; color:#fff; margin-bottom:8px; line-height:1.3;">
+          n8n AI Agent Automation & Webhook Integration
+        </h3>
+        <p style="color:var(--text-muted); font-size:0.86rem; margin-bottom:18px;">
+          Membangun mesin otomasi AI Agent WhatsApp, ekstraksi nota OCR Vision, dan Redis Queue Worker.
+        </p>
 
-        <!-- Right Content Reading Area -->
-        <main class="dc-classroom-content">
-          <div id="lessonReadingArea">
-            <h2 style="font-family:var(--font-heading); color:var(--dc-navy); margin-bottom:14px;">1. Pengenalan HTML5 & Tag Semantic</h2>
-            <p style="color:var(--dc-text-secondary); margin-bottom:16px;">
-              HTML (HyperText Markup Language) adalah bahasa standar yang digunakan untuk membuat dan menyusun halaman web. 
-              Tag HTML5 semantic membantu mesin pencari (SEO) dan browser memahami struktur dokumen web Anda secara tepat.
-            </p>
-
-            <h4 style="color:var(--dc-navy); margin-bottom:8px;">Contoh Kode HTML5 Semantic:</h4>
-            <div style="background:#0f172a; color:#38bdf8; padding:16px; border-radius:8px; font-family:var(--font-mono); font-size:0.85rem; margin-bottom:20px; white-space:pre;">
-&lt;header class="navbar"&gt;
-  &lt;h1&gt;Selamat Datang Di Web Saya&lt;/h1&gt;
-&lt;/header&gt;
-
-&lt;main class="content"&gt;
-  &lt;article&gt;
-    &lt;h2&gt;Judul Artikel Materi&lt;/h2&gt;
-    &lt;p&gt;Ini adalah isi paragraf materi koding.&lt;/p&gt;
-  &lt;/article&gt;
-&lt;/main&gt;</div>
-
-            <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--dc-border); padding-top:20px;">
-              <button class="dc-btn dc-btn-outline" style="background:#e2e8f0; color:var(--dc-navy);" disabled>← Sebelumnya</button>
-              <button class="dc-btn dc-btn-primary" onclick="loadLessonContent(2)">Selanjutnya: CSS3 & Flexbox →</button>
-            </div>
+        <div style="margin-top:auto; display:flex; align-items:center; gap:12px; padding-top:14px; border-top:1px solid var(--border);">
+          <div class="instructor-avatar" style="border-color:var(--accent-cyan);">A</div>
+          <div>
+            <div style="font-weight:700; font-size:0.88rem; color:#fff;">Alex Rivera</div>
+            <div style="font-size:0.75rem; color:var(--text-muted);">AI Lead Engineer Google</div>
           </div>
-        </main>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="master-card" onclick="openFullStudioModal()">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+          <span class="badge-level badge-menengah">MENENGAH • BUILDWITHANGGA</span>
+          <span style="font-size:0.8rem; color:var(--accent-amber); font-weight:700;">⭐ 4.9 (2.100)</span>
+        </div>
+        <h3 style="font-size:1.2rem; font-weight:800; color:#fff; margin-bottom:8px; line-height:1.3;">
+          UI/UX Design Figma To Tailwind CSS Code
+        </h3>
+        <p style="color:var(--text-muted); font-size:0.86rem; margin-bottom:18px;">
+          Mengubah desain Figma kelas atas menjadi kodingan web nyata yang responsif dan cantik.
+        </p>
+
+        <div style="margin-top:auto; display:flex; align-items:center; gap:12px; padding-top:14px; border-top:1px solid var(--border);">
+          <div class="instructor-avatar" style="border-color:var(--accent-purple);">A</div>
+          <div>
+            <div style="font-weight:700; font-size:0.88rem; color:#fff;">Angga Risky</div>
+            <div style="font-size:0.75rem; color:var(--text-muted);">Founder BuildWithAngga</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Modal Studio Koding Full -->
+  <div class="modal-backdrop" id="studioModal">
+    <div class="modal-panel">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
+        <h3 style="font-size:1.3rem; font-weight:800; margin:0;">🏆 Studio Koding Interaktif (Interactive Screencast)</h3>
+        <button onclick="closeFullStudioModal()" style="background:none; border:none; color:#fff; font-size:1.4rem; cursor:pointer;">✕</button>
+      </div>
+
+      <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:20px;">
+        Selamat datang di Studio Koding Hybrid Codemik! Anda dapat mengedit kode di dalam video secara langsung.
+      </p>
+
+      <div style="display:flex; justify-content:flex-end;">
+        <button class="ed-btn ed-btn-ghost" onclick="closeFullStudioModal()">Tutup Studio</button>
       </div>
     </div>
   </div>
 
-  <!-- Dicoding Footer -->
-  <footer style="background:var(--dc-navy-dark); color:#94a3b8; padding:40px 0; text-align:center; font-size:0.88rem;">
-    © 2026 Dicoding Indonesia Replica — Platform Belajar Koding Berbasis Teks Terstruktur #1 Indonesia (https://kodemik.com)
+  <footer style="padding:30px 0; border-top:1px solid var(--border); text-align:center; font-size:0.85rem; color:var(--text-muted);">
+    © 2026 Codemik EdTech — Ultimate Hybrid IT Learning Platform (https://kodemik.com)
   </footer>
 
   <script>
-    function openClassroomModal(courseId) {
-      document.getElementById('classroomModal').classList.add('active');
+    function openFullStudioModal() {
+      document.getElementById('studioModal').classList.add('active');
     }
-    function closeClassroomModal() {
-      document.getElementById('classroomModal').classList.remove('active');
-    }
-
-    function filterCategory(cat) {
-      const chips = document.querySelectorAll('.dc-path-chip');
-      chips.forEach(c => c.classList.remove('active'));
-      event.target.classList.add('active');
+    function closeFullStudioModal() {
+      document.getElementById('studioModal').classList.remove('active');
     }
 
-    function loadLessonContent(modId) {
-      const area = document.getElementById('lessonReadingArea');
-      const items = document.querySelectorAll('.dc-module-item');
-      items.forEach(i => i.classList.remove('active'));
-      if(items[modId-1]) items[modId-1].classList.add('active');
-
-      if (modId === 1) {
-        area.innerHTML = `
-          <h2 style="font-family:var(--font-heading); color:var(--dc-navy); margin-bottom:14px;">1. Pengenalan HTML5 & Tag Semantic</h2>
-          <p style="color:var(--dc-text-secondary); margin-bottom:16px;">
-            HTML (HyperText Markup Language) adalah bahasa standar yang digunakan untuk membuat dan menyusun halaman web.
-          </p>
-          <div style="background:#0f172a; color:#38bdf8; padding:16px; border-radius:8px; font-family:var(--font-mono); font-size:0.85rem; margin-bottom:20px; white-space:pre;">&lt;header&gt;\n  &lt;h1&gt;Dicoding Indonesia&lt;/h1&gt;\n&lt;/header&gt;</div>
-          <button class="dc-btn dc-btn-primary" onclick="loadLessonContent(2)">Selanjutnya: CSS3 & Flexbox →</button>
-        `;
-      } else if (modId === 2) {
-        area.innerHTML = `
-          <h2 style="font-family:var(--font-heading); color:var(--dc-navy); margin-bottom:14px;">2. Pengenalan CSS3 & Flexbox Grid</h2>
-          <p style="color:var(--dc-text-secondary); margin-bottom:16px;">
-            CSS3 digunakan untuk menghias dan menata tata letak elemen HTML agar tampil cantik dan responsif di layar HP maupun laptop.
-          </p>
-          <div style="background:#0f172a; color:#34d399; padding:16px; border-radius:8px; font-family:var(--font-mono); font-size:0.85rem; margin-bottom:20px; white-space:pre;">.navbar {\n  display: flex;\n  justify-content: space-between;\n  background: #2d3e50;\n}</div>
-          <button class="dc-btn dc-btn-primary" onclick="loadLessonContent(3)">Selanjutnya: JavaScript Dasar →</button>
-        `;
-      } else if (modId === 3) {
-        area.innerHTML = `
-          <h2 style="font-family:var(--font-heading); color:var(--dc-navy); margin-bottom:14px;">3. JavaScript Dasar & Manipulasi DOM</h2>
-          <p style="color:var(--dc-text-secondary); margin-bottom:16px;">
-            JavaScript memberikan logika dan interaksi dinamis pada halaman web Anda.
-          </p>
-          <div style="background:#0f172a; color:#fde047; padding:16px; border-radius:8px; font-family:var(--font-mono); font-size:0.85rem; margin-bottom:20px; white-space:pre;">document.querySelector('.btn').addEventListener('click', () =&gt; {\n  alert('Selamat Belajar Koding di Dicoding!');\n});</div>
-          <button class="dc-btn dc-btn-primary" onclick="loadLessonContent(4)">Selanjutnya: Quiz Pilihan Ganda →</button>
-        `;
-      } else if (modId === 4) {
-        area.innerHTML = `
-          <h2 style="font-family:var(--font-heading); color:var(--dc-navy); margin-bottom:14px;">4. Quiz Pilihan Ganda Pemahaman</h2>
-          <p style="color:var(--dc-text-secondary); margin-bottom:16px;">Uji pemahaman Anda dari materi yang telah dipelajari.</p>
-          <div style="background:#f1f5f9; padding:20px; border-radius:12px; margin-bottom:20px;">
-            <h4 style="margin-bottom:12px;">Soal: Tag manakah yang digunakan untuk membuat judul utama di HTML5?</h4>
-            <label style="display:block; margin-bottom:8px;"><input type="radio" name="q1"> A. &lt;p&gt;</label>
-            <label style="display:block; margin-bottom:8px;"><input type="radio" name="q1"> B. &lt;h1&gt; (Jawaban Benar)</label>
-            <label style="display:block; margin-bottom:8px;"><input type="radio" name="q1"> C. &lt;div&gt;</label>
-          </div>
-          <button class="dc-btn dc-btn-primary" onclick="alert('Selamat! Skor Anda 100/100!'); loadLessonContent(5);">Kirim Jawaban Quiz</button>
-        `;
-      } else if (modId === 5) {
-        area.innerHTML = `
-          <div style="text-align:center; padding:30px 0;">
-            <div style="font-size:3rem; margin-bottom:12px;">🏆</div>
-            <h2 style="font-family:var(--font-heading); color:var(--dc-navy); margin-bottom:8px;">Selamat! Anda Lulus Kelas Ini!</h2>
-            <p style="color:var(--dc-text-secondary); margin-bottom:20px;">Sertifikat kelulusan digital Anda telah resmi diterbitkan oleh Dicoding Indonesia.</p>
-            <div style="border:4px double #2d3e50; padding:24px; border-radius:16px; background:#fafafa; display:inline-block; max-width:500px;">
-              <h3 style="color:#2d3e50; font-family:var(--font-heading);">SERTIFIKAT KELULUSAN DIGITAL</h3>
-              <p style="margin:10px 0; font-size:0.9rem;">Diberikan Kepada Siswa Berprestasi:</p>
-              <h4 style="font-size:1.3rem; color:#2563eb;">USER DICODING INDONESIA</h4>
-              <p style="font-size:0.85rem; color:#64748b; margin-top:10px;">Atas kelulusan kelas: Belajar Dasar Pemrograman Web</p>
-            </div>
-          </div>
-        `;
-      }
+    function runCodeInStudio() {
+      const output = document.getElementById('browserPreviewOutput');
+      output.innerHTML = `
+        <div style="background:linear-gradient(135deg, rgba(16,185,129,0.2), rgba(6,182,212,0.2)); border:1px solid var(--accent-emerald); padding:16px; border-radius:12px;">
+          <h3 style="color:#fff; margin-bottom:6px;">Kode Berhasil Dijalankan! 🎉</h3>
+          <p style="color:var(--text-muted); font-size:0.85rem;">Sandbox Output: Status Execution 100% Passed.</p>
+          <span style="display:inline-block; margin-top:10px; background:var(--accent-emerald); color:#000; padding:3px 8px; border-radius:4px; font-weight:800; font-size:0.75rem;">STATUS: PASSED 100%</span>
+        </div>
+      `;
     }
   </script>
 </body>

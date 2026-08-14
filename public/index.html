@@ -293,13 +293,17 @@
   <div id="lessonView" class="lesson-view container">
     <div class="lesson-layout">
       
-      <!-- Left Sidebar Course Navigation (Modul 1 Topics) -->
+      <!-- Left Sidebar Course Navigation (6 Official Kodemik Modules) -->
       <aside class="lesson-sidebar">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-          <span style="font-size:0.75rem; font-weight:700; font-family:var(--font-mono); color:var(--text-muted);">MODUL 1: WEB & HTML</span>
-          <span style="font-size:0.75rem; color:var(--success); font-weight:700;">8 Topik</span>
+          <span style="font-size:0.75rem; font-weight:700; font-family:var(--font-mono); color:var(--text-muted);">KURIKULUM KODEMIK</span>
+          <span style="font-size:0.75rem; color:var(--primary-blue); font-weight:700;">6 Modul • 32 Topik</span>
         </div>
 
+        <!-- MODUL 1 -->
+        <div style="font-size:0.78rem; font-weight:800; font-family:var(--font-mono); color:var(--primary-blue); margin:12px 0 8px; border-bottom:1px solid var(--border-color); padding-bottom:4px;">
+          📁 MODUL 1: PENGANTAR WEB & HTML
+        </div>
         <div class="module-nav-item active" onclick="loadLessonTopic(1.1)">
           <span>1.1</span> Bagaimana Website Bekerja
         </div>
@@ -328,7 +332,47 @@
           <span>🚀</span> Mini Project: "Tentang Saya"
         </div>
         <div class="module-nav-item" onclick="loadLessonTopic(1.10)">
-          <span>🏆</span> Ringkasan & Sertifikat
+          <span>🏆</span> Ringkasan & Sertifikat Modul 1
+        </div>
+
+        <!-- MODUL 2 -->
+        <div style="font-size:0.78rem; font-weight:800; font-family:var(--font-mono); color:var(--text-muted); margin:20px 0 8px; border-bottom:1px solid var(--border-color); padding-bottom:4px;">
+          📁 MODUL 2: PENGANTAR CSS
+        </div>
+        <div class="module-nav-item" style="opacity:0.7;" onclick="alert('Modul 2: Pengantar CSS (Warna, Font, Spacing, & Selector)!')">
+          <span>2.1</span> Dasar Styling CSS3
+        </div>
+
+        <!-- MODUL 3 -->
+        <div style="font-size:0.78rem; font-weight:800; font-family:var(--font-mono); color:var(--text-muted); margin:20px 0 8px; border-bottom:1px solid var(--border-color); padding-bottom:4px;">
+          📁 MODUL 3: STYLING LANJUTAN
+        </div>
+        <div class="module-nav-item" style="opacity:0.7;" onclick="alert('Modul 3: Flexbox, CSS Grid, & Responsif Mobile!')">
+          <span>3.1</span> Layout Flexbox & Grid
+        </div>
+
+        <!-- MODUL 4 -->
+        <div style="font-size:0.78rem; font-weight:800; font-family:var(--font-mono); color:var(--text-muted); margin:20px 0 8px; border-bottom:1px solid var(--border-color); padding-bottom:4px;">
+          📁 MODUL 4: TEKNIK LANJUTAN & JAVASCRIPT
+        </div>
+        <div class="module-nav-item" style="opacity:0.7;" onclick="alert('Modul 4: Form Pro & Interaktivitas Dasar JavaScript!')">
+          <span>4.1</span> Manipulasi DOM & Event Click
+        </div>
+
+        <!-- MODUL 5 -->
+        <div style="font-size:0.78rem; font-weight:800; font-family:var(--font-mono); color:var(--text-muted); margin:20px 0 8px; border-bottom:1px solid var(--border-color); padding-bottom:4px;">
+          📁 MODUL 5: PROYEK AKHIR
+        </div>
+        <div class="module-nav-item" style="opacity:0.7;" onclick="alert('Modul 5: Membangun Website Nyata dari Nol!')">
+          <span>5.1</span> Building Landing Page Real-World
+        </div>
+
+        <!-- MODUL 6 -->
+        <div style="font-size:0.78rem; font-weight:800; font-family:var(--font-mono); color:var(--text-muted); margin:20px 0 8px; border-bottom:1px solid var(--border-color); padding-bottom:4px;">
+          📁 MODUL 6: SERTIFIKASI & KELULUSAN
+        </div>
+        <div class="module-nav-item" style="opacity:0.7;" onclick="alert('Modul 6: Ujian Kelulusan & Sertifikasi Digital Kodemik!')">
+          <span>6.1</span> Ujian Akhir & Sertifikat Resmi
         </div>
 
         <button onclick="showView('catalog')" class="btn btn-outline" style="width:100%; margin-top:20px; font-size:0.8rem;">

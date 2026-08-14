@@ -27,15 +27,15 @@ const db = {
   courses: [
     {
       id: 'dasar-pemrograman-web',
-      title: 'Belajar Dasar Pemrograman Web',
+      title: 'Belajar Pemrograman Web: HTML5, CSS3 & Dasar JavaScript',
       category: 'Web Development',
       level: 'Beginner',
-      modulesCount: 8,
-      duration: '12 Jam Belajar',
+      modulesCount: 32,
+      duration: '6 Modul • 32 Topik Belajar',
       progress: 45,
       icon: '🌐',
-      description: 'Mempelajari fondasi utama pembuatan website modern menggunakan HTML5 semantic, CSS3 layout, dan JavaScript DOM.',
-      instructor: 'Budi Santoso, S.Kom'
+      description: 'Kursus IT lengkap dari nol: HTML5 semantic, CSS3 styling, layout responsif Flexbox/Grid, dasar JavaScript DOM, hingga proyek akhir website nyata.',
+      instructor: 'Tim Kodemik Indonesia'
     },
     {
       id: 'fullstack-react-node',

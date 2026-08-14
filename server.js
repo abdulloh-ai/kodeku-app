@@ -27,15 +27,63 @@ const db = {
   courses: [
     {
       id: 'dasar-pemrograman-web',
-      title: 'Belajar Pemrograman Web: HTML5, CSS3 & Dasar JavaScript',
+      title: 'Learning Path 1: Full-Stack Web Development',
       category: 'Web Development',
       level: 'Beginner',
       modulesCount: 32,
-      duration: '6 Modul • 32 Topik Belajar',
+      duration: '8 Kelas • 32 Modul Belajar',
       progress: 45,
       icon: '🌐',
-      description: 'Kursus IT lengkap dari nol: HTML5 semantic, CSS3 styling, layout responsif Flexbox/Grid, dasar JavaScript DOM, hingga proyek akhir website nyata.',
+      description: 'Menguasai pembuatan web dari nol: HTML5, CSS3, JavaScript DOM, React, Node.js REST API, PostgreSQL, hingga deployment cloud.',
       instructor: 'Tim Kodemik Indonesia'
+    },
+    {
+      id: 'data-science-ai',
+      title: 'Learning Path 2: Data Science & AI Specialist',
+      category: 'Python',
+      level: 'Beginner',
+      modulesCount: 28,
+      duration: '8 Kelas • 28 Modul Belajar',
+      progress: 0,
+      icon: '📊',
+      description: 'Menguasai Python dasar, Data Analysis Pandas/NumPy, Statistika Bisnis, Machine Learning, Deep Learning, dan MLOps.',
+      instructor: 'Tim Kodemik Data Science'
+    },
+    {
+      id: 'mobile-flutter-dev',
+      title: 'Learning Path 3: Mobile App Development (Flutter Track)',
+      category: 'Mobile',
+      level: 'Beginner',
+      modulesCount: 25,
+      duration: '7 Kelas • 25 Modul Belajar',
+      progress: 0,
+      icon: '📱',
+      description: 'Membangun aplikasi mobile iOS & Android dari nol menggunakan bahasa Dart, Flutter UI, Provider/Riverpod, dan Firebase.',
+      instructor: 'Tim Kodemik Mobile'
+    },
+    {
+      id: 'devops-cloud-engineer',
+      title: 'Learning Path 4: DevOps & Cloud Architecture',
+      category: 'DevOps',
+      level: 'Beginner',
+      modulesCount: 26,
+      duration: '8 Kelas • 26 Modul Belajar',
+      progress: 0,
+      icon: '☁️',
+      description: 'Administrasi Linux CLI, Shell Scripting, Docker Containerization, CI/CD Pipeline, AWS Cloud, Kubernetes, dan Terraform.',
+      instructor: 'Tim Kodemik DevOps'
+    },
+    {
+      id: 'cybersecurity-expert',
+      title: 'Learning Path 5: Cybersecurity & Ethical Hacking',
+      category: 'Security',
+      level: 'Beginner',
+      modulesCount: 24,
+      duration: '7 Kelas • 24 Modul Belajar',
+      progress: 0,
+      icon: '🛡️',
+      description: 'Fondasi Keamanan Jaringan Wireshark, Ethical Hacking Nmap, OWASP Top 10 Web Security, Penetration Testing, dan SOC/SIEM.',
+      instructor: 'Tim Kodemik Security'
     }
   ],
 

@@ -203,12 +203,14 @@ body {
 .lesson-view { display: none; margin-bottom: 60px; }
 .lesson-view.active { display: block; }
 
+.mobile-sidebar-toggle-bar { display: none; }
+
 .lesson-layout { display: grid; grid-template-columns: 310px 1fr; gap: 28px; min-height: 80vh; }
 
 .lesson-sidebar {
   background: var(--bg-surface); border: 1px solid var(--border-color);
   border-radius: var(--radius-md); padding: 22px; position: sticky; top: 92px; height: calc(100vh - 115px);
-  overflow-y: auto; box-shadow: var(--shadow-sm);
+  overflow-y: auto; box-shadow: var(--shadow-sm); transition: var(--transition);
 }
 
 .lesson-main-content {
@@ -350,10 +352,34 @@ body {
 }
 .form-input:focus { border-color: var(--primary-blue); background: #FFF; box-shadow: 0 0 0 3px var(--primary-glow); }
 
+/* MOBILE RESPONSIVE DRAWER & READABILITY STYLES */
 @media (max-width: 900px) {
   .hero-grid, .grid-3 { grid-template-columns: 1fr; }
   .nav-links { display: none; }
   .hero h1 { font-size: 2.2rem; }
+  
   .lesson-layout { grid-template-columns: 1fr; }
-  .lesson-sidebar { position: static; height: auto; margin-bottom: 20px; }
+
+  .mobile-sidebar-toggle-bar {
+    display: block; position: sticky; top: 72px; z-index: 900;
+    margin-bottom: 18px; background: var(--bg-main); padding-top: 4px;
+  }
+
+  .lesson-sidebar {
+    display: none;
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 1500;
+    background: var(--bg-surface); border-radius: 0; padding: 24px;
+    height: 100vh; max-width: 100%; box-shadow: 0 10px 40px rgba(15,23,42,0.3);
+  }
+
+  .lesson-sidebar.mobile-open {
+    display: block; animation: fadeIn 0.2s ease-out;
+  }
+
+  .lesson-main-content { padding: 22px 18px; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }

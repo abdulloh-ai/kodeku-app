@@ -36,66 +36,6 @@ const db = {
       icon: '🌐',
       description: 'Kursus IT lengkap dari nol: HTML5 semantic, CSS3 styling, layout responsif Flexbox/Grid, dasar JavaScript DOM, hingga proyek akhir website nyata.',
       instructor: 'Tim Kodemik Indonesia'
-    },
-    {
-      id: 'fullstack-react-node',
-      title: 'Full-Stack JavaScript (React & Node.js)',
-      category: 'Backend',
-      level: 'Intermediate',
-      modulesCount: 14,
-      duration: '28 Jam Belajar',
-      progress: 20,
-      icon: '⚙️',
-      description: 'Membangun aplikasi web fullstack dari nol: React SPA, Express REST API, PostgreSQL database, dan JWT Auth.',
-      instructor: 'Siti Rahma, M.T.'
-    },
-    {
-      id: 'python-data-science',
-      title: 'Python untuk Data Science & Analisis',
-      category: 'Python',
-      level: 'Beginner',
-      modulesCount: 10,
-      duration: '18 Jam Belajar',
-      progress: 0,
-      icon: '🐍',
-      description: 'Menguasai bahasa Python dasar, manipulasi data dengan Pandas & NumPy, serta visualisasi data interaktif.',
-      instructor: 'Rian Pratama'
-    },
-    {
-      id: 'ai-prompt-engineering',
-      title: 'Pengenalan AI & Prompt Engineering',
-      category: 'AI',
-      level: 'Beginner',
-      modulesCount: 6,
-      duration: '8 Jam Belajar',
-      progress: 0,
-      icon: '🤖',
-      description: 'Memahami cara kerja Large Language Models (LLM), teknik prompting presisi, dan otomasi AI Agent.',
-      instructor: 'Dra. Maya Indah'
-    },
-    {
-      id: 'database-sql-postgres',
-      title: 'Mastering Database SQL & PostgreSQL',
-      category: 'Data',
-      level: 'Intermediate',
-      modulesCount: 9,
-      duration: '15 Jam Belajar',
-      progress: 0,
-      icon: '🗄️',
-      description: 'Merancang skema database relational, menulis query SQL kompleks, indexing, dan transaksi ACID aman.',
-      instructor: 'Ir. Ahmad Fauzi'
-    },
-    {
-      id: 'devops-docker-vps',
-      title: 'DevOps Dasar: Docker & VPS Server Deploy',
-      category: 'DevOps',
-      level: 'Advanced',
-      modulesCount: 12,
-      duration: '22 Jam Belajar',
-      progress: 0,
-      icon: '🚀',
-      description: 'Containerization aplikasi dengan Docker, setting Nginx reverse proxy, SSL HTTPS, dan CI/CD Deployment.',
-      instructor: 'Eko Prasetyo'
     }
   ],
 

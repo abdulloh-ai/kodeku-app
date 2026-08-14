@@ -380,7 +380,12 @@
           <div class="module-accordion-header" onclick="alert('Kelas 7: Capstone Project Cybersecurity')"><span>🏆 Kelas 7 — Capstone Cybersecurity</span></div>
           <button onclick="showView('catalog')" class="btn btn-outline" style="width:100%; margin-top:20px; font-size:0.8rem;">← Kembali Ke Katalog Kodemik</button>
         `;
-        document.getElementById('lessonArticleBody').innerHTM      } else if (courseId === 'dasar-pemrograman-web') {
+        document.getElementById('lessonArticleBody').innerHTML = `
+          <span class="badge-pill">PATH 5 • CYBERSECURITY</span>
+          <h2>Selamat Datang Di Learning Path Cybersecurity & Ethical Hacking! 🛡️</h2>
+          <p>Fondasi Keamanan Jaringan Wireshark, Ethical Hacking Nmap, OWASP Top 10 Web Security, Penetration Testing, dan SOC/SIEM.</p>
+        `;
+      } else if (courseId === 'dasar-pemrograman-web') {
         renderAll8KelasWebFramework();
       } else {
         renderAll8KelasWebFramework();

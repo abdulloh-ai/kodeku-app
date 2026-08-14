@@ -292,7 +292,7 @@
       courses.forEach(c => {
         const card = document.createElement('div');
         card.className = 'course-card';
-        card.onclick = () => showView('lesson');
+        card.onclick = () => loadCoursePath(c.id);
         
         card.innerHTML = `
           <div class="course-header-row">
@@ -303,11 +303,115 @@
           <p style="color:var(--text-secondary); font-size:0.88rem; margin-bottom:16px;">${c.description}</p>
           <div style="margin-top:auto; padding-top:14px; border-top:1px solid var(--border-color); display:flex; justify-content:space-between; align-items:center;">
             <span style="font-size:0.82rem; color:var(--text-muted); font-family:var(--font-mono);">${c.duration}</span>
-            <button class="btn btn-primary" style="padding:7px 16px; font-size:0.82rem;">Mulai Belajar</button>
+            <button class="btn btn-primary" style="padding:7px 16px; font-size:0.82rem;">Lihat Roadmap & Belajar</button>
           </div>
         `;
         grid.appendChild(card);
       });
+    }
+
+    function loadCoursePath(courseId) {
+      showView('lesson');
+      const sidebar = document.querySelector('.lesson-sidebar');
+      if (!sidebar) return;
+
+      if (courseId === 'data-science-ai') {
+        sidebar.innerHTML = `
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+            <span style="font-size:0.75rem; font-weight:700; font-family:var(--font-mono); color:var(--text-muted);">PATH 2: DATA & AI</span>
+            <span style="font-size:0.75rem; color:var(--primary-blue); font-weight:700;">8 Kelas • 28 Modul</span>
+          </div>
+          <div style="font-size:0.75rem; font-weight:800; color:var(--primary-blue); margin:10px 0 6px;">● LEVEL BEGINNER</div>
+          <div class="module-accordion-header" onclick="alert('Kelas 1: Fondasi Pemrograman Python untuk Data')"><span>🐍 Kelas 1 — Python untuk Data</span></div>
+          <div class="module-accordion-header" onclick="alert('Kelas 2: Data Analysis Fundamentals (NumPy, Pandas, Visualisasi)')"><span>📊 Kelas 2 — Data Analysis (Pandas)</span></div>
+          <div style="font-size:0.75rem; font-weight:800; color:var(--amber); margin:14px 0 6px;">● LEVEL INTERMEDIATE</div>
+          <div class="module-accordion-header" onclick="alert('Kelas 3: Statistika & Matematika untuk Data Science')"><span>📐 Kelas 3 — Statistika & Matematika</span></div>
+          <div class="module-accordion-header" onclick="alert('Kelas 4: Machine Learning Fundamentals')"><span>🤖 Kelas 4 — Machine Learning</span></div>
+          <div class="module-accordion-header" onclick="alert('Kelas 5: SQL & Data Engineering Dasar')"><span>🗄️ Kelas 5 — SQL & Data Pipeline</span></div>
+          <div style="font-size:0.75rem; font-weight:800; color:var(--success); margin:14px 0 6px;">● LEVEL ADVANCED</div>
+          <div class="module-accordion-header" onclick="alert('Kelas 6: Deep Learning Fundamentals (CNN & NLP)')"><span>🧠 Kelas 6 — Deep Learning</span></div>
+          <div class="module-accordion-header" onclick="alert('Kelas 7: MLOps & Model Deployment')"><span>⚙️ Kelas 7 — MLOps Deployment</span></div>
+          <div class="module-accordion-header" onclick="alert('Kelas 8: Capstone Project Data & AI')"><span>🏆 Kelas 8 — Capstone Project Data</span></div>
+          <button onclick="showView('catalog')" class="btn btn-outline" style="width:100%; margin-top:20px; font-size:0.8rem;">← Kembali Ke Katalog Kodemik</button>
+        `;
+        document.getElementById('lessonArticleBody').innerHTML = `
+          <span class="badge-pill">PATH 2 • DATA & AI</span>
+          <h2>Selamat Datang Di Learning Path Data Science & AI! 📊</h2>
+          <p>Pelajari Python dari nol, analisis data Pandas/NumPy, Statistika Bisnis, Machine Learning, Deep Learning, hingga deployment MLOps.</p>
+        `;
+      } else if (courseId === 'mobile-flutter-dev') {
+        sidebar.innerHTML = `
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+            <span style="font-size:0.75rem; font-weight:700; font-family:var(--font-mono); color:var(--text-muted);">PATH 3: MOBILE FLUTTER</span>
+            <span style="font-size:0.75rem; color:var(--primary-blue); font-weight:700;">7 Kelas • 25 Modul</span>
+          </div>
+          <div style="font-size:0.75rem; font-weight:800; color:var(--primary-blue); margin:10px 0 6px;">● LEVEL BEGINNER</div>
+          <div class="module-accordion-header" onclick="alert('Kelas 1: Fondasi Pemrograman Dart')"><span>🎯 Kelas 1 — Pemrograman Dart</span></div>
+          <div class="module-accordion-header" onclick="alert('Kelas 2: Flutter Fundamentals (Widget & Layout)')"><span>📱 Kelas 2 — Flutter Fundamentals</span></div>
+          <div style="font-size:0.75rem; font-weight:800; color:var(--amber); margin:14px 0 6px;">● LEVEL INTERMEDIATE</div>
+          <div class="module-accordion-header" onclick="alert('Kelas 3: State Management & Integrasi Data')"><span>⚡ Kelas 3 — State Management</span></div>
+          <div class="module-accordion-header" onclick="alert('Kelas 4: Fitur Lanjutan Flutter & Firebase')"><span>🔥 Kelas 4 — Firebase & Cloud</span></div>
+          <div style="font-size:0.75rem; font-weight:800; color:var(--success); margin:14px 0 6px;">● LEVEL ADVANCED</div>
+          <div class="module-accordion-header" onclick="alert('Kelas 5: Arsitektur Aplikasi & Testing (Clean Architecture)')"><span>🏗️ Kelas 5 — Clean Architecture</span></div>
+          <div class="module-accordion-header" onclick="alert('Kelas 6: Optimasi & Publikasi Store')"><span>🚀 Kelas 6 — Profiling & App Store</span></div>
+          <div class="module-accordion-header" onclick="alert('Kelas 7: Capstone Project Mobile')"><span>🏆 Kelas 7 — Capstone Project Mobile</span></div>
+          <button onclick="showView('catalog')" class="btn btn-outline" style="width:100%; margin-top:20px; font-size:0.8rem;">← Kembali Ke Katalog Kodemik</button>
+        `;
+        document.getElementById('lessonArticleBody').innerHTML = `
+          <span class="badge-pill">PATH 3 • MOBILE FLUTTER</span>
+          <h2>Selamat Datang Di Learning Path Mobile App Development! 📱</h2>
+          <p>Membangun aplikasi mobile iOS & Android dari nol menggunakan bahasa Dart, Flutter UI, Provider/Riverpod, dan Firebase.</p>
+        `;
+      } else if (courseId === 'devops-cloud-engineer') {
+        sidebar.innerHTML = `
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+            <span style="font-size:0.75rem; font-weight:700; font-family:var(--font-mono); color:var(--text-muted);">PATH 4: DEVOPS & CLOUD</span>
+            <span style="font-size:0.75rem; color:var(--primary-blue); font-weight:700;">8 Kelas • 26 Modul</span>
+          </div>
+          <div style="font-size:0.75rem; font-weight:800; color:var(--primary-blue); margin:10px 0 6px;">● LEVEL BEGINNER</div>
+          <div class="module-accordion-header" onclick="alert('Kelas 1: Fondasi Sistem & Linux')"><span>🐧 Kelas 1 — Linux CLI & Shell</span></div>
+          <div class="module-accordion-header" onclick="alert('Kelas 2: Version Control & Kolaborasi')"><span>🐙 Kelas 2 — Git & GitHub Workflow</span></div>
+          <div style="font-size:0.75rem; font-weight:800; color:var(--amber); margin:14px 0 6px;">● LEVEL INTERMEDIATE</div>
+          <div class="module-accordion-header" onclick="alert('Kelas 3: Cloud Computing Fundamentals')"><span>☁️ Kelas 3 — Cloud AWS EC2/S3</span></div>
+          <div class="module-accordion-header" onclick="alert('Kelas 4: Containerization Docker')"><span>🐳 Kelas 4 — Docker Container</span></div>
+          <div class="module-accordion-header" onclick="alert('Kelas 5: CI/CD Pipeline')"><span>🔄 Kelas 5 — CI/CD Pipeline</span></div>
+          <div style="font-size:0.75rem; font-weight:800; color:var(--success); margin:14px 0 6px;">● LEVEL ADVANCED</div>
+          <div class="module-accordion-header" onclick="alert('Kelas 6: Container Orchestration Kubernetes')"><span>☸️ Kelas 6 — Kubernetes Cluster</span></div>
+          <div class="module-accordion-header" onclick="alert('Kelas 7: Infrastructure as Code & Monitoring')"><span>🛠️ Kelas 7 — Terraform & Grafana</span></div>
+          <div class="module-accordion-header" onclick="alert('Kelas 8: Capstone Project DevOps')"><span>🏆 Kelas 8 — Capstone Project DevOps</span></div>
+          <button onclick="showView('catalog')" class="btn btn-outline" style="width:100%; margin-top:20px; font-size:0.8rem;">← Kembali Ke Katalog Kodemik</button>
+        `;
+        document.getElementById('lessonArticleBody').innerHTML = `
+          <span class="badge-pill">PATH 4 • DEVOPS & CLOUD</span>
+          <h2>Selamat Datang Di Learning Path DevOps & Cloud Architecture! ☁️</h2>
+          <p>Administrasi Linux CLI, Shell Scripting, Docker Containerization, CI/CD Pipeline, AWS Cloud, Kubernetes, dan Terraform.</p>
+        `;
+      } else if (courseId === 'cybersecurity-expert') {
+        sidebar.innerHTML = `
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+            <span style="font-size:0.75rem; font-weight:700; font-family:var(--font-mono); color:var(--text-muted);">PATH 5: CYBERSECURITY</span>
+            <span style="font-size:0.75rem; color:var(--primary-blue); font-weight:700;">7 Kelas • 24 Modul</span>
+          </div>
+          <div style="font-size:0.75rem; font-weight:800; color:var(--primary-blue); margin:10px 0 6px;">● LEVEL BEGINNER</div>
+          <div class="module-accordion-header" onclick="alert('Kelas 1: Fondasi Keamanan & Jaringan Wireshark')"><span>🔌 Kelas 1 — Networking Security</span></div>
+          <div class="module-accordion-header" onclick="alert('Kelas 2: Fundamental Ethical Hacking Nmap')"><span>🕵️ Kelas 2 — Ethical Hacking Nmap</span></div>
+          <div style="font-size:0.75rem; font-weight:800; color:var(--amber); margin:14px 0 6px;">● LEVEL INTERMEDIATE</div>
+          <div class="module-accordion-header" onclick="alert('Kelas 3: Keamanan Aplikasi Web OWASP Top 10')"><span>🌐 Kelas 3 — OWASP Web Security</span></div>
+          <div class="module-accordion-header" onclick="alert('Kelas 4: Penetration Testing Sistem & Jaringan')"><span>⚔️ Kelas 4 — Penetration Testing</span></div>
+          <div style="font-size:0.75rem; font-weight:800; color:var(--success); margin:14px 0 6px;">● LEVEL ADVANCED</div>
+          <div class="module-accordion-header" onclick="alert('Kelas 5: Security Operations & Incident Response (SOC)')"><span>🚨 Kelas 5 — SOC & SIEM Logging</span></div>
+          <div class="module-accordion-header" onclick="alert('Kelas 6: Keamanan Cloud & DevSecOps')"><span>🔒 Kelas 6 — Cloud Security Audit</span></div>
+          <div class="module-accordion-header" onclick="alert('Kelas 7: Capstone Project Cybersecurity')"><span>🏆 Kelas 7 — Capstone Cybersecurity</span></div>
+          <button onclick="showView('catalog')" class="btn btn-outline" style="width:100%; margin-top:20px; font-size:0.8rem;">← Kembali Ke Katalog Kodemik</button>
+        `;
+        document.getElementById('lessonArticleBody').innerHTML = `
+          <span class="badge-pill">PATH 5 • CYBERSECURITY</span>
+          <h2>Selamat Datang Di Learning Path Cybersecurity & Ethical Hacking! 🛡️</h2>
+          <p>Fondasi Keamanan Jaringan Wireshark, Ethical Hacking Nmap, OWASP Top 10 Web Security, Penetration Testing, dan SOC/SIEM.</p>
+        `;
+      } else {
+        loadLessonTopic(1.1);
+      }
     }
 
     // =========================================================================

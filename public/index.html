@@ -380,12 +380,16 @@
           <div class="module-accordion-header" onclick="alert('Kelas 7: Capstone Project Cybersecurity')"><span>🏆 Kelas 7 — Capstone Cybersecurity</span></div>
           <button onclick="showView('catalog')" class="btn btn-outline" style="width:100%; margin-top:20px; font-size:0.8rem;">← Kembali Ke Katalog Kodemik</button>
         `;
-        document.getElementById('lessonArticleBody').innerHTML = `
-          <span class="badge-pill">PATH 5 • CYBERSECURITY</span>
-          <h2>Selamat Datang Di Learning Path Cybersecurity & Ethical Hacking! 🛡️</h2>
-          <p>Fondasi Keamanan Jaringan Wireshark, Ethical Hacking Nmap, OWASP Top 10 Web Security, Penetration Testing, dan SOC/SIEM.</p>
-        `;
-      } else if (courseId === 'dasar-pemrograman-web') {
+        document.getElementById('lessonArticleBody').innerHTM      } else if (courseId === 'dasar-pemrograman-web') {
+        renderAll8KelasWebFramework();
+      } else {
+        renderAll8KelasWebFramework();
+      }
+    }
+
+    function renderAll8KelasWebFramework() {
+      const sidebar = document.querySelector('.lesson-sidebar');
+      if (sidebar) {
         sidebar.innerHTML = `
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
             <span style="font-size:0.75rem; font-weight:700; font-family:var(--font-mono); color:var(--text-muted);">PATH 1: FULL-STACK WEB</span>
@@ -394,7 +398,7 @@
 
           <div style="font-size:0.75rem; font-weight:800; color:var(--primary-blue); margin:10px 0 6px;">● LEVEL BEGINNER</div>
           <div class="module-accordion-header" onclick="renderKelas1WebSidebar()"><span>🌐 Kelas 1 — Fondasi Web Development</span></div>
-          <div class="module-accordion-header" onclick="alert('Kelas 2: JavaScript Fundamentals (Variabel, Fungsi, DOM, Async)')"><span>⚡ Kelas 2 — JavaScript Fundamentals</span></div>
+          <div class="module-accordion-header" onclick="renderKelas2Framework()"><span>⚡ Kelas 2 — JavaScript Fundamentals</span></div>
 
           <div style="font-size:0.75rem; font-weight:800; color:var(--amber); margin:14px 0 6px;">● LEVEL INTERMEDIATE</div>
           <div class="module-accordion-header" onclick="alert('Kelas 3: Frontend Framework React (Hooks, Router, State)')"><span>⚛️ Kelas 3 — Frontend Framework (React)</span></div>
@@ -402,15 +406,68 @@
           <div class="module-accordion-header" onclick="alert('Kelas 5: Full-Stack Integration (React + Node.js, Testing)')"><span>🔄 Kelas 5 — Full-Stack Integration</span></div>
 
           <div style="font-size:0.75rem; font-weight:800; color:var(--success); margin:14px 0 6px;">● LEVEL ADVANCED</div>
-          <div class="module-accordion-header" onclick="alert('Kelas 6: Advanced Backend & Architecture (Microservices, Redis)')"><span>🏛️ Kelas 6 — Advanced Backend Architecture</span></div>
+          <div class="module-accordion-header" onclick="alert('Kelas 6: Advanced Backend Architecture (Microservices, Redis)')"><span>🏛️ Kelas 6 — Advanced Backend Architecture</span></div>
           <div class="module-accordion-header" onclick="alert('Kelas 7: DevOps untuk Web Developer (Docker, CI/CD Pipeline)')"><span>🐳 Kelas 7 — DevOps untuk Web Developer</span></div>
           <div class="module-accordion-header" onclick="alert('Kelas 8: Capstone Project Full-Stack Production-Grade')"><span>🏆 Kelas 8 — Capstone Project Full-Stack</span></div>
 
-          <button onclick="showView('catalog')" class="btn btn-outline" style="width:100%; margin-top:20px; font-size:0.8rem;">← Kembali Ke Katalog Kodemik</button>
+          <button onclick="showView('catalog')" class="btn btn-outline" style="width:100%; margin-top:20px; font-size:0.8rem;">← Kembali Ke Katalog Utama</button>
         `;
-        renderKelas1WebSidebar();
-      } else {
-        renderKelas1WebSidebar();
+      }
+
+      const article = document.getElementById('lessonArticleBody');
+      if (article) {
+        article.innerHTML = `
+          <span class="badge-pill">PATH 1 • FULL-STACK WEB DEVELOPMENT</span>
+          <h2>🗺️ KERANGKA ROADMAP MASTER 8 KELAS (FULL-STACK WEB)</h2>
+          <div class="callout-box">
+            📌 <strong>Struktur Kurikulum Resmi Kodemik:</strong><br>
+            Learning Path 1 terdiri dari 3 Level Kompetensi (Beginner, Intermediate, Advanced) dan 8 Kelas Terstruktur.
+          </div>
+
+          <div style="margin-top:24px;">
+            <h3 style="color:var(--primary-blue);">● LEVEL BEGINNER</h3>
+            
+            <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--border-color);">
+              <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-bottom:8px;">🌐 Kelas 1 — Fondasi Web Development</h4>
+              <p style="font-size:0.88rem; color:var(--text-secondary);">Membangun pemahaman cara kerja web dan halaman statis HTML5/CSS3 terstruktur.</p>
+              <ul>
+                <li>Modul 1.1: Cara Kerja Internet & Web (Client-Server, DevTools, Quiz)</li>
+                <li>Modul 1.2: HTML Fundamentals (Struktur Dokumen, Semantik, Form, Quiz)</li>
+                <li>Modul 1.3: CSS Fundamentals (Styling Dasar, Flexbox, Grid, Responsive, Quiz)</li>
+                <li>🚀 <strong>Project Kelas 1:</strong> Website Portofolio Statis Multi-Halaman</li>
+                <li>🏆 <strong>Assessment Kelas 1:</strong> Ujian Teori & Review Project</li>
+              </ul>
+              <button class="btn btn-primary" onclick="renderKelas1WebSidebar()" style="padding:8px 16px; margin-top:10px;">▶ Masuk Ke Materi Kelas 1</button>
+            </div>
+
+            <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--border-color);">
+              <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-bottom:8px;">⚡ Kelas 2 — JavaScript Fundamentals</h4>
+              <p style="font-size:0.88rem; color:var(--text-secondary);">Logika pemrograman, fungsi, manipulasi DOM interaktif, dan Asynchronous Fetch API.</p>
+              <ul>
+                <li>Modul 2.1: Dasar Pemrograman JavaScript (Variabel, Operator, Kontrol, Fungsi, Quiz)</li>
+                <li>Modul 2.2: Struktur Data JavaScript (Array Methods, Object, Spread, Quiz)</li>
+                <li>Modul 2.3: DOM Manipulation & Event (Selecting, Event Listener, Quiz)</li>
+                <li>Modul 2.4: Asynchronous JavaScript (Promise, Async/Await, Fetch API, Quiz)</li>
+                <li>🚀 <strong>Project Kelas 2:</strong> Aplikasi Interaktif (To-Do List / Quiz App)</li>
+                <li>🏆 <strong>Assessment Kelas 2:</strong> Ujian Teori & Code Review</li>
+              </ul>
+            </div>
+
+            <h3 style="color:var(--amber); margin-top:30px;">● LEVEL INTERMEDIATE</h3>
+            <ul>
+              <li><strong>Kelas 3 — Frontend Framework (React):</strong> Components, JSX, Hooks, Router, State Management</li>
+              <li><strong>Kelas 4 — Backend Development (Node.js):</strong> Express.js REST API, PostgreSQL/MongoDB, Auth JWT</li>
+              <li><strong>Kelas 5 — Full-Stack Integration:</strong> React + Node.js Connect, Cloud Upload, Jest Testing</li>
+            </ul>
+
+            <h3 style="color:var(--success); margin-top:30px;">● LEVEL ADVANCED</h3>
+            <ul>
+              <li><strong>Kelas 6 — Advanced Backend Architecture:</strong> Microservices, Redis Caching, Swagger Docs</li>
+              <li><strong>Kelas 7 — DevOps untuk Web Developer:</strong> Docker Container, CI/CD GitHub Actions, Cloud VPS</li>
+              <li><strong>Kelas 8 — Capstone Project Full-Stack:</strong> Web App Production-Grade & Presentation</li>
+            </ul>
+          </div>
+        `;
       }
     }
 
@@ -460,7 +517,19 @@
           </div>
         </div>
 
-        <button onclick="loadCoursePath('dasar-pemrograman-web')" class="btn btn-outline" style="width:100%; margin-top:14px; font-size:0.8rem;">
+        <button onclick="renderAll8KelasWebFramework()" class="btn btn-outline" style="width:100%; margin-top:14px; font-size:0.8rem;">
+          ← Kembali Ke Roadmap 8 Kelas
+        </button>
+        <button onclick="showView('catalog')" class="btn btn-outline" style="width:100%; margin-top:8px; font-size:0.8rem;">
+          ← Kembali Ke Katalog Utama
+        </button>
+      `;
+      loadLessonTopic(1.1);
+    }
+
+    function renderKelas2Framework() {
+      alert('Kelas 2: JavaScript Fundamentals (Variabel, Fungsi, DOM, Async API)!');
+    }asar-pemrograman-web')" class="btn btn-outline" style="width:100%; margin-top:14px; font-size:0.8rem;">
           ← Kembali Ke Kelas Web Dev
         </button>
         <button onclick="showView('catalog')" class="btn btn-outline" style="width:100%; margin-top:8px; font-size:0.8rem;">

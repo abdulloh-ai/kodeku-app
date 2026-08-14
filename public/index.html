@@ -545,59 +545,57 @@
     }
 
     function renderKelas1WebSidebar() {
-      const sidebar = document.querySelector('.lesson-sidebar');
-      if (!sidebar) return;
-      sidebar.innerHTML = `
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-          <span style="font-size:0.75rem; font-weight:700; font-family:var(--font-mono); color:var(--text-muted);">PATH 1: KELAS 1 FONDASI WEB</span>
-          <span style="font-size:0.75rem; color:var(--primary-blue); font-weight:700;">8 Topik • Beginner</span>
-        </div>
+      const article = document.getElementById('lessonArticleBody');
+      if (article) {
+        article.innerHTML = `
+          <span class="badge-pill">PATH 1 • KELAS 1</span>
+          <h2>🌐 KELAS 1 — FONDASI WEB DEVELOPMENT</h2>
+          <div class="callout-box">
+            🎯 <strong>Tujuan Kompetensi:</strong> Memahami cara kerja web dan mampu membangun halaman statis terstruktur.
+          </div>
 
-        <div class="module-accordion-header" onclick="toggleModuleAccordion('mod11Group')">
-          <span>📁 MODUL 1 — PENGANTAR WEB & HTML</span>
-          <span id="mod11GroupArrow" class="accordion-arrow">▼</span>
-        </div>
-        <div id="mod11Group" class="module-accordion-content active">
-          <div class="module-nav-item active" onclick="loadLessonTopic(1.1)">
-            <span>1.1</span> Bagaimana Website Bekerja
-          </div>
-          <div class="module-nav-item" onclick="loadLessonTopic(1.2)">
-            <span>1.2</span> Struktur Dasar HTML
-          </div>
-          <div class="module-nav-item" onclick="loadLessonTopic(1.3)">
-            <span>1.3</span> Teks & Heading
-          </div>
-          <div class="module-nav-item" onclick="loadLessonTopic(1.4)">
-            <span>1.4</span> List & Link
-          </div>
-          <div class="module-nav-item" onclick="loadLessonTopic(1.5)">
-            <span>1.5</span> Gambar & Atribut
-          </div>
-          <div class="module-nav-item" onclick="loadLessonTopic(1.6)">
-            <span>1.6</span> Tabel Sederhana
-          </div>
-          <div class="module-nav-item" onclick="loadLessonTopic(1.7)">
-            <span>1.7</span> Form Dasar
-          </div>
-          <div class="module-nav-item" onclick="loadLessonTopic(1.8)">
-            <span>1.8</span> Elemen Semantic HTML5
-          </div>
-          <div class="module-nav-item" onclick="loadLessonTopic(1.9)">
-            <span>🚀</span> Mini Project: "Tentang Saya"
-          </div>
-          <div class="module-nav-item" onclick="loadLessonTopic(1.10)">
-            <span>🏆</span> Ringkasan & Sertifikat Modul 1
-          </div>
-        </div>
+          <div style="margin-top:24px;">
+            <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--border-color);">
+              <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-bottom:8px;">📁 Modul 1.1 — Cara Kerja Internet & Web</h4>
+              <ul>
+                <li>Materi: Client-Server & HTTP/HTTPS (Request-Response Cycle, DNS & Domain, Browser Engine)</li>
+                <li>Praktik: Eksplorasi DevTools (Network & Elements tab)</li>
+                <li>Quiz: Konsep Dasar Web</li>
+              </ul>
+            </div>
 
-        <button onclick="renderAll8KelasWebFramework()" class="btn btn-outline" style="width:100%; margin-top:14px; font-size:0.8rem;">
-          ← Kembali Ke Roadmap 8 Kelas
-        </button>
-        <button onclick="showView('catalog')" class="btn btn-outline" style="width:100%; margin-top:8px; font-size:0.8rem;">
-          ← Kembali Ke Katalog Utama
-        </button>
-      `;
-      loadLessonTopic(1.1);
+            <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--border-color);">
+              <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-bottom:8px;">📁 Modul 1.2 — HTML Fundamentals</h4>
+              <ul>
+                <li>Materi: Struktur Dokumen HTML (Tag, Elemen, Atribut, Heading, Teks, List, Link)</li>
+                <li>Materi: HTML Semantik & Form (Header, Nav, Main, Footer, Form Types, Tabel Data)</li>
+                <li>Praktik: Membangun Halaman Statis Multi-Section</li>
+                <li>Quiz: HTML Fundamentals</li>
+              </ul>
+            </div>
+
+            <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--border-color);">
+              <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-bottom:8px;">📁 Modul 1.3 — CSS Fundamentals</h4>
+              <ul>
+                <li>Materi: Styling Dasar (Selector, Spesifisitas, Box Model, Warna & Tipografi)</li>
+                <li>Materi: Layout Modern (Flexbox, CSS Grid, Responsive Design & Media Query)</li>
+                <li>Praktik: Styling Halaman Statis Menjadi Responsif</li>
+                <li>Quiz: CSS Fundamentals</li>
+              </ul>
+            </div>
+
+            <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--primary-blue);">
+              <h4 style="font-size:1.1rem; color:var(--primary-blue); margin-bottom:8px;">🚀 Project Kelas 1: Website Portofolio Statis</h4>
+              <p style="font-size:0.88rem; color:var(--text-secondary);">Website portofolio statis multi-halaman yang responsif di HP & PC.</p>
+            </div>
+
+            <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--success);">
+              <h4 style="font-size:1.1rem; color:var(--success); margin-bottom:8px;">🏆 Assessment Kelas 1: Ujian Teori & Review Project</h4>
+              <p style="font-size:0.88rem; color:var(--text-secondary);">Review struktur HTML/CSS, semantik, & responsivitas. Prerequisite untuk Kelas 2.</p>
+            </div>
+          </div>
+        `;
+      }
     }
 
     function renderKelas2Framework() {

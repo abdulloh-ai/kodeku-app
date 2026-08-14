@@ -602,137 +602,6 @@
       alert('Kelas 2: JavaScript Fundamentals (Variabel, Fungsi, DOM, Async API)!');
     }
 
-    // =========================================================================
-    // KODEMIK CURRICULUM — VERBATIM TOPICS LOADER (100% COMPLETE)
-    // =========================================================================
-    function loadLessonTopic(topicId) {
-      const sidebar = document.querySelector('.lesson-sidebar');
-      if (sidebar) sidebar.classList.remove('mobile-open');
-      const toggleBtnText = document.getElementById('mobileToggleBtnText');
-      if (toggleBtnText) toggleBtnText.innerText = 'Lihat Daftar Modul & Topik';
-      const toggleBtnIcon = document.getElementById('mobileToggleBtnIcon');
-      if (toggleBtnIcon) toggleBtnIcon.innerText = '📁';
-
-      const items = document.querySelectorAll('.module-nav-item');
-      items.forEach(i => i.classList.remove('active'));
-      
-      const article = document.getElementById('lessonArticleBody');
-
-      if (topicId === 1.1) {
-        if(items[0]) items[0].classList.add('active');
-        article.innerHTML = `
-          <span class="badge-pill">PEMULA • MODUL 1.1</span>
-          <h2>Topik 1.1 — Bagaimana Website Bekerja</h2>
-          <div class="callout-box">🎯 <strong>Tujuan Pembelajaran:</strong> Memahami alur kerja browser hingga server (Request-Response), peran HTML/CSS/JS, dan istilah client/server.</div>
-          <h3>📖 Penjelasan Konsep</h3>
-          <p>Bayangkan kamu memesan makanan di restoran. Client (Browser) = kamu yang memesan, Request = pesanan, Server = dapur, Response = makanan (HTML/CSS/JS).</p>
-          <table class="pro-table">
-            <thead><tr><th>Teknologi</th><th>Fungsi</th><th>Analogi</th></tr></thead>
-            <tbody>
-              <tr><td>HTML</td><td>Struktur & konten</td><td>Kerangka bangunan</td></tr>
-              <tr><td>CSS</td><td>Tampilan & gaya</td><td>Cat & dekorasi</td></tr>
-              <tr><td>JavaScript</td><td>Interaktivitas & logika</td><td>Sistem listrik & mesin</td></tr>
-            </tbody>
-          </table>
-          <h3>⚠️ Kesalahan Umum</h3>
-          <p>HTML bukan bahasa pemrograman melainkan bahasa markup untuk menyusun konten.</p>
-          <div class="quiz-container">
-            <h3>❓ Quiz Topik 1.1</h3>
-            <p><strong>1. Apa fungsi utama HTML?</strong> B. Menyusun struktur dan konten (Benar)</p>
-          </div>
-          <button class="btn btn-primary" onclick="loadLessonTopic(1.2)">Lanjut ke Topik 1.2 →</button>
-        `;
-      } else if (topicId === 1.2) {
-        if(items[1]) items[1].classList.add('active');
-        article.innerHTML = `
-          <span class="badge-pill">PEMULA • MODUL 1.2</span>
-          <h2>Topik 1.2 — Struktur Dasar HTML</h2>
-          <div class="callout-box">🎯 <strong>Tujuan Pembelajaran:</strong> Menulis dokumen HTML5 valid, memahami tag, elemen, dan atribut.</div>
-          <div class="code-block-pro">&lt;!DOCTYPE html&gt;\n&lt;html lang="id"&gt;\n&lt;head&gt;\n    &lt;title&gt;Halaman Pertamaku&lt;/title&gt;\n&lt;/head&gt;\n&lt;body&gt;\n    &lt;h1&gt;Selamat Datang!&lt;/h1&gt;\n    &lt;p&gt;Ini paragraf pertama saya.&lt;/p&gt;\n&lt;/body&gt;\n&lt;/html&gt;</div>
-          <div class="coding-sandbox">
-            <div class="sandbox-header">
-              <span style="font-family:var(--font-mono); font-size:0.8rem; color:#94A3B8;">💻 LEMBAR PRAKTIK KODEMIK (INDEX.HTML)</span>
-              <button onclick="runSandboxCode()" class="btn btn-primary" style="padding:4px 12px; font-size:0.78rem;">▶ Run Sandbox</button>
-            </div>
-            <div class="sandbox-editor" id="sandboxEditorInput" contenteditable="true" spellcheck="false">&lt;h1 style="color:#2563EB;"&gt;Nama Saya: Hanif Abdulloh&lt;/h1&gt;\n&lt;p&gt;Saya belajar koding di Kodemik.&lt;/p&gt;</div>
-          </div>
-          <button class="btn btn-primary" onclick="loadLessonTopic(1.3)">Lanjut ke Topik 1.3 →</button>
-        `;
-      } else if (topicId === 1.3) {
-        if(items[2]) items[2].classList.add('active');
-        article.innerHTML = `
-          <span class="badge-pill">PEMULA • MODUL 1.3</span>
-          <h2>Topik 1.3 — Teks & Heading</h2>
-          <div class="callout-box">🎯 <strong>Tujuan Pembelajaran:</strong> Menggunakan tag heading (h1-h6) secara tepat dan memformat teks (tebal, miring, garis baru).</div>
-          <h3>💻 Contoh Kode</h3>
-          <div class="code-block-pro">&lt;h1&gt;Toko Buku Nusantara&lt;/h1&gt;\n&lt;h2&gt;Kategori: Fiksi&lt;/h2&gt;\n&lt;p&gt;Buku ini &lt;strong&gt;sangat direkomendasikan&lt;/strong&gt;. Ceritanya &lt;em&gt;mengharukan&lt;/em&gt;.&lt;/p&gt;</div>
-          <h3>⚠️ Kesalahan Umum</h3>
-          <p>Heading (h1-h6) adalah untuk hirarki struktur dokumen & SEO, bukan sekadar untuk membesarkan teks visual!</p>
-          <button class="btn btn-primary" onclick="loadLessonTopic(1.4)">Lanjut ke Topik 1.4 →</button>
-        `;
-      } else if (topicId === 1.4) {
-        if(items[3]) items[3].classList.add('active');
-        article.innerHTML = `
-          <span class="badge-pill">PEMULA • MODUL 1.4</span>
-          <h2>Topik 1.4 — List & Link</h2>
-          <div class="callout-box">🎯 <strong>Tujuan Pembelajaran:</strong> Membuat daftar (ul, ol, li) dan hyperlink (a href, target="_blank", mailto).</div>
-          <div class="code-block-pro">&lt;ul&gt;\n  &lt;li&gt;Item 1&lt;/li&gt;\n  &lt;li&gt;Item 2&lt;/li&gt;\n&lt;/ul&gt;\n&lt;a href="https://kodemik.com" target="_blank"&gt;Kunjungi Kodemik&lt;/a&gt;</div>
-          <button class="btn btn-primary" onclick="loadLessonTopic(1.5)">Lanjut ke Topik 1.5 →</button>
-        `;
-      } else if (topicId === 1.5) {
-        if(items[4]) items[4].classList.add('active');
-        article.innerHTML = `
-          <span class="badge-pill">PEMULA • MODUL 1.5</span>
-          <h2>Topik 1.5 — Gambar & Atribut</h2>
-          <div class="callout-box">🎯 <strong>Tujuan Pembelajaran:</strong> Menyisipkan gambar dengan atribut src, alt (SEO & aksesibilitas), width, height.</div>
-          <div class="code-block-pro">&lt;img src="foto.jpg" alt="Deskripsi gambar" width="300" height="200"&gt;</div>
-          <button class="btn btn-primary" onclick="loadLessonTopic(1.6)">Lanjut ke Topik 1.6 →</button>
-        `;
-      } else if (topicId === 1.6) {
-        if(items[5]) items[5].classList.add('active');
-        article.innerHTML = `
-          <span class="badge-pill">PEMULA • MODUL 1.6</span>
-          <h2>Topik 1.6 — Tabel Sederhana</h2>
-          <div class="callout-box">🎯 <strong>Tujuan Pembelajaran:</strong> Menampilkan data tabular dengan table, thead, tbody, tr, th, td.</div>
-          <button class="btn btn-primary" onclick="loadLessonTopic(1.7)">Lanjut ke Topik 1.7 →</button>
-        `;
-      } else if (topicId === 1.7) {
-        if(items[6]) items[6].classList.add('active');
-        article.innerHTML = `
-          <span class="badge-pill">PEMULA • MODUL 1.7</span>
-          <h2>Topik 1.7 — Form Dasar</h2>
-          <div class="callout-box">🎯 <strong>Tujuan Pembelajaran:</strong> Membuat form input data dengan label, input, select, option, dan button.</div>
-          <button class="btn btn-primary" onclick="loadLessonTopic(1.8)">Lanjut ke Topik 1.8 →</button>
-        `;
-      } else if (topicId === 1.8) {
-        if(items[7]) items[7].classList.add('active');
-        article.innerHTML = `
-          <span class="badge-pill">PEMULA • MODUL 1.8</span>
-          <h2>Topik 1.8 — Elemen Semantic HTML5</h2>
-          <div class="callout-box">🎯 <strong>Tujuan Pembelajaran:</strong> Menggunakan tag semantic (header, nav, main, article, aside, footer).</div>
-          <button class="btn btn-primary" onclick="loadLessonTopic(1.9)">Lanjut ke Mini Project →</button>
-        `;
-      } else if (topicId === 1.9) {
-        if(items[8]) items[8].classList.add('active');
-        article.innerHTML = `
-          <span class="badge-pill">MINI PROJECT • MODUL 1</span>
-          <h2>🎯 Mini Project Modul 1: Halaman "Tentang Saya"</h2>
-          <p>Gabungkan seluruh materi HTML ke dalam file tentang-saya.html!</p>
-          <button class="btn btn-primary" onclick="loadLessonTopic(1.10)">Klaim Sertifikat →</button>
-        `;
-      } else if (topicId === 1.10) {
-        if(items[9]) items[9].classList.add('active');
-        article.innerHTML = `
-          <div style="text-align:center; padding:30px 0;">
-            <div style="font-size:3.5rem; margin-bottom:10px;">🏆</div>
-            <h2>Selamat! Kamu Lulus Modul 1 Pengantar Web & HTML!</h2>
-            <p>Sertifikat Resmi Diterbitkan Oleh Kodemik Indonesia.</p>
-            <button class="btn btn-primary" onclick="alert('Downloading Sertifikat Digital PDF Kodemik...')">📄 Download Sertifikat PDF</button>
-          </div>
-        `;
-      }
-    }
-
     function toggleMobileSidebar() {
       const sidebar = document.querySelector('.lesson-sidebar');
       const isOpen = sidebar.classList.contains('mobile-open');
@@ -763,7 +632,7 @@
 
     window.addEventListener('DOMContentLoaded', () => {
       fetchCourseCatalog();
-      loadLessonTopic(1.1);
+      renderAll8KelasWebFramework();
     });
   </script>
 </body>

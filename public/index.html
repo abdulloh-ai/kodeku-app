@@ -293,87 +293,109 @@
   <div id="lessonView" class="lesson-view container">
     <div class="lesson-layout">
       
-      <!-- Left Sidebar Course Navigation (6 Official Kodemik Modules) -->
+      <!-- Left Sidebar Course Navigation (Accordion Dropdown 6 Modules) -->
       <aside class="lesson-sidebar">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
           <span style="font-size:0.75rem; font-weight:700; font-family:var(--font-mono); color:var(--text-muted);">KURIKULUM KODEMIK</span>
           <span style="font-size:0.75rem; color:var(--primary-blue); font-weight:700;">6 Modul • 32 Topik</span>
         </div>
 
-        <!-- MODUL 1 -->
-        <div style="font-size:0.78rem; font-weight:800; font-family:var(--font-mono); color:var(--primary-blue); margin:12px 0 8px; border-bottom:1px solid var(--border-color); padding-bottom:4px;">
-          📁 MODUL 1: PENGANTAR WEB & HTML
+        <!-- MODUL 1 ACCORDION -->
+        <div class="module-accordion-header" onclick="toggleModuleAccordion('mod1Group')">
+          <span>📁 MODUL 1: PENGANTAR WEB & HTML</span>
+          <span id="mod1GroupArrow" class="accordion-arrow">▼</span>
         </div>
-        <div class="module-nav-item active" onclick="loadLessonTopic(1.1)">
-          <span>1.1</span> Bagaimana Website Bekerja
-        </div>
-        <div class="module-nav-item" onclick="loadLessonTopic(1.2)">
-          <span>1.2</span> Struktur Dasar HTML
-        </div>
-        <div class="module-nav-item" onclick="loadLessonTopic(1.3)">
-          <span>1.3</span> Teks & Heading
-        </div>
-        <div class="module-nav-item" onclick="loadLessonTopic(1.4)">
-          <span>1.4</span> List & Link
-        </div>
-        <div class="module-nav-item" onclick="loadLessonTopic(1.5)">
-          <span>1.5</span> Gambar & Atribut
-        </div>
-        <div class="module-nav-item" onclick="loadLessonTopic(1.6)">
-          <span>1.6</span> Tabel Sederhana
-        </div>
-        <div class="module-nav-item" onclick="loadLessonTopic(1.7)">
-          <span>1.7</span> Form Dasar
-        </div>
-        <div class="module-nav-item" onclick="loadLessonTopic(1.8)">
-          <span>1.8</span> Elemen Semantic HTML5
-        </div>
-        <div class="module-nav-item" onclick="loadLessonTopic(1.9)">
-          <span>🚀</span> Mini Project: "Tentang Saya"
-        </div>
-        <div class="module-nav-item" onclick="loadLessonTopic(1.10)">
-          <span>🏆</span> Ringkasan & Sertifikat Modul 1
-        </div>
-
-        <!-- MODUL 2 -->
-        <div style="font-size:0.78rem; font-weight:800; font-family:var(--font-mono); color:var(--text-muted); margin:20px 0 8px; border-bottom:1px solid var(--border-color); padding-bottom:4px;">
-          📁 MODUL 2: PENGANTAR CSS
-        </div>
-        <div class="module-nav-item" style="opacity:0.7;" onclick="alert('Modul 2: Pengantar CSS (Warna, Font, Spacing, & Selector)!')">
-          <span>2.1</span> Dasar Styling CSS3
+        <div id="mod1Group" class="module-accordion-content active">
+          <div class="module-nav-item active" onclick="loadLessonTopic(1.1)">
+            <span>1.1</span> Bagaimana Website Bekerja
+          </div>
+          <div class="module-nav-item" onclick="loadLessonTopic(1.2)">
+            <span>1.2</span> Struktur Dasar HTML
+          </div>
+          <div class="module-nav-item" onclick="loadLessonTopic(1.3)">
+            <span>1.3</span> Teks & Heading
+          </div>
+          <div class="module-nav-item" onclick="loadLessonTopic(1.4)">
+            <span>1.4</span> List & Link
+          </div>
+          <div class="module-nav-item" onclick="loadLessonTopic(1.5)">
+            <span>1.5</span> Gambar & Atribut
+          </div>
+          <div class="module-nav-item" onclick="loadLessonTopic(1.6)">
+            <span>1.6</span> Tabel Sederhana
+          </div>
+          <div class="module-nav-item" onclick="loadLessonTopic(1.7)">
+            <span>1.7</span> Form Dasar
+          </div>
+          <div class="module-nav-item" onclick="loadLessonTopic(1.8)">
+            <span>1.8</span> Elemen Semantic HTML5
+          </div>
+          <div class="module-nav-item" onclick="loadLessonTopic(1.9)">
+            <span>🚀</span> Mini Project: "Tentang Saya"
+          </div>
+          <div class="module-nav-item" onclick="loadLessonTopic(1.10)">
+            <span>🏆</span> Ringkasan & Sertifikat Modul 1
+          </div>
         </div>
 
-        <!-- MODUL 3 -->
-        <div style="font-size:0.78rem; font-weight:800; font-family:var(--font-mono); color:var(--text-muted); margin:20px 0 8px; border-bottom:1px solid var(--border-color); padding-bottom:4px;">
-          📁 MODUL 3: STYLING LANJUTAN
+        <!-- MODUL 2 ACCORDION -->
+        <div class="module-accordion-header" onclick="toggleModuleAccordion('mod2Group')">
+          <span>📁 MODUL 2: PENGANTAR CSS</span>
+          <span id="mod2GroupArrow" class="accordion-arrow">►</span>
         </div>
-        <div class="module-nav-item" style="opacity:0.7;" onclick="alert('Modul 3: Flexbox, CSS Grid, & Responsif Mobile!')">
-          <span>3.1</span> Layout Flexbox & Grid
-        </div>
-
-        <!-- MODUL 4 -->
-        <div style="font-size:0.78rem; font-weight:800; font-family:var(--font-mono); color:var(--text-muted); margin:20px 0 8px; border-bottom:1px solid var(--border-color); padding-bottom:4px;">
-          📁 MODUL 4: TEKNIK LANJUTAN & JAVASCRIPT
-        </div>
-        <div class="module-nav-item" style="opacity:0.7;" onclick="alert('Modul 4: Form Pro & Interaktivitas Dasar JavaScript!')">
-          <span>4.1</span> Manipulasi DOM & Event Click
+        <div id="mod2Group" class="module-accordion-content">
+          <div class="module-nav-item" style="opacity:0.7;" onclick="alert('Modul 2: Pengantar CSS (Warna, Font, Spacing, & Selector)!')">
+            <span>2.1</span> Dasar Styling CSS3
+          </div>
         </div>
 
-        <!-- MODUL 5 -->
-        <div style="font-size:0.78rem; font-weight:800; font-family:var(--font-mono); color:var(--text-muted); margin:20px 0 8px; border-bottom:1px solid var(--border-color); padding-bottom:4px;">
-          📁 MODUL 5: PROYEK AKHIR
+        <!-- MODUL 3 ACCORDION -->
+        <div class="module-accordion-header" onclick="toggleModuleAccordion('mod3Group')">
+          <span>📁 MODUL 3: STYLING LANJUTAN</span>
+          <span id="mod3GroupArrow" class="accordion-arrow">►</span>
         </div>
-        <div class="module-nav-item" style="opacity:0.7;" onclick="alert('Modul 5: Membangun Website Nyata dari Nol!')">
-          <span>5.1</span> Building Landing Page Real-World
+        <div id="mod3Group" class="module-accordion-content">
+          <div class="module-nav-item" style="opacity:0.7;" onclick="alert('Modul 3: Flexbox, CSS Grid, & Responsif Mobile!')">
+            <span>3.1</span> Layout Flexbox & Grid
+          </div>
         </div>
 
-        <!-- MODUL 6 -->
-        <div style="font-size:0.78rem; font-weight:800; font-family:var(--font-mono); color:var(--text-muted); margin:20px 0 8px; border-bottom:1px solid var(--border-color); padding-bottom:4px;">
-          📁 MODUL 6: SERTIFIKASI & KELULUSAN
+        <!-- MODUL 4 ACCORDION -->
+        <div class="module-accordion-header" onclick="toggleModuleAccordion('mod4Group')">
+          <span>📁 MODUL 4: TEKNIK LANJUTAN & JS</span>
+          <span id="mod4GroupArrow" class="accordion-arrow">►</span>
         </div>
-        <div class="module-nav-item" style="opacity:0.7;" onclick="alert('Modul 6: Ujian Kelulusan & Sertifikasi Digital Kodemik!')">
-          <span>6.1</span> Ujian Akhir & Sertifikat Resmi
+        <div id="mod4Group" class="module-accordion-content">
+          <div class="module-nav-item" style="opacity:0.7;" onclick="alert('Modul 4: Form Pro & Interaktivitas Dasar JavaScript!')">
+            <span>4.1</span> Manipulasi DOM & Event Click
+          </div>
         </div>
+
+        <!-- MODUL 5 ACCORDION -->
+        <div class="module-accordion-header" onclick="toggleModuleAccordion('mod5Group')">
+          <span>📁 MODUL 5: PROYEK AKHIR</span>
+          <span id="mod5GroupArrow" class="accordion-arrow">►</span>
+        </div>
+        <div id="mod5Group" class="module-accordion-content">
+          <div class="module-nav-item" style="opacity:0.7;" onclick="alert('Modul 5: Membangun Website Nyata dari Nol!')">
+            <span>5.1</span> Building Landing Page Real-World
+          </div>
+        </div>
+
+        <!-- MODUL 6 ACCORDION -->
+        <div class="module-accordion-header" onclick="toggleModuleAccordion('mod6Group')">
+          <span>📁 MODUL 6: SERTIFIKASI & KELULUSAN</span>
+          <span id="mod6GroupArrow" class="accordion-arrow">►</span>
+        </div>
+        <div id="mod6Group" class="module-accordion-content">
+          <div class="module-nav-item" style="opacity:0.7;" onclick="alert('Modul 6: Ujian Kelulusan & Sertifikasi Digital Kodemik!')">
+            <span>6.1</span> Ujian Akhir & Sertifikat Resmi
+          </div>
+        </div>
+
+        <button onclick="showView('catalog')" class="btn btn-outline" style="width:100%; margin-top:20px; font-size:0.8rem;">
+          ← Kembali Ke Katalog Kodemik
+        </button>
 
         <button onclick="showView('catalog')" class="btn btn-outline" style="width:100%; margin-top:20px; font-size:0.8rem;">
           ← Kembali Ke Katalog Kodemik
@@ -845,6 +867,18 @@
         }
       } catch (e) {
         document.getElementById('sandboxOutputArea').innerHTML = `✓ Output Code: <span style="color:#38BDF8; font-weight:700;">${code}</span>`;
+      }
+    }
+
+    function toggleModuleAccordion(groupId) {
+      const content = document.getElementById(groupId);
+      const arrow = document.getElementById(groupId + 'Arrow');
+      if (content) {
+        const isActive = content.classList.contains('active');
+        content.classList.toggle('active');
+        if (arrow) {
+          arrow.innerText = isActive ? '►' : '▼';
+        }
       }
     }
 

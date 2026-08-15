@@ -258,7 +258,7 @@
         category: 'Web Development',
         level: 'Beginner',
         modulesCount: 32,
-        duration: '8 Kelas • 32 Modul Belajar',
+        duration: '9 Kelas • 3 Level Belajar',
         progress: 45,
         icon: '🌐',
         description: 'Menguasai pembuatan web dari nol: HTML5, CSS3, JavaScript DOM, React, Node.js REST API, PostgreSQL, hingga deployment cloud.',
@@ -454,34 +454,35 @@
           <p>Fondasi Keamanan Jaringan Wireshark, Ethical Hacking Nmap, OWASP Top 10 Web Security, Penetration Testing, dan SOC/SIEM.</p>
         `;
       } else if (courseId === 'dasar-pemrograman-web') {
-        renderAll8KelasWebFramework();
+        renderFullstackWebFramework();
       } else {
-        renderAll8KelasWebFramework();
+        renderFullstackWebFramework();
       }
     }
 
-    function renderAll8KelasWebFramework() {
+    function renderFullstackWebFramework() {
       const sidebar = document.querySelector('.lesson-sidebar');
       if (sidebar) {
         sidebar.innerHTML = `
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
             <span style="font-size:0.75rem; font-weight:700; font-family:var(--font-mono); color:var(--text-muted);">PATH 1: FULL-STACK WEB</span>
-            <span style="font-size:0.75rem; color:var(--primary-blue); font-weight:700;">8 Kelas • 32 Modul</span>
+            <span style="font-size:0.75rem; color:var(--primary-blue); font-weight:700;">9 Kelas • 3 Level</span>
           </div>
 
-          <div style="font-size:0.75rem; font-weight:800; color:var(--primary-blue); margin:10px 0 6px;">● LEVEL BEGINNER</div>
-          <div class="module-accordion-header" onclick="renderKelas1WebSidebar()"><span>🌐 Kelas 1 — Fondasi Web Development</span></div>
-          <div class="module-accordion-header" onclick="renderKelas2Framework()"><span>⚡ Kelas 2 — JavaScript Fundamentals</span></div>
+          <div style="font-size:0.75rem; font-weight:800; color:var(--primary-blue); margin:10px 0 6px;">● LEVEL PEMULA</div>
+          <div class="module-accordion-header" onclick="alert('Kelas 1: Fondasi Web Development & Version Control')"><span>🌐 Kelas 1 — Fondasi Web & Git</span></div>
+          <div class="module-accordion-header" onclick="alert('Kelas 2: JavaScript Fundamentals')"><span>⚡ Kelas 2 — JavaScript Fundamentals</span></div>
 
-          <div style="font-size:0.75rem; font-weight:800; color:var(--amber); margin:14px 0 6px;">● LEVEL INTERMEDIATE</div>
-          <div class="module-accordion-header" onclick="alert('Kelas 3: Frontend Framework React (Hooks, Router, State)')"><span>⚛️ Kelas 3 — Frontend Framework (React)</span></div>
-          <div class="module-accordion-header" onclick="alert('Kelas 4: Backend Node.js & Express (REST API, SQL, Auth)')"><span>🟢 Kelas 4 — Backend Node.js & Express</span></div>
-          <div class="module-accordion-header" onclick="alert('Kelas 5: Full-Stack Integration (React + Node.js, Testing)')"><span>🔄 Kelas 5 — Full-Stack Integration</span></div>
+          <div style="font-size:0.75rem; font-weight:800; color:var(--amber); margin:14px 0 6px;">● LEVEL MENENGAH</div>
+          <div class="module-accordion-header" onclick="alert('Kelas 3: TypeScript & Modern Frontend Tooling')"><span>🔷 Kelas 3 — TypeScript & Tooling</span></div>
+          <div class="module-accordion-header" onclick="alert('Kelas 4: Frontend Framework (React + TypeScript)')"><span>⚛️ Kelas 4 — React + TypeScript</span></div>
+          <div class="module-accordion-header" onclick="alert('Kelas 5: Backend Development dengan Node.js')"><span>🟢 Kelas 5 — Backend Node.js</span></div>
+          <div class="module-accordion-header" onclick="alert('Kelas 6: Full-Stack Integration, Testing & Clean Code')"><span>🔄 Kelas 6 — Full-Stack Integration</span></div>
 
-          <div style="font-size:0.75rem; font-weight:800; color:var(--success); margin:14px 0 6px;">● LEVEL ADVANCED</div>
-          <div class="module-accordion-header" onclick="alert('Kelas 6: Advanced Backend Architecture (Microservices, Redis)')"><span>🏛️ Kelas 6 — Advanced Backend Architecture</span></div>
-          <div class="module-accordion-header" onclick="alert('Kelas 7: DevOps untuk Web Developer (Docker, CI/CD Pipeline)')"><span>🐳 Kelas 7 — DevOps untuk Web Developer</span></div>
-          <div class="module-accordion-header" onclick="alert('Kelas 8: Capstone Project Full-Stack Production-Grade')"><span>🏆 Kelas 8 — Capstone Project Full-Stack</span></div>
+          <div style="font-size:0.75rem; font-weight:800; color:var(--success); margin:14px 0 6px;">● LEVEL MAHIR</div>
+          <div class="module-accordion-header" onclick="alert('Kelas 7: Software Architecture & Scalable Backend')"><span>🏛️ Kelas 7 — Architecture & Scalable</span></div>
+          <div class="module-accordion-header" onclick="alert('Kelas 8: DevOps untuk Web Developer')"><span>🐳 Kelas 8 — DevOps Web Developer</span></div>
+          <div class="module-accordion-header" onclick="alert('Kelas 9: Capstone Project Full-Stack & Career Readiness')"><span>🏆 Kelas 9 — Capstone & Career</span></div>
 
           <button onclick="showView('catalog')" class="btn btn-outline" style="width:100%; margin-top:20px; font-size:0.8rem;">← Kembali Ke Katalog Utama</button>
         `;
@@ -491,54 +492,63 @@
       if (article) {
         article.innerHTML = `
           <span class="badge-pill">PATH 1 • FULL-STACK WEB DEVELOPMENT</span>
-          <h2>🗺️ KERANGKA ROADMAP MASTER 8 KELAS (FULL-STACK WEB)</h2>
+          <h2>🗺️ KERANGKA ROADMAP MASTER (FULL-STACK WEB DEVELOPMENT)</h2>
           <div class="callout-box">
             📌 <strong>Struktur Kurikulum Resmi Kodemik:</strong><br>
-            Learning Path 1 terdiri dari 3 Level Kompetensi (Beginner, Intermediate, Advanced) dan 8 Kelas Terstruktur.
+            Learning Path 1 terdiri dari 3 Level Kompetensi (Pemula, Menengah, Mahir) dan 9 Kelas Terstruktur.
           </div>
 
           <div style="margin-top:24px;">
-            <h3 style="color:var(--primary-blue);">● LEVEL BEGINNER</h3>
+            <h3 style="color:var(--primary-blue);">● LEVEL PEMULA (BEGINNER)</h3>
             
-            <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--border-color);">
-              <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-bottom:8px;">🌐 Kelas 1 — Fondasi Web Development</h4>
-              <p style="font-size:0.88rem; color:var(--text-secondary);">Membangun pemahaman cara kerja web dan halaman statis HTML5/CSS3 terstruktur.</p>
-              <ul>
-                <li>Modul 1.1: Cara Kerja Internet & Web (Client-Server, DevTools, Quiz)</li>
-                <li>Modul 1.2: HTML Fundamentals (Struktur Dokumen, Semantik, Form, Quiz)</li>
-                <li>Modul 1.3: CSS Fundamentals (Styling Dasar, Flexbox, Grid, Responsive, Quiz)</li>
-                <li>🚀 <strong>Project Kelas 1:</strong> Website Portofolio Statis Multi-Halaman</li>
-                <li>🏆 <strong>Assessment Kelas 1:</strong> Ujian Teori & Review Project</li>
-              </ul>
-              <button class="btn btn-primary" onclick="renderKelas1WebSidebar()" style="padding:8px 16px; margin-top:10px;">▶ Masuk Ke Materi Kelas 1</button>
+            <div class="hero-widget-card" style="margin-bottom:12px; border:1px solid var(--border-color);">
+              <h4 style="font-size:1.05rem; color:var(--bg-navy-dark); margin-bottom:6px;">🌐 Kelas 1 — Fondasi Web Development & Version Control</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin:0;">HTML5, CSS3, Layout Responsif, Git & Version Control Workflow.</p>
             </div>
 
             <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--border-color);">
-              <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-bottom:8px;">⚡ Kelas 2 — JavaScript Fundamentals</h4>
-              <p style="font-size:0.88rem; color:var(--text-secondary);">Logika pemrograman, fungsi, manipulasi DOM interaktif, dan Asynchronous Fetch API.</p>
-              <ul>
-                <li>Modul 2.1: Dasar Pemrograman JavaScript (Variabel, Operator, Kontrol, Fungsi, Quiz)</li>
-                <li>Modul 2.2: Struktur Data JavaScript (Array Methods, Object, Spread, Quiz)</li>
-                <li>Modul 2.3: DOM Manipulation & Event (Selecting, Event Listener, Quiz)</li>
-                <li>Modul 2.4: Asynchronous JavaScript (Promise, Async/Await, Fetch API, Quiz)</li>
-                <li>🚀 <strong>Project Kelas 2:</strong> Aplikasi Interaktif (To-Do List / Quiz App)</li>
-                <li>🏆 <strong>Assessment Kelas 2:</strong> Ujian Teori & Code Review</li>
-              </ul>
+              <h4 style="font-size:1.05rem; color:var(--bg-navy-dark); margin-bottom:6px;">⚡ Kelas 2 — JavaScript Fundamentals</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin:0;">Sintaks Dasar, Fungsi, Manipulasi DOM Interaktif, ES6+, & Asynchronous JavaScript.</p>
             </div>
 
-            <h3 style="color:var(--amber); margin-top:30px;">● LEVEL INTERMEDIATE</h3>
-            <ul>
-              <li><strong>Kelas 3 — Frontend Framework (React):</strong> Components, JSX, Hooks, Router, State Management</li>
-              <li><strong>Kelas 4 — Backend Development (Node.js):</strong> Express.js REST API, PostgreSQL/MongoDB, Auth JWT</li>
-              <li><strong>Kelas 5 — Full-Stack Integration:</strong> React + Node.js Connect, Cloud Upload, Jest Testing</li>
-            </ul>
+            <h3 style="color:var(--amber); margin-top:24px;">● LEVEL MENENGAH (INTERMEDIATE)</h3>
 
-            <h3 style="color:var(--success); margin-top:30px;">● LEVEL ADVANCED</h3>
-            <ul>
-              <li><strong>Kelas 6 — Advanced Backend Architecture:</strong> Microservices, Redis Caching, Swagger Docs</li>
-              <li><strong>Kelas 7 — DevOps untuk Web Developer:</strong> Docker Container, CI/CD GitHub Actions, Cloud VPS</li>
-              <li><strong>Kelas 8 — Capstone Project Full-Stack:</strong> Web App Production-Grade & Presentation</li>
-            </ul>
+            <div class="hero-widget-card" style="margin-bottom:12px; border:1px solid var(--border-color);">
+              <h4 style="font-size:1.05rem; color:var(--bg-navy-dark); margin-bottom:6px;">🔷 Kelas 3 — TypeScript & Modern Frontend Tooling</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin:0;">Type System, Interfaces, Generics, Vite, & Modern Build Tooling.</p>
+            </div>
+
+            <div class="hero-widget-card" style="margin-bottom:12px; border:1px solid var(--border-color);">
+              <h4 style="font-size:1.05rem; color:var(--bg-navy-dark); margin-bottom:6px;">⚛️ Kelas 4 — Frontend Framework (React + TypeScript)</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin:0;">JSX, Reusable Components, Custom Hooks, Global State Management, & React Router.</p>
+            </div>
+
+            <div class="hero-widget-card" style="margin-bottom:12px; border:1px solid var(--border-color);">
+              <h4 style="font-size:1.05rem; color:var(--bg-navy-dark); margin-bottom:6px;">🟢 Kelas 5 — Backend Development dengan Node.js</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin:0;">Express.js REST API, Middleware, Database SQL (PostgreSQL/MySQL), ORM Prisma, & Auth JWT.</p>
+            </div>
+
+            <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--border-color);">
+              <h4 style="font-size:1.05rem; color:var(--bg-navy-dark); margin-bottom:6px;">🔄 Kelas 6 — Full-Stack Integration, Testing & Clean Code</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin:0;">Frontend-Backend Integration, Unit/Integration Testing Jest, Cloud Storage, & Refactoring.</p>
+            </div>
+
+            <h3 style="color:var(--success); margin-top:24px;">● LEVEL MAHIR (ADVANCED)</h3>
+
+            <div class="hero-widget-card" style="margin-bottom:12px; border:1px solid var(--border-color);">
+              <h4 style="font-size:1.05rem; color:var(--bg-navy-dark); margin-bottom:6px;">🏛️ Kelas 7 — Software Architecture & Scalable Backend</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin:0;">Microservices Architecture, Redis Caching, System Design, & OpenAPI/Swagger Documentation.</p>
+            </div>
+
+            <div class="hero-widget-card" style="margin-bottom:12px; border:1px solid var(--border-color);">
+              <h4 style="font-size:1.05rem; color:var(--bg-navy-dark); margin-bottom:6px;">🐳 Kelas 8 — DevOps untuk Web Developer</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin:0;">Docker Containerization, CI/CD Pipeline GitHub Actions, & Cloud VPS Deployment.</p>
+            </div>
+
+            <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--success);">
+              <h4 style="font-size:1.05rem; color:var(--success); margin-bottom:6px;">🏆 Kelas 9 — Capstone Project Full-Stack & Career Readiness</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin:0;">Aplikasi Full-Stack Production-Grade Utuh, Review Portfolio, Presentasi, & Persiapan Karir.</p>
+            </div>
           </div>
         `;
       }

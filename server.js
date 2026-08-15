@@ -31,7 +31,7 @@ const db = {
       category: 'Web Development',
       level: 'Beginner',
       modulesCount: 32,
-      duration: '8 Kelas • 32 Modul Belajar',
+      duration: '9 Kelas • 3 Level Belajar',
       progress: 45,
       icon: '🌐',
       description: 'Menguasai pembuatan web dari nol: HTML5, CSS3, JavaScript DOM, React, Node.js REST API, PostgreSQL, hingga deployment cloud.',

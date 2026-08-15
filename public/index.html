@@ -522,7 +522,19 @@
           </div>
 
           <div style="font-size:0.75rem; font-weight:800; color:var(--amber); margin:14px 0 6px;">● LEVEL MENENGAH</div>
-          <div class="module-accordion-header" onclick="alert('Kelas 3: TypeScript & Modern Frontend Tooling')"><span>🔷 Kelas 3 — TypeScript & Modern Frontend Tooling</span></div>
+          
+          <div class="module-accordion-header" onclick="toggleModuleAccordion('kelas3WebGroup')">
+            <span>🔷 Kelas 3 — TypeScript & Modern Frontend Tooling</span>
+            <span id="kelas3WebGroupArrow" class="accordion-arrow">►</span>
+          </div>
+          <div id="kelas3WebGroup" class="module-accordion-content">
+            <div class="module-nav-item" onclick="alert('Modul 3.1: TypeScript Fundamentals')">
+              <span>📁 Modul 3.1</span> TypeScript Fundamentals
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 3.2: Modern Frontend Tooling')">
+              <span>📁 Modul 3.2</span> Modern Frontend Tooling
+            </div>
+          </div>
           <div class="module-accordion-header" onclick="alert('Kelas 4: Frontend Framework (React + TypeScript)')"><span>⚛️ Kelas 4 — Frontend Framework (React + TypeScript)</span></div>
           <div class="module-accordion-header" onclick="alert('Kelas 5: Backend Development dengan Node.js')"><span>🟢 Kelas 5 — Backend Development dengan Node.js</span></div>
           <div class="module-accordion-header" onclick="alert('Kelas 6: Full-Stack Integration, Testing & Clean Code')"><span>🔄 Kelas 6 — Full-Stack Integration, Testing & Clean Code</span></div>
@@ -581,9 +593,16 @@
 
             <h3 style="color:var(--amber); margin-top:24px;">● LEVEL MENENGAH (INTERMEDIATE)</h3>
 
-            <div class="hero-widget-card" style="margin-bottom:12px; border:1px solid var(--border-color);">
-              <h4 style="font-size:1.05rem; color:var(--bg-navy-dark); margin-bottom:6px;">🔷 Kelas 3 — TypeScript & Modern Frontend Tooling</h4>
-              <p style="font-size:0.86rem; color:var(--text-secondary); margin:0;">Type System, Interfaces, Generics, Vite, & Modern Build Tooling.</p>
+            <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--border-color);">
+              <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-bottom:10px;">🔷 Kelas 3 — TypeScript & Modern Frontend Tooling</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin-bottom:12px;">Type System, Interfaces, Generics, Vite, ESBuild, & Modern Build Tooling.</p>
+              <div style="background:var(--bg-surface); padding:12px 16px; border-radius:8px; border:1px solid var(--border-color);">
+                <strong style="font-size:0.88rem; color:var(--bg-navy-dark);">Daftar Modul Pembelajaran Kelas 3:</strong>
+                <ul style="margin-top:8px; margin-bottom:0;">
+                  <li>📁 <strong>Modul 3.1</strong> — TypeScript Fundamentals</li>
+                  <li>📁 <strong>Modul 3.2</strong> — Modern Frontend Tooling</li>
+                </ul>
+              </div>
             </div>
 
             <div class="hero-widget-card" style="margin-bottom:12px; border:1px solid var(--border-color);">

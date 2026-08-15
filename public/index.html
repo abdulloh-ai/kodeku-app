@@ -245,6 +245,7 @@
       document.getElementById('catalogView').style.display = viewName === 'catalog' ? 'block' : 'none';
       document.getElementById('dashboardView').classList.toggle('active', viewName === 'dashboard');
       document.getElementById('lessonView').classList.toggle('active', viewName === 'lesson');
+      localStorage.setItem('kodemik_last_view', viewName);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -355,6 +356,7 @@
     }
 
     function loadCoursePath(courseId) {
+      localStorage.setItem('kodemik_last_course', courseId);
       showView('lesson');
       const sidebar = document.querySelector('.lesson-sidebar');
       if (!sidebar) return;
@@ -474,9 +476,9 @@
           <!-- KELAS 1 ACCORDION BUKA / TUTUP -->
           <div class="module-accordion-header" onclick="toggleModuleAccordion('kelas1WebGroup')">
             <span>🌐 Kelas 1 — Fondasi Web Development & Version Control</span>
-            <span id="kelas1WebGroupArrow" class="accordion-arrow">▼</span>
+            <span id="kelas1WebGroupArrow" class="accordion-arrow">►</span>
           </div>
-          <div id="kelas1WebGroup" class="module-accordion-content active">
+          <div id="kelas1WebGroup" class="module-accordion-content">
             <div class="module-nav-item" onclick="alert('Modul 1.1: Cara Kerja Internet & Web')">
               <span>📁 Modul 1.1</span> Cara Kerja Internet & Web
             </div>
@@ -702,7 +704,14 @@
 
     window.addEventListener('DOMContentLoaded', () => {
       fetchCourseCatalog();
-      renderAll8KelasWebFramework();
+      const lastView = localStorage.getItem('kodemik_last_view') || 'catalog';
+      const lastCourse = localStorage.getItem('kodemik_last_course') || 'dasar-pemrograman-web';
+
+      if (lastView === 'lesson' && lastCourse) {
+        loadCoursePath(lastCourse);
+      } else {
+        showView('catalog');
+      }
     });
   </script>
 </body>

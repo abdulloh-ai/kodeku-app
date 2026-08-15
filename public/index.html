@@ -535,8 +535,40 @@
               <span>📁 Modul 3.2</span> Modern Frontend Tooling
             </div>
           </div>
-          <div class="module-accordion-header" onclick="alert('Kelas 4: Frontend Framework (React + TypeScript)')"><span>⚛️ Kelas 4 — Frontend Framework (React + TypeScript)</span></div>
-          <div class="module-accordion-header" onclick="alert('Kelas 5: Backend Development dengan Node.js')"><span>🟢 Kelas 5 — Backend Development dengan Node.js</span></div>
+          <div class="module-accordion-header" onclick="toggleModuleAccordion('kelas4WebGroup')">
+            <span>⚛️ Kelas 4 — Frontend Framework (React + TypeScript)</span>
+            <span id="kelas4WebGroupArrow" class="accordion-arrow">►</span>
+          </div>
+          <div id="kelas4WebGroup" class="module-accordion-content">
+            <div class="module-nav-item" onclick="alert('Modul 4.1: React Fundamentals')">
+              <span>📁 Modul 4.1</span> React Fundamentals
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 4.2: React Hooks')">
+              <span>📁 Modul 4.2</span> React Hooks
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 4.3: Routing and Navigasi')">
+              <span>📁 Modul 4.3</span> Routing and Navigasi
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 4.4: State Management Client State vs Server State')">
+              <span>📁 Modul 4.4</span> State Management Client State vs Server State
+            </div>
+          </div>
+
+          <div class="module-accordion-header" onclick="toggleModuleAccordion('kelas5WebGroup')">
+            <span>🟢 Kelas 5 — Backend Development dengan Node.js</span>
+            <span id="kelas5WebGroupArrow" class="accordion-arrow">►</span>
+          </div>
+          <div id="kelas5WebGroup" class="module-accordion-content">
+            <div class="module-nav-item" onclick="alert('Modul 5.1: Express.js REST API & Validation')">
+              <span>📁 Modul 5.1</span> Express.js REST API & Validation
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 5.2: Integrasi Database')">
+              <span>📁 Modul 5.2</span> Integrasi Database
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 5.3: Autentikasi Otorisasi & Security Web Dasar')">
+              <span>📁 Modul 5.3</span> Autentikasi Otorisasi & Security Web Dasar
+            </div>
+          </div>
           <div class="module-accordion-header" onclick="alert('Kelas 6: Full-Stack Integration, Testing & Clean Code')"><span>🔄 Kelas 6 — Full-Stack Integration, Testing & Clean Code</span></div>
 
           <div style="font-size:0.75rem; font-weight:800; color:var(--success); margin:14px 0 6px;">● LEVEL MAHIR</div>
@@ -605,14 +637,31 @@
               </div>
             </div>
 
-            <div class="hero-widget-card" style="margin-bottom:12px; border:1px solid var(--border-color);">
-              <h4 style="font-size:1.05rem; color:var(--bg-navy-dark); margin-bottom:6px;">⚛️ Kelas 4 — Frontend Framework (React + TypeScript)</h4>
-              <p style="font-size:0.86rem; color:var(--text-secondary); margin:0;">JSX, Reusable Components, Custom Hooks, Global State Management, & React Router.</p>
+            <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--border-color);">
+              <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-bottom:10px;">⚛️ Kelas 4 — Frontend Framework (React + TypeScript)</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin-bottom:12px;">JSX, Reusable Components, Custom Hooks, Global State Management, & React Router.</p>
+              <div style="background:var(--bg-surface); padding:12px 16px; border-radius:8px; border:1px solid var(--border-color);">
+                <strong style="font-size:0.88rem; color:var(--bg-navy-dark);">Daftar Modul Pembelajaran Kelas 4:</strong>
+                <ul style="margin-top:8px; margin-bottom:0;">
+                  <li>📁 <strong>Modul 4.1</strong> — React Fundamentals</li>
+                  <li>📁 <strong>Modul 4.2</strong> — React Hooks</li>
+                  <li>📁 <strong>Modul 4.3</strong> — Routing and Navigasi</li>
+                  <li>📁 <strong>Modul 4.4</strong> — State Management Client State vs Server State</li>
+                </ul>
+              </div>
             </div>
 
-            <div class="hero-widget-card" style="margin-bottom:12px; border:1px solid var(--border-color);">
-              <h4 style="font-size:1.05rem; color:var(--bg-navy-dark); margin-bottom:6px;">🟢 Kelas 5 — Backend Development dengan Node.js</h4>
-              <p style="font-size:0.86rem; color:var(--text-secondary); margin:0;">Express.js REST API, Middleware, Database SQL (PostgreSQL/MySQL), ORM Prisma, & Auth JWT.</p>
+            <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--border-color);">
+              <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-bottom:10px;">🟢 Kelas 5 — Backend Development dengan Node.js</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin-bottom:12px;">Express.js REST API, Middleware, Database SQL (PostgreSQL/MySQL), ORM Prisma, & Auth JWT.</p>
+              <div style="background:var(--bg-surface); padding:12px 16px; border-radius:8px; border:1px solid var(--border-color);">
+                <strong style="font-size:0.88rem; color:var(--bg-navy-dark);">Daftar Modul Pembelajaran Kelas 5:</strong>
+                <ul style="margin-top:8px; margin-bottom:0;">
+                  <li>📁 <strong>Modul 5.1</strong> — Express.js REST API & Validation</li>
+                  <li>📁 <strong>Modul 5.2</strong> — Integrasi Database</li>
+                  <li>📁 <strong>Modul 5.3</strong> — Autentikasi Otorisasi & Security Web Dasar</li>
+                </ul>
+              </div>
             </div>
 
             <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--border-color);">

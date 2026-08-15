@@ -470,8 +470,45 @@
           </div>
 
           <div style="font-size:0.75rem; font-weight:800; color:var(--primary-blue); margin:10px 0 6px;">● LEVEL PEMULA</div>
-          <div class="module-accordion-header" onclick="alert('Kelas 1: Fondasi Web Development & Version Control')"><span>🌐 Kelas 1 — Fondasi Web Development & Version Control</span></div>
-          <div class="module-accordion-header" onclick="alert('Kelas 2: JavaScript Fundamentals')"><span>⚡ Kelas 2 — JavaScript Fundamentals</span></div>
+          
+          <!-- KELAS 1 ACCORDION BUKA / TUTUP -->
+          <div class="module-accordion-header" onclick="toggleModuleAccordion('kelas1WebGroup')">
+            <span>🌐 Kelas 1 — Fondasi Web Development & Version Control</span>
+            <span id="kelas1WebGroupArrow" class="accordion-arrow">▼</span>
+          </div>
+          <div id="kelas1WebGroup" class="module-accordion-content active">
+            <div class="module-nav-item" onclick="alert('Modul 1.1: Cara Kerja Internet & Web')">
+              <span>📁 Modul 1.1</span> Cara Kerja Internet & Web
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 1.2: HTML Fundamentals')">
+              <span>📁 Modul 1.2</span> HTML Fundamentals
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 1.3: CSS Fundamentals')">
+              <span>📁 Modul 1.3</span> CSS Fundamentals
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 1.4: Git & GitHub Fundamentals')">
+              <span>📁 Modul 1.4</span> Git & GitHub Fundamentals
+            </div>
+          </div>
+
+          <div class="module-accordion-header" onclick="toggleModuleAccordion('kelas2WebGroup')">
+            <span>⚡ Kelas 2 — JavaScript Fundamentals</span>
+            <span id="kelas2WebGroupArrow" class="accordion-arrow">►</span>
+          </div>
+          <div id="kelas2WebGroup" class="module-accordion-content">
+            <div class="module-nav-item" onclick="alert('Modul 2.1: Dasar Pemrograman JavaScript')">
+              <span>📁 Modul 2.1</span> Dasar Pemrograman JavaScript
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 2.2: Struktur Data JavaScript')">
+              <span>📁 Modul 2.2</span> Struktur Data JavaScript
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 2.3: DOM Manipulation & Event')">
+              <span>📁 Modul 2.3</span> DOM Manipulation & Event
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 2.4: Asynchronous JavaScript')">
+              <span>📁 Modul 2.4</span> Asynchronous JavaScript
+            </div>
+          </div>
 
           <div style="font-size:0.75rem; font-weight:800; color:var(--amber); margin:14px 0 6px;">● LEVEL MENENGAH</div>
           <div class="module-accordion-header" onclick="alert('Kelas 3: TypeScript & Modern Frontend Tooling')"><span>🔷 Kelas 3 — TypeScript & Modern Frontend Tooling</span></div>
@@ -501,14 +538,33 @@
           <div style="margin-top:24px;">
             <h3 style="color:var(--primary-blue);">● LEVEL PEMULA (BEGINNER)</h3>
             
-            <div class="hero-widget-card" style="margin-bottom:12px; border:1px solid var(--border-color);">
-              <h4 style="font-size:1.05rem; color:var(--bg-navy-dark); margin-bottom:6px;">🌐 Kelas 1 — Fondasi Web Development & Version Control</h4>
-              <p style="font-size:0.86rem; color:var(--text-secondary); margin:0;">HTML5, CSS3, Layout Responsif, Git & Version Control Workflow.</p>
+            <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--border-color);">
+              <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-bottom:10px;">🌐 Kelas 1 — Fondasi Web Development & Version Control</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin-bottom:12px;">Membangun pemahaman cara kerja web, halaman statis HTML5/CSS3 terstruktur, & Version Control Git/GitHub.</p>
+              
+              <div style="background:var(--bg-surface); padding:12px 16px; border-radius:8px; border:1px solid var(--border-color);">
+                <strong style="font-size:0.88rem; color:var(--bg-navy-dark);">Daftar Modul Pembelajaran Kelas 1 (Klik Buka / Tutup di Sidebar):</strong>
+                <ul style="margin-top:8px; margin-bottom:0;">
+                  <li>📁 <strong>Modul 1.1</strong> — Cara Kerja Internet & Web</li>
+                  <li>📁 <strong>Modul 1.2</strong> — HTML Fundamentals</li>
+                  <li>📁 <strong>Modul 1.3</strong> — CSS Fundamentals</li>
+                  <li>📁 <strong>Modul 1.4</strong> — Git & GitHub Fundamentals</li>
+                </ul>
+              </div>
             </div>
 
             <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--border-color);">
-              <h4 style="font-size:1.05rem; color:var(--bg-navy-dark); margin-bottom:6px;">⚡ Kelas 2 — JavaScript Fundamentals</h4>
-              <p style="font-size:0.86rem; color:var(--text-secondary); margin:0;">Sintaks Dasar, Fungsi, Manipulasi DOM Interaktif, ES6+, & Asynchronous JavaScript.</p>
+              <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-bottom:10px;">⚡ Kelas 2 — JavaScript Fundamentals</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin-bottom:12px;">Logika pemrograman, fungsi, manipulasi DOM interaktif, dan Asynchronous Fetch API.</p>
+              <div style="background:var(--bg-surface); padding:12px 16px; border-radius:8px; border:1px solid var(--border-color);">
+                <strong style="font-size:0.88rem; color:var(--bg-navy-dark);">Daftar Modul Pembelajaran Kelas 2:</strong>
+                <ul style="margin-top:8px; margin-bottom:0;">
+                  <li>📁 <strong>Modul 2.1</strong> — Dasar Pemrograman JavaScript</li>
+                  <li>📁 <strong>Modul 2.2</strong> — Struktur Data JavaScript</li>
+                  <li>📁 <strong>Modul 2.3</strong> — DOM Manipulation & Event</li>
+                  <li>📁 <strong>Modul 2.4</strong> — Asynchronous JavaScript</li>
+                </ul>
+              </div>
             </div>
 
             <h3 style="color:var(--amber); margin-top:24px;">● LEVEL MENENGAH (INTERMEDIATE)</h3>

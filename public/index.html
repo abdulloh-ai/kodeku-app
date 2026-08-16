@@ -593,9 +593,63 @@
           </div>
 
           <div style="font-size:0.75rem; font-weight:800; color:var(--success); margin:14px 0 6px;">● LEVEL MAHIR</div>
-          <div class="module-accordion-header" onclick="alert('Kelas 7: Software Architecture & Scalable Backend')"><span>🏛️ Kelas 7 — Software Architecture & Scalable Backend</span></div>
-          <div class="module-accordion-header" onclick="alert('Kelas 8: DevOps untuk Web Developer')"><span>🐳 Kelas 8 — DevOps untuk Web Developer</span></div>
-          <div class="module-accordion-header" onclick="alert('Kelas 9: Capstone Project Full-Stack & Career Readiness')"><span>🏆 Kelas 9 — Capstone Project Full-Stack & Career Readiness</span></div>
+          
+          <div class="module-accordion-header" onclick="toggleModuleAccordion('kelas7WebGroup')">
+            <span>🏛️ Kelas 7 — Software Architecture & Scalable Backend</span>
+            <span id="kelas7WebGroupArrow" class="accordion-arrow">►</span>
+          </div>
+          <div id="kelas7WebGroup" class="module-accordion-content">
+            <div class="module-nav-item" onclick="alert('Modul 7.1: Software Architecture & Design Principles')">
+              <span>📁 Modul 7.1</span> Software Architecture & Design Principles
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 7.2: Microservices Fundamentals')">
+              <span>📁 Modul 7.2</span> Microservices Fundamentals
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 7.3: Caching & Performa')">
+              <span>📁 Modul 7.3</span> Caching & Performa
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 7.4: API Design Lanjutan & Observability')">
+              <span>📁 Modul 7.4</span> API Design Lanjutan & Observability
+            </div>
+          </div>
+
+          <div class="module-accordion-header" onclick="toggleModuleAccordion('kelas8WebGroup')">
+            <span>🐳 Kelas 8 — DevOps untuk Web Developer</span>
+            <span id="kelas8WebGroupArrow" class="accordion-arrow">►</span>
+          </div>
+          <div id="kelas8WebGroup" class="module-accordion-content">
+            <div class="module-nav-item" onclick="alert('Modul 8.1: Git Workflow Tim (Lanjutan)')">
+              <span>📁 Modul 8.1</span> Git Workflow Tim (Lanjutan)
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 8.2: Containerization')">
+              <span>📁 Modul 8.2</span> Containerization
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 8.3: CI/CD & Deployment')">
+              <span>📁 Modul 8.3</span> CI/CD & Deployment
+            </div>
+          </div>
+
+          <div class="module-accordion-header" onclick="toggleModuleAccordion('kelas9WebGroup')">
+            <span>🏆 Kelas 9 — Capstone Project Full-Stack & Career Readiness</span>
+            <span id="kelas9WebGroupArrow" class="accordion-arrow">►</span>
+          </div>
+          <div id="kelas9WebGroup" class="module-accordion-content">
+            <div class="module-nav-item" onclick="alert('Modul 9.1: Perencanaan & Arsitektur')">
+              <span>📁 Modul 9.1</span> Perencanaan & Arsitektur
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 9.2: Development Sprint')">
+              <span>📁 Modul 9.2</span> Development Sprint
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 9.3: Testing & QA')">
+              <span>📁 Modul 9.3</span> Testing & QA
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 9.4: Deployment & Presentasi')">
+              <span>📁 Modul 9.4</span> Deployment & Presentasi
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 9.5: Career Readiness')">
+              <span>📁 Modul 9.5</span> Career Readiness
+            </div>
+          </div>
 
           <button onclick="showView('catalog')" class="btn btn-outline" style="width:100%; margin-top:20px; font-size:0.8rem;">← Kembali Ke Katalog Utama</button>
         `;
@@ -702,19 +756,46 @@
 
             <h3 style="color:var(--success); margin-top:24px;">● LEVEL MAHIR (ADVANCED)</h3>
 
-            <div class="hero-widget-card" style="margin-bottom:12px; border:1px solid var(--border-color);">
-              <h4 style="font-size:1.05rem; color:var(--bg-navy-dark); margin-bottom:6px;">🏛️ Kelas 7 — Software Architecture & Scalable Backend</h4>
-              <p style="font-size:0.86rem; color:var(--text-secondary); margin:0;">Microservices Architecture, Redis Caching, System Design, & OpenAPI/Swagger Documentation.</p>
+            <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--border-color);">
+              <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-bottom:10px;">🏛️ Kelas 7 — Software Architecture & Scalable Backend</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin-bottom:12px;">Mampu merancang backend yang scalable dengan fondasi arsitektur yang benar sebelum menerapkan pola distribusi seperti microservices.</p>
+              <div style="background:var(--bg-surface); padding:12px 16px; border-radius:8px; border:1px solid var(--border-color);">
+                <strong style="font-size:0.88rem; color:var(--bg-navy-dark);">Daftar Modul Pembelajaran Kelas 7:</strong>
+                <ul style="margin-top:8px; margin-bottom:0;">
+                  <li>📁 <strong>Modul 7.1</strong> — Software Architecture & Design Principles</li>
+                  <li>📁 <strong>Modul 7.2</strong> — Microservices Fundamentals</li>
+                  <li>📁 <strong>Modul 7.3</strong> — Caching & Performa</li>
+                  <li>📁 <strong>Modul 7.4</strong> — API Design Lanjutan & Observability</li>
+                </ul>
+              </div>
             </div>
 
-            <div class="hero-widget-card" style="margin-bottom:12px; border:1px solid var(--border-color);">
-              <h4 style="font-size:1.05rem; color:var(--bg-navy-dark); margin-bottom:6px;">🐳 Kelas 8 — DevOps untuk Web Developer</h4>
-              <p style="font-size:0.86rem; color:var(--text-secondary); margin:0;">Docker Containerization, CI/CD Pipeline GitHub Actions, & Cloud VPS Deployment.</p>
+            <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--border-color);">
+              <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-bottom:10px;">🐳 Kelas 8 — DevOps untuk Web Developer</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin-bottom:12px;">Mampu melakukan containerization, otomatisasi rilis, dan deployment aplikasi web ke cloud.</p>
+              <div style="background:var(--bg-surface); padding:12px 16px; border-radius:8px; border:1px solid var(--border-color);">
+                <strong style="font-size:0.88rem; color:var(--bg-navy-dark);">Daftar Modul Pembelajaran Kelas 8:</strong>
+                <ul style="margin-top:8px; margin-bottom:0;">
+                  <li>📁 <strong>Modul 8.1</strong> — Git Workflow Tim (Lanjutan)</li>
+                  <li>📁 <strong>Modul 8.2</strong> — Containerization</li>
+                  <li>📁 <strong>Modul 8.3</strong> — CI/CD & Deployment</li>
+                </ul>
+              </div>
             </div>
 
             <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--success);">
-              <h4 style="font-size:1.05rem; color:var(--success); margin-bottom:6px;">🏆 Kelas 9 — Capstone Project Full-Stack & Career Readiness</h4>
-              <p style="font-size:0.86rem; color:var(--text-secondary); margin:0;">Aplikasi Full-Stack Production-Grade Utuh, Review Portfolio, Presentasi, & Persiapan Karir.</p>
+              <h4 style="font-size:1.1rem; color:var(--success); margin-bottom:10px;">🏆 Kelas 9 — Capstone Project Full-Stack & Career Readiness</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin-bottom:12px;">Mampu membangun aplikasi web production-grade dari perencanaan hingga rilis, serta siap menghadapi proses rekrutmen sebagai Full-Stack Developer.</p>
+              <div style="background:var(--bg-surface); padding:12px 16px; border-radius:8px; border:1px solid var(--border-color);">
+                <strong style="font-size:0.88rem; color:var(--bg-navy-dark);">Daftar Modul Pembelajaran Kelas 9:</strong>
+                <ul style="margin-top:8px; margin-bottom:0;">
+                  <li>📁 <strong>Modul 9.1</strong> — Perencanaan & Arsitektur</li>
+                  <li>📁 <strong>Modul 9.2</strong> — Development Sprint</li>
+                  <li>📁 <strong>Modul 9.3</strong> — Testing & QA</li>
+                  <li>📁 <strong>Modul 9.4</strong> — Deployment & Presentasi</li>
+                  <li>📁 <strong>Modul 9.5</strong> — Career Readiness</li>
+                </ul>
+              </div>
             </div>
           </div>
         `;

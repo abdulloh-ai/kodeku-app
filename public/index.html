@@ -280,14 +280,14 @@
       },
       {
         id: 'mobile-flutter-dev',
-        title: 'Learning Path 3: Mobile App Development (Flutter Track)',
+        title: 'Learning Path 3: Mobile Development (Flutter Track)',
         category: 'Mobile',
         level: 'Beginner',
-        modulesCount: 25,
-        duration: '7 Kelas • 25 Modul Belajar',
+        modulesCount: 24,
+        duration: '7 Kelas • 3 Level Belajar',
         progress: 0,
         icon: '📱',
-        description: 'Membangun aplikasi mobile iOS & Android dari nol menggunakan bahasa Dart, Flutter UI, Provider/Riverpod, dan Firebase.',
+        description: 'Pemrograman Dart, Flutter UI Responsif, State Management Riverpod, Secure Storage, REST API, Firebase Cloud, Clean Architecture, hingga Rilis Store.',
         instructor: 'Tim Kodemik Mobile'
       },
       {
@@ -550,27 +550,143 @@
         renderDataScienceAIFramework();
       } else if (courseId === 'mobile-flutter-dev') {
         sidebar.innerHTML = `
+          <div class="mobile-close-bar" style="display:none; justify-content:space-between; align-items:center; padding-bottom:12px; margin-bottom:14px; border-bottom:1px solid var(--border-color);">
+            <span style="font-weight:800; font-size:0.9rem; color:var(--bg-navy-dark);">📚 Daftar Kelas & Modul</span>
+            <button onclick="toggleMobileSidebar()" class="btn btn-outline" style="padding:6px 14px; font-size:0.82rem; color:#EF4444; border-color:#FCA5A5; font-weight:700;">✕ Tutup Drawer</button>
+          </div>
+
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
             <span style="font-size:0.75rem; font-weight:700; font-family:var(--font-mono); color:var(--text-muted);">PATH 3: MOBILE FLUTTER</span>
-            <span style="font-size:0.75rem; color:var(--primary-blue); font-weight:700;">7 Kelas • 25 Modul</span>
+            <span style="font-size:0.75rem; color:var(--primary-blue); font-weight:700;">7 Kelas • 3 Level</span>
           </div>
-          <div style="font-size:0.75rem; font-weight:800; color:var(--primary-blue); margin:10px 0 6px;">● LEVEL BEGINNER</div>
-          <div class="module-accordion-header" onclick="alert('Kelas 1: Fondasi Pemrograman Dart')"><span>🎯 Kelas 1 — Pemrograman Dart</span></div>
-          <div class="module-accordion-header" onclick="alert('Kelas 2: Flutter Fundamentals (Widget & Layout)')"><span>📱 Kelas 2 — Flutter Fundamentals</span></div>
-          <div style="font-size:0.75rem; font-weight:800; color:var(--amber); margin:14px 0 6px;">● LEVEL INTERMEDIATE</div>
-          <div class="module-accordion-header" onclick="alert('Kelas 3: State Management & Integrasi Data')"><span>⚡ Kelas 3 — State Management</span></div>
-          <div class="module-accordion-header" onclick="alert('Kelas 4: Fitur Lanjutan Flutter & Firebase')"><span>🔥 Kelas 4 — Firebase & Cloud</span></div>
-          <div style="font-size:0.75rem; font-weight:800; color:var(--success); margin:14px 0 6px;">● LEVEL ADVANCED</div>
-          <div class="module-accordion-header" onclick="alert('Kelas 5: Arsitektur Aplikasi & Testing (Clean Architecture)')"><span>🏗️ Kelas 5 — Clean Architecture</span></div>
-          <div class="module-accordion-header" onclick="alert('Kelas 6: Optimasi & Publikasi Store')"><span>🚀 Kelas 6 — Profiling & App Store</span></div>
-          <div class="module-accordion-header" onclick="alert('Kelas 7: Capstone Project Mobile')"><span>🏆 Kelas 7 — Capstone Project Mobile</span></div>
-          <button onclick="showView('catalog')" class="btn btn-outline" style="width:100%; margin-top:20px; font-size:0.8rem;">← Kembali Ke Katalog Kodemik</button>
+
+          <div style="font-size:0.75rem; font-weight:800; color:var(--primary-blue); margin:10px 0 6px;">● LEVEL PEMULA</div>
+          
+          <div class="module-accordion-header" onclick="toggleModuleAccordion('mobKelas1Group')">
+            <span>🎯 Kelas 1 — Fondasi Pemrograman Dart & Version Control</span>
+            <span id="mobKelas1GroupArrow" class="accordion-arrow">►</span>
+          </div>
+          <div id="mobKelas1Group" class="module-accordion-content">
+            <div class="module-nav-item" onclick="alert('Modul 1.1: Dart Fundamentals')">
+              <span>📁 Modul 1.1</span> Dart Fundamentals
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 1.2: OOP dengan Dart')">
+              <span>📁 Modul 1.2</span> OOP dengan Dart
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 1.3: Git & GitHub Fundamentals')">
+              <span>📁 Modul 1.3</span> Git & GitHub Fundamentals
+            </div>
+          </div>
+
+          <div class="module-accordion-header" onclick="toggleModuleAccordion('mobKelas2Group')">
+            <span>📱 Kelas 2 — Flutter Fundamentals</span>
+            <span id="mobKelas2GroupArrow" class="accordion-arrow">►</span>
+          </div>
+          <div id="mobKelas2Group" class="module-accordion-content">
+            <div class="module-nav-item" onclick="alert('Modul 2.1: Widget Dasar')">
+              <span>📁 Modul 2.1</span> Widget Dasar
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 2.2: Layout, Styling & Adaptive UI')">
+              <span>📁 Modul 2.2</span> Layout, Styling & Adaptive UI
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 2.3: Navigasi')">
+              <span>📁 Modul 2.3</span> Navigasi
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 2.4: State Management Dasar')">
+              <span>📁 Modul 2.4</span> State Management Dasar
+            </div>
+          </div>
+
+          <div style="font-size:0.75rem; font-weight:800; color:var(--amber); margin:14px 0 6px;">● LEVEL MENENGAH</div>
+
+          <div class="module-accordion-header" onclick="toggleModuleAccordion('mobKelas3Group')">
+            <span>⚡ Kelas 3 — State Management & Integrasi Data</span>
+            <span id="mobKelas3GroupArrow" class="accordion-arrow">►</span>
+          </div>
+          <div id="mobKelas3Group" class="module-accordion-content">
+            <div class="module-nav-item" onclick="alert('Modul 3.1: State Management dengan Riverpod')">
+              <span>📁 Modul 3.1</span> State Management dengan Riverpod
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 3.2: Penyimpanan Lokal & Secure Storage')">
+              <span>📁 Modul 3.2</span> Penyimpanan Lokal & Secure Storage
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 3.3: Konsumsi API')">
+              <span>📁 Modul 3.3</span> Konsumsi API
+            </div>
+          </div>
+
+          <div class="module-accordion-header" onclick="toggleModuleAccordion('mobKelas4Group')">
+            <span>🔥 Kelas 4 — Fitur Lanjutan Flutter (Cloud & Perangkat)</span>
+            <span id="mobKelas4GroupArrow" class="accordion-arrow">►</span>
+          </div>
+          <div id="mobKelas4Group" class="module-accordion-content">
+            <div class="module-nav-item" onclick="alert('Modul 4.1: Autentikasi')">
+              <span>📁 Modul 4.1</span> Autentikasi
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 4.2: Database Cloud')">
+              <span>📁 Modul 4.2</span> Database Cloud
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 4.3: Notifikasi & Fitur Perangkat')">
+              <span>📁 Modul 4.3</span> Notifikasi & Fitur Perangkat
+            </div>
+          </div>
+
+          <div style="font-size:0.75rem; font-weight:800; color:var(--success); margin:14px 0 6px;">● LEVEL MAHIR</div>
+
+          <div class="module-accordion-header" onclick="toggleModuleAccordion('mobKelas5Group')">
+            <span>🏗️ Kelas 5 — Arsitektur Aplikasi & Testing</span>
+            <span id="mobKelas5GroupArrow" class="accordion-arrow">►</span>
+          </div>
+          <div id="mobKelas5Group" class="module-accordion-content">
+            <div class="module-nav-item" onclick="alert('Modul 5.1: Clean Architecture')">
+              <span>📁 Modul 5.1</span> Clean Architecture
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 5.2: Testing Flutter')">
+              <span>📁 Modul 5.2</span> Testing Flutter
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 5.3: CI/CD Mobile')">
+              <span>📁 Modul 5.3</span> CI/CD Mobile
+            </div>
+          </div>
+
+          <div class="module-accordion-header" onclick="toggleModuleAccordion('mobKelas6Group')">
+            <span>🚀 Kelas 6 — Optimasi & Publikasi</span>
+            <span id="mobKelas6GroupArrow" class="accordion-arrow">►</span>
+          </div>
+          <div id="mobKelas6Group" class="module-accordion-content">
+            <div class="module-nav-item" onclick="alert('Modul 6.1: Optimasi Performa')">
+              <span>📁 Modul 6.1</span> Optimasi Performa
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 6.2: Publikasi Aplikasi')">
+              <span>📁 Modul 6.2</span> Publikasi Aplikasi
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 6.3: Monetisasi Dasar')">
+              <span>📁 Modul 6.3</span> Monetisasi Dasar
+            </div>
+          </div>
+
+          <div class="module-accordion-header" onclick="toggleModuleAccordion('mobKelas7Group')">
+            <span>🏆 Kelas 7 — Capstone Project Mobile & Career Readiness</span>
+            <span id="mobKelas7GroupArrow" class="accordion-arrow">►</span>
+          </div>
+          <div id="mobKelas7Group" class="module-accordion-content">
+            <div class="module-nav-item" onclick="alert('Modul 7.1: Perencanaan & Desain')">
+              <span>📁 Modul 7.1</span> Perencanaan & Desain
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 7.2: Development')">
+              <span>📁 Modul 7.2</span> Development
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 7.3: Testing & Deployment')">
+              <span>📁 Modul 7.3</span> Testing & Deployment
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 7.4: Career Readiness')">
+              <span>📁 Modul 7.4</span> Career Readiness
+            </div>
+          </div>
+
+          <button onclick="showView('catalog')" class="btn btn-outline" style="width:100%; margin-top:20px; font-size:0.8rem;">← Kembali Ke Katalog Utama</button>
         `;
-        document.getElementById('lessonArticleBody').innerHTML = `
-          <span class="badge-pill">PATH 3 • MOBILE FLUTTER</span>
-          <h2>Selamat Datang Di Learning Path Mobile App Development! 📱</h2>
-          <p>Membangun aplikasi mobile iOS & Android dari nol menggunakan bahasa Dart, Flutter UI, Provider/Riverpod, dan Firebase.</p>
-        `;
+        renderMobileFlutterFramework();
       } else if (courseId === 'devops-cloud-engineer') {
         sidebar.innerHTML = `
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
@@ -1104,6 +1220,122 @@
                   <li>📁 <strong>Modul 9.2</strong> — Modeling & Evaluation</li>
                   <li>📁 <strong>Modul 9.3</strong> — Deployment & Presentasi</li>
                   <li>📁 <strong>Modul 9.4</strong> — Career Readiness</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function renderMobileFlutterFramework() {
+      const article = document.getElementById('lessonArticleBody');
+      if (article) {
+        article.innerHTML = `
+          <span class="badge-pill">PATH 3 • MOBILE DEVELOPMENT (FLUTTER TRACK)</span>
+          <h2>🗺️ KERANGKA ROADMAP MASTER (MOBILE DEVELOPMENT — FLUTTER TRACK)</h2>
+          <div class="callout-box">
+            📌 <strong>Struktur Kurikulum Resmi Kodemik:</strong><br>
+            Learning Path 3 terdiri dari 3 Level Kompetensi (Pemula, Menengah, Mahir) dan 7 Kelas Terstruktur.
+          </div>
+
+          <div style="margin-top:24px;">
+            <h3 style="color:var(--primary-blue);">● LEVEL PEMULA (BEGINNER)</h3>
+            
+            <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--border-color);">
+              <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-bottom:10px;">🎯 Kelas 1 — Fondasi Pemrograman Dart & Version Control</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin-bottom:12px;">Sintaks dasar Dart, Object-Oriented Programming (OOP), serta Version Control Git & GitHub untuk project mobile.</p>
+              
+              <div style="background:var(--bg-surface); padding:12px 16px; border-radius:8px; border:1px solid var(--border-color);">
+                <strong style="font-size:0.88rem; color:var(--bg-navy-dark);">Daftar Modul Pembelajaran Kelas 1 (Klik Buka / Tutup di Sidebar):</strong>
+                <ul style="margin-top:8px; margin-bottom:0;">
+                  <li>📁 <strong>Modul 1.1</strong> — Dart Fundamentals</li>
+                  <li>📁 <strong>Modul 1.2</strong> — OOP dengan Dart</li>
+                  <li>📁 <strong>Modul 1.3</strong> — Git & GitHub Fundamentals</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--border-color);">
+              <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-bottom:10px;">📱 Kelas 2 — Flutter Fundamentals</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin-bottom:12px;">Stateless/Stateful Widgets, Responsive & Adaptive UI, Navigasi multi-layar, & State Management lokal (setState).</p>
+              <div style="background:var(--bg-surface); padding:12px 16px; border-radius:8px; border:1px solid var(--border-color);">
+                <strong style="font-size:0.88rem; color:var(--bg-navy-dark);">Daftar Modul Pembelajaran Kelas 2:</strong>
+                <ul style="margin-top:8px; margin-bottom:0;">
+                  <li>📁 <strong>Modul 2.1</strong> — Widget Dasar</li>
+                  <li>📁 <strong>Modul 2.2</strong> — Layout, Styling & Adaptive UI</li>
+                  <li>📁 <strong>Modul 2.3</strong> — Navigasi</li>
+                  <li>📁 <strong>Modul 2.4</strong> — State Management Dasar</li>
+                </ul>
+              </div>
+            </div>
+
+            <h3 style="color:var(--amber); margin-top:24px;">● LEVEL MENENGAH (INTERMEDIATE)</h3>
+
+            <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--border-color);">
+              <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-bottom:10px;">⚡ Kelas 3 — State Management & Integrasi Data</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin-bottom:12px;">State Management scalable dengan Riverpod, penyimpanan lokal (SQLite/Hive), Secure Storage data sensitif, & REST API Networking.</p>
+              <div style="background:var(--bg-surface); padding:12px 16px; border-radius:8px; border:1px solid var(--border-color);">
+                <strong style="font-size:0.88rem; color:var(--bg-navy-dark);">Daftar Modul Pembelajaran Kelas 3:</strong>
+                <ul style="margin-top:8px; margin-bottom:0;">
+                  <li>📁 <strong>Modul 3.1</strong> — State Management dengan Riverpod</li>
+                  <li>📁 <strong>Modul 3.2</strong> — Penyimpanan Lokal & Secure Storage</li>
+                  <li>📁 <strong>Modul 3.3</strong> — Konsumsi API</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--border-color);">
+              <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-bottom:10px;">🔥 Kelas 4 — Fitur Lanjutan Flutter (Cloud & Perangkat)</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin-bottom:12px;">Firebase Authentication, Firestore NoSQL real-time database, Push Notifications, & integrasi fitur native (kamera/lokasi).</p>
+              <div style="background:var(--bg-surface); padding:12px 16px; border-radius:8px; border:1px solid var(--border-color);">
+                <strong style="font-size:0.88rem; color:var(--bg-navy-dark);">Daftar Modul Pembelajaran Kelas 4:</strong>
+                <ul style="margin-top:8px; margin-bottom:0;">
+                  <li>📁 <strong>Modul 4.1</strong> — Autentikasi</li>
+                  <li>📁 <strong>Modul 4.2</strong> — Database Cloud</li>
+                  <li>📁 <strong>Modul 4.3</strong> — Notifikasi & Fitur Perangkat</li>
+                </ul>
+              </div>
+            </div>
+
+            <h3 style="color:var(--success); margin-top:24px;">● LEVEL MAHIR (ADVANCED)</h3>
+
+            <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--border-color);">
+              <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-bottom:10px;">🏗️ Kelas 5 — Arsitektur Aplikasi & Testing</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin-bottom:12px;">Clean Architecture (Presentation-Domain-Data), Unit/Widget/Integration Testing, & CI/CD Mobile pipeline (Codemagic/GitHub Actions).</p>
+              <div style="background:var(--bg-surface); padding:12px 16px; border-radius:8px; border:1px solid var(--border-color);">
+                <strong style="font-size:0.88rem; color:var(--bg-navy-dark);">Daftar Modul Pembelajaran Kelas 5:</strong>
+                <ul style="margin-top:8px; margin-bottom:0;">
+                  <li>📁 <strong>Modul 5.1</strong> — Clean Architecture</li>
+                  <li>📁 <strong>Modul 5.2</strong> — Testing Flutter</li>
+                  <li>📁 <strong>Modul 5.3</strong> — CI/CD Mobile</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--border-color);">
+              <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-bottom:10px;">🚀 Kelas 6 — Optimasi & Publikasi</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin-bottom:12px;">Performance Profiling DevTools, Rilis App Store & Google Play Store, serta konsep monetisasi In-App Purchase & Ads.</p>
+              <div style="background:var(--bg-surface); padding:12px 16px; border-radius:8px; border:1px solid var(--border-color);">
+                <strong style="font-size:0.88rem; color:var(--bg-navy-dark);">Daftar Modul Pembelajaran Kelas 6:</strong>
+                <ul style="margin-top:8px; margin-bottom:0;">
+                  <li>📁 <strong>Modul 6.1</strong> — Optimasi Performa</li>
+                  <li>📁 <strong>Modul 6.2</strong> — Publikasi Aplikasi</li>
+                  <li>📁 <strong>Modul 6.3</strong> — Monetisasi Dasar</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--success);">
+              <h4 style="font-size:1.1rem; color:var(--success); margin-bottom:10px;">🏆 Kelas 7 — Capstone Project Mobile & Career Readiness</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin-bottom:12px;">Aplikasi Mobile Production-Grade (Clean Architecture + Riverpod), Rilis Store, & Persiapan Karir Mobile Developer.</p>
+              <div style="background:var(--bg-surface); padding:12px 16px; border-radius:8px; border:1px solid var(--border-color);">
+                <strong style="font-size:0.88rem; color:var(--bg-navy-dark);">Daftar Modul Pembelajaran Kelas 7:</strong>
+                <ul style="margin-top:8px; margin-bottom:0;">
+                  <li>📁 <strong>Modul 7.1</strong> — Perencanaan & Desain</li>
+                  <li>📁 <strong>Modul 7.2</strong> — Development</li>
+                  <li>📁 <strong>Modul 7.3</strong> — Testing & Deployment</li>
+                  <li>📁 <strong>Modul 7.4</strong> — Career Readiness</li>
                 </ul>
               </div>
             </div>

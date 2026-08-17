@@ -246,7 +246,7 @@
       document.getElementById('catalogView').style.display = viewName === 'catalog' ? 'block' : 'none';
       document.getElementById('dashboardView').classList.toggle('active', viewName === 'dashboard');
       document.getElementById('lessonView').classList.toggle('active', viewName === 'lesson');
-      localStorage.setItem('kodemik_last_view', viewName);
+      sessionStorage.setItem('kodemik_last_view', viewName);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -357,7 +357,7 @@
     }
 
     function loadCoursePath(courseId) {
-      localStorage.setItem('kodemik_last_course', courseId);
+      sessionStorage.setItem('kodemik_last_course', courseId);
       showView('lesson');
       const sidebar = document.querySelector('.lesson-sidebar');
       if (!sidebar) return;
@@ -1501,8 +1501,13 @@ flowchart TD
 
     window.addEventListener('DOMContentLoaded', () => {
       fetchCourseCatalog();
-      const lastView = localStorage.getItem('kodemik_last_view') || 'catalog';
-      const lastCourse = localStorage.getItem('kodemik_last_course') || 'dasar-pemrograman-web';
+      
+      // Hapus data lama di localStorage jika ada agar tidak memaksa masuk
+      localStorage.removeItem('kodemik_last_view');
+      localStorage.removeItem('kodemik_last_course');
+
+      const lastView = sessionStorage.getItem('kodemik_last_view');
+      const lastCourse = sessionStorage.getItem('kodemik_last_course');
 
       if (lastView === 'lesson' && lastCourse) {
         loadCoursePath(lastCourse);

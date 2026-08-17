@@ -292,14 +292,14 @@
       },
       {
         id: 'devops-cloud-engineer',
-        title: 'Learning Path 4: DevOps & Cloud Architecture',
+        title: 'Learning Path 4: DevOps & Cloud Engineer',
         category: 'DevOps',
         level: 'Beginner',
-        modulesCount: 26,
-        duration: '8 Kelas • 26 Modul Belajar',
+        modulesCount: 22,
+        duration: '8 Kelas • 3 Level Belajar',
         progress: 0,
         icon: '☁️',
-        description: 'Administrasi Linux CLI, Shell Scripting, Docker Containerization, CI/CD Pipeline, AWS Cloud, Kubernetes, dan Terraform.',
+        description: 'Administrasi Linux, Networking, Git, Cloud AWS/IAM, Docker, CI/CD Pipeline, Kubernetes Orchestration, Terraform IaC, Prometheus/Grafana, hingga Cost Optimization.',
         instructor: 'Tim Kodemik DevOps'
       },
       {
@@ -689,28 +689,147 @@
         renderMobileFlutterFramework();
       } else if (courseId === 'devops-cloud-engineer') {
         sidebar.innerHTML = `
+          <div class="mobile-close-bar" style="display:none; justify-content:space-between; align-items:center; padding-bottom:12px; margin-bottom:14px; border-bottom:1px solid var(--border-color);">
+            <span style="font-weight:800; font-size:0.9rem; color:var(--bg-navy-dark);">📚 Daftar Kelas & Modul</span>
+            <button onclick="toggleMobileSidebar()" class="btn btn-outline" style="padding:6px 14px; font-size:0.82rem; color:#EF4444; border-color:#FCA5A5; font-weight:700;">✕ Tutup Drawer</button>
+          </div>
+
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
             <span style="font-size:0.75rem; font-weight:700; font-family:var(--font-mono); color:var(--text-muted);">PATH 4: DEVOPS & CLOUD</span>
-            <span style="font-size:0.75rem; color:var(--primary-blue); font-weight:700;">8 Kelas • 26 Modul</span>
+            <span style="font-size:0.75rem; color:var(--primary-blue); font-weight:700;">8 Kelas • 3 Level</span>
           </div>
-          <div style="font-size:0.75rem; font-weight:800; color:var(--primary-blue); margin:10px 0 6px;">● LEVEL BEGINNER</div>
-          <div class="module-accordion-header" onclick="alert('Kelas 1: Fondasi Sistem & Linux')"><span>🐧 Kelas 1 — Linux CLI & Shell</span></div>
-          <div class="module-accordion-header" onclick="alert('Kelas 2: Version Control & Kolaborasi')"><span>🐙 Kelas 2 — Git & GitHub Workflow</span></div>
-          <div style="font-size:0.75rem; font-weight:800; color:var(--amber); margin:14px 0 6px;">● LEVEL INTERMEDIATE</div>
-          <div class="module-accordion-header" onclick="alert('Kelas 3: Cloud Computing Fundamentals')"><span>☁️ Kelas 3 — Cloud AWS EC2/S3</span></div>
-          <div class="module-accordion-header" onclick="alert('Kelas 4: Containerization Docker')"><span>🐳 Kelas 4 — Docker Container</span></div>
-          <div class="module-accordion-header" onclick="alert('Kelas 5: CI/CD Pipeline')"><span>🔄 Kelas 5 — CI/CD Pipeline</span></div>
-          <div style="font-size:0.75rem; font-weight:800; color:var(--success); margin:14px 0 6px;">● LEVEL ADVANCED</div>
-          <div class="module-accordion-header" onclick="alert('Kelas 6: Container Orchestration Kubernetes')"><span>☸️ Kelas 6 — Kubernetes Cluster</span></div>
-          <div class="module-accordion-header" onclick="alert('Kelas 7: Infrastructure as Code & Monitoring')"><span>🛠️ Kelas 7 — Terraform & Grafana</span></div>
-          <div class="module-accordion-header" onclick="alert('Kelas 8: Capstone Project DevOps')"><span>🏆 Kelas 8 — Capstone Project DevOps</span></div>
-          <button onclick="showView('catalog')" class="btn btn-outline" style="width:100%; margin-top:20px; font-size:0.8rem;">← Kembali Ke Katalog Kodemik</button>
+
+          <div style="font-size:0.75rem; font-weight:800; color:var(--primary-blue); margin:10px 0 6px;">● LEVEL PEMULA</div>
+          
+          <div class="module-accordion-header" onclick="toggleModuleAccordion('devKelas1Group')">
+            <span>🐧 Kelas 1 — Fondasi Sistem & Linux</span>
+            <span id="devKelas1GroupArrow" class="accordion-arrow">►</span>
+          </div>
+          <div id="devKelas1Group" class="module-accordion-content">
+            <div class="module-nav-item" onclick="alert('Modul 1.1: Linux Fundamentals')">
+              <span>📁 Modul 1.1</span> Linux Fundamentals
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 1.2: Networking Basics')">
+              <span>📁 Modul 1.2</span> Networking Basics
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 1.3: Shell Scripting')">
+              <span>📁 Modul 1.3</span> Shell Scripting
+            </div>
+          </div>
+
+          <div class="module-accordion-header" onclick="toggleModuleAccordion('devKelas2Group')">
+            <span>🐙 Kelas 2 — Version Control & Kolaborasi</span>
+            <span id="devKelas2GroupArrow" class="accordion-arrow">►</span>
+          </div>
+          <div id="devKelas2Group" class="module-accordion-content">
+            <div class="module-nav-item" onclick="alert('Modul 2.1: Git Fundamentals')">
+              <span>📁 Modul 2.1</span> Git Fundamentals
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 2.2: Kolaborasi dengan GitHub/GitLab')">
+              <span>📁 Modul 2.2</span> Kolaborasi dengan GitHub/GitLab
+            </div>
+          </div>
+
+          <div style="font-size:0.75rem; font-weight:800; color:var(--amber); margin:14px 0 6px;">● LEVEL MENENGAH</div>
+
+          <div class="module-accordion-header" onclick="toggleModuleAccordion('devKelas3Group')">
+            <span>☁️ Kelas 3 — Cloud Computing Fundamentals</span>
+            <span id="devKelas3GroupArrow" class="accordion-arrow">►</span>
+          </div>
+          <div id="devKelas3Group" class="module-accordion-content">
+            <div class="module-nav-item" onclick="alert('Modul 3.1: Konsep Cloud Computing')">
+              <span>📁 Modul 3.1</span> Konsep Cloud Computing
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 3.2: Layanan Cloud Provider (AWS)')">
+              <span>📁 Modul 3.2</span> Layanan Cloud Provider (AWS)
+            </div>
+          </div>
+
+          <div class="module-accordion-header" onclick="toggleModuleAccordion('devKelas4Group')">
+            <span>🐳 Kelas 4 — Containerization</span>
+            <span id="devKelas4GroupArrow" class="accordion-arrow">►</span>
+          </div>
+          <div id="devKelas4Group" class="module-accordion-content">
+            <div class="module-nav-item" onclick="alert('Modul 4.1: Docker Fundamentals')">
+              <span>📁 Modul 4.1</span> Docker Fundamentals
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 4.2: Docker Compose')">
+              <span>📁 Modul 4.2</span> Docker Compose
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 4.3: Container Registry')">
+              <span>📁 Modul 4.3</span> Container Registry
+            </div>
+          </div>
+
+          <div class="module-accordion-header" onclick="toggleModuleAccordion('devKelas5Group')">
+            <span>⚙️ Kelas 5 — CI/CD</span>
+            <span id="devKelas5GroupArrow" class="accordion-arrow">►</span>
+          </div>
+          <div id="devKelas5Group" class="module-accordion-content">
+            <div class="module-nav-item" onclick="alert('Modul 5.1: Konsep CI/CD')">
+              <span>📁 Modul 5.1</span> Konsep CI/CD
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 5.2: Implementasi Pipeline')">
+              <span>📁 Modul 5.2</span> Implementasi Pipeline
+            </div>
+          </div>
+
+          <div style="font-size:0.75rem; font-weight:800; color:var(--success); margin:14px 0 6px;">● LEVEL MAHIR</div>
+
+          <div class="module-accordion-header" onclick="toggleModuleAccordion('devKelas6Group')">
+            <span>☸️ Kelas 6 — Container Orchestration (Kubernetes)</span>
+            <span id="devKelas6GroupArrow" class="accordion-arrow">►</span>
+          </div>
+          <div id="devKelas6Group" class="module-accordion-content">
+            <div class="module-nav-item" onclick="alert('Modul 6.1: Kubernetes Fundamentals')">
+              <span>📁 Modul 6.1</span> Kubernetes Fundamentals
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 6.2: Deployment & Service')">
+              <span>📁 Modul 6.2</span> Deployment & Service
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 6.3: Helm & Manajemen Konfigurasi')">
+              <span>📁 Modul 6.3</span> Helm & Manajemen Konfigurasi
+            </div>
+          </div>
+
+          <div class="module-accordion-header" onclick="toggleModuleAccordion('devKelas7Group')">
+            <span>🏗️ Kelas 7 — Infrastructure as Code & Observability</span>
+            <span id="devKelas7GroupArrow" class="accordion-arrow">►</span>
+          </div>
+          <div id="devKelas7Group" class="module-accordion-content">
+            <div class="module-nav-item" onclick="alert('Modul 7.1: Infrastructure as Code')">
+              <span>📁 Modul 7.1</span> Infrastructure as Code
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 7.2: Monitoring & Logging')">
+              <span>📁 Modul 7.2</span> Monitoring & Logging
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 7.3: Site Reliability & Cost Optimization')">
+              <span>📁 Modul 7.3</span> Site Reliability & Cost Optimization
+            </div>
+          </div>
+
+          <div class="module-accordion-header" onclick="toggleModuleAccordion('devKelas8Group')">
+            <span>🏆 Kelas 8 — Capstone Project DevOps & Cloud & Career Readiness</span>
+            <span id="devKelas8GroupArrow" class="accordion-arrow">►</span>
+          </div>
+          <div id="devKelas8Group" class="module-accordion-content">
+            <div class="module-nav-item" onclick="alert('Modul 8.1: Perancangan Arsitektur')">
+              <span>📁 Modul 8.1</span> Perancangan Arsitektur
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 8.2: Implementasi')">
+              <span>📁 Modul 8.2</span> Implementasi
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 8.3: Monitoring & Optimasi')">
+              <span>📁 Modul 8.3</span> Monitoring & Optimasi
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 8.4: Career Readiness')">
+              <span>📁 Modul 8.4</span> Career Readiness
+            </div>
+          </div>
+
+          <button onclick="showView('catalog')" class="btn btn-outline" style="width:100%; margin-top:20px; font-size:0.8rem;">← Kembali Ke Katalog Utama</button>
         `;
-        document.getElementById('lessonArticleBody').innerHTML = `
-          <span class="badge-pill">PATH 4 • DEVOPS & CLOUD</span>
-          <h2>Selamat Datang Di Learning Path DevOps & Cloud Architecture! ☁️</h2>
-          <p>Administrasi Linux CLI, Shell Scripting, Docker Containerization, CI/CD Pipeline, AWS Cloud, Kubernetes, dan Terraform.</p>
-        `;
+        renderDevOpsCloudFramework();
       } else if (courseId === 'cybersecurity-expert') {
         sidebar.innerHTML = `
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
@@ -1336,6 +1455,131 @@
                   <li>📁 <strong>Modul 7.2</strong> — Development</li>
                   <li>📁 <strong>Modul 7.3</strong> — Testing & Deployment</li>
                   <li>📁 <strong>Modul 7.4</strong> — Career Readiness</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function renderDevOpsCloudFramework() {
+      const article = document.getElementById('lessonArticleBody');
+      if (article) {
+        article.innerHTML = `
+          <span class="badge-pill">PATH 4 • DEVOPS & CLOUD ENGINEER</span>
+          <h2>🗺️ KERANGKA ROADMAP MASTER (DEVOPS & CLOUD ENGINEER)</h2>
+          <div class="callout-box">
+            📌 <strong>Struktur Kurikulum Resmi Kodemik:</strong><br>
+            Learning Path 4 terdiri dari 3 Level Kompetensi (Pemula, Menengah, Mahir) dan 8 Kelas Terstruktur.
+          </div>
+
+          <div style="margin-top:24px;">
+            <h3 style="color:var(--primary-blue);">● LEVEL PEMULA (BEGINNER)</h3>
+            
+            <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--border-color);">
+              <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-bottom:10px;">🐧 Kelas 1 — Fondasi Sistem & Linux</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin-bottom:12px;">File System Linux, User Permissions, Diagnosa Jaringan (IP/DNS/Firewall), & Otomasi Bash Shell Scripting.</p>
+              
+              <div style="background:var(--bg-surface); padding:12px 16px; border-radius:8px; border:1px solid var(--border-color);">
+                <strong style="font-size:0.88rem; color:var(--bg-navy-dark);">Daftar Modul Pembelajaran Kelas 1 (Klik Buka / Tutup di Sidebar):</strong>
+                <ul style="margin-top:8px; margin-bottom:0;">
+                  <li>📁 <strong>Modul 1.1</strong> — Linux Fundamentals</li>
+                  <li>📁 <strong>Modul 1.2</strong> — Networking Basics</li>
+                  <li>📁 <strong>Modul 1.3</strong> — Shell Scripting</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--border-color);">
+              <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-bottom:10px;">🐙 Kelas 2 — Version Control & Kolaborasi</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin-bottom:12px;">Git Branching, Merge Conflict resolution, GitHub/GitLab Pull Requests, & Workflow Kolaborasi Tim.</p>
+              <div style="background:var(--bg-surface); padding:12px 16px; border-radius:8px; border:1px solid var(--border-color);">
+                <strong style="font-size:0.88rem; color:var(--bg-navy-dark);">Daftar Modul Pembelajaran Kelas 2:</strong>
+                <ul style="margin-top:8px; margin-bottom:0;">
+                  <li>📁 <strong>Modul 2.1</strong> — Git Fundamentals</li>
+                  <li>📁 <strong>Modul 2.2</strong> — Kolaborasi dengan GitHub/GitLab</li>
+                </ul>
+              </div>
+            </div>
+
+            <h3 style="color:var(--amber); margin-top:24px;">● LEVEL MENENGAH (INTERMEDIATE)</h3>
+
+            <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--border-color);">
+              <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-bottom:10px;">☁️ Kelas 3 — Cloud Computing Fundamentals</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin-bottom:12px;">Layanan Cloud AWS (EC2, S3, VPC), IAM (User, Role, Policy), & Deployment VM Cloud terisolasi.</p>
+              <div style="background:var(--bg-surface); padding:12px 16px; border-radius:8px; border:1px solid var(--border-color);">
+                <strong style="font-size:0.88rem; color:var(--bg-navy-dark);">Daftar Modul Pembelajaran Kelas 3:</strong>
+                <ul style="margin-top:8px; margin-bottom:0;">
+                  <li>📁 <strong>Modul 3.1</strong> — Konsep Cloud Computing</li>
+                  <li>📁 <strong>Modul 3.2</strong> — Layanan Cloud Provider (AWS)</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--border-color);">
+              <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-bottom:10px;">🐳 Kelas 4 — Containerization</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin-bottom:12px;">Docker Containerization, Dockerfile optimization, Docker Compose multi-service, & Container Registry (Docker Hub/ECR).</p>
+              <div style="background:var(--bg-surface); padding:12px 16px; border-radius:8px; border:1px solid var(--border-color);">
+                <strong style="font-size:0.88rem; color:var(--bg-navy-dark);">Daftar Modul Pembelajaran Kelas 4:</strong>
+                <ul style="margin-top:8px; margin-bottom:0;">
+                  <li>📁 <strong>Modul 4.1</strong> — Docker Fundamentals</li>
+                  <li>📁 <strong>Modul 4.2</strong> — Docker Compose</li>
+                  <li>📁 <strong>Modul 4.3</strong> — Container Registry</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--border-color);">
+              <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-bottom:10px;">⚙️ Kelas 5 — CI/CD</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin-bottom:12px;">Continuous Integration & Deployment, GitHub Actions / GitLab CI pipelines, Automated Testing, & Deployment otomatis.</p>
+              <div style="background:var(--bg-surface); padding:12px 16px; border-radius:8px; border:1px solid var(--border-color);">
+                <strong style="font-size:0.88rem; color:var(--bg-navy-dark);">Daftar Modul Pembelajaran Kelas 5:</strong>
+                <ul style="margin-top:8px; margin-bottom:0;">
+                  <li>📁 <strong>Modul 5.1</strong> — Konsep CI/CD</li>
+                  <li>📁 <strong>Modul 5.2</strong> — Implementasi Pipeline</li>
+                </ul>
+              </div>
+            </div>
+
+            <h3 style="color:var(--success); margin-top:24px;">● LEVEL MAHIR (ADVANCED)</h3>
+
+            <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--border-color);">
+              <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-bottom:10px;">☸️ Kelas 6 — Container Orchestration (Kubernetes)</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin-bottom:12px;">Arsitektur Pod/Node/Cluster, Deployment/Service/Ingress/ConfigMap, & Package Management Helm Charts.</p>
+              <div style="background:var(--bg-surface); padding:12px 16px; border-radius:8px; border:1px solid var(--border-color);">
+                <strong style="font-size:0.88rem; color:var(--bg-navy-dark);">Daftar Modul Pembelajaran Kelas 6:</strong>
+                <ul style="margin-top:8px; margin-bottom:0;">
+                  <li>📁 <strong>Modul 6.1</strong> — Kubernetes Fundamentals</li>
+                  <li>📁 <strong>Modul 6.2</strong> — Deployment & Service</li>
+                  <li>📁 <strong>Modul 6.3</strong> — Helm & Manajemen Konfigurasi</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--border-color);">
+              <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-bottom:10px;">🏗️ Kelas 7 — Infrastructure as Code & Observability</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin-bottom:12px;">Terraform IaC, Prometheus & Grafana Monitoring, Site Reliability (SLO/SLA), & Cloud Cost Optimization.</p>
+              <div style="background:var(--bg-surface); padding:12px 16px; border-radius:8px; border:1px solid var(--border-color);">
+                <strong style="font-size:0.88rem; color:var(--bg-navy-dark);">Daftar Modul Pembelajaran Kelas 7:</strong>
+                <ul style="margin-top:8px; margin-bottom:0;">
+                  <li>📁 <strong>Modul 7.1</strong> — Infrastructure as Code</li>
+                  <li>📁 <strong>Modul 7.2</strong> — Monitoring & Logging</li>
+                  <li>📁 <strong>Modul 7.3</strong> — Site Reliability & Cost Optimization</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--success);">
+              <h4 style="font-size:1.1rem; color:var(--success); margin-bottom:10px;">🏆 Kelas 8 — Capstone Project DevOps & Cloud & Career Readiness</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin-bottom:12px;">Infrastruktur Cloud Production-Grade (IaC + CI/CD + Kubernetes + Monitoring + Cost Optimization), & Persiapan Karir DevOps/Cloud.</p>
+              <div style="background:var(--bg-surface); padding:12px 16px; border-radius:8px; border:1px solid var(--border-color);">
+                <strong style="font-size:0.88rem; color:var(--bg-navy-dark);">Daftar Modul Pembelajaran Kelas 8:</strong>
+                <ul style="margin-top:8px; margin-bottom:0;">
+                  <li>📁 <strong>Modul 8.1</strong> — Perancangan Arsitektur</li>
+                  <li>📁 <strong>Modul 8.2</strong> — Implementasi</li>
+                  <li>📁 <strong>Modul 8.3</strong> — Monitoring & Optimasi</li>
+                  <li>📁 <strong>Modul 8.4</strong> — Career Readiness</li>
                 </ul>
               </div>
             </div>

@@ -56,6 +56,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
 </head>
 <body>
 
@@ -485,7 +486,7 @@
             <span id="kelas1WebGroupArrow" class="accordion-arrow">►</span>
           </div>
           <div id="kelas1WebGroup" class="module-accordion-content">
-            <div class="module-nav-item" onclick="alert('Modul 1.1: Cara Kerja Internet & Web')">
+            <div class="module-nav-item" onclick="loadModul1_1()">
               <span>📁 Modul 1.1</span> Cara Kerja Internet & Web
             </div>
             <div class="module-nav-item" onclick="alert('Modul 1.2: HTML Fundamentals')">
@@ -889,12 +890,353 @@
       }
     }
 
-    async function handleLoginSubmit(e) {
-      e.preventDefault();
-      const email = document.getElementById('loginEmail').value;
-      alert('Login Berhasil sebagai ' + email);
-      closeAuthModal();
-      showView('dashboard');
+    function loadModul1_1() {
+      if (window.innerWidth <= 900) {
+        const sidebar = document.querySelector('.lesson-sidebar');
+        if (sidebar && sidebar.classList.contains('mobile-open')) {
+          toggleMobileSidebar();
+        }
+      }
+
+      const article = document.getElementById('lessonArticleBody');
+      if (!article) return;
+
+      article.innerHTML = `
+        <div class="lesson-article">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:10px;">
+            <span class="badge-pill">PATH 1 • KELAS 1 • MODUL 1.1</span>
+            <button onclick="renderFullstackWebFramework()" class="btn btn-outline" style="padding:6px 14px; font-size:0.8rem; font-weight:700;">← Kembali Ke Roadmap Kelas</button>
+          </div>
+
+          <h2 style="font-size:2rem; font-weight:800; color:var(--bg-navy-dark); margin-bottom:6px;">Modul 1.1 — Cara Kerja Internet & Web</h2>
+          <p style="font-size:0.9rem; color:var(--text-muted); font-weight:600; margin-bottom:20px;">⏱️ Estimasi total waktu modul: ±55 menit (3 lesson @15 menit + 1 practical lab @10 menit)</p>
+
+          <div class="callout-box" style="margin:24px 0;">
+            <h3 style="font-size:1.15rem; color:var(--primary-blue); margin-bottom:8px;">🎯 Tujuan Pembelajaran Modul</h3>
+            <p style="margin-bottom:8px; color:var(--bg-navy-dark); font-weight:600;">Setelah menyelesaikan modul ini, peserta mampu:</p>
+            <ul style="margin-bottom:0;">
+              <li>Menjelaskan siklus request-response antara client dan server</li>
+              <li>Menjelaskan proses DNS dan membedah struktur sebuah URL</li>
+              <li>Menjelaskan tahapan browser merender halaman web</li>
+              <li>Menggunakan DevTools browser untuk mengamati proses ini secara langsung</li>
+            </ul>
+          </div>
+
+          <hr style="border:none; border-top:1px solid var(--border-color); margin:32px 0;">
+
+          <!-- LESSON 1 -->
+          <div style="background:var(--bg-surface); padding:24px; border-radius:12px; border:1px solid var(--border-color); margin-bottom:32px; box-shadow:var(--shadow-sm);">
+            <span class="badge-pill" style="background:#EFF6FF; color:var(--primary-blue);">LESSON 1 • ⏱️ 15 MENIT</span>
+            <h3 style="font-size:1.5rem; font-weight:800; color:var(--bg-navy-dark); margin:10px 0 16px;">Request-Response Cycle</h3>
+            
+            <h4 style="font-size:1.15rem; color:var(--bg-navy-dark); margin-top:16px;">📖 Penjelasan Konsep</h4>
+            <p>Bayangkan kamu memesan makanan di restoran. Kamu (pelanggan) memberi pesanan ke pelayan, pelayan membawanya ke dapur, dapur memasak, lalu makanan dikirim kembali ke mejamu. Website bekerja dengan pola yang sama:</p>
+            <ul>
+              <li><strong>Client</strong> = perangkat/browser yang meminta sesuatu (kamu, sebagai pelanggan)</li>
+              <li><strong>Server</strong> = komputer yang menyimpan dan mengolah data website (dapur restoran)</li>
+              <li><strong>Request</strong> = permintaan yang dikirim client ke server (pesananmu)</li>
+              <li><strong>Response</strong> = jawaban yang dikirim server kembali ke client (makanan yang disajikan)</li>
+            </ul>
+
+            <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-top:20px;">Diagram Alur Request-Response:</h4>
+            <pre class="mermaid" style="background:#F8FAFC; padding:20px; border-radius:10px; border:1px solid var(--border-color); margin:16px 0; overflow-x:auto;">
+sequenceDiagram
+    participant B as Browser (Client)
+    participant S as Server
+
+    B->>S: HTTP Request (GET /halaman)
+    Note over B,S: Method, Headers, Body
+    S->>S: Proses permintaan
+    S-->>B: HTTP Response (Status 200 + HTML)
+    Note over B,S: Status Code, Headers, Body
+    B->>B: Tampilkan halaman ke pengguna
+            </pre>
+
+            <h4 style="font-size:1.15rem; color:var(--bg-navy-dark); margin-top:20px;">HTTP vs HTTPS</h4>
+            <p>HTTPS adalah versi HTTP yang datanya <em>dienkripsi</em>, sehingga tidak bisa dibaca pihak lain yang menyadap koneksi (misalnya di WiFi publik).</p>
+            
+            <table class="pro-table">
+              <thead>
+                <tr><th>Aspek</th><th>HTTP</th><th>HTTPS</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Enkripsi</td><td>Tidak ada</td><td>Ada (via TLS/SSL)</td></tr>
+                <tr><td>Port default</td><td>80</td><td>443</td></tr>
+                <tr><td>Ikon di browser</td><td>Tidak ada gembok / "Not Secure"</td><td>Ikon gembok</td></tr>
+                <tr><td>Cocok untuk</td><td>Tidak disarankan untuk data sensitif</td><td>Wajib untuk login, pembayaran, data pribadi</td></tr>
+              </tbody>
+            </table>
+
+            <h4 style="font-size:1.15rem; color:var(--bg-navy-dark); margin-top:20px;">Bagian Penting Request & Response</h4>
+            <p><strong>Setiap HTTP Request memiliki:</strong></p>
+            <ul>
+              <li><strong>Method</strong> — GET (ambil data), POST (kirim data baru), PUT/PATCH (ubah data), DELETE (hapus data)</li>
+              <li><strong>Headers</strong> — informasi tambahan (jenis browser, dsb)</li>
+              <li><strong>Body</strong> — data yang dikirim (biasanya pada POST/PUT)</li>
+            </ul>
+
+            <p><strong>Setiap HTTP Response memiliki:</strong></p>
+            <ul>
+              <li><strong>Status Code</strong> — 200 OK (berhasil), 404 Not Found (tidak ditemukan), 500 Internal Server Error (server bermasalah)</li>
+              <li><strong>Headers & Body</strong> — informasi dan isi sebenarnya dari response</li>
+            </ul>
+
+            <h4 style="font-size:1.15rem; color:var(--bg-navy-dark); margin-top:20px;">🌍 Contoh Penggunaan di Dunia Nyata</h4>
+            <p>Saat kamu login ke Instagram, browser mengirim <em>POST request</em> berisi email & password (dalam Body, terenkripsi via HTTPS). Server memproses, mengecek database, lalu mengirim <em>response</em> 200 OK jika berhasil, atau 401 Unauthorized jika password salah.</p>
+
+            <h4 style="font-size:1.15rem; color:var(--bg-navy-dark); margin-top:20px;">⚠️ Kesalahan Umum</h4>
+            <table class="pro-table">
+              <thead><tr><th>Kesalahan</th><th>Perbaikan</th></tr></thead>
+              <tbody>
+                <tr><td>Mengira HTTPS hanya soal "tampilan gembok"</td><td>HTTPS benar-benar mengenkripsi data. Tanpa HTTPS, password bisa disadap sebagai teks biasa.</td></tr>
+                <tr><td>Menyamakan semua request sebagai "GET"</td><td>Mengirim data sensitif lewat GET (muncul di URL) adalah praktik buruk — gunakan POST.</td></tr>
+                <tr><td>Bingung status 404 vs 500</td><td>404 = resource tidak ada (kesalahan sisi client/URL). 500 = server itu sendiri bermasalah.</td></tr>
+              </tbody>
+            </table>
+
+            <div class="callout-box" style="background:#EFF6FF; border-left-color:var(--primary-blue);">
+              <h4 style="font-size:1.05rem; color:var(--primary-blue); margin-bottom:6px;">🔍 Mini Praktik</h4>
+              <p style="margin:0;">Buka DevTools (F12) → tab <em>Network</em> → refresh sebuah website apa saja → klik request HTML utama (biasanya nama file paling atas) → temukan Status Code dan Request Method-nya.</p>
+            </div>
+
+            <div class="quiz-container">
+              <h4 style="color:var(--primary-blue); margin-bottom:12px;">❓ Mini Quiz Lesson 1</h4>
+              <div style="margin-bottom:16px;">
+                <p><strong>1. Dalam siklus request-response, siapa yang berperan sebagai "client"?</strong></p>
+                <label class="quiz-option-label"><input type="radio" name="q1_1" value="A"> A. Komputer yang menyimpan file website</label>
+                <label class="quiz-option-label"><input type="radio" name="q1_1" value="B"> B. Perangkat/browser yang meminta halaman web <strong style="color:var(--success);">(Jawaban Benar)</strong></label>
+                <label class="quiz-option-label"><input type="radio" name="q1_1" value="C"> C. Sistem DNS yang menerjemahkan domain</label>
+                <label class="quiz-option-label"><input type="radio" name="q1_1" value="D"> D. Database yang menyimpan data pengguna</label>
+              </div>
+              <div style="margin-bottom:16px;">
+                <p><strong>2. Status code 404 menandakan bahwa?</strong></p>
+                <label class="quiz-option-label"><input type="radio" name="q1_2" value="A"> A. Server mengalami error internal</label>
+                <label class="quiz-option-label"><input type="radio" name="q1_2" value="B"> B. Request berhasil sepenuhnya</label>
+                <label class="quiz-option-label"><input type="radio" name="q1_2" value="C"> C. Resource/halaman yang diminta tidak ditemukan <strong style="color:var(--success);">(Jawaban Benar)</strong></label>
+                <label class="quiz-option-label"><input type="radio" name="q1_2" value="D"> D. Koneksi internet terputus</label>
+              </div>
+              <div>
+                <p><strong>3. Apa perbedaan mendasar HTTP dan HTTPS?</strong></p>
+                <label class="quiz-option-label"><input type="radio" name="q1_3" value="A"> A. HTTPS lebih cepat dari HTTP</label>
+                <label class="quiz-option-label"><input type="radio" name="q1_3" value="B"> B. HTTPS mengenkripsi data yang dikirim, HTTP tidak <strong style="color:var(--success);">(Jawaban Benar)</strong></label>
+                <label class="quiz-option-label"><input type="radio" name="q1_3" value="C"> C. HTTP hanya untuk gambar</label>
+                <label class="quiz-option-label"><input type="radio" name="q1_3" value="D"> D. Tidak ada perbedaan signifikan</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- LESSON 2 -->
+          <div style="background:var(--bg-surface); padding:24px; border-radius:12px; border:1px solid var(--border-color); margin-bottom:32px; box-shadow:var(--shadow-sm);">
+            <span class="badge-pill" style="background:#EFF6FF; color:var(--primary-blue);">LESSON 2 • ⏱️ 15 MENIT</span>
+            <h3 style="font-size:1.5rem; font-weight:800; color:var(--bg-navy-dark); margin:10px 0 16px;">DNS, Domain & Struktur URL</h3>
+            
+            <h4 style="font-size:1.15rem; color:var(--bg-navy-dark); margin-top:16px;">📖 Penjelasan Konsep</h4>
+            <p>Komputer tidak mengenal nama seperti "google.com" — komputer hanya mengenal alamat angka yang disebut <em>IP Address</em> (contoh: 142.250.190.14). Karena manusia lebih mudah mengingat nama, dibuatlah <em>DNS (Domain Name System)</em> — sistem yang bekerja seperti <em>buku telepon internet</em>.</p>
+
+            <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-top:20px;">Diagram Alur Pencarian DNS:</h4>
+            <pre class="mermaid" style="background:#F8FAFC; padding:20px; border-radius:10px; border:1px solid var(--border-color); margin:16px 0; overflow-x:auto;">
+flowchart LR
+    A[Browser: ketik contoh.com] --> B{Ada di Cache?}
+    B -- Ya --> F[Gunakan IP tersimpan]
+    B -- Tidak --> C[Tanya DNS Resolver]
+    C --> D[Root & TLD Server]
+    D --> E[Authoritative Server]
+    E --> G[IP Address ditemukan]
+    G --> F
+    F --> H[Browser kirim request ke IP tsb]
+            </pre>
+
+            <h4 style="font-size:1.15rem; color:var(--bg-navy-dark); margin-top:20px;">Struktur Sebuah URL</h4>
+            <p>URL (Uniform Resource Locator) adalah "alamat lengkap" suatu halaman. Bedah contoh berikut:</p>
+            
+            <div class="code-block-pro" style="color:#FFF;">
+https://www.contoh.com:443/produk/sepatu?warna=merah&size=42#ulasan
+└─┬──┘   └─┬─┘└──┬───┘└┬─┘└────┬──────┘└───────┬────────┘└──┬──┘
+protocol subdomain domain  port    path         query string   fragment
+            </div>
+
+            <table class="pro-table">
+              <thead><tr><th>Bagian</th><th>Nilai</th><th>Penjelasan</th></tr></thead>
+              <tbody>
+                <tr><td>Protocol/Scheme</td><td>https://</td><td>Protokol komunikasi yang dipakai</td></tr>
+                <tr><td>Subdomain</td><td>www</td><td>Bagian tambahan sebelum domain utama</td></tr>
+                <tr><td>Domain</td><td>contoh.com</td><td>Nama situs yang terdaftar</td></tr>
+                <tr><td>Port</td><td>:443</td><td>Pintu komunikasi (default HTTPS, sering tersembunyi)</td></tr>
+                <tr><td>Path</td><td>/produk/sepatu</td><td>Lokasi halaman/resource spesifik</td></tr>
+                <tr><td>Query String</td><td>?warna=merah&size=42</td><td>Parameter tambahan (key-value)</td></tr>
+                <tr><td>Fragment</td><td>#ulasan</td><td>Menunjuk ke bagian tertentu dalam satu halaman</td></tr>
+              </tbody>
+            </table>
+
+            <h4 style="font-size:1.15rem; color:var(--bg-navy-dark); margin-top:20px;">🌍 Contoh Penggunaan di Dunia Nyata</h4>
+            <p>Saat kamu mencari produk di Tokopedia dengan filter warna & ukuran, hasilnya sering tercermin di URL sebagai query string (?warna=merah&size=42) — sehingga kamu bisa membagikan link hasil pencarian yang sudah difilter ke orang lain.</p>
+
+            <h4 style="font-size:1.15rem; color:var(--bg-navy-dark); margin-top:20px;">⚠️ Kesalahan Umum</h4>
+            <table class="pro-table">
+              <thead><tr><th>Kesalahan</th><th>Perbaikan</th></tr></thead>
+              <tbody>
+                <tr><td>Mengira domain dan URL adalah hal sama</td><td>Domain hanyalah satu bagian dari URL, bukan keseluruhan alamat.</td></tr>
+                <tr><td>Tidak paham fungsi query string</td><td>Salah format (lupa ? atau &) membuat parameter tidak terbaca.</td></tr>
+                <tr><td>Mengira DNS lookup terjadi setiap saat tanpa cache</td><td>Hasil DNS biasanya di-cache agar loading halaman berikutnya lebih cepat.</td></tr>
+              </tbody>
+            </table>
+
+            <div class="callout-box" style="background:#EFF6FF; border-left-color:var(--primary-blue);">
+              <h4 style="font-size:1.05rem; color:var(--primary-blue); margin-bottom:6px;">🔍 Mini Praktik</h4>
+              <p style="margin:0;">Ambil satu URL nyata dari e-commerce favoritmu (hasil pencarian dengan filter), lalu pecah manual ke dalam tabel seperti contoh di atas (protocol, domain, path, query string).</p>
+            </div>
+
+            <div class="quiz-container">
+              <h4 style="color:var(--primary-blue); margin-bottom:12px;">❓ Mini Quiz Lesson 2</h4>
+              <div style="margin-bottom:16px;">
+                <p><strong>1. Apa fungsi utama sistem DNS?</strong></p>
+                <label class="quiz-option-label"><input type="radio" name="q2_1" value="A"> A. Mengenkripsi data yang dikirim ke server</label>
+                <label class="quiz-option-label"><input type="radio" name="q2_1" value="B"> B. Menerjemahkan nama domain menjadi IP Address <strong style="color:var(--success);">(Jawaban Benar)</strong></label>
+                <label class="quiz-option-label"><input type="radio" name="q2_1" value="C"> C. Menyimpan file HTML sebuah website</label>
+                <label class="quiz-option-label"><input type="radio" name="q2_1" value="D"> D. Mengatur tampilan visual sebuah halaman</label>
+              </div>
+              <div style="margin-bottom:16px;">
+                <p><strong>2. Dalam URL https://toko.com/produk?warna=biru, bagian ?warna=biru disebut?</strong></p>
+                <label class="quiz-option-label"><input type="radio" name="q2_2" value="A"> A. Path</label>
+                <label class="quiz-option-label"><input type="radio" name="q2_2" value="B"> B. Domain</label>
+                <label class="quiz-option-label"><input type="radio" name="q2_2" value="C"> C. Query String <strong style="color:var(--success);">(Jawaban Benar)</strong></label>
+                <label class="quiz-option-label"><input type="radio" name="q2_2" value="D"> D. Fragment</label>
+              </div>
+              <div>
+                <p><strong>3. Jika hasil pencarian DNS untuk sebuah domain sudah ada di cache, apa yang terjadi?</strong></p>
+                <label class="quiz-option-label"><input type="radio" name="q2_3" value="A"> A. Browser tetap harus bertanya ke Root Server</label>
+                <label class="quiz-option-label"><input type="radio" name="q2_3" value="B"> B. Browser langsung memakai IP Address yang tersimpan tanpa pencarian ulang <strong style="color:var(--success);">(Jawaban Benar)</strong></label>
+                <label class="quiz-option-label"><input type="radio" name="q2_3" value="C"> C. Website tidak akan bisa diakses</label>
+                <label class="quiz-option-label"><input type="radio" name="q2_3" value="D"> D. DNS akan mengabaikan cache dan selalu mencari ulang</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- LESSON 3 -->
+          <div style="background:var(--bg-surface); padding:24px; border-radius:12px; border:1px solid var(--border-color); margin-bottom:32px; box-shadow:var(--shadow-sm);">
+            <span class="badge-pill" style="background:#EFF6FF; color:var(--primary-blue);">LESSON 3 • ⏱️ 15 MENIT</span>
+            <h3 style="font-size:1.5rem; font-weight:800; color:var(--bg-navy-dark); margin:10px 0 16px;">Browser Rendering Engine</h3>
+            
+            <h4 style="font-size:1.15rem; color:var(--bg-navy-dark); margin-top:16px;">📖 Penjelasan Konsep</h4>
+            <p>Setelah browser menerima HTML, CSS, dan JavaScript dari server, ia tidak langsung menampilkannya begitu saja — ada proses <em>rendering</em> di baliknya.</p>
+
+            <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-top:20px;">Diagram Tahapan Rendering:</h4>
+            <pre class="mermaid" style="background:#F8FAFC; padding:20px; border-radius:10px; border:1px solid var(--border-color); margin:16px 0; overflow-x:auto;">
+flowchart TD
+    A[HTML diterima] --> B[Parsing HTML → DOM Tree]
+    C[CSS diterima] --> D[Parsing CSS → CSSOM Tree]
+    B --> E[Gabung DOM + CSSOM → Render Tree]
+    D --> E
+    E --> F[Layout: hitung posisi & ukuran]
+    F --> G[Paint: gambar piksel di layar]
+    G --> H{Ada JavaScript?}
+    H -- Ya, mengubah DOM/CSS --> B
+    H -- Tidak --> I[Halaman selesai ditampilkan]
+            </pre>
+
+            <h4 style="font-size:1.15rem; color:var(--bg-navy-dark); margin-top:20px;">Penjelasan tiap tahap:</h4>
+            <ol>
+              <li><strong>Parsing HTML → DOM Tree</strong> — browser membaca HTML dan mengubahnya jadi struktur pohon objek (<em>DOM</em>) yang bisa dimanipulasi program.</li>
+              <li><strong>Parsing CSS → CSSOM Tree</strong> — browser membaca semua aturan CSS menjadi <em>CSSOM</em>.</li>
+              <li><strong>Render Tree</strong> — gabungan DOM + CSSOM, berisi HANYA elemen yang benar-benar akan tampil (elemen display: none tidak ikut masuk).</li>
+              <li><strong>Layout (Reflow)</strong> — browser menghitung posisi & ukuran pasti tiap elemen di layar.</li>
+              <li><strong>Paint</strong> — browser "mengecat" piksel sesuai hasil layout (warna, teks, gambar).</li>
+              <li><strong>Eksekusi JavaScript</strong> — bisa mengubah DOM/CSSOM, memicu ulang Layout & Paint (kenapa manipulasi DOM berlebihan bisa memperlambat halaman).</li>
+            </ol>
+
+            <h4 style="font-size:1.15rem; color:var(--bg-navy-dark); margin-top:20px;">🌍 Contoh Penggunaan di Dunia Nyata</h4>
+            <p>Saat kamu membuka halaman berita penuh iklan, halaman terasa "melompat-lompat" — ini terjadi karena proses Layout dipicu berulang oleh elemen baru yang dimuat, mengubah posisi elemen lain di sekitarnya.</p>
+
+            <h4 style="font-size:1.15rem; color:var(--bg-navy-dark); margin-top:20px;">⚠️ Kesalahan Umum</h4>
+            <table class="pro-table">
+              <thead><tr><th>Kesalahan</th><th>Perbaikan</th></tr></thead>
+              <tbody>
+                <tr><td>Mengira HTML langsung "muncul" tanpa proses apapun</td><td>Ada beberapa tahap (parsing → render tree → layout → paint) sebelum tampil di layar.</td></tr>
+                <tr><td>Meletakkan &lt;script&gt; di &lt;head&gt; tanpa defer/async</td><td>Browser berhenti memproses HTML untuk menjalankan script dulu, membuat halaman terasa lebih lambat muncul.</td></tr>
+              </tbody>
+            </table>
+
+            <div class="callout-box" style="background:#EFF6FF; border-left-color:var(--primary-blue);">
+              <h4 style="font-size:1.05rem; color:var(--primary-blue); margin-bottom:6px;">🔍 Mini Praktik</h4>
+              <p style="margin:0;">Buka DevTools → tab <em>Elements</em> → amati struktur DOM Tree sebuah halaman, klik satu elemen dan lihat bagaimana bagian itu ter-highlight langsung di halaman.</p>
+            </div>
+
+            <div class="quiz-container">
+              <h4 style="color:var(--primary-blue); margin-bottom:12px;">❓ Mini Quiz Lesson 3</h4>
+              <div style="margin-bottom:16px;">
+                <p><strong>1. Urutan proses rendering browser yang benar adalah?</strong></p>
+                <label class="quiz-option-label"><input type="radio" name="q3_1" value="A"> A. Paint → Layout → Parsing HTML → Render Tree</label>
+                <label class="quiz-option-label"><input type="radio" name="q3_1" value="B"> B. Parsing HTML/CSS → Render Tree → Layout → Paint <strong style="color:var(--success);">(Jawaban Benar)</strong></label>
+                <label class="quiz-option-label"><input type="radio" name="q3_1" value="C"> C. Layout → Parsing HTML → Paint → Render Tree</label>
+                <label class="quiz-option-label"><input type="radio" name="q3_1" value="D"> D. Render Tree → Paint → Parsing HTML → Layout</label>
+              </div>
+              <div>
+                <p><strong>2. Mengapa elemen dengan display: none tidak muncul di Render Tree?</strong></p>
+                <label class="quiz-option-label"><input type="radio" name="q3_2" value="A"> A. Karena elemen tersebut dihapus dari DOM</label>
+                <label class="quiz-option-label"><input type="radio" name="q3_2" value="B"> B. Karena Render Tree hanya berisi elemen yang benar-benar akan tampil secara visual <strong style="color:var(--success);">(Jawaban Benar)</strong></label>
+                <label class="quiz-option-label"><input type="radio" name="q3_2" value="C"> C. Karena browser tidak mendukung properti tersebut</label>
+                <label class="quiz-option-label"><input type="radio" name="q3_2" value="D"> D. Karena CSSOM tidak memproses elemen tersembunyi</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- PRACTICAL LAB -->
+          <div style="background:#FFFBEB; border:1px solid rgba(245,158,11,0.3); border-radius:12px; padding:24px; margin-bottom:32px;">
+            <span class="badge-pill" style="background:#FEF3C7; color:#B45309; border-color:#FCD34D;">LAB PRAKTIK • ⏱️ 10 MENIT</span>
+            <h3 style="font-size:1.4rem; font-weight:800; color:#92400E; margin:10px 0;">💻 PRACTICAL LAB (Penutup Modul 1.1)</h3>
+            <p><strong>Tujuan:</strong> Menggabungkan ketiga lesson di atas dalam satu eksplorasi menyeluruh menggunakan DevTools.</p>
+            
+            <h4 style="color:#92400E;">Langkah-langkah:</h4>
+            <ol>
+              <li>Buka browser, kunjungi sebuah website (misalnya situs berita atau e-commerce)</li>
+              <li>Buka DevTools (F12) → tab <em>Network</em> → refresh halaman (Ctrl+R)
+                <ul><li>Amati minimal 5 request berbeda (HTML, CSS, JS, gambar, font) beserta status code masing-masing</li></ul>
+              </li>
+              <li>Klik request dokumen HTML utama → catat Method dan Response Headers-nya</li>
+              <li>Buka tab <em>Elements</em> → amati struktur DOM Tree, klik 2-3 elemen berbeda</li>
+              <li>Di address bar, ubah bagian query string URL sebuah situs pencarian/e-commerce → amati perubahan hasil</li>
+            </ol>
+
+            <div style="background:#FFF; padding:16px; border-radius:8px; border:1px solid #FCD34D; margin-top:16px;">
+              <strong style="color:#92400E;">Yang harus dikumpulkan sebagai bukti praktik:</strong>
+              <ul style="margin-top:8px; margin-bottom:0; font-size:0.92rem;">
+                <li>Screenshot tab Network (minimal 5 request + status code)</li>
+                <li>Satu URL nyata yang dibedah manual ke tabel (protocol, domain, path, query string) — lihat format Lesson 2</li>
+                <li>Catatan singkat: apa perbedaan yang diamati antara request HTML, CSS, dan gambar</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- RINGKASAN MODUL 1.1 -->
+          <div class="callout-box" style="background:#ECFDF5; border-left-color:var(--success); color:#065F46; margin-bottom:30px;">
+            <h3 style="font-size:1.2rem; color:#065F46; margin-bottom:10px;">📌 Ringkasan Modul 1.1</h3>
+            <ul style="margin-bottom:0;">
+              <li>Web bekerja melalui <em>request-response cycle</em>: client mengirim HTTP Request, server membalas dengan HTTP Response (status code, headers, body).</li>
+              <li><em>HTTPS</em> mengenkripsi komunikasi client-server, wajib untuk data sensitif.</li>
+              <li><em>DNS</em> menerjemahkan domain menjadi IP Address melalui pencarian berjenjang yang hasilnya di-cache.</li>
+              <li><em>URL</em> tersusun dari protocol, subdomain, domain, port, path, query string, dan fragment.</li>
+              <li>Browser menampilkan halaman melalui <em>rendering</em>: parsing HTML/CSS → DOM/CSSOM → Render Tree → Layout → Paint, dan JavaScript bisa memicu ulang proses ini.</li>
+            </ul>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:40px; padding-top:20px; border-top:1px solid var(--border-color);">
+            <button onclick="renderFullstackWebFramework()" class="btn btn-outline">← Kembali Ke Roadmap 9 Kelas</button>
+            <button onclick="alert('Lanjut ke Modul 1.2: HTML Fundamentals')" class="btn btn-primary">Lanjut ke Modul 1.2 (HTML Fundamentals) →</button>
+          </div>
+        </div>
+      `;
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      setTimeout(() => {
+        if (window.mermaid) {
+          try {
+            mermaid.run();
+          } catch(e) {
+            try { mermaid.init(); } catch(err) {}
+          }
+        }
+      }, 200);
     }
 
     window.addEventListener('DOMContentLoaded', () => {

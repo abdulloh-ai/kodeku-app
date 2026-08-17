@@ -304,15 +304,15 @@
       },
       {
         id: 'cybersecurity-expert',
-        title: 'Learning Path 5: Cybersecurity & Ethical Hacking',
+        title: 'Learning Path 5: Cybersecurity Expert',
         category: 'Security',
         level: 'Beginner',
         modulesCount: 24,
-        duration: '7 Kelas • 24 Modul Belajar',
+        duration: '8 Kelas • 3 Level Belajar',
         progress: 0,
         icon: '🛡️',
-        description: 'Fondasi Keamanan Jaringan Wireshark, Ethical Hacking Nmap, OWASP Top 10 Web Security, Penetration Testing, dan SOC/SIEM.',
-        instructor: 'Tim Kodemik Security'
+        description: 'Networking Security, Wireshark, Ethical Hacking, Vulnerability Management, OWASP Top 10 Web Pentest, SOC SIEM, Digital Forensics, Cloud DevSecOps, GRC, hingga Capstone.',
+        instructor: 'Tim Kodemik Cybersec'
       }
     ];
 
@@ -832,27 +832,153 @@
         renderDevOpsCloudFramework();
       } else if (courseId === 'cybersecurity-expert') {
         sidebar.innerHTML = `
+          <div class="mobile-close-bar" style="display:none; justify-content:space-between; align-items:center; padding-bottom:12px; margin-bottom:14px; border-bottom:1px solid var(--border-color);">
+            <span style="font-weight:800; font-size:0.9rem; color:var(--bg-navy-dark);">📚 Daftar Kelas & Modul</span>
+            <button onclick="toggleMobileSidebar()" class="btn btn-outline" style="padding:6px 14px; font-size:0.82rem; color:#EF4444; border-color:#FCA5A5; font-weight:700;">✕ Tutup Drawer</button>
+          </div>
+
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
             <span style="font-size:0.75rem; font-weight:700; font-family:var(--font-mono); color:var(--text-muted);">PATH 5: CYBERSECURITY</span>
-            <span style="font-size:0.75rem; color:var(--primary-blue); font-weight:700;">7 Kelas • 24 Modul</span>
+            <span style="font-size:0.75rem; color:var(--primary-blue); font-weight:700;">8 Kelas • 3 Level</span>
           </div>
-          <div style="font-size:0.75rem; font-weight:800; color:var(--primary-blue); margin:10px 0 6px;">● LEVEL BEGINNER</div>
-          <div class="module-accordion-header" onclick="alert('Kelas 1: Fondasi Keamanan & Jaringan Wireshark')"><span>🔌 Kelas 1 — Networking Security</span></div>
-          <div class="module-accordion-header" onclick="alert('Kelas 2: Fundamental Ethical Hacking Nmap')"><span>🕵️ Kelas 2 — Ethical Hacking Nmap</span></div>
-          <div style="font-size:0.75rem; font-weight:800; color:var(--amber); margin:14px 0 6px;">● LEVEL INTERMEDIATE</div>
-          <div class="module-accordion-header" onclick="alert('Kelas 3: Keamanan Aplikasi Web OWASP Top 10')"><span>🌐 Kelas 3 — OWASP Web Security</span></div>
-          <div class="module-accordion-header" onclick="alert('Kelas 4: Penetration Testing Sistem & Jaringan')"><span>⚔️ Kelas 4 — Penetration Testing</span></div>
-          <div style="font-size:0.75rem; font-weight:800; color:var(--success); margin:14px 0 6px;">● LEVEL ADVANCED</div>
-          <div class="module-accordion-header" onclick="alert('Kelas 5: Security Operations & Incident Response (SOC)')"><span>🚨 Kelas 5 — SOC & SIEM Logging</span></div>
-          <div class="module-accordion-header" onclick="alert('Kelas 6: Keamanan Cloud & DevSecOps')"><span>🔒 Kelas 6 — Cloud Security Audit</span></div>
-          <div class="module-accordion-header" onclick="alert('Kelas 7: Capstone Project Cybersecurity')"><span>🏆 Kelas 7 — Capstone Cybersecurity</span></div>
-          <button onclick="showView('catalog')" class="btn btn-outline" style="width:100%; margin-top:20px; font-size:0.8rem;">← Kembali Ke Katalog Kodemik</button>
+
+          <div style="font-size:0.75rem; font-weight:800; color:var(--primary-blue); margin:10px 0 6px;">● LEVEL PEMULA</div>
+          
+          <div class="module-accordion-header" onclick="toggleModuleAccordion('secKelas1Group')">
+            <span>🌐 Kelas 1 — Fondasi Keamanan & Jaringan</span>
+            <span id="secKelas1GroupArrow" class="accordion-arrow">►</span>
+          </div>
+          <div id="secKelas1Group" class="module-accordion-content">
+            <div class="module-nav-item" onclick="alert('Modul 1.1: Networking untuk Keamanan')">
+              <span>📁 Modul 1.1</span> Networking untuk Keamanan
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 1.2: Keamanan Sistem Operasi')">
+              <span>📁 Modul 1.2</span> Keamanan Sistem Operasi
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 1.3: Konsep Keamanan Informasi & Threat Modeling')">
+              <span>📁 Modul 1.3</span> Konsep Keamanan Informasi & Threat Modeling
+            </div>
+          </div>
+
+          <div class="module-accordion-header" onclick="toggleModuleAccordion('secKelas2Group')">
+            <span>🛠️ Kelas 2 — Fundamental Ethical Hacking & Vulnerability Management</span>
+            <span id="secKelas2GroupArrow" class="accordion-arrow">►</span>
+          </div>
+          <div id="secKelas2Group" class="module-accordion-content">
+            <div class="module-nav-item" onclick="alert('Modul 2.1: Security Tools Dasar')">
+              <span>📁 Modul 2.1</span> Security Tools Dasar
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 2.2: Vulnerability Scanning & Vulnerability Management')">
+              <span>📁 Modul 2.2</span> Vulnerability Scanning & Management
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 2.3: Kriptografi Dasar')">
+              <span>📁 Modul 2.3</span> Kriptografi Dasar
+            </div>
+          </div>
+
+          <div style="font-size:0.75rem; font-weight:800; color:var(--amber); margin:14px 0 6px;">● LEVEL MENENGAH</div>
+
+          <div class="module-accordion-header" onclick="toggleModuleAccordion('secKelas3Group')">
+            <span>🕸️ Kelas 3 — Keamanan Aplikasi Web</span>
+            <span id="secKelas3GroupArrow" class="accordion-arrow">►</span>
+          </div>
+          <div id="secKelas3Group" class="module-accordion-content">
+            <div class="module-nav-item" onclick="alert('Modul 3.1: OWASP Top 10')">
+              <span>📁 Modul 3.1</span> OWASP Top 10
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 3.2: Pengujian Kerentanan Web')">
+              <span>📁 Modul 3.2</span> Pengujian Kerentanan Web
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 3.3: Secure Coding Practices')">
+              <span>📁 Modul 3.3</span> Secure Coding Practices
+            </div>
+          </div>
+
+          <div class="module-accordion-header" onclick="toggleModuleAccordion('secKelas4Group')">
+            <span>⚔️ Kelas 4 — Penetration Testing Sistem & Jaringan</span>
+            <span id="secKelas4GroupArrow" class="accordion-arrow">►</span>
+          </div>
+          <div id="secKelas4Group" class="module-accordion-content">
+            <div class="module-nav-item" onclick="alert('Modul 4.1: Metodologi Penetration Testing')">
+              <span>📁 Modul 4.1</span> Metodologi Penetration Testing
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 4.2: Eksploitasi Dasar (Lab Legal)')">
+              <span>📁 Modul 4.2</span> Eksploitasi Dasar (Lab Legal)
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 4.3: Post-Exploitation & Pelaporan')">
+              <span>📁 Modul 4.3</span> Post-Exploitation & Pelaporan
+            </div>
+          </div>
+
+          <div style="font-size:0.75rem; font-weight:800; color:var(--success); margin:14px 0 6px;">● LEVEL MAHIR</div>
+
+          <div class="module-accordion-header" onclick="toggleModuleAccordion('secKelas5Group')">
+            <span>🚨 Kelas 5 — Security Operations & Incident Response</span>
+            <span id="secKelas5GroupArrow" class="accordion-arrow">►</span>
+          </div>
+          <div id="secKelas5Group" class="module-accordion-content">
+            <div class="module-nav-item" onclick="alert('Modul 5.1: Security Operations Center (SOC)')">
+              <span>📁 Modul 5.1</span> Security Operations Center (SOC)
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 5.2: SIEM Tools')">
+              <span>📁 Modul 5.2</span> SIEM Tools
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 5.3: Incident Response & Digital Forensics')">
+              <span>📁 Modul 5.3</span> Incident Response & Digital Forensics
+            </div>
+          </div>
+
+          <div class="module-accordion-header" onclick="toggleModuleAccordion('secKelas6Group')">
+            <span>☁️ Kelas 6 — Cloud Security & DevSecOps</span>
+            <span id="secKelas6GroupArrow" class="accordion-arrow">►</span>
+          </div>
+          <div id="secKelas6Group" class="module-accordion-content">
+            <div class="module-nav-item" onclick="alert('Modul 6.1: Cloud Security Fundamentals')">
+              <span>📁 Modul 6.1</span> Cloud Security Fundamentals
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 6.2: DevSecOps')">
+              <span>📁 Modul 6.2</span> DevSecOps
+            </div>
+          </div>
+
+          <div class="module-accordion-header" onclick="toggleModuleAccordion('secKelas7Group')">
+            <span>📜 Kelas 7 — Governance, Risk & Compliance (GRC)</span>
+            <span id="secKelas7GroupArrow" class="accordion-arrow">►</span>
+          </div>
+          <div id="secKelas7Group" class="module-accordion-content">
+            <div class="module-nav-item" onclick="alert('Modul 7.1: Governance Keamanan')">
+              <span>📁 Modul 7.1</span> Governance Keamanan
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 7.2: Risk Management')">
+              <span>📁 Modul 7.2</span> Risk Management
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 7.3: Security Assessment & Compliance')">
+              <span>📁 Modul 7.3</span> Security Assessment & Compliance
+            </div>
+          </div>
+
+          <div class="module-accordion-header" onclick="toggleModuleAccordion('secKelas8Group')">
+            <span>🏆 Kelas 8 — Capstone Project Cybersecurity & Career Readiness</span>
+            <span id="secKelas8GroupArrow" class="accordion-arrow">►</span>
+          </div>
+          <div id="secKelas8Group" class="module-accordion-content">
+            <div class="module-nav-item" onclick="alert('Modul 8.1: Perencanaan Assessment Keamanan')">
+              <span>📁 Modul 8.1</span> Perencanaan Assessment Keamanan
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 8.2: Eksekusi')">
+              <span>📁 Modul 8.2</span> Eksekusi
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 8.3: Pelaporan & Rekomendasi')">
+              <span>📁 Modul 8.3</span> Pelaporan & Rekomendasi
+            </div>
+            <div class="module-nav-item" onclick="alert('Modul 8.4: Career Readiness')">
+              <span>📁 Modul 8.4</span> Career Readiness
+            </div>
+          </div>
+
+          <button onclick="showView('catalog')" class="btn btn-outline" style="width:100%; margin-top:20px; font-size:0.8rem;">← Kembali Ke Katalog Utama</button>
         `;
-        document.getElementById('lessonArticleBody').innerHTML = `
-          <span class="badge-pill">PATH 5 • CYBERSECURITY</span>
-          <h2>Selamat Datang Di Learning Path Cybersecurity & Ethical Hacking! 🛡️</h2>
-          <p>Fondasi Keamanan Jaringan Wireshark, Ethical Hacking Nmap, OWASP Top 10 Web Security, Penetration Testing, dan SOC/SIEM.</p>
-        `;
+        renderCybersecurityFramework();
       } else if (courseId === 'dasar-pemrograman-web') {
         renderFullstackWebFramework();
       } else {
@@ -1579,6 +1705,133 @@
                   <li>📁 <strong>Modul 8.1</strong> — Perancangan Arsitektur</li>
                   <li>📁 <strong>Modul 8.2</strong> — Implementasi</li>
                   <li>📁 <strong>Modul 8.3</strong> — Monitoring & Optimasi</li>
+                  <li>📁 <strong>Modul 8.4</strong> — Career Readiness</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function renderCybersecurityFramework() {
+      const article = document.getElementById('lessonArticleBody');
+      if (article) {
+        article.innerHTML = `
+          <span class="badge-pill">PATH 5 • CYBERSECURITY EXPERT</span>
+          <h2>🗺️ KERANGKA ROADMAP MASTER (CYBERSECURITY EXPERT)</h2>
+          <div class="callout-box">
+            📌 <strong>Struktur Kurikulum Resmi Kodemik:</strong><br>
+            Learning Path 5 terdiri dari 3 Level Kompetensi (Pemula, Menengah, Mahir) dan 8 Kelas Terstruktur.
+          </div>
+
+          <div style="margin-top:24px;">
+            <h3 style="color:var(--primary-blue);">● LEVEL PEMULA (BEGINNER)</h3>
+            
+            <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--border-color);">
+              <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-bottom:10px;">🌐 Kelas 1 — Fondasi Keamanan & Jaringan</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin-bottom:12px;">OSI/TCP-IP model, Wireshark packet analysis, OS Hardening (Linux/Windows), CIA Triad, & Threat Modeling (STRIDE).</p>
+              
+              <div style="background:var(--bg-surface); padding:12px 16px; border-radius:8px; border:1px solid var(--border-color);">
+                <strong style="font-size:0.88rem; color:var(--bg-navy-dark);">Daftar Modul Pembelajaran Kelas 1 (Klik Buka / Tutup di Sidebar):</strong>
+                <ul style="margin-top:8px; margin-bottom:0;">
+                  <li>📁 <strong>Modul 1.1</strong> — Networking untuk Keamanan</li>
+                  <li>📁 <strong>Modul 1.2</strong> — Keamanan Sistem Operasi</li>
+                  <li>📁 <strong>Modul 1.3</strong> — Konsep Keamanan Informasi & Threat Modeling</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--border-color);">
+              <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-bottom:10px;">🛠️ Kelas 2 — Fundamental Ethical Hacking & Vulnerability Management</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin-bottom:12px;">Reconnaissance Nmap, Vulnerability Scanning CVE & Management CVSS, serta Kriptografi dasar (Symmetric/Asymmetric/Hashing).</p>
+              <div style="background:var(--bg-surface); padding:12px 16px; border-radius:8px; border:1px solid var(--border-color);">
+                <strong style="font-size:0.88rem; color:var(--bg-navy-dark);">Daftar Modul Pembelajaran Kelas 2:</strong>
+                <ul style="margin-top:8px; margin-bottom:0;">
+                  <li>📁 <strong>Modul 2.1</strong> — Security Tools Dasar</li>
+                  <li>📁 <strong>Modul 2.2</strong> — Vulnerability Scanning & Vulnerability Management</li>
+                  <li>📁 <strong>Modul 2.3</strong> — Kriptografi Dasar</li>
+                </ul>
+              </div>
+            </div>
+
+            <h3 style="color:var(--amber); margin-top:24px;">● LEVEL MENENGAH (INTERMEDIATE)</h3>
+
+            <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--border-color);">
+              <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-bottom:10px;">🕸️ Kelas 3 — Keamanan Aplikasi Web</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin-bottom:12px;">OWASP Top 10 vulnerabilities (SQLi, XSS, Broken Auth), Burp Suite testing pada lab legal (DVWA/Juice Shop), & Secure Coding Practices.</p>
+              <div style="background:var(--bg-surface); padding:12px 16px; border-radius:8px; border:1px solid var(--border-color);">
+                <strong style="font-size:0.88rem; color:var(--bg-navy-dark);">Daftar Modul Pembelajaran Kelas 3:</strong>
+                <ul style="margin-top:8px; margin-bottom:0;">
+                  <li>📁 <strong>Modul 3.1</strong> — OWASP Top 10</li>
+                  <li>📁 <strong>Modul 3.2</strong> — Pengujian Kerentanan Web</li>
+                  <li>📁 <strong>Modul 3.3</strong> — Secure Coding Practices</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--border-color);">
+              <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-bottom:10px;">⚔️ Kelas 4 — Penetration Testing Sistem & Jaringan</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin-bottom:12px;">PTES Metodologi Pentest, Controlled Exploitation pada lab tersertifikasi, Privilege Escalation, & Pelaporan Profesional.</p>
+              <div style="background:var(--bg-surface); padding:12px 16px; border-radius:8px; border:1px solid var(--border-color);">
+                <strong style="font-size:0.88rem; color:var(--bg-navy-dark);">Daftar Modul Pembelajaran Kelas 4:</strong>
+                <ul style="margin-top:8px; margin-bottom:0;">
+                  <li>📁 <strong>Modul 4.1</strong> — Metodologi Penetration Testing</li>
+                  <li>📁 <strong>Modul 4.2</strong> — Eksploitasi Dasar (Lab Legal)</li>
+                  <li>📁 <strong>Modul 4.3</strong> — Post-Exploitation & Pelaporan</li>
+                </ul>
+              </div>
+            </div>
+
+            <h3 style="color:var(--success); margin-top:24px;">● LEVEL MAHIR (ADVANCED)</h3>
+
+            <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--border-color);">
+              <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-bottom:10px;">🚨 Kelas 5 — Security Operations & Incident Response</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin-bottom:12px;">SOC Operasional, SIEM Alerting/Log Analysis, Incident Response lifecycle, & Digital Forensics (Chain of Custody).</p>
+              <div style="background:var(--bg-surface); padding:12px 16px; border-radius:8px; border:1px solid var(--border-color);">
+                <strong style="font-size:0.88rem; color:var(--bg-navy-dark);">Daftar Modul Pembelajaran Kelas 5:</strong>
+                <ul style="margin-top:8px; margin-bottom:0;">
+                  <li>📁 <strong>Modul 5.1</strong> — Security Operations Center (SOC)</li>
+                  <li>📁 <strong>Modul 5.2</strong> — SIEM Tools</li>
+                  <li>📁 <strong>Modul 5.3</strong> — Incident Response & Digital Forensics</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--border-color);">
+              <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-bottom:10px;">☁️ Kelas 6 — Cloud Security & DevSecOps</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin-bottom:12px;">Shared Responsibility Model Cloud Security, Shift-Left Security, SAST/DAST scanning di CI/CD Pipeline, & Security Automation.</p>
+              <div style="background:var(--bg-surface); padding:12px 16px; border-radius:8px; border:1px solid var(--border-color);">
+                <strong style="font-size:0.88rem; color:var(--bg-navy-dark);">Daftar Modul Pembelajaran Kelas 6:</strong>
+                <ul style="margin-top:8px; margin-bottom:0;">
+                  <li>📁 <strong>Modul 6.1</strong> — Cloud Security Fundamentals</li>
+                  <li>📁 <strong>Modul 6.2</strong> — DevSecOps</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--border-color);">
+              <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-bottom:10px;">📜 Kelas 7 — Governance, Risk & Compliance (GRC)</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin-bottom:12px;">ISO 27001 / NIST Security Governance, Risk Management & Mitigation, serta Security Assessment & Compliance Checklists.</p>
+              <div style="background:var(--bg-surface); padding:12px 16px; border-radius:8px; border:1px solid var(--border-color);">
+                <strong style="font-size:0.88rem; color:var(--bg-navy-dark);">Daftar Modul Pembelajaran Kelas 7:</strong>
+                <ul style="margin-top:8px; margin-bottom:0;">
+                  <li>📁 <strong>Modul 7.1</strong> — Governance Keamanan</li>
+                  <li>📁 <strong>Modul 7.2</strong> — Risk Management</li>
+                  <li>📁 <strong>Modul 7.3</strong> — Security Assessment & Compliance</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="hero-widget-card" style="margin-bottom:16px; border:1px solid var(--success);">
+              <h4 style="font-size:1.1rem; color:var(--success); margin-bottom:10px;">🏆 Kelas 8 — Capstone Project Cybersecurity & Career Readiness</h4>
+              <p style="font-size:0.86rem; color:var(--text-secondary); margin-bottom:12px;">Security Assessment End-to-End (Lab Terkontrol), Reporting & GRC, serta Persiapan Karir SOC/Pentester/Security Engineer.</p>
+              <div style="background:var(--bg-surface); padding:12px 16px; border-radius:8px; border:1px solid var(--border-color);">
+                <strong style="font-size:0.88rem; color:var(--bg-navy-dark);">Daftar Modul Pembelajaran Kelas 8:</strong>
+                <ul style="margin-top:8px; margin-bottom:0;">
+                  <li>📁 <strong>Modul 8.1</strong> — Perencanaan Assessment Keamanan</li>
+                  <li>📁 <strong>Modul 8.2</strong> — Eksekusi</li>
+                  <li>📁 <strong>Modul 8.3</strong> — Pelaporan & Rekomendasi</li>
                   <li>📁 <strong>Modul 8.4</strong> — Career Readiness</li>
                 </ul>
               </div>

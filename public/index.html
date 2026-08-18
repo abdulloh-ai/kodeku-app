@@ -1977,7 +1977,8 @@
             </ul>
 
             <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-top:20px;">Diagram Alur Request-Response:</h4>
-            <pre class="mermaid" style="background:#F8FAFC; padding:20px; border-radius:10px; border:1px solid var(--border-color); margin:16px 0; overflow-x:auto;">
+            <div class="mermaid-responsive">
+              <pre class="mermaid">
 sequenceDiagram
     participant B as Browser (Client)
     participant S as Server
@@ -1988,22 +1989,25 @@ sequenceDiagram
     S-->>B: HTTP Response (Status 200 + HTML)
     Note over B,S: Status Code, Headers, Body
     B->>B: Tampilkan halaman ke pengguna
-            </pre>
+              </pre>
+            </div>
 
             <h4 style="font-size:1.15rem; color:var(--bg-navy-dark); margin-top:20px;">HTTP vs HTTPS</h4>
             <p>HTTPS adalah versi HTTP yang datanya <em>dienkripsi</em>, sehingga tidak bisa dibaca pihak lain yang menyadap koneksi (misalnya di WiFi publik).</p>
             
-            <table class="pro-table">
-              <thead>
-                <tr><th>Aspek</th><th>HTTP</th><th>HTTPS</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>Enkripsi</td><td>Tidak ada</td><td>Ada (via TLS/SSL)</td></tr>
-                <tr><td>Port default</td><td>80</td><td>443</td></tr>
-                <tr><td>Ikon di browser</td><td>Tidak ada gembok / "Not Secure"</td><td>Ikon gembok</td></tr>
-                <tr><td>Cocok untuk</td><td>Tidak disarankan untuk data sensitif</td><td>Wajib untuk login, pembayaran, data pribadi</td></tr>
-              </tbody>
-            </table>
+            <div class="table-responsive">
+              <table class="pro-table">
+                <thead>
+                  <tr><th>Aspek</th><th>HTTP</th><th>HTTPS</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Enkripsi</td><td>Tidak ada</td><td>Ada (via TLS/SSL)</td></tr>
+                  <tr><td>Port default</td><td>80</td><td>443</td></tr>
+                  <tr><td>Ikon di browser</td><td>Tidak ada gembok / "Not Secure"</td><td>Ikon gembok</td></tr>
+                  <tr><td>Cocok untuk</td><td>Tidak disarankan untuk data sensitif</td><td>Wajib untuk login, pembayaran, data pribadi</td></tr>
+                </tbody>
+              </table>
+            </div>
 
             <h4 style="font-size:1.15rem; color:var(--bg-navy-dark); margin-top:20px;">Bagian Penting Request & Response</h4>
             <p><strong>Setiap HTTP Request memiliki:</strong></p>
@@ -2023,14 +2027,16 @@ sequenceDiagram
             <p>Saat kamu login ke Instagram, browser mengirim <em>POST request</em> berisi email & password (dalam Body, terenkripsi via HTTPS). Server memproses, mengecek database, lalu mengirim <em>response</em> 200 OK jika berhasil, atau 401 Unauthorized jika password salah.</p>
 
             <h4 style="font-size:1.15rem; color:var(--bg-navy-dark); margin-top:20px;">⚠️ Kesalahan Umum</h4>
-            <table class="pro-table">
-              <thead><tr><th>Kesalahan</th><th>Perbaikan</th></tr></thead>
-              <tbody>
-                <tr><td>Mengira HTTPS hanya soal "tampilan gembok"</td><td>HTTPS benar-benar mengenkripsi data. Tanpa HTTPS, password bisa disadap sebagai teks biasa.</td></tr>
-                <tr><td>Menyamakan semua request sebagai "GET"</td><td>Mengirim data sensitif lewat GET (muncul di URL) adalah praktik buruk — gunakan POST.</td></tr>
-                <tr><td>Bingung status 404 vs 500</td><td>404 = resource tidak ada (kesalahan sisi client/URL). 500 = server itu sendiri bermasalah.</td></tr>
-              </tbody>
-            </table>
+            <div class="table-responsive">
+              <table class="pro-table">
+                <thead><tr><th>Kesalahan</th><th>Perbaikan</th></tr></thead>
+                <tbody>
+                  <tr><td>Mengira HTTPS hanya soal "tampilan gembok"</td><td>HTTPS benar-benar mengenkripsi data. Tanpa HTTPS, password bisa disadap sebagai teks biasa.</td></tr>
+                  <tr><td>Menyamakan semua request sebagai "GET"</td><td>Mengirim data sensitif lewat GET (muncul di URL) adalah praktik buruk — gunakan POST.</td></tr>
+                  <tr><td>Bingung status 404 vs 500</td><td>404 = resource tidak ada (kesalahan sisi client/URL). 500 = server itu sendiri bermasalah.</td></tr>
+                </tbody>
+              </table>
+            </div>
 
             <div class="callout-box" style="background:#EFF6FF; border-left-color:var(--primary-blue);">
               <h4 style="font-size:1.05rem; color:var(--primary-blue); margin-bottom:6px;">🔍 Mini Praktik</h4>
@@ -2072,7 +2078,8 @@ sequenceDiagram
             <p>Komputer tidak mengenal nama seperti "google.com" — komputer hanya mengenal alamat angka yang disebut <em>IP Address</em> (contoh: 142.250.190.14). Karena manusia lebih mudah mengingat nama, dibuatlah <em>DNS (Domain Name System)</em> — sistem yang bekerja seperti <em>buku telepon internet</em>.</p>
 
             <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-top:20px;">Diagram Alur Pencarian DNS:</h4>
-            <pre class="mermaid" style="background:#F8FAFC; padding:20px; border-radius:10px; border:1px solid var(--border-color); margin:16px 0; overflow-x:auto;">
+            <div class="mermaid-responsive">
+              <pre class="mermaid">
 flowchart LR
     A[Browser: ketik contoh.com] --> B{Ada di Cache?}
     B -- Ya --> F[Gunakan IP tersimpan]
@@ -2082,7 +2089,8 @@ flowchart LR
     E --> G[IP Address ditemukan]
     G --> F
     F --> H[Browser kirim request ke IP tsb]
-            </pre>
+              </pre>
+            </div>
 
             <h4 style="font-size:1.15rem; color:var(--bg-navy-dark); margin-top:20px;">Struktur Sebuah URL</h4>
             <p>URL (Uniform Resource Locator) adalah "alamat lengkap" suatu halaman. Bedah contoh berikut:</p>
@@ -2093,31 +2101,35 @@ https://www.contoh.com:443/produk/sepatu?warna=merah&size=42#ulasan
 protocol subdomain domain  port    path         query string   fragment
             </div>
 
-            <table class="pro-table">
-              <thead><tr><th>Bagian</th><th>Nilai</th><th>Penjelasan</th></tr></thead>
-              <tbody>
-                <tr><td>Protocol/Scheme</td><td>https://</td><td>Protokol komunikasi yang dipakai</td></tr>
-                <tr><td>Subdomain</td><td>www</td><td>Bagian tambahan sebelum domain utama</td></tr>
-                <tr><td>Domain</td><td>contoh.com</td><td>Nama situs yang terdaftar</td></tr>
-                <tr><td>Port</td><td>:443</td><td>Pintu komunikasi (default HTTPS, sering tersembunyi)</td></tr>
-                <tr><td>Path</td><td>/produk/sepatu</td><td>Lokasi halaman/resource spesifik</td></tr>
-                <tr><td>Query String</td><td>?warna=merah&size=42</td><td>Parameter tambahan (key-value)</td></tr>
-                <tr><td>Fragment</td><td>#ulasan</td><td>Menunjuk ke bagian tertentu dalam satu halaman</td></tr>
-              </tbody>
-            </table>
+            <div class="table-responsive">
+              <table class="pro-table">
+                <thead><tr><th>Bagian</th><th>Nilai</th><th>Penjelasan</th></tr></thead>
+                <tbody>
+                  <tr><td>Protocol/Scheme</td><td>https://</td><td>Protokol komunikasi yang dipakai</td></tr>
+                  <tr><td>Subdomain</td><td>www</td><td>Bagian tambahan sebelum domain utama</td></tr>
+                  <tr><td>Domain</td><td>contoh.com</td><td>Nama situs yang terdaftar</td></tr>
+                  <tr><td>Port</td><td>:443</td><td>Pintu komunikasi (default HTTPS, sering tersembunyi)</td></tr>
+                  <tr><td>Path</td><td>/produk/sepatu</td><td>Lokasi halaman/resource spesifik</td></tr>
+                  <tr><td>Query String</td><td>?warna=merah&size=42</td><td>Parameter tambahan (key-value)</td></tr>
+                  <tr><td>Fragment</td><td>#ulasan</td><td>Menunjuk ke bagian tertentu dalam satu halaman</td></tr>
+                </tbody>
+              </table>
+            </div>
 
             <h4 style="font-size:1.15rem; color:var(--bg-navy-dark); margin-top:20px;">🌍 Contoh Penggunaan di Dunia Nyata</h4>
             <p>Saat kamu mencari produk di Tokopedia dengan filter warna & ukuran, hasilnya sering tercermin di URL sebagai query string (?warna=merah&size=42) — sehingga kamu bisa membagikan link hasil pencarian yang sudah difilter ke orang lain.</p>
 
             <h4 style="font-size:1.15rem; color:var(--bg-navy-dark); margin-top:20px;">⚠️ Kesalahan Umum</h4>
-            <table class="pro-table">
-              <thead><tr><th>Kesalahan</th><th>Perbaikan</th></tr></thead>
-              <tbody>
-                <tr><td>Mengira domain dan URL adalah hal sama</td><td>Domain hanyalah satu bagian dari URL, bukan keseluruhan alamat.</td></tr>
-                <tr><td>Tidak paham fungsi query string</td><td>Salah format (lupa ? atau &) membuat parameter tidak terbaca.</td></tr>
-                <tr><td>Mengira DNS lookup terjadi setiap saat tanpa cache</td><td>Hasil DNS biasanya di-cache agar loading halaman berikutnya lebih cepat.</td></tr>
-              </tbody>
-            </table>
+            <div class="table-responsive">
+              <table class="pro-table">
+                <thead><tr><th>Kesalahan</th><th>Perbaikan</th></tr></thead>
+                <tbody>
+                  <tr><td>Mengira domain dan URL adalah hal sama</td><td>Domain hanyalah satu bagian dari URL, bukan keseluruhan alamat.</td></tr>
+                  <tr><td>Tidak paham fungsi query string</td><td>Salah format (lupa ? atau &) membuat parameter tidak terbaca.</td></tr>
+                  <tr><td>Mengira DNS lookup terjadi setiap saat tanpa cache</td><td>Hasil DNS biasanya di-cache agar loading halaman berikutnya lebih cepat.</td></tr>
+                </tbody>
+              </table>
+            </div>
 
             <div class="callout-box" style="background:#EFF6FF; border-left-color:var(--primary-blue);">
               <h4 style="font-size:1.05rem; color:var(--primary-blue); margin-bottom:6px;">🔍 Mini Praktik</h4>
@@ -2159,7 +2171,8 @@ protocol subdomain domain  port    path         query string   fragment
             <p>Setelah browser menerima HTML, CSS, dan JavaScript dari server, ia tidak langsung menampilkannya begitu saja — ada proses <em>rendering</em> di baliknya.</p>
 
             <h4 style="font-size:1.1rem; color:var(--bg-navy-dark); margin-top:20px;">Diagram Tahapan Rendering:</h4>
-            <pre class="mermaid" style="background:#F8FAFC; padding:20px; border-radius:10px; border:1px solid var(--border-color); margin:16px 0; overflow-x:auto;">
+            <div class="mermaid-responsive">
+              <pre class="mermaid">
 flowchart TD
     A[HTML diterima] --> B[Parsing HTML → DOM Tree]
     C[CSS diterima] --> D[Parsing CSS → CSSOM Tree]
@@ -2170,7 +2183,8 @@ flowchart TD
     G --> H{Ada JavaScript?}
     H -- Ya, mengubah DOM/CSS --> B
     H -- Tidak --> I[Halaman selesai ditampilkan]
-            </pre>
+              </pre>
+            </div>
 
             <h4 style="font-size:1.15rem; color:var(--bg-navy-dark); margin-top:20px;">Penjelasan tiap tahap:</h4>
             <ol>
@@ -2186,13 +2200,15 @@ flowchart TD
             <p>Saat kamu membuka halaman berita penuh iklan, halaman terasa "melompat-lompat" — ini terjadi karena proses Layout dipicu berulang oleh elemen baru yang dimuat, mengubah posisi elemen lain di sekitarnya.</p>
 
             <h4 style="font-size:1.15rem; color:var(--bg-navy-dark); margin-top:20px;">⚠️ Kesalahan Umum</h4>
-            <table class="pro-table">
-              <thead><tr><th>Kesalahan</th><th>Perbaikan</th></tr></thead>
-              <tbody>
-                <tr><td>Mengira HTML langsung "muncul" tanpa proses apapun</td><td>Ada beberapa tahap (parsing → render tree → layout → paint) sebelum tampil di layar.</td></tr>
-                <tr><td>Meletakkan &lt;script&gt; di &lt;head&gt; tanpa defer/async</td><td>Browser berhenti memproses HTML untuk menjalankan script dulu, membuat halaman terasa lebih lambat muncul.</td></tr>
-              </tbody>
-            </table>
+            <div class="table-responsive">
+              <table class="pro-table">
+                <thead><tr><th>Kesalahan</th><th>Perbaikan</th></tr></thead>
+                <tbody>
+                  <tr><td>Mengira HTML langsung "muncul" tanpa proses apapun</td><td>Ada beberapa tahap (parsing → render tree → layout → paint) sebelum tampil di layar.</td></tr>
+                  <tr><td>Meletakkan &lt;script&gt; di &lt;head&gt; tanpa defer/async</td><td>Browser berhenti memproses HTML untuk menjalankan script dulu, membuat halaman terasa lebih lambat muncul.</td></tr>
+                </tbody>
+              </table>
+            </div>
 
             <div class="callout-box" style="background:#EFF6FF; border-left-color:var(--primary-blue);">
               <h4 style="font-size:1.05rem; color:var(--primary-blue); margin-bottom:6px;">🔍 Mini Praktik</h4>

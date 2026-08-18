@@ -246,7 +246,30 @@ body {
   color: var(--primary-blue); font-weight: 700;
 }
 
-/* Rich Course Typography Styles */
+/* Rich Course Typography Styles & Overflow Protection */
+.lesson-article {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.lesson-article h1,
+.lesson-article h2,
+.lesson-article h3,
+.lesson-article h4,
+.lesson-article p,
+.lesson-article li,
+.lesson-article span,
+.callout-box,
+.quiz-container,
+.quiz-option-label {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
+}
+
 .lesson-article h2 { font-size: 1.85rem; font-weight: 800; color: var(--bg-navy-dark); margin: 24px 0 14px; }
 .lesson-article h3 { font-size: 1.35rem; font-weight: 700; color: var(--bg-navy-dark); margin: 20px 0 10px; }
 .lesson-article h4 { font-size: 1.1rem; font-weight: 700; color: var(--primary-blue); margin: 16px 0 8px; }
@@ -264,16 +287,17 @@ body {
 .code-block-pro {
   background: var(--bg-navy-dark); color: #38BDF8; border-radius: var(--radius-sm);
   padding: 20px; font-family: var(--font-mono); font-size: 0.88rem;
-  white-space: pre-wrap; margin: 22px 0; overflow-x: auto;
+  white-space: pre-wrap; word-break: break-word; margin: 22px 0; overflow-x: auto;
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 4px 16px rgba(15, 23, 42, 0.1);
+  max-width: 100%;
 }
 
 /* SLEEK INTERACTIVE CODING SANDBOX STYLING */
 .coding-sandbox {
   background: var(--bg-navy-dark); border-radius: var(--radius-md);
   border: 1px solid rgba(255, 255, 255, 0.12); overflow: hidden;
-  margin: 28px 0; box-shadow: var(--shadow-md);
+  margin: 28px 0; box-shadow: var(--shadow-md); max-width: 100%;
 }
 
 .sandbox-header {
@@ -284,7 +308,7 @@ body {
 .sandbox-editor {
   padding: 20px; font-family: var(--font-mono); font-size: 0.9rem;
   color: #38BDF8; background: #04060A; min-height: 160px;
-  white-space: pre-wrap; outline: none; border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  white-space: pre-wrap; word-break: break-word; outline: none; border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .sandbox-output {
@@ -292,11 +316,25 @@ body {
   font-size: 0.85rem; color: #34D399; display: flex; align-items: center; gap: 8px;
 }
 
-/* Styled HTML Tables in Course Material */
-.pro-table {
-  width: 100%; border-collapse: collapse; margin: 20px 0 24px; font-size: 0.92rem;
-  background: var(--bg-surface); border-radius: 8px; overflow: hidden;
+/* Dedicated horizontal scrolling container for tables & mermaid diagrams */
+.table-responsive {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 20px 0 24px;
+  border-radius: 8px;
   border: 1px solid var(--border-color);
+  display: block;
+}
+
+.pro-table {
+  width: 100%;
+  min-width: 500px;
+  border-collapse: collapse;
+  margin: 0;
+  font-size: 0.92rem;
+  background: var(--bg-surface);
 }
 .pro-table th {
   background: var(--bg-navy-dark); color: #FFFFFF; text-align: left; padding: 12px 16px;
@@ -308,18 +346,43 @@ body {
 .pro-table tr:last-child td { border-bottom: none; }
 .pro-table tr:nth-child(even) { background: var(--bg-subtle); }
 
+.mermaid-responsive {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 18px 0;
+  background: #F8FAFC;
+  padding: 18px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  display: block;
+}
+
+.mermaid-responsive pre.mermaid,
+pre.mermaid {
+  background: transparent !important;
+  padding: 0 !important;
+  border: none !important;
+  margin: 0 !important;
+  min-width: 480px;
+  display: block;
+  overflow-x: auto;
+}
+
 /* Interactive Quiz Box */
 .quiz-container {
   background: var(--blue-light); border: 1px solid rgba(37, 99, 235, 0.2);
   border-radius: var(--radius-md); padding: 24px; margin: 28px 0;
 }
 .quiz-option-label {
-  display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 8px;
+  display: flex; align-items: flex-start; gap: 12px; padding: 12px 16px; border-radius: 8px;
   background: #FFFFFF; border: 1px solid var(--border-color); margin-bottom: 10px;
   cursor: pointer; transition: var(--transition); font-weight: 500; font-size: 0.94rem;
+  line-height: 1.45;
 }
 .quiz-option-label:hover { border-color: var(--primary-blue); background: #F8FAFC; }
-.quiz-option-label input { accent-color: var(--primary-blue); width: 18px; height: 18px; }
+.quiz-option-label input { accent-color: var(--primary-blue); width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px; }
 
 /* Dashboard View */
 .dashboard-view { display: none; margin-bottom: 60px; }

@@ -352,11 +352,116 @@ body {
 }
 .form-input:focus { border-color: var(--primary-blue); background: #FFF; box-shadow: 0 0 0 3px var(--primary-glow); }
 
-/* MOBILE RESPONSIVE DRAWER & READABILITY STYLES */
+/* =========================================================================
+   RESPONSIVE ENHANCEMENTS & MOBILE FLUID STACKING
+   ========================================================================= */
+
+/* Prevent horizontal body overflow & enforce clean left alignment */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+.container {
+  width: 100%;
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+h1, h2, h3, h4, h5, h6, p, span, div, li {
+  text-align: left;
+}
+
+/* Category Chips Bar: Wrap vertically on mobile instead of forced horizontal scroll */
+.cat-chips-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 36px;
+  padding-bottom: 0;
+  overflow-x: visible;
+}
+
+/* Responsive Table Wrapper */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 20px 0 24px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+}
+.table-responsive .pro-table {
+  margin: 0;
+  border: none;
+}
+
+/* Mobile Responsive Drawer & Readability Styles */
 @media (max-width: 900px) {
-  .hero-grid, .grid-3 { grid-template-columns: 1fr; }
+  .container {
+    padding: 0 18px;
+  }
+
   .nav-links { display: none; }
-  .hero h1 { font-size: 2.2rem; }
+  
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .hero h1 {
+    font-size: 2.2rem;
+    line-height: 1.25;
+    letter-spacing: -0.5px;
+  }
+  .hero p {
+    font-size: 1rem;
+    margin-bottom: 24px;
+  }
+
+  .hero-cta-buttons {
+    flex-direction: column !important;
+    width: 100%;
+    gap: 12px !important;
+  }
+  .hero-cta-buttons .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-widget-header {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 8px;
+  }
+  .hero-widget-footer {
+    flex-direction: column;
+    align-items: stretch !important;
+    gap: 12px;
+  }
+  .hero-widget-footer .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .grid-3 {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .course-card {
+    padding: 22px;
+  }
+
+  .dashboard-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+    gap: 16px;
+  }
+  .dashboard-banner .btn {
+    width: 100%;
+    justify-content: center;
+  }
   
   .lesson-layout { grid-template-columns: 1fr; }
 
@@ -379,7 +484,51 @@ body {
     display: block; animation: fadeIn 0.2s ease-out;
   }
 
-  .lesson-main-content { padding: 22px 18px; }
+  .lesson-main-content {
+    padding: 24px 18px;
+    border-radius: var(--radius-sm);
+  }
+
+  .lesson-article h2 {
+    font-size: 1.5rem;
+    line-height: 1.3;
+    margin: 20px 0 12px;
+  }
+  .lesson-article h3 {
+    font-size: 1.22rem;
+    margin: 18px 0 10px;
+  }
+  .lesson-article h4 {
+    font-size: 1.05rem;
+  }
+  .lesson-article p {
+    font-size: 0.98rem;
+    line-height: 1.65;
+    margin-bottom: 16px;
+  }
+  .lesson-article ul, .lesson-article ol {
+    margin: 0 0 18px 20px;
+  }
+
+  .code-block-pro, .sandbox-editor, .sandbox-editor-big {
+    font-size: 0.84rem;
+    padding: 16px;
+    max-width: 100%;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .sandbox-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .modal-card {
+    padding: 24px;
+    max-width: 94%;
+  }
 }
 
 .mobile-close-bar { display: none; }

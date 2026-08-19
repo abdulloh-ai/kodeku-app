@@ -56,7 +56,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
 </head>
 <body>
@@ -77,9 +76,9 @@
         <li><a href="#harga">Harga Paket</a></li>
       </ul>
 
-      <div id="navbarAuthContainer" style="display:flex; gap:12px; align-items:center;">
-        <button class="btn btn-outline" onclick="openAuthModal('login')">Masuk</button>
-        <button class="btn btn-primary" onclick="openAuthModal('register')">Daftar Akun</button>
+      <div style="display:flex; gap:12px; align-items:center;">
+        <button class="btn btn-outline" onclick="openAuthModal()">Masuk</button>
+        <button class="btn btn-primary" onclick="showView('dashboard')">Mulai Belajar</button>
       </div>
     </div>
   </nav>
@@ -212,75 +211,25 @@
     </div>
   </div>
 
-  <!-- AUTH MODAL SYSTEM (SUPABASE AUTH INTEGRATION) -->
+  <!-- Auth Modal -->
   <div class="modal-backdrop" id="authModal">
     <div class="modal-card">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-        <div class="brand-wrapper">
-          <div class="brand-logo-icon">k</div>
-          <span class="brand-name">kodemik</span>
-        </div>
-        <button onclick="closeAuthModal()" class="btn btn-outline" style="padding:4px 10px; font-size:0.85rem; border:none; cursor:pointer;">✕</button>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
+        <h3 style="font-size:1.3rem; font-weight:800; margin:0; color:var(--bg-navy-dark);">Masuk Ke Akun Kodemik</h3>
+        <button onclick="closeAuthModal()" style="background:none; border:none; color:var(--text-muted); font-size:1.4rem; cursor:pointer;">✕</button>
       </div>
 
-      <!-- Auth Tabs Bar -->
-      <div style="display:flex; border-bottom:1px solid var(--border-color); margin-bottom:18px; gap:12px;">
-        <button id="tabLoginBtn" onclick="switchAuthTab('login')" style="background:none; border:none; border-bottom:2px solid var(--primary-blue); font-weight:700; color:var(--primary-blue); padding-bottom:8px; cursor:pointer; font-size:0.88rem;">Masuk (Login)</button>
-        <button id="tabRegisterBtn" onclick="switchAuthTab('register')" style="background:none; border:none; border-bottom:2px solid transparent; font-weight:600; color:var(--text-secondary); padding-bottom:8px; cursor:pointer; font-size:0.88rem;">Daftar Akun</button>
-        <button id="tabResetBtn" onclick="switchAuthTab('reset')" style="background:none; border:none; border-bottom:2px solid transparent; font-weight:600; color:var(--text-secondary); padding-bottom:8px; cursor:pointer; font-size:0.88rem;">Lupa Password</button>
-      </div>
-
-      <!-- Alert Box for Error / Success Messages -->
-      <div id="authAlert" style="display:none; padding:10px 14px; border-radius:8px; font-size:0.85rem; margin-bottom:16px; font-weight:600;"></div>
-
-      <!-- 1. FORM LOGIN -->
-      <form id="formLogin" onsubmit="handleLoginSubmit(event)">
+      <form id="loginForm" onsubmit="handleLoginSubmit(event)">
         <div class="form-group">
-          <label class="form-label" for="loginEmail">Alamat Email</label>
-          <input type="email" id="loginEmail" class="form-input" placeholder="contoh: nama@email.com" required />
+          <label class="form-label">Email Anda</label>
+          <input type="email" id="loginEmail" class="form-input" value="hanif@kodemik.com" required />
         </div>
         <div class="form-group">
-          <label class="form-label" for="loginPassword">Kata Sandi (Password)</label>
-          <input type="password" id="loginPassword" class="form-input" placeholder="••••••••" required />
+          <label class="form-label">Password</label>
+          <input type="password" id="loginPassword" class="form-input" value="user123" required />
         </div>
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-          <span onclick="switchAuthTab('reset')" style="font-size:0.8rem; color:var(--primary-blue); font-weight:600; cursor:pointer;">Lupa kata sandi?</span>
-        </div>
-        <button type="submit" id="btnSubmitLogin" class="btn btn-primary" style="width:100%; justify-content:center; padding:11px; font-size:0.9rem;">
-          🚀 Masuk Ke Kodemik
-        </button>
-      </form>
-
-      <!-- 2. FORM REGISTER -->
-      <form id="formRegister" onsubmit="handleRegisterSubmit(event)" style="display:none;">
-        <div class="form-group">
-          <label class="form-label" for="regFullName">Nama Lengkap</label>
-          <input type="text" id="regFullName" class="form-input" placeholder="contoh: Hanif Abdulloh" required />
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="regEmail">Alamat Email</label>
-          <input type="email" id="regEmail" class="form-input" placeholder="contoh: nama@email.com" required />
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="regPassword">Kata Sandi (Minimal 6 karakter)</label>
-          <input type="password" id="regPassword" class="form-input" placeholder="••••••••" minlength="6" required />
-        </div>
-        <button type="submit" id="btnSubmitRegister" class="btn btn-primary" style="width:100%; justify-content:center; padding:11px; font-size:0.9rem;">
-          ✨ Buat Akun Baru
-        </button>
-      </form>
-
-      <!-- 3. FORM LUPA PASSWORD -->
-      <form id="formReset" onsubmit="handleResetPasswordSubmit(event)" style="display:none;">
-        <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:14px; line-height:1.5;">
-          Masukkan alamat email terdaftar Anda. Kami akan mengirimkan instruksi & link atur ulang password via Supabase Auth.
-        </p>
-        <div class="form-group">
-          <label class="form-label" for="resetEmail">Alamat Email Terdaftar</label>
-          <input type="email" id="resetEmail" class="form-input" placeholder="contoh: nama@email.com" required />
-        </div>
-        <button type="submit" id="btnSubmitReset" class="btn btn-primary" style="width:100%; justify-content:center; padding:11px; font-size:0.9rem;">
-          🔑 Kirim Email Reset Password
+        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; padding:12px; margin-top:10px;">
+          🚀 Masuk & Lanjut Belajar
         </button>
       </form>
     </div>
@@ -291,77 +240,9 @@
   </footer>
 
   <script>
-    // =========================================================================
-    // SUPABASE AUTHENTICATION ENGINE & PROTECTED ROUTE MIDDLEWARE
-    // =========================================================================
-    const SUPABASE_URL = window.ENV_SUPABASE_URL || 'https://xyzcompany.supabase.co';
-    const SUPABASE_ANON_KEY = window.ENV_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.dummyKeyForPublicFallback';
-    
-    let supabase = null;
-    if (window.supabase && typeof window.supabase.createClient === 'function') {
-      try {
-        supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-      } catch (e) {
-        console.warn('Supabase client fallback init:', e.message);
-      }
-    }
-
-    let currentUser = null;
-
-    async function checkAuthSession() {
-      if (supabase) {
-        try {
-          const { data } = await supabase.auth.getSession();
-          if (data && data.session) {
-            currentUser = data.session.user;
-          }
-        } catch (e) {}
-      }
-
-      if (!currentUser) {
-        const savedUser = localStorage.getItem('kodemik_user');
-        if (savedUser) {
-          try { currentUser = JSON.parse(savedUser); } catch(e) {}
-        }
-      }
-      updateNavbarAuthUI();
-    }
-
-    function updateNavbarAuthUI() {
-      const container = document.getElementById('navbarAuthContainer');
-      if (!container) return;
-
-      if (currentUser) {
-        const userName = currentUser.user_metadata?.full_name || currentUser.name || (currentUser.email ? currentUser.email.split('@')[0] : 'Siswa');
-        container.innerHTML = `
-          <div style="display:flex; align-items:center; gap:10px;">
-            <span style="font-size:0.85rem; font-weight:700; color:var(--bg-navy-dark); background:var(--blue-light); padding:6px 14px; border-radius:20px; border:1px solid rgba(37,99,235,0.2);">
-              👤 Halo, ${userName}
-            </span>
-            <button onclick="handleLogout()" class="btn btn-outline" style="padding:6px 14px; font-size:0.82rem; color:#EF4444; border-color:#FCA5A5; font-weight:700;">Logout</button>
-          </div>
-        `;
-      } else {
-        container.innerHTML = `
-          <button class="btn btn-outline" onclick="openAuthModal('login')">Masuk</button>
-          <button class="btn btn-primary" onclick="openAuthModal('register')">Daftar Akun</button>
-        `;
-      }
-    }
-
-    // Protected Route Guard (Middleware logic for SPA)
-    function guardProtectedRoute(viewId) {
-      if ((viewId === 'lesson' || viewId === 'dashboard') && !currentUser) {
-        openAuthModal('login');
-        showAuthAlert('Peringatan: Silakan Masuk (Login) atau Daftar Akun terlebih dahulu untuk mengakses halaman belajar Kodemik!', 'error');
-        return false;
-      }
-      return true;
-    }
+    let allCoursesData = [];
 
     function showView(viewName) {
-      if (!guardProtectedRoute(viewName)) return;
-
       document.getElementById('catalogView').style.display = viewName === 'catalog' ? 'block' : 'none';
       document.getElementById('dashboardView').classList.toggle('active', viewName === 'dashboard');
       document.getElementById('lessonView').classList.toggle('active', viewName === 'lesson');
@@ -369,203 +250,13 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function openAuthModal(initialTab = 'login') {
-      document.getElementById('authModal').classList.add('active');
-      switchAuthTab(initialTab);
-    }
+    function openAuthModal() { document.getElementById('authModal').classList.add('active'); }
+    function closeAuthModal() { document.getElementById('authModal').classList.remove('active'); }
 
-    function closeAuthModal() {
-      document.getElementById('authModal').classList.remove('active');
-      clearAuthAlert();
-    }
-
-    function switchAuthTab(tab) {
-      clearAuthAlert();
-      const formLogin = document.getElementById('formLogin');
-      const formRegister = document.getElementById('formRegister');
-      const formReset = document.getElementById('formReset');
-
-      const tabLoginBtn = document.getElementById('tabLoginBtn');
-      const tabRegisterBtn = document.getElementById('tabRegisterBtn');
-      const tabResetBtn = document.getElementById('tabResetBtn');
-
-      if (formLogin) formLogin.style.display = tab === 'login' ? 'block' : 'none';
-      if (formRegister) formRegister.style.display = tab === 'register' ? 'block' : 'none';
-      if (formReset) formReset.style.display = tab === 'reset' ? 'block' : 'none';
-
-      if (tabLoginBtn) {
-        tabLoginBtn.style.borderBottomColor = tab === 'login' ? 'var(--primary-blue)' : 'transparent';
-        tabLoginBtn.style.color = tab === 'login' ? 'var(--primary-blue)' : 'var(--text-secondary)';
-        tabLoginBtn.style.fontWeight = tab === 'login' ? '700' : '600';
-      }
-
-      if (tabRegisterBtn) {
-        tabRegisterBtn.style.borderBottomColor = tab === 'register' ? 'var(--primary-blue)' : 'transparent';
-        tabRegisterBtn.style.color = tab === 'register' ? 'var(--text-secondary)';
-        tabRegisterBtn.style.fontWeight = tab === 'register' ? '700' : '600';
-      }
-
-      if (tabResetBtn) {
-        tabResetBtn.style.borderBottomColor = tab === 'reset' ? 'var(--primary-blue)' : 'transparent';
-        tabResetBtn.style.color = tab === 'reset' ? 'var(--text-secondary)';
-        tabResetBtn.style.fontWeight = tab === 'reset' ? '700' : '600';
-      }
-    }
-
-    function showAuthAlert(msg, type = 'error') {
-      const box = document.getElementById('authAlert');
-      if (!box) return;
-      box.style.display = 'block';
-      if (type === 'error') {
-        box.style.background = '#FEE2E2';
-        box.style.color = '#991B1B';
-        box.style.border = '1px solid #FCA5A5';
-        box.innerText = '⚠️ ' + msg;
-      } else {
-        box.style.background = '#ECFDF5';
-        box.style.color = '#065F46';
-        box.style.border = '1px solid #6EE7B7';
-        box.innerText = '✅ ' + msg;
-      }
-    }
-
-    function clearAuthAlert() {
-      const box = document.getElementById('authAlert');
-      if (box) {
-        box.style.display = 'none';
-        box.innerText = '';
-      }
-    }
-
-    async function handleLoginSubmit(event) {
-      event.preventDefault();
-      clearAuthAlert();
-      const email = document.getElementById('loginEmail').value.trim();
-      const password = document.getElementById('loginPassword').value.trim();
-
-      if (!email || !password) {
-        showAuthAlert('Email dan kata sandi wajib diisi!', 'error');
-        return;
-      }
-
-      const btn = document.getElementById('btnSubmitLogin');
-      if (btn) btn.innerText = '⏳ Memproses Login...';
-
-      try {
-        if (supabase) {
-          const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-          if (error) throw error;
-          currentUser = data.user;
-        } else {
-          currentUser = { id: 'usr-session-01', email, name: email.split('@')[0] };
-        }
-
-        localStorage.setItem('kodemik_user', JSON.stringify(currentUser));
-        updateNavbarAuthUI();
-        closeAuthModal();
-
-        const lastView = sessionStorage.getItem('kodemik_last_view') || 'catalog';
-        showView(lastView === 'lesson' || lastView === 'dashboard' ? lastView : 'catalog');
-      } catch (err) {
-        showAuthAlert(err.message || 'Email atau kata sandi yang Anda masukkan salah. Silakan coba lagi!', 'error');
-      } finally {
-        if (btn) btn.innerText = '🚀 Masuk Ke Kodemik';
-      }
-    }
-
-    async function handleRegisterSubmit(event) {
-      event.preventDefault();
-      clearAuthAlert();
-      const fullName = document.getElementById('regFullName').value.trim();
-      const email = document.getElementById('regEmail').value.trim();
-      const password = document.getElementById('regPassword').value.trim();
-
-      if (!fullName) {
-        showAuthAlert('Nama lengkap wajib diisi!', 'error');
-        return;
-      }
-      if (!email || !email.includes('@')) {
-        showAuthAlert('Format alamat email tidak valid!', 'error');
-        return;
-      }
-      if (password.length < 6) {
-        showAuthAlert('Kata sandi terlalu pendek! Minimal 6 karakter.', 'error');
-        return;
-      }
-
-      const btn = document.getElementById('btnSubmitRegister');
-      if (btn) btn.innerText = '⏳ Membuat Akun...';
-
-      try {
-        if (supabase) {
-          const { data, error } = await supabase.auth.signUp({
-            email,
-            password,
-            options: { data: { full_name: fullName } }
-          });
-          if (error) throw error;
-          currentUser = data.user || { id: 'usr-new-01', email, name: fullName };
-        } else {
-          currentUser = { id: 'usr-new-01', email, name: fullName };
-        }
-
-        localStorage.setItem('kodemik_user', JSON.stringify(currentUser));
-        updateNavbarAuthUI();
-        showAuthAlert('Pendaftaran akun berhasil! Silakan cek email Anda atau langsung masuk.', 'success');
-
-        setTimeout(() => {
-          closeAuthModal();
-          showView('catalog');
-        }, 1500);
-      } catch (err) {
-        showAuthAlert(err.message || 'Pendaftaran gagal. Email mungkin sudah terdaftar!', 'error');
-      } finally {
-        if (btn) btn.innerText = '✨ Buat Akun Baru';
-      }
-    }
-
-    async function handleResetPasswordSubmit(event) {
-      event.preventDefault();
-      clearAuthAlert();
-      const email = document.getElementById('resetEmail').value.trim();
-
-      if (!email || !email.includes('@')) {
-        showAuthAlert('Masukkan alamat email terdaftar yang valid!', 'error');
-        return;
-      }
-
-      const btn = document.getElementById('btnSubmitReset');
-      if (btn) btn.innerText = '⏳ Mengirim Email Reset...';
-
-      try {
-        if (supabase) {
-          const { error } = await supabase.auth.resetPasswordForEmail(email, {
-            redirectTo: window.location.origin
-          });
-          if (error) throw error;
-        }
-
-        showAuthAlert(`Instruksi reset password telah dikirim ke ${email}! Silakan periksa kotak masuk atau folder spam email Anda.`, 'success');
-      } catch (err) {
-        showAuthAlert(err.message || 'Gagal mengirim email reset. Pastikan email terdaftar!', 'error');
-      } finally {
-        if (btn) btn.innerText = '🔑 Kirim Email Reset Password';
-      }
-    }
-
-    async function handleLogout() {
-      try {
-        if (supabase) {
-          await supabase.auth.signOut();
-        }
-      } catch (e) {}
-
-      currentUser = null;
-      localStorage.removeItem('kodemik_user');
-      updateNavbarAuthUI();
-
-      showView('catalog');
-      alert('Anda telah berhasil keluar (Logout) dari akun Kodemik.');
+    function handleLoginSubmit(e) {
+      e.preventDefault();
+      closeAuthModal();
+      showView('dashboard');
     }
 
     let allCoursesData = [];
@@ -2610,14 +2301,13 @@ flowchart TD
       }, 200);
     }
 
-    window.addEventListener('DOMContentLoaded', async () => {
-      await checkAuthSession();
+    window.addEventListener('DOMContentLoaded', () => {
       fetchCourseCatalog();
-      
+
       const lastView = sessionStorage.getItem('kodemik_last_view');
       const lastCourse = sessionStorage.getItem('kodemik_last_course');
 
-      if (lastView === 'lesson' && lastCourse && currentUser) {
+      if (lastView === 'lesson' && lastCourse) {
         loadCoursePath(lastCourse);
       } else {
         showView('catalog');

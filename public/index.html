@@ -134,7 +134,75 @@
       </div>
 
       <div class="grid-3" id="courseCatalogGrid">
-        <!-- Rendered via JS -->
+        <!-- Card 1: Full-Stack Web -->
+        <div class="course-card" onclick="loadCoursePath('dasar-pemrograman-web')">
+          <div class="course-header-row">
+            <div class="course-icon-box">🌐</div>
+            <span class="level-badge level-beginner">Beginner</span>
+          </div>
+          <h3 style="font-size:1.18rem; font-weight:800; color:var(--bg-navy-dark); margin-bottom:8px;">Learning Path 1: Full-Stack Web Development</h3>
+          <p style="color:var(--text-secondary); font-size:0.88rem; margin-bottom:16px;">Menguasai pembuatan web dari nol: HTML5, CSS3, JavaScript DOM, React, Node.js REST API, PostgreSQL, hingga deployment cloud.</p>
+          <div style="margin-top:auto; padding-top:14px; border-top:1px solid var(--border-color); display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:0.82rem; color:var(--text-muted); font-family:var(--font-mono);">9 Kelas • 3 Level Belajar</span>
+            <button class="btn btn-primary" style="padding:7px 16px; font-size:0.82rem;">Lihat Roadmap & Belajar</button>
+          </div>
+        </div>
+
+        <!-- Card 2: Data Science & AI -->
+        <div class="course-card" onclick="loadCoursePath('data-science-ai')">
+          <div class="course-header-row">
+            <div class="course-icon-box">📊</div>
+            <span class="level-badge level-beginner">Beginner</span>
+          </div>
+          <h3 style="font-size:1.18rem; font-weight:800; color:var(--bg-navy-dark); margin-bottom:8px;">Learning Path 2: Data Science & AI Specialist</h3>
+          <p style="color:var(--text-secondary); font-size:0.88rem; margin-bottom:16px;">Menguasai Python dasar, Data Analytics SQL/Pandas, Statistika, Machine Learning, Data Engineering, Deep Learning, GenAI/LLM, hingga MLOps.</p>
+          <div style="margin-top:auto; padding-top:14px; border-top:1px solid var(--border-color); display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:0.82rem; color:var(--text-muted); font-family:var(--font-mono);">9 Kelas • 3 Level Belajar</span>
+            <button class="btn btn-primary" style="padding:7px 16px; font-size:0.82rem;">Lihat Roadmap & Belajar</button>
+          </div>
+        </div>
+
+        <!-- Card 3: Mobile Development -->
+        <div class="course-card" onclick="loadCoursePath('mobile-flutter-dev')">
+          <div class="course-header-row">
+            <div class="course-icon-box">📱</div>
+            <span class="level-badge level-beginner">Beginner</span>
+          </div>
+          <h3 style="font-size:1.18rem; font-weight:800; color:var(--bg-navy-dark); margin-bottom:8px;">Learning Path 3: Mobile Development (Flutter Track)</h3>
+          <p style="color:var(--text-secondary); font-size:0.88rem; margin-bottom:16px;">Pemrograman Dart, Flutter UI Responsif, State Management Riverpod, Secure Storage, REST API, Firebase Cloud, Clean Architecture, hingga Rilis Store.</p>
+          <div style="margin-top:auto; padding-top:14px; border-top:1px solid var(--border-color); display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:0.82rem; color:var(--text-muted); font-family:var(--font-mono);">7 Kelas • 3 Level Belajar</span>
+            <button class="btn btn-primary" style="padding:7px 16px; font-size:0.82rem;">Lihat Roadmap & Belajar</button>
+          </div>
+        </div>
+
+        <!-- Card 4: DevOps & Cloud -->
+        <div class="course-card" onclick="loadCoursePath('devops-cloud-engineer')">
+          <div class="course-header-row">
+            <div class="course-icon-box">☁️</div>
+            <span class="level-badge level-beginner">Beginner</span>
+          </div>
+          <h3 style="font-size:1.18rem; font-weight:800; color:var(--bg-navy-dark); margin-bottom:8px;">Learning Path 4: DevOps & Cloud Engineer</h3>
+          <p style="color:var(--text-secondary); font-size:0.88rem; margin-bottom:16px;">Administrasi Linux, Networking, Git, Cloud AWS/IAM, Docker, CI/CD Pipeline, Kubernetes Orchestration, Terraform IaC, Prometheus/Grafana, hingga Cost Optimization.</p>
+          <div style="margin-top:auto; padding-top:14px; border-top:1px solid var(--border-color); display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:0.82rem; color:var(--text-muted); font-family:var(--font-mono);">8 Kelas • 3 Level Belajar</span>
+            <button class="btn btn-primary" style="padding:7px 16px; font-size:0.82rem;">Lihat Roadmap & Belajar</button>
+          </div>
+        </div>
+
+        <!-- Card 5: Cybersecurity Expert -->
+        <div class="course-card" onclick="loadCoursePath('cybersecurity-expert')">
+          <div class="course-header-row">
+            <div class="course-icon-box">🛡️</div>
+            <span class="level-badge level-beginner">Beginner</span>
+          </div>
+          <h3 style="font-size:1.18rem; font-weight:800; color:var(--bg-navy-dark); margin-bottom:8px;">Learning Path 5: Cybersecurity Expert</h3>
+          <p style="color:var(--text-secondary); font-size:0.88rem; margin-bottom:16px;">Networking Security, Wireshark, Ethical Hacking, Vulnerability Management, OWASP Top 10 Web Pentest, SOC SIEM, Digital Forensics, Cloud DevSecOps, GRC, hingga Capstone.</p>
+          <div style="margin-top:auto; padding-top:14px; border-top:1px solid var(--border-color); display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:0.82rem; color:var(--text-muted); font-family:var(--font-mono);">8 Kelas • 3 Level Belajar</span>
+            <button class="btn btn-primary" style="padding:7px 16px; font-size:0.82rem;">Lihat Roadmap & Belajar</button>
+          </div>
+        </div>
       </div>
     </main>
 

@@ -272,12 +272,54 @@
         </button>
       </aside>
 
-      <!-- Main Readable Lesson Content Area -->
-      <main class="lesson-main-content">
         <article class="lesson-article" id="lessonArticleBody">
-          <!-- Rendered dynamically by loadLessonTopic(topicId) -->
+          <div class="lesson-article">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:10px;">
+              <span class="badge-pill">PATH 1 • KELAS 1 • MODUL 1.1</span>
+              <button onclick="showView('catalog')" class="btn btn-outline" style="padding:6px 14px; font-size:0.8rem; font-weight:700;">← Kembali Ke Katalog Utama</button>
+            </div>
+
+            <h2 style="font-size:2rem; font-weight:800; color:var(--bg-navy-dark); margin-bottom:6px;">Modul 1.1 — Cara Kerja Internet & Web</h2>
+            <p style="font-size:0.9rem; color:var(--text-muted); font-weight:600; margin-bottom:20px;">⏱️ Estimasi total waktu modul: ±55 menit (3 lesson @15 menit + 1 practical lab @10 menit)</p>
+
+            <div class="callout-box" style="margin:24px 0;">
+              <h3 style="font-size:1.15rem; color:var(--primary-blue); margin-bottom:8px;">🎯 Tujuan Pembelajaran Modul</h3>
+              <p style="margin-bottom:8px; color:var(--bg-navy-dark); font-weight:600;">Setelah menyelesaikan modul ini, peserta mampu:</p>
+              <ul style="margin-bottom:0;">
+                <li>Menjelaskan siklus request-response antara client dan server</li>
+                <li>Menjelaskan proses DNS dan membedah struktur sebuah URL</li>
+                <li>Menjelaskan tahapan browser merender halaman web</li>
+                <li>Menggunakan DevTools browser untuk mengamati proses ini secara langsung</li>
+              </ul>
+            </div>
+
+            <hr style="border:none; border-top:1px solid var(--border-color); margin:32px 0;">
+
+            <div style="background:var(--bg-surface); padding:24px; border-radius:12px; border:1px solid var(--border-color); margin-bottom:28px;">
+              <span class="badge-pill" style="background:#EFF6FF; color:var(--primary-blue);">LESSON 1 • TEORI INTI</span>
+              <h3 style="font-size:1.4rem; font-weight:800; color:var(--bg-navy-dark); margin:10px 0 16px;">1. Arsitektur Client-Server & HTTP Request-Response Cycle</h3>
+              <p style="color:var(--text-secondary); line-height:1.7;">
+                Internet pada intinya adalah jaringan raksasa komputer yang saling terhubung untuk bertukar data. Dalam arsitektur web modern, komunikasi ini menggunakan model <strong>Client-Server</strong> via protokol <strong>HTTP (Hypertext Transfer Protocol)</strong> atau <strong>HTTPS (Versi Terenkripsi Aman)</strong>.
+              </p>
+              
+              <div class="mermaid-responsive" style="margin:20px 0; background:#FFF; padding:16px; border-radius:8px; border:1px solid var(--border-color);">
+                <pre class="mermaid">
+                graph LR
+                  Client["💻 Client Browser"] -->|1. Request HTTP GET| Server["🖥️ Web Server"]
+                  Server -->|2. Response 200 OK HTML/CSS/JS| Client
+                </pre>
+              </div>
+
+              <div class="callout-box" style="background:#F8FAFC; border-left-color:var(--bg-navy-dark); color:var(--bg-navy-dark); margin-top:16px;">
+                <strong>📖 Penjelasan Alur Request-Response:</strong>
+                <ol style="margin-top:8px; margin-bottom:0;">
+                  <li><strong>Client (Browser):</strong> Mengirimkan instruksi HTTP Request (contoh: `GET /index.html`) ke alamat IP server.</li>
+                  <li><strong>Server (Web Host):</strong> Menerima permintaan, memproses data, dan memberikan HTTP Response berisi file HTML, CSS, JavaScript, dan status code (misal `200 OK`).</li>
+                </ol>
+              </div>
+            </div>
+          </div>
         </article>
-      </main>
 
     </div>
   </div>
@@ -318,6 +360,12 @@
       document.getElementById('dashboardView').classList.toggle('active', viewName === 'dashboard');
       document.getElementById('lessonView').classList.toggle('active', viewName === 'lesson');
       sessionStorage.setItem('kodemik_last_view', viewName);
+
+      if (viewName === 'lesson') {
+        const currentCourse = sessionStorage.getItem('kodemik_last_course') || 'dasar-pemrograman-web';
+        loadCoursePath(currentCourse);
+      }
+
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 

@@ -56,6 +56,24 @@
   </script>
 
   <link rel="stylesheet" href="css/style.css?v=2.5">
+  <style>
+    /* Paksa seluruh daftar kelas dan modul 100% terbuka langsung tanpa diumpetin */
+    .module-accordion-content {
+      display: block !important;
+      max-height: none !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      margin-bottom: 12px !important;
+    }
+    .module-accordion-header {
+      background: var(--bg-surface) !important;
+      border-left: 3px solid var(--primary-blue) !important;
+      font-weight: 700 !important;
+    }
+    .accordion-arrow {
+      display: none !important;
+    }
+  </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">

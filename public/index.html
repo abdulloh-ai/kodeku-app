@@ -325,19 +325,19 @@
     ];
 
     async function fetchCourseCatalog() {
+      allCoursesData = defaultCoursesData;
+      renderCourses(allCoursesData);
+
       try {
         const res = await fetch('/api/courses');
         if (res.ok) {
           const data = await res.json();
-          if (data.success && data.data && data.data.length > 0) {
+          if (data.success && Array.isArray(data.data) && data.data.length > 0) {
             allCoursesData = data.data;
             renderCourses(allCoursesData);
-            return;
           }
         }
       } catch (e) {}
-      allCoursesData = defaultCoursesData;
-      renderCourses(allCoursesData);
     }
 
     function renderCourses(courses) {

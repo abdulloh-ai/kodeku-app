@@ -111,7 +111,7 @@ function loadDatabase() {
       const raw = fs.readFileSync(DB_FILE, 'utf-8');
       const loaded = JSON.parse(raw);
       if (loaded.users) db.users = loaded.users;
-      if (loaded.courses) db.courses = loaded.courses;
+      if (loaded.courses && Array.isArray(loaded.courses) && loaded.courses.length > 0) db.courses = loaded.courses;
       if (loaded.orders) db.orders = loaded.orders;
       if (loaded.userProgress) db.userProgress = loaded.userProgress;
     }

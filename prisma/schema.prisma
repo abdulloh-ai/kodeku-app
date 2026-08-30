@@ -1,0 +1,135 @@
+// Prisma Schema Configuration for Kodemik LMS
+// 9 Complete Models with Explicit Relations
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// 1. Admin — Akun pengelola platform
+model Admin {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  nama         String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+// 2. LearningPath — Jalur belajar besar
+model LearningPath {
+  id          String   @id @default(cuid())
+  nama        String
+  deskripsi   String
+  harga       Float
+  thumbnail   String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  kelas       Kelas[]
+  pendaftaran Pendaftaran[]
+  sertifikat  Sertifikat[]
+}
+
+// 3. Kelas — Bagian dari satu LearningPath
+model Kelas {
+  id             String       @id @default(cuid())
+  learningPathId String
+  learningPath   LearningPath @relation(fields: [learningPathId], references: [id], onDelete: Cascade)
+  nama           String
+  deskripsi      String
+  urutan         Int
+  level          String       @default("BEGINNER") // BEGINNER | INTERMEDIATE | ADVANCED
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  modul          Modul[]
+}
+
+// 4. Modul — Bagian dari satu Kelas
+model Modul {
+  id           String   @id @default(cuid())
+  kelasId      String
+  kelas        Kelas    @relation(fields: [kelasId], references: [id], onDelete: Cascade)
+  judul        String
+  kontenMateri String
+  videoUrl     String?  // URL Video YouTube opsional
+  urutan       Int
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  quiz            Quiz?
+  progressBelajar ProgressBelajar[]
+}
+
+// 5. Quiz — Pertanyaan assessment per Modul
+model Quiz {
+  id             String   @id @default(cuid())
+  modulId        String   @unique
+  modul          Modul    @relation(fields: [modulId], references: [id], onDelete: Cascade)
+  pertanyaan     String
+  pilihanJawaban String   // JSON Array String: '["Opt A", "Opt B", "Opt C", "Opt D"]'
+  jawabanBenar   Int      // 0-based index jawaban yang benar
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+// 6. Siswa — Akun siswa yang mendaftar
+model Siswa {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  nama         String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  pendaftaran     Pendaftaran[]
+  progressBelajar ProgressBelajar[]
+  sertifikat      Sertifikat[]
+}
+
+// 7. Pendaftaran (Enrollment) — Siswa mengambil LearningPath
+model Pendaftaran {
+  id               String       @id @default(cuid())
+  siswaId          String
+  siswa            Siswa        @relation(fields: [siswaId], references: [id], onDelete: Cascade)
+  learningPathId   String
+  learningPath     LearningPath @relation(fields: [learningPathId], references: [id], onDelete: Cascade)
+  statusPembayaran String       @default("BELUM_BAYAR") // BELUM_BAYAR | LUNAS
+  tanggalMendaftar DateTime     @default(now())
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+}
+
+// 8. ProgressBelajar — Pelacak modul yang diselesaikan siswa
+model ProgressBelajar {
+  id           String    @id @default(cuid())
+  siswaId      String
+  siswa        Siswa     @relation(fields: [siswaId], references: [id], onDelete: Cascade)
+  modulId      String
+  modul        Modul     @relation(fields: [modulId], references: [id], onDelete: Cascade)
+  status       String    @default("BELUM") // BELUM | SELESAI
+  skorQuiz     Int?
+  waktuSelesai DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@unique([siswaId, modulId])
+}
+
+// 9. Sertifikat — Sertifikat digital kelulusan 100%
+model Sertifikat {
+  id              String       @id @default(cuid())
+  siswaId         String
+  siswa           Siswa        @relation(fields: [siswaId], references: [id], onDelete: Cascade)
+  learningPathId  String
+  learningPath    LearningPath @relation(fields: [learningPathId], references: [id], onDelete: Cascade)
+  nomorSertifikat String       @unique
+  tanggalTerbit   DateTime     @default(now())
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+}

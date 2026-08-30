@@ -1,8 +1,8 @@
 // Prisma Schema Configuration for Kodemik LMS
-// 9 Complete Models with Explicit Relations
+// 9 Complete Models with Explicit Relations (PostgreSQL / Supabase Ready)
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -71,9 +71,9 @@ model Quiz {
   id             String   @id @default(cuid())
   modulId        String   @unique
   modul          Modul    @relation(fields: [modulId], references: [id], onDelete: Cascade)
-  pertanyaan     String
-  pilihanJawaban String   // JSON Array String: '["Opt A", "Opt B", "Opt C", "Opt D"]'
-  jawabanBenar   Int      // 0-based index jawaban yang benar
+  pertanyaan     String   // JSON String
+  pilihanJawaban String   // JSON String
+  jawabanBenar   Int      // 0-based index
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 }

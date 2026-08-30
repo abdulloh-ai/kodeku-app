@@ -27,9 +27,15 @@ export default function Navbar() {
       .catch(() => {});
   }, [pathname]);
 
-  const handleStudentLogout = async () => {
-    await fetch('/api/student/logout', { method: 'POST' });
-    setSiswa(null);
+  const handleLogout = async () => {
+    if (admin) {
+      await fetch('/api/admin/logout', { method: 'POST' });
+      setAdmin(null);
+    }
+    if (siswa) {
+      await fetch('/api/student/logout', { method: 'POST' });
+      setSiswa(null);
+    }
     window.location.href = '/';
   };
 
@@ -51,7 +57,30 @@ export default function Navbar() {
             🌐 Katalog Kursus
           </Link>
 
-          {siswa ? (
+          {/* Jika Logged in sebagai Admin */}
+          {admin ? (
+            <>
+              <Link
+                href="/admin"
+                className={`transition-colors ${pathname.startsWith('/admin') ? 'text-blue-600 font-bold' : 'text-slate-700 hover:text-blue-600'}`}
+              >
+                👨‍💼 Dashboard Admin ({admin.nama})
+              </Link>
+              <Link
+                href="/dashboard"
+                className={`transition-colors ${pathname.startsWith('/dashboard') ? 'text-blue-600 font-bold' : 'text-slate-700 hover:text-blue-600'}`}
+              >
+                🎓 View Siswa
+              </Link>
+              <button
+                onClick={handleLogout}
+                className="text-xs text-red-600 bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded-lg border border-red-200 font-bold transition-colors"
+              >
+                Logout
+              </button>
+            </>
+          ) : siswa ? (
+            /* Jika Logged in sebagai Siswa */
             <>
               <Link
                 href="/dashboard"
@@ -60,16 +89,17 @@ export default function Navbar() {
                 🎓 Dashboard Siswa ({siswa.nama})
               </Link>
               <button
-                onClick={handleStudentLogout}
+                onClick={handleLogout}
                 className="text-xs text-red-600 bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded-lg border border-red-200 font-bold transition-colors"
               >
                 Logout
               </button>
             </>
           ) : (
+            /* Jika Belum Logged in — TIDAK ADA TULISAN ADMIN SAMA SEKALI */
             <div className="flex items-center gap-2">
               <Link
-                href="/student/login"
+                href="/login"
                 className="text-xs text-slate-700 hover:text-blue-600 px-3 py-1.5 rounded-lg font-bold"
               >
                 Login
@@ -81,22 +111,6 @@ export default function Navbar() {
                 Daftar
               </Link>
             </div>
-          )}
-
-          {admin ? (
-            <Link
-              href="/admin"
-              className="text-xs bg-slate-900 hover:bg-slate-800 text-white px-3 py-1.5 rounded-lg font-bold transition-colors shadow-sm ml-2"
-            >
-              👨‍💼 Admin Portal
-            </Link>
-          ) : (
-            <Link
-              href="/admin/login"
-              className="text-xs text-slate-500 hover:text-slate-900 transition-colors ml-2"
-            >
-              Admin?
-            </Link>
           )}
         </nav>
       </div>

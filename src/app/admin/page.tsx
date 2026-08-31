@@ -100,6 +100,26 @@ export default function AdminDashboardPage() {
     }
   };
 
+  const handleDeletePath = async (path: any) => {
+    if (!window.confirm(`⚠️ Yakin ingin menghapus LearningPath "${path.nama}" beserta seluruh kelas dan modul di dalamnya?`)) {
+      return;
+    }
+
+    try {
+      const res = await fetch(`/api/admin/learning-path?id=${path.id}`, {
+        method: 'DELETE',
+      });
+
+      const result = await res.json();
+      if (!res.ok || !result.success) throw new Error(result.message);
+
+      setFeedbackMsg(`✅ LearningPath "${path.nama}" berhasil dihapus!`);
+      loadDashboardData();
+    } catch (err: any) {
+      setFeedbackMsg(`❌ ${err.message}`);
+    }
+  };
+
   const handleCreateKelas = async (pathId: string, e: React.FormEvent) => {
     e.preventDefault();
     const data = newKelas[pathId];
@@ -145,6 +165,26 @@ export default function AdminDashboardPage() {
 
       setFeedbackMsg(`✅ Kelas "${editingKelas.nama}" berhasil diperbarui!`);
       setEditingKelas(null);
+      loadDashboardData();
+    } catch (err: any) {
+      setFeedbackMsg(`❌ ${err.message}`);
+    }
+  };
+
+  const handleDeleteKelas = async (kelas: any) => {
+    if (!window.confirm(`⚠️ Yakin ingin menghapus Kelas "${kelas.nama}" beserta seluruh modul di dalamnya?`)) {
+      return;
+    }
+
+    try {
+      const res = await fetch(`/api/admin/kelas?id=${kelas.id}`, {
+        method: 'DELETE',
+      });
+
+      const result = await res.json();
+      if (!res.ok || !result.success) throw new Error(result.message);
+
+      setFeedbackMsg(`✅ Kelas "${kelas.nama}" berhasil dihapus!`);
       loadDashboardData();
     } catch (err: any) {
       setFeedbackMsg(`❌ ${err.message}`);
@@ -202,7 +242,26 @@ export default function AdminDashboardPage() {
     }
   };
 
-  // Open Quiz Modal & Fetch existing Quiz questions
+  const handleDeleteModul = async (modul: any) => {
+    if (!window.confirm(`⚠️ Yakin ingin menghapus Modul "${modul.judul}"?`)) {
+      return;
+    }
+
+    try {
+      const res = await fetch(`/api/admin/modul?id=${modul.id}`, {
+        method: 'DELETE',
+      });
+
+      const result = await res.json();
+      if (!res.ok || !result.success) throw new Error(result.message);
+
+      setFeedbackMsg(`✅ Modul "${modul.judul}" berhasil dihapus!`);
+      loadDashboardData();
+    } catch (err: any) {
+      setFeedbackMsg(`❌ ${err.message}`);
+    }
+  };
+
   const handleOpenQuizModal = async (modul: any) => {
     setQuizModul(modul);
     setQuizQuestions([]);
@@ -212,7 +271,6 @@ export default function AdminDashboardPage() {
       if (data.success && data.data && data.data.questions?.length > 0) {
         setQuizQuestions(data.data.questions);
       } else {
-        // Default 1 Empty Question Template
         setQuizQuestions([
           {
             pertanyaan: '',
@@ -403,22 +461,22 @@ export default function AdminDashboardPage() {
         </form>
       </div>
 
-      {/* Section 2: Kelola Multi-Kelas, Multi-Modul & Quiz Multi-Soal */}
+      {/* Section 2: Kelola Multi-Kelas, Multi-Modul & Akses Hapus (Delete) */}
       <div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
         <div className="border-b border-slate-100 pb-4">
-          <h2 className="text-xl font-bold text-slate-900">📚 2. Kelola Hirarki Kurikulum: Banyak Kelas, Modul & Quiz Assessment</h2>
+          <h2 className="text-xl font-bold text-slate-900">📚 2. Kelola Kurikulum & Aksi Hapus (Delete)</h2>
           <p className="text-xs text-slate-500 mt-1">
-            Tambah Kelas 1, 2, 3... di setiap LearningPath, isi banyak Modul di dalamnya, dan buat Quiz Pilihan Ganda Multi-Soal per Modul.
+            Tambah/edit/hapus LearningPath, Kelas, Modul Markdown, YouTube Video Player, dan Quiz Assessment.
           </p>
         </div>
 
         {learningPaths.map((path) => (
           <div key={path.id} className="border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
-            <div
-              onClick={() => setExpandedPathId(expandedPathId === path.id ? null : path.id)}
-              className="bg-slate-900 text-white p-5 flex items-center justify-between cursor-pointer hover:bg-slate-800 transition-colors"
-            >
-              <div className="flex items-center gap-3">
+            <div className="bg-slate-900 text-white p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div
+                onClick={() => setExpandedPathId(expandedPathId === path.id ? null : path.id)}
+                className="flex items-center gap-3 cursor-pointer flex-1"
+              >
                 <span className="text-2xl">🌐</span>
                 <div>
                   <h3 className="font-extrabold text-white text-base">{path.nama}</h3>
@@ -427,9 +485,22 @@ export default function AdminDashboardPage() {
                   </p>
                 </div>
               </div>
-              <span className="text-xs font-bold bg-blue-600 text-white px-3 py-1 rounded-full">
-                {expandedPathId === path.id ? '▲ Sembunyikan Hirarki' : '▼ Kelola Kelas & Modul'}
-              </span>
+
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => handleDeletePath(path)}
+                  className="px-3 py-1.5 bg-red-600/90 hover:bg-red-600 text-white text-xs font-bold rounded-lg transition-colors shadow"
+                  title="Hapus LearningPath beserta seluruh Kelas & Modul di dalamnya"
+                >
+                  🗑️ Hapus LearningPath
+                </button>
+                <button
+                  onClick={() => setExpandedPathId(expandedPathId === path.id ? null : path.id)}
+                  className="text-xs font-bold bg-blue-600 text-white px-3 py-1.5 rounded-lg"
+                >
+                  {expandedPathId === path.id ? '▲ Sembunyikan' : '▼ Kelola Kelas & Modul'}
+                </button>
+              </div>
             </div>
 
             {expandedPathId === path.id && (
@@ -455,12 +526,21 @@ export default function AdminDashboardPage() {
                             <h5 className="font-extrabold text-slate-900 text-lg">{k.nama}</h5>
                             <p className="text-xs text-slate-600 mt-0.5">{k.deskripsi}</p>
                           </div>
-                          <button
-                            onClick={() => setEditingKelas(k)}
-                            className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-lg border border-slate-300"
-                          >
-                            ✏️ Edit Kelas
-                          </button>
+                          <div className="flex items-center gap-2">
+                            <button
+                              onClick={() => setEditingKelas(k)}
+                              className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-lg border border-slate-300"
+                            >
+                              ✏️ Edit Kelas
+                            </button>
+                            <button
+                              onClick={() => handleDeleteKelas(k)}
+                              className="px-3 py-1.5 bg-red-100 hover:bg-red-200 text-red-700 text-xs font-bold rounded-lg border border-red-300"
+                              title="Hapus Kelas beserta seluruh Modul di dalamnya"
+                            >
+                              🗑️ Hapus Kelas
+                            </button>
+                          </div>
                         </div>
 
                         {/* Modul dalam Kelas ini */}
@@ -488,6 +568,13 @@ export default function AdminDashboardPage() {
                                     className="px-3 py-1 bg-slate-900 text-white rounded text-[11px] font-bold hover:bg-slate-800"
                                   >
                                     ✏️ Edit Modul
+                                  </button>
+                                  <button
+                                    onClick={() => handleDeleteModul(m)}
+                                    className="px-3 py-1 bg-red-600 hover:bg-red-700 text-white rounded text-[11px] font-bold shadow-sm"
+                                    title="Hapus Modul"
+                                  >
+                                    🗑️ Hapus Modul
                                   </button>
                                 </div>
                               </div>

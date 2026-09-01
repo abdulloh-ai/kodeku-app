@@ -54,7 +54,7 @@ export default function Navbar() {
             href="/"
             className={`transition-colors ${pathname === '/' ? 'text-blue-600 font-bold' : 'text-slate-700 hover:text-blue-600'}`}
           >
-            🌐 Katalog Kursus
+            Katalog
           </Link>
 
           {/* Jika Logged in sebagai Admin */}
@@ -64,13 +64,13 @@ export default function Navbar() {
                 href="/admin"
                 className={`transition-colors ${pathname.startsWith('/admin') ? 'text-blue-600 font-bold' : 'text-slate-700 hover:text-blue-600'}`}
               >
-                👨‍💼 Admin
+                Admin
               </Link>
               <Link
                 href="/dashboard"
                 className={`transition-colors ${pathname.startsWith('/dashboard') ? 'text-blue-600 font-bold' : 'text-slate-700 hover:text-blue-600'}`}
               >
-                🎓 View Siswa
+                Siswa
               </Link>
               <button
                 onClick={handleLogout}
@@ -86,7 +86,7 @@ export default function Navbar() {
                 href="/dashboard"
                 className={`transition-colors ${pathname.startsWith('/dashboard') ? 'text-blue-600 font-bold' : 'text-slate-700 hover:text-blue-600'}`}
               >
-                🎓 Dashboard Siswa ({siswa.nama})
+                Siswa
               </Link>
               <button
                 onClick={handleLogout}

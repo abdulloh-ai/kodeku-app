@@ -2,6 +2,9 @@ import { NextResponse } from 'next/server';
 import { getStudentSession } from '@/lib/student-auth';
 import { prisma } from '@/lib/prisma';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export async function GET() {
   const session = await getStudentSession();
   if (!session) {
@@ -9,6 +12,46 @@ export async function GET() {
   }
 
   try {
+    // 1. Jika Admin Preview Mode -> Kembalikan SELURUH LearningPath yang ada di database!
+    if (session.isAdminPreview) {
+      const allPaths = await prisma.learningPath.findMany({
+        include: {
+          kelas: {
+            orderBy: { urutan: 'asc' },
+            include: {
+              modul: {
+                orderBy: { urutan: 'asc' },
+              },
+            },
+          },
+        },
+        orderBy: { createdAt: 'desc' },
+      });
+
+      const result = allPaths.map((path) => {
+        let totalModulCount = 0;
+        if (path.kelas) {
+          path.kelas.forEach((k) => {
+            if (k.modul) totalModulCount += k.modul.length;
+          });
+        }
+
+        return {
+          id: `preview-${path.id}`,
+          statusPembayaran: 'LUNAS',
+          tanggalMendaftar: new Date(),
+          learningPath: path,
+          totalModulCount,
+          completedModulCount: 0,
+          progressPercent: 0,
+          isAdminPreview: true,
+        };
+      });
+
+      return NextResponse.json({ success: true, data: result });
+    }
+
+    // 2. Jika Siswa Asli -> Kembalikan Pendaftaran Siswa terkait
     const enrollments = await prisma.pendaftaran.findMany({
       where: { siswaId: session.id },
       include: {

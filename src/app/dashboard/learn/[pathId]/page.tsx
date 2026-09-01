@@ -26,17 +26,17 @@ export default function CoursePlayerPage() {
   const [submittingQuiz, setSubmittingQuiz] = useState(false);
 
   useEffect(() => {
-    fetch('/api/student/me')
+    fetch('/api/student/me', { cache: 'no-store' })
       .then((r) => r.json())
       .then((d) => {
         if (!d.success || !d.siswa) {
-          router.push('/student/login');
+          router.push('/login');
         } else {
           setSiswa(d.siswa);
           loadCourseDetails();
         }
       })
-      .catch(() => router.push('/student/login'));
+      .catch(() => router.push('/login'));
   }, [pathId, router]);
 
   // Fetch Quiz when activeModulId changes

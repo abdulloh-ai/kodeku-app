@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { cookies } from 'next/headers';
+import { verifyAdminToken, ADMIN_COOKIE_NAME } from './auth';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'kodemik-siswa-jwt-secret-key-2026';
 export const SISWA_COOKIE_NAME = 'kodemik_siswa_session';
@@ -17,7 +18,7 @@ export function generateStudentToken(payload: { id: string; email: string; nama:
   return jwt.sign(payload, JWT_SECRET, { expiresIn: '14d' });
 }
 
-export function verifyStudentToken(token: string): { id: string; email: string; nama: string } | null {
+export function verifyStudentToken(token: string): { id: string; email: string; nama: string; isAdminPreview?: boolean } | null {
   try {
     return jwt.verify(token, JWT_SECRET) as { id: string; email: string; nama: string };
   } catch (error) {
@@ -27,7 +28,27 @@ export function verifyStudentToken(token: string): { id: string; email: string; 
 
 export async function getStudentSession() {
   const cookieStore = cookies();
+
+  // 1. Cek Cookie Session Siswa
   const token = cookieStore.get(SISWA_COOKIE_NAME)?.value;
-  if (!token) return null;
-  return verifyStudentToken(token);
+  if (token) {
+    const siswaSession = verifyStudentToken(token);
+    if (siswaSession) return siswaSession;
+  }
+
+  // 2. Fallback: Jika tidak ada Cookie Siswa, Cek Cookie Admin (Master Access / Preview Mode)
+  const adminToken = cookieStore.get(ADMIN_COOKIE_NAME)?.value;
+  if (adminToken) {
+    const adminSession = verifyAdminToken(adminToken);
+    if (adminSession) {
+      return {
+        id: adminSession.id,
+        email: adminSession.email,
+        nama: adminSession.nama,
+        isAdminPreview: true,
+      };
+    }
+  }
+
+  return null;
 }

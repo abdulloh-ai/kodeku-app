@@ -6,30 +6,30 @@ import Link from 'next/link';
 
 export default function StudentDashboardPage() {
   const router = useRouter();
-  const [siswa, setSiswa] = useState<{ id: string; email: string; nama: string } | null>(null);
+  const [siswa, setSiswa] = useState<{ id: string; email: string; nama: string; isAdminPreview?: boolean } | null>(null);
   const [authLoading, setAuthLoading] = useState(true);
   const [enrolledCourses, setEnrolledCourses] = useState<any[]>([]);
   const [coursesLoading, setCoursesLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/api/student/me')
+    fetch('/api/student/me', { cache: 'no-store' })
       .then((r) => r.json())
       .then((d) => {
         if (!d.success || !d.siswa) {
-          router.push('/student/login');
+          router.push('/login');
         } else {
           setSiswa(d.siswa);
           loadEnrolledCourses();
         }
       })
-      .catch(() => router.push('/student/login'))
+      .catch(() => router.push('/login'))
       .finally(() => setAuthLoading(false));
   }, [router]);
 
   const loadEnrolledCourses = async () => {
     setCoursesLoading(true);
     try {
-      const res = await fetch('/api/student/courses');
+      const res = await fetch('/api/student/courses', { cache: 'no-store' });
       const data = await res.json();
       if (data.success) {
         setEnrolledCourses(data.data);
@@ -46,7 +46,7 @@ export default function StudentDashboardPage() {
       <div className="min-h-[80vh] flex items-center justify-center">
         <div className="text-center space-y-3">
           <div className="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto"></div>
-          <p className="text-sm font-semibold text-slate-600">Memeriksa Sesi Belajar Siswa...</p>
+          <p className="text-sm font-semibold text-slate-600">Memeriksa Sesi Belajar...</p>
         </div>
       </div>
     );
@@ -57,13 +57,15 @@ export default function StudentDashboardPage() {
       {/* Header Greeting Banner */}
       <div className="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-2xl p-6 sm:p-8 text-white shadow-lg space-y-2">
         <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-extrabold bg-white/20 text-white backdrop-blur-sm">
-          🎓 PORTAL BELAJAR SISWA KODEMIK
+          {siswa?.isAdminPreview ? '🛡️ MODE PRATINJAU ADMIN' : 'PORTAL BELAJAR SISWA'}
         </span>
         <h1 className="text-2xl sm:text-3xl font-extrabold">
           Selamat Datang, {siswa?.nama}! 👋
         </h1>
         <p className="text-blue-100 text-xs sm:text-sm max-w-2xl">
-          Pantau progres kelulusan modul Anda, riwayat nilai quiz, dan lanjutkan pembelajaran terstruktur kapan saja.
+          {siswa?.isAdminPreview
+            ? 'Anda sedang mengakses tampilan halaman siswa dengan Hak Akses Master Admin untuk meninjau seluruh materi, video, dan quiz.'
+            : 'Pantau progres kelulusan modul Anda, riwayat nilai quiz, dan lanjutkan pembelajaran terstruktur kapan saja.'}
         </p>
       </div>
 
@@ -71,7 +73,9 @@ export default function StudentDashboardPage() {
       <div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
           <div>
-            <h2 className="text-xl font-bold text-slate-900">📚 Kursus yang Sedang Anda Ikuti</h2>
+            <h2 className="text-xl font-bold text-slate-900">
+              {siswa?.isAdminPreview ? 'Daftar Kursus (Akses Master Admin)' : 'Kursus yang Sedang Anda Ikuti'}
+            </h2>
             <p className="text-xs text-slate-500 mt-1">
               Menampilkan progres kelulusan modul dan riwayat nilai quiz pemahaman Anda.
             </p>
@@ -91,7 +95,6 @@ export default function StudentDashboardPage() {
           </div>
         ) : enrolledCourses.length === 0 ? (
           <div className="bg-slate-50 border border-slate-200 rounded-xl p-10 text-center space-y-4 max-w-md mx-auto">
-            <div className="text-4xl">📖</div>
             <h3 className="text-base font-bold text-slate-900">Belum Ada Kursus yang Diambil</h3>
             <p className="text-xs text-slate-600">
               Anda belum mendaftar di LearningPath manapun. Pilih kursus favorit Anda di katalog publik untuk memulai!
@@ -116,7 +119,9 @@ export default function StudentDashboardPage() {
                 >
                   <div className="space-y-4">
                     <div className="flex items-start justify-between">
-                      <span className="text-3xl">🌐</span>
+                      <span className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 font-bold flex items-center justify-center text-sm border border-blue-200">
+                        k
+                      </span>
                       <span
                         className={`px-3 py-1 rounded-full text-[10px] font-extrabold ${
                           item.statusPembayaran === 'LUNAS'

@@ -13,15 +13,15 @@ export default function PublicCatalogPage() {
 
   useEffect(() => {
     // 1. Cek Session Siswa
-    fetch('/api/student/me')
+    fetch('/api/student/me', { cache: 'no-store' })
       .then((r) => r.json())
       .then((d) => {
         if (d.success) setStudentSession(d.siswa);
       })
       .catch(() => {});
 
-    // 2. Fetch Data LearningPath Realtime dari DB Prisma
-    fetch('/api/courses')
+    // 2. Fetch Data LearningPath Realtime dari DB Prisma (No-Store Cache)
+    fetch('/api/courses', { cache: 'no-store' })
       .then((r) => r.json())
       .then((d) => {
         if (d.success) setPaths(d.data);
@@ -32,7 +32,6 @@ export default function PublicCatalogPage() {
 
   const handleEnroll = async (pathId: string) => {
     if (!studentSession) {
-      // Jika belum login, arahkan ke registrasi siswa dengan parameter enroll
       router.push(`/student/register?enroll=${pathId}`);
       return;
     }
@@ -82,7 +81,7 @@ export default function PublicCatalogPage() {
           <div className="text-4xl">📚</div>
           <h3 className="text-lg font-bold text-slate-900">Belum Ada Kursus Dipublikasikan</h3>
           <p className="text-xs text-slate-500">
-            Login sebagai Admin di <Link href="/admin/login" className="text-blue-600 font-bold underline">Admin Portal</Link> untuk membuat LearningPath pertama Anda!
+            Login sebagai Admin di <Link href="/login" className="text-blue-600 font-bold underline">Login Portal</Link> untuk membuat LearningPath pertama Anda!
           </p>
         </div>
       ) : (

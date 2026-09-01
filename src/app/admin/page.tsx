@@ -363,21 +363,18 @@ export default function AdminDashboardPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
       {/* Header Admin */}
-      <div className="bg-slate-900 text-white rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4 border border-slate-800 shadow-lg">
+      <div className="bg-slate-900 text-white rounded-2xl p-6 sm:p-8 flex items-center justify-between gap-4 border border-slate-800 shadow-lg">
         <div>
-          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-400 mb-3 border border-blue-500/30">
-            👨‍💼 PORTAL ADMIN TERPROTEKSI
-          </span>
-          <h1 className="text-2xl sm:text-3xl font-extrabold">Dashboard Pengelola Kodemik LMS</h1>
-          <p className="text-slate-400 text-sm mt-1">
-            Selamat datang, <strong className="text-white">{admin?.nama}</strong> ({admin?.email})
+          <h1 className="text-2xl sm:text-3xl font-extrabold">Admin</h1>
+          <p className="text-slate-400 text-xs mt-1">
+            {admin?.nama} ({admin?.email})
           </p>
         </div>
         <button
           onClick={handleLogout}
-          className="px-4 py-2.5 bg-red-600/90 hover:bg-red-600 text-white font-bold text-sm rounded-lg transition-colors shadow"
+          className="px-4 py-2 bg-red-600/90 hover:bg-red-600 text-white font-bold text-xs rounded-xl transition-colors shadow"
         >
-          🔒 Logout Sesi Admin
+          🔒 Logout
         </button>
       </div>
 

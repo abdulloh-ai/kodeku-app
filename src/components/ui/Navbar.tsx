@@ -64,7 +64,7 @@ export default function Navbar() {
                 href="/admin"
                 className={`transition-colors ${pathname.startsWith('/admin') ? 'text-blue-600 font-bold' : 'text-slate-700 hover:text-blue-600'}`}
               >
-                👨‍💼 Dashboard Admin ({admin.nama})
+                👨‍💼 Admin
               </Link>
               <Link
                 href="/dashboard"

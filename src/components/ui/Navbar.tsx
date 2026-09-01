@@ -46,7 +46,7 @@ export default function Navbar() {
           <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-extrabold text-lg shadow-sm">
             k
           </div>
-          <span className="font-bold text-xl text-slate-900 tracking-tight">kodemik</span>
+          <span className="hidden sm:inline-block font-bold text-xl text-slate-900 tracking-tight">kodemik</span>
         </Link>
 
         <nav className="flex items-center gap-4 sm:gap-6 text-sm font-semibold">

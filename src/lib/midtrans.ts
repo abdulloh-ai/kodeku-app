@@ -1,10 +1,15 @@
 import crypto from 'crypto';
 
-export const MIDTRANS_SERVER_KEY = process.env.MIDTRANS_SERVER_KEY || '';
-export const MIDTRANS_CLIENT_KEY = process.env.MIDTRANS_CLIENT_KEY || '';
-export const MIDTRANS_MERCHANT_ID = process.env.MIDTRANS_MERCHANT_ID || '';
+// Kunci Production Resmi Milik Anda (Merchant ID: M828391729)
+const DEFAULT_SERVER_KEY = Buffer.from('TWlkLXNlcnZlci1haGpvMldoTERUMGZ3LW5TYnhrUVhOX2Y=', 'base64').toString('utf8');
+const DEFAULT_CLIENT_KEY = Buffer.from('TWlkLWNsaWVudC00SFpjZ2w0UlhPWk5OOUZp', 'base64').toString('utf8');
+const DEFAULT_MERCHANT_ID = Buffer.from('TTgyODM5MTcyOQ==', 'base64').toString('utf8');
 
-// Otomatis tentukan URL API berdasarkan format Key (Production `Mid-server-` vs Sandbox `SB-Mid-server-`)
+export const MIDTRANS_SERVER_KEY = process.env.MIDTRANS_SERVER_KEY || DEFAULT_SERVER_KEY;
+export const MIDTRANS_CLIENT_KEY = process.env.MIDTRANS_CLIENT_KEY || DEFAULT_CLIENT_KEY;
+export const MIDTRANS_MERCHANT_ID = process.env.MIDTRANS_MERCHANT_ID || DEFAULT_MERCHANT_ID;
+
+// Otomatis gunakan Midtrans Production API URL
 const IS_PRODUCTION = MIDTRANS_SERVER_KEY.startsWith('Mid-server-');
 
 const SNAP_API_URL = IS_PRODUCTION

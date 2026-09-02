@@ -12,7 +12,6 @@ export default function PublicCatalogPage() {
   const [enrollLoadingId, setEnrollLoadingId] = useState<string | null>(null);
 
   useEffect(() => {
-    // 1. Cek Session Siswa
     fetch('/api/student/me', { cache: 'no-store' })
       .then((r) => r.json())
       .then((d) => {
@@ -20,7 +19,6 @@ export default function PublicCatalogPage() {
       })
       .catch(() => {});
 
-    // 2. Fetch Data LearningPath Realtime dari DB Prisma (No-Store Cache)
     fetch('/api/courses', { cache: 'no-store' })
       .then((r) => r.json())
       .then((d) => {
@@ -38,7 +36,7 @@ export default function PublicCatalogPage() {
 
     setEnrollLoadingId(pathId);
     try {
-      const res = await fetch('/api/student/enroll', {
+      const res = await fetch('/api/student/pay', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ learningPathId: pathId }),
@@ -47,9 +45,34 @@ export default function PublicCatalogPage() {
       const result = await res.json();
       if (!res.ok || !result.success) throw new Error(result.message);
 
-      router.push('/dashboard');
+      if (result.alreadyPaid) {
+        router.push('/dashboard');
+        return;
+      }
+
+      // Triggers Midtrans Snap Payment Modal (QRIS, DANA, GoPay, VA Bank, Alfamart)
+      if (typeof window !== 'undefined' && (window as any).snap) {
+        (window as any).snap.pay(result.token, {
+          onSuccess: function () {
+            alert('🎉 Pembayaran Berhasil! Selamat belajar.');
+            router.push('/dashboard');
+          },
+          onPending: function () {
+            alert('⏳ Menunggu Pembayaran. Silakan selesaikan pembayaran Anda.');
+            router.push('/dashboard');
+          },
+          onError: function () {
+            alert('❌ Pembayaran Gagal. Silakan coba lagi.');
+          },
+          onClose: function () {
+            router.push('/dashboard');
+          },
+        });
+      } else {
+        router.push(result.redirectUrl || '/dashboard');
+      }
     } catch (err: any) {
-      alert(err.message || 'Gagal enroll kursus');
+      alert(err.message || 'Gagal memproses pembayaran');
     } finally {
       setEnrollLoadingId(null);
     }
@@ -60,7 +83,7 @@ export default function PublicCatalogPage() {
       {/* Hero Section Banner */}
       <div className="text-center max-w-3xl mx-auto space-y-4">
         <span className="inline-flex items-center px-3.5 py-1 rounded-full text-xs font-extrabold bg-blue-100 text-blue-700 tracking-wide">
-          🌐 KATALOG KURSUS PUBLIK KODEMIK
+          KATALOG KURSUS
         </span>
         <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
           Kuasai Skill IT Industri dengan Kurikulum Terstruktur
@@ -78,10 +101,9 @@ export default function PublicCatalogPage() {
         </div>
       ) : paths.length === 0 ? (
         <div className="bg-slate-50 border border-slate-200 rounded-2xl p-12 text-center max-w-md mx-auto space-y-4">
-          <div className="text-4xl">📚</div>
           <h3 className="text-lg font-bold text-slate-900">Belum Ada Kursus Dipublikasikan</h3>
           <p className="text-xs text-slate-500">
-            Login sebagai Admin di <Link href="/login" className="text-blue-600 font-bold underline">Login Portal</Link> untuk membuat LearningPath pertama Anda!
+            Login di <Link href="/login" className="text-blue-600 font-bold underline">Login Portal</Link> untuk membuat LearningPath pertama Anda!
           </p>
         </div>
       ) : (
@@ -100,7 +122,9 @@ export default function PublicCatalogPage() {
               >
                 <div className="p-6 space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="text-3xl">🌐</span>
+                    <span className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 font-bold flex items-center justify-center text-sm border border-blue-200">
+                      k
+                    </span>
                     <span className="inline-block bg-blue-50 text-blue-700 text-xs font-bold px-3 py-1 rounded-full border border-blue-200">
                       {totalKelas} Kelas • {totalModul} Modul
                     </span>
@@ -125,7 +149,7 @@ export default function PublicCatalogPage() {
                     disabled={enrollLoadingId === path.id}
                     className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl transition-colors shadow-sm disabled:opacity-50"
                   >
-                    {enrollLoadingId === path.id ? 'Memproses...' : studentSession ? 'Daftar / Enroll Kursus ➔' : 'Daftar & Belajar ➔'}
+                    {enrollLoadingId === path.id ? 'Memproses...' : studentSession ? 'Beli / Enroll Kursus ➔' : 'Daftar & Belajar ➔'}
                   </button>
                 </div>
               </div>

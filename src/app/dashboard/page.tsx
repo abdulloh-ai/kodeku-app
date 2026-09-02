@@ -10,6 +10,7 @@ export default function StudentDashboardPage() {
   const [authLoading, setAuthLoading] = useState(true);
   const [enrolledCourses, setEnrolledCourses] = useState<any[]>([]);
   const [coursesLoading, setCoursesLoading] = useState(true);
+  const [payingPathId, setPayingPathId] = useState<string | null>(null);
 
   useEffect(() => {
     fetch('/api/student/me', { cache: 'no-store' })
@@ -38,6 +39,47 @@ export default function StudentDashboardPage() {
       console.error('Fetch enrolled courses error:', err);
     } finally {
       setCoursesLoading(false);
+    }
+  };
+
+  const handlePayNow = async (pathId: string) => {
+    setPayingPathId(pathId);
+    try {
+      const res = await fetch('/api/student/pay', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ learningPathId: pathId }),
+      });
+
+      const result = await res.json();
+      if (!res.ok || !result.success) throw new Error(result.message);
+
+      if (result.alreadyPaid) {
+        loadEnrolledCourses();
+        return;
+      }
+
+      if (typeof window !== 'undefined' && (window as any).snap) {
+        (window as any).snap.pay(result.token, {
+          onSuccess: function () {
+            alert('🎉 Pembayaran Berhasil! Akses materi telah dibuka.');
+            loadEnrolledCourses();
+          },
+          onPending: function () {
+            alert('⏳ Menunggu Pembayaran. Silakan selesaikan pembayaran Anda.');
+            loadEnrolledCourses();
+          },
+          onError: function () {
+            alert('❌ Pembayaran Gagal. Silakan coba lagi.');
+          },
+        });
+      } else {
+        alert('Gagal memuat pop-up pembayaran.');
+      }
+    } catch (err: any) {
+      alert(err.message || 'Gagal memproses pembayaran');
+    } finally {
+      setPayingPathId(null);
     }
   };
 
@@ -111,6 +153,7 @@ export default function StudentDashboardPage() {
             {enrolledCourses.map((item) => {
               const path = item.learningPath;
               const totalKelas = path?.kelas?.length || 0;
+              const isPaid = item.statusPembayaran === 'LUNAS' || siswa?.isAdminPreview;
 
               return (
                 <div
@@ -124,12 +167,12 @@ export default function StudentDashboardPage() {
                       </span>
                       <span
                         className={`px-3 py-1 rounded-full text-[10px] font-extrabold ${
-                          item.statusPembayaran === 'LUNAS'
+                          isPaid
                             ? 'bg-emerald-100 text-emerald-800 border border-emerald-300'
                             : 'bg-amber-100 text-amber-800 border border-amber-300'
                         }`}
                       >
-                        STATUS: {item.statusPembayaran}
+                        STATUS: {isPaid ? 'LUNAS' : 'BELUM_BAYAR'}
                       </span>
                     </div>
 
@@ -160,12 +203,22 @@ export default function StudentDashboardPage() {
                   </div>
 
                   <div className="pt-2">
-                    <Link
-                      href={`/dashboard/learn/${path?.id}`}
-                      className="block text-center w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl shadow transition-colors"
-                    >
-                      ▶ Lanjutkan Belajar Modul & Kerjakan Quiz ➔
-                    </Link>
+                    {isPaid ? (
+                      <Link
+                        href={`/dashboard/learn/${path?.id}`}
+                        className="block text-center w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl shadow transition-colors"
+                      >
+                        ▶ Lanjutkan Belajar Modul & Kerjakan Quiz ➔
+                      </Link>
+                    ) : (
+                      <button
+                        onClick={() => handlePayNow(path?.id)}
+                        disabled={payingPathId === path?.id}
+                        className="block w-full py-3 px-4 bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs rounded-xl shadow transition-colors disabled:opacity-50"
+                      >
+                        {payingPathId === path?.id ? 'Memproses Pop-up...' : '💳 Bayar Kursus Sekarang via Midtrans ➔'}
+                      </button>
+                    )}
                   </div>
                 </div>
               );

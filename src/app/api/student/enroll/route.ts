@@ -5,7 +5,7 @@ import { prisma } from '@/lib/prisma';
 export async function POST(req: Request) {
   const session = await getStudentSession();
   if (!session) {
-    return NextResponse.json({ success: false, message: 'Silakan login terlebih dahulu untuk mendaftar kursus.' }, { status: 401 });
+    return NextResponse.json({ success: false, message: 'Unauthorized' }, { status: 401 });
   }
 
   try {
@@ -15,33 +15,27 @@ export async function POST(req: Request) {
       return NextResponse.json({ success: false, message: 'LearningPathId wajib diisi!' }, { status: 400 });
     }
 
-    const existingEnrollment = await prisma.pendaftaran.findFirst({
+    let pendaftaran = await prisma.pendaftaran.findFirst({
       where: {
         siswaId: session.id,
-        learningPathId: learningPathId,
+        learningPathId,
       },
     });
 
-    if (existingEnrollment) {
-      return NextResponse.json({
-        success: true,
-        message: 'Anda sudah terdaftar di kursus ini.',
-        enrollment: existingEnrollment,
+    if (!pendaftaran) {
+      pendaftaran = await prisma.pendaftaran.create({
+        data: {
+          siswaId: session.id,
+          learningPathId,
+          statusPembayaran: 'BELUM_BAYAR', // Wajib BELUM_BAYAR sebelum bayar di Midtrans!
+        },
       });
     }
 
-    const newEnrollment = await prisma.pendaftaran.create({
-      data: {
-        siswaId: session.id,
-        learningPathId: learningPathId,
-        statusPembayaran: 'LUNAS', // Untuk MVP ini langsung LUNAS agar siswa bisa mencoba belajar
-      },
-    });
-
     return NextResponse.json({
       success: true,
-      message: 'Pendaftaran kursus berhasil!',
-      enrollment: newEnrollment,
+      message: 'Pendaftaran berhasil dibuat. Silakan lakukan pembayaran!',
+      data: pendaftaran,
     });
   } catch (error: any) {
     return NextResponse.json({ success: false, message: error.message }, { status: 500 });

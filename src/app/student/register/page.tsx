@@ -20,11 +20,11 @@ function StudentRegisterForm() {
     setErrorMsg('');
 
     try {
-      // 1. Register Siswa Baru
+      // 1. Register Akun Siswa Baru (Bawa enrollPathId jika ada)
       const res = await fetch('/api/student/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, enrollPathId }),
       });
 
       const result = await res.json();
@@ -32,13 +32,37 @@ function StudentRegisterForm() {
         throw new Error(result.message || 'Pendaftaran gagal');
       }
 
-      // 2. Jika ada parameter enroll, langsung enroll otomatis
+      // 2. Jika mendaftar dari tombol catalog ("Daftar & Belajar"), langsung panggil Midtrans Pay Pop-up!
       if (enrollPathId) {
-        await fetch('/api/student/enroll', {
+        const payRes = await fetch('/api/student/pay', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ learningPathId: enrollPathId }),
         });
+
+        const payData = await payRes.json();
+        if (payData.success && payData.token) {
+          if (typeof window !== 'undefined' && (window as any).snap) {
+            (window as any).snap.pay(payData.token, {
+              onSuccess: function () {
+                alert('🎉 Pembayaran Berhasil! Selamat belajar.');
+                router.push('/dashboard');
+              },
+              onPending: function () {
+                alert('⏳ Menunggu Pembayaran.');
+                router.push('/dashboard');
+              },
+              onError: function () {
+                alert('❌ Pembayaran Gagal.');
+                router.push('/dashboard');
+              },
+              onClose: function () {
+                router.push('/dashboard');
+              },
+            });
+            return;
+          }
+        }
       }
 
       router.push('/dashboard');
@@ -54,7 +78,7 @@ function StudentRegisterForm() {
       <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-2xl border border-slate-200 shadow-xl">
         <div className="text-center">
           <div className="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center text-white font-extrabold text-2xl mx-auto mb-3 shadow-md">
-            🎓
+            k
           </div>
           <h2 className="text-2xl font-extrabold text-slate-900">
             Daftar Akun Baru
@@ -79,7 +103,7 @@ function StudentRegisterForm() {
               <input
                 type="text"
                 required
-                placeholder="Budi Santoso"
+                placeholder="Ahmad"
                 className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-600 focus:border-transparent text-sm"
                 value={formData.nama}
                 onChange={(e) => setFormData({ ...formData, nama: e.target.value })}
@@ -93,7 +117,7 @@ function StudentRegisterForm() {
               <input
                 type="email"
                 required
-                placeholder="budi@gmail.com"
+                placeholder="ahmad@gmail.com"
                 className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-600 focus:border-transparent text-sm"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -122,7 +146,6 @@ function StudentRegisterForm() {
                   {showPassword ? '🙈' : '👁️'}
                 </button>
               </div>
-              <p className="mt-1 text-xs text-slate-500">Minimal 6 karakter, di-hash aman dengan bcrypt.</p>
             </div>
           </div>
 
@@ -131,12 +154,12 @@ function StudentRegisterForm() {
             disabled={loading}
             className="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition-colors shadow-md disabled:opacity-50"
           >
-            {loading ? 'Mendaftarkan Akun...' : 'Daftar ➔'}
+            {loading ? 'Mendaftarkan Akun...' : 'Daftar & Bayar ➔'}
           </button>
         </form>
 
         <div className="text-center pt-2">
-          <Link href="/student/login" className="text-xs font-semibold text-blue-600 hover:underline">
+          <Link href="/login" className="text-xs font-semibold text-blue-600 hover:underline">
             Sudah punya akun? Login di sini
           </Link>
         </div>

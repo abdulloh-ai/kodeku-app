@@ -4,31 +4,25 @@ import { hashPassword, generateStudentToken, SISWA_COOKIE_NAME } from '@/lib/stu
 
 export async function POST(req: Request) {
   try {
-    const { email, password, nama } = await req.json();
+    const { nama, email, password, enrollPathId } = await req.json();
 
-    if (!email || !password || !nama) {
+    if (!nama || !email || !password) {
       return NextResponse.json(
-        { success: false, message: 'Email, password, dan nama wajib diisi!' },
-        { status: 400 }
-      );
-    }
-
-    if (password.length < 6) {
-      return NextResponse.json(
-        { success: false, message: 'Password minimal 6 karakter!' },
+        { success: false, message: 'Nama, email, dan password wajib diisi!' },
         { status: 400 }
       );
     }
 
     const cleanEmail = email.trim().toLowerCase();
 
-    const existingSiswa = await prisma.siswa.findUnique({
+    // Cek apakah email sudah terdaftar
+    const existing = await prisma.siswa.findUnique({
       where: { email: cleanEmail },
     });
 
-    if (existingSiswa) {
+    if (existing) {
       return NextResponse.json(
-        { success: false, message: 'Email ini sudah terdaftar sebagai Siswa! Silakan login.' },
+        { success: false, message: 'Email sudah terdaftar. Silakan login!' },
         { status: 400 }
       );
     }
@@ -37,11 +31,22 @@ export async function POST(req: Request) {
 
     const newSiswa = await prisma.siswa.create({
       data: {
+        nama: nama.trim(),
         email: cleanEmail,
         passwordHash,
-        nama: nama.trim(),
       },
     });
+
+    // Jika mendaftar sambil membawa enrollPathId, buat pendaftaran dengan status BELUM_BAYAR
+    if (enrollPathId) {
+      await prisma.pendaftaran.create({
+        data: {
+          siswaId: newSiswa.id,
+          learningPathId: enrollPathId,
+          statusPembayaran: 'BELUM_BAYAR', // Wajib BELUM_BAYAR!
+        },
+      });
+    }
 
     const token = generateStudentToken({
       id: newSiswa.id,
@@ -51,25 +56,20 @@ export async function POST(req: Request) {
 
     const response = NextResponse.json({
       success: true,
-      message: 'Pendaftaran Siswa berhasil!',
-      siswa: { id: newSiswa.id, email: newSiswa.email, nama: newSiswa.nama },
+      message: 'Pendaftaran akun siswa berhasil!',
+      user: { id: newSiswa.id, email: newSiswa.email, nama: newSiswa.nama },
     });
 
-    response.cookies.set({
-      name: SISWA_COOKIE_NAME,
-      value: token,
+    response.cookies.set(SISWA_COOKIE_NAME, token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
+      maxAge: 14 * 24 * 60 * 60,
       path: '/',
-      maxAge: 60 * 60 * 24 * 14, // 14 hari
     });
 
     return response;
   } catch (error: any) {
-    return NextResponse.json(
-      { success: false, message: error.message || 'Terjadi kesalahan server saat pendaftaran Siswa.' },
-      { status: 500 }
-    );
+    return NextResponse.json({ success: false, message: error.message }, { status: 500 });
   }
 }

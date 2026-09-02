@@ -67,6 +67,39 @@ export async function POST(req: Request) {
   }
 }
 
+export async function PATCH(req: Request) {
+  const session = await getAdminSession();
+  if (!session) {
+    return NextResponse.json({ success: false, message: 'Unauthorized' }, { status: 401 });
+  }
+
+  try {
+    const { pathId, nama, deskripsi, harga, thumbnail } = await req.json();
+
+    if (!pathId) {
+      return NextResponse.json({ success: false, message: 'LearningPath ID wajib diisi!' }, { status: 400 });
+    }
+
+    const updated = await prisma.learningPath.update({
+      where: { id: pathId },
+      data: {
+        ...(nama && { nama: nama.trim() }),
+        ...(deskripsi && { deskripsi: deskripsi.trim() }),
+        ...(harga !== undefined && { harga: parseFloat(harga) }),
+        ...(thumbnail !== undefined && { thumbnail: thumbnail ? thumbnail.trim() : null }),
+      },
+    });
+
+    return NextResponse.json({
+      success: true,
+      message: 'LearningPath berhasil diperbarui!',
+      data: updated,
+    });
+  } catch (error: any) {
+    return NextResponse.json({ success: false, message: error.message }, { status: 500 });
+  }
+}
+
 export async function DELETE(req: Request) {
   const session = await getAdminSession();
   if (!session) {

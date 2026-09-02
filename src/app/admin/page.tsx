@@ -26,8 +26,9 @@ export default function AdminDashboardPage() {
 
   // Preview & Edit State
   const [previewModul, setPreviewModul] = useState<{ judul: string; kontenMateri: string; videoUrl: string } | null>(null);
-  const [editingModul, setEditingModul] = useState<any | null>(null);
+  const [editingPath, setEditingPath] = useState<any | null>(null);
   const [editingKelas, setEditingKelas] = useState<any | null>(null);
+  const [editingModul, setEditingModul] = useState<any | null>(null);
 
   // Quiz Builder State
   const [quizModul, setQuizModul] = useState<any | null>(null);
@@ -42,13 +43,13 @@ export default function AdminDashboardPage() {
       .then((res) => res.json())
       .then((data) => {
         if (!data.success || !data.admin) {
-          router.push('/admin/login');
+          router.push('/login');
         } else {
           setAdmin(data.admin);
           loadDashboardData();
         }
       })
-      .catch(() => router.push('/admin/login'))
+      .catch(() => router.push('/login'))
       .finally(() => setAuthLoading(false));
   }, [router]);
 
@@ -75,7 +76,7 @@ export default function AdminDashboardPage() {
 
   const handleLogout = async () => {
     await fetch('/api/admin/logout', { method: 'POST' });
-    router.push('/admin/login');
+    router.push('/login');
   };
 
   const handleCreatePath = async (e: React.FormEvent) => {
@@ -94,6 +95,34 @@ export default function AdminDashboardPage() {
 
       setFeedbackMsg('✅ LearningPath baru berhasil dibuat!');
       setNewPath({ nama: '', deskripsi: '', harga: '', thumbnail: '' });
+      loadDashboardData();
+    } catch (err: any) {
+      setFeedbackMsg(`❌ ${err.message}`);
+    }
+  };
+
+  const handleUpdatePath = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!editingPath) return;
+
+    try {
+      const res = await fetch('/api/admin/learning-path', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          pathId: editingPath.id,
+          nama: editingPath.nama,
+          deskripsi: editingPath.deskripsi,
+          harga: editingPath.harga,
+          thumbnail: editingPath.thumbnail,
+        }),
+      });
+
+      const result = await res.json();
+      if (!res.ok || !result.success) throw new Error(result.message);
+
+      setFeedbackMsg(`✅ LearningPath "${editingPath.nama}" berhasil diperbarui!`);
+      setEditingPath(null);
       loadDashboardData();
     } catch (err: any) {
       setFeedbackMsg(`❌ ${err.message}`);
@@ -366,9 +395,6 @@ export default function AdminDashboardPage() {
       <div className="bg-slate-900 text-white rounded-2xl p-6 sm:p-8 flex items-center justify-between gap-4 border border-slate-800 shadow-lg">
         <div>
           <h1 className="text-2xl sm:text-3xl font-extrabold">Admin</h1>
-          <p className="text-slate-400 text-xs mt-1">
-            {admin?.nama} ({admin?.email})
-          </p>
         </div>
         <button
           onClick={handleLogout}
@@ -413,7 +439,7 @@ export default function AdminDashboardPage() {
       {/* Section 1: Buat LearningPath Baru */}
       <div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
         <div className="border-b border-slate-100 pb-4">
-          <h2 className="text-xl font-bold text-slate-900">🌐 1. Buat LearningPath Baru</h2>
+          <h2 className="text-xl font-bold text-slate-900">1. Buat LearningPath Baru</h2>
           <p className="text-xs text-slate-500 mt-1">Tambahkan jalur pembelajaran besar baru (Full-Stack, Data Science, Mobile, dll.)</p>
         </div>
         <form onSubmit={handleCreatePath} className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -458,10 +484,10 @@ export default function AdminDashboardPage() {
         </form>
       </div>
 
-      {/* Section 2: Kelola Multi-Kelas, Multi-Modul & Akses Hapus (Delete) */}
+      {/* Section 2: Kelola Multi-Kelas, Multi-Modul & Akses Edit/Hapus */}
       <div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
         <div className="border-b border-slate-100 pb-4">
-          <h2 className="text-xl font-bold text-slate-900">📚 2. Kelola Kurikulum & Aksi Hapus (Delete)</h2>
+          <h2 className="text-xl font-bold text-slate-900">2. Kelola Kurikulum, Edit & Hapus</h2>
           <p className="text-xs text-slate-500 mt-1">
             Tambah/edit/hapus LearningPath, Kelas, Modul Markdown, YouTube Video Player, dan Quiz Assessment.
           </p>
@@ -474,7 +500,7 @@ export default function AdminDashboardPage() {
                 onClick={() => setExpandedPathId(expandedPathId === path.id ? null : path.id)}
                 className="flex items-center gap-3 cursor-pointer flex-1"
               >
-                <span className="text-2xl">🌐</span>
+                <span className="w-8 h-8 rounded-lg bg-blue-600 text-white font-bold flex items-center justify-center text-sm">k</span>
                 <div>
                   <h3 className="font-extrabold text-white text-base">{path.nama}</h3>
                   <p className="text-xs text-slate-400">
@@ -483,7 +509,14 @@ export default function AdminDashboardPage() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 flex-wrap">
+                <button
+                  onClick={() => setEditingPath(path)}
+                  className="px-3 py-1.5 bg-slate-700 hover:bg-slate-600 text-white text-xs font-bold rounded-lg transition-colors border border-slate-600"
+                  title="Edit Nama, Deskripsi, Harga, dan Thumbnail LearningPath"
+                >
+                  ✏️ Edit LearningPath
+                </button>
                 <button
                   onClick={() => handleDeletePath(path)}
                   className="px-3 py-1.5 bg-red-600/90 hover:bg-red-600 text-white text-xs font-bold rounded-lg transition-colors shadow"
@@ -510,7 +543,7 @@ export default function AdminDashboardPage() {
 
                   {path.kelas?.length === 0 ? (
                     <div className="bg-white p-6 rounded-xl border text-center text-xs text-slate-500">
-                      Belum ada Kelas di LearningPath ini. Gunakan form hijau di bawah untuk menambah Kelas 1!
+                      Belum ada Kelas di LearningPath ini. Gunakan form di bawah untuk menambah Kelas 1!
                     </div>
                   ) : (
                     path.kelas?.map((k: any) => (
@@ -750,6 +783,67 @@ export default function AdminDashboardPage() {
           </div>
         ))}
       </div>
+
+      {/* Modal Edit LearningPath */}
+      {editingPath && (
+        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-2xl p-6 sm:p-8 max-w-lg w-full space-y-6 shadow-2xl">
+            <div className="flex items-center justify-between border-b pb-3">
+              <h3 className="font-extrabold text-lg text-slate-900">✏️ Edit LearningPath</h3>
+              <button onClick={() => setEditingPath(null)} className="text-slate-400 hover:text-slate-700 font-bold">✕ Tutup</button>
+            </div>
+            <form onSubmit={handleUpdatePath} className="space-y-4">
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1">Nama LearningPath *</label>
+                <input
+                  type="text"
+                  required
+                  className="w-full px-3 py-2 border rounded-lg text-xs"
+                  value={editingPath.nama}
+                  onChange={(e) => setEditingPath({ ...editingPath, nama: e.target.value })}
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1">Harga Kursus (Rp) *</label>
+                <input
+                  type="number"
+                  required
+                  className="w-full px-3 py-2 border rounded-lg text-xs font-bold text-blue-600"
+                  value={editingPath.harga}
+                  onChange={(e) => setEditingPath({ ...editingPath, harga: e.target.value })}
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1">Deskripsi Singkat *</label>
+                <textarea
+                  required
+                  rows={3}
+                  className="w-full px-3 py-2 border rounded-lg text-xs"
+                  value={editingPath.deskripsi}
+                  onChange={(e) => setEditingPath({ ...editingPath, deskripsi: e.target.value })}
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1">Thumbnail URL (Opsional)</label>
+                <input
+                  type="text"
+                  className="w-full px-3 py-2 border rounded-lg text-xs"
+                  value={editingPath.thumbnail || ''}
+                  onChange={(e) => setEditingPath({ ...editingPath, thumbnail: e.target.value })}
+                />
+              </div>
+
+              <div className="flex justify-end gap-3 pt-2">
+                <button type="button" onClick={() => setEditingPath(null)} className="px-4 py-2 border text-xs font-bold rounded-lg">Batal</button>
+                <button type="submit" className="px-5 py-2 bg-blue-600 text-white text-xs font-bold rounded-lg shadow">Simpan Perubahan ➔</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
 
       {/* Modal Quiz Multi-Soal Builder Admin */}
       {quizModul && (
@@ -1003,7 +1097,7 @@ export default function AdminDashboardPage() {
       {/* Section 3: Daftar Siswa */}
       <div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
         <div className="border-b border-slate-100 pb-4">
-          <h2 className="text-xl font-bold text-slate-900">🎓 3. Kelola Siswa & Verifikasi Pembayaran Manual</h2>
+          <h2 className="text-xl font-bold text-slate-900">3. Kelola Siswa & Verifikasi Pembayaran Manual</h2>
         </div>
         {enrollments.length === 0 ? (
           <p className="text-sm text-slate-500 py-4 text-center">Belum ada siswa yang mendaftar kursus.</p>

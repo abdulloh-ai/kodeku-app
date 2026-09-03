@@ -42,11 +42,15 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-extrabold text-lg shadow-sm">
-            k
+        <Link href="/" className="flex items-center gap-2.5">
+          <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center p-1 shadow-sm">
+            <svg viewBox="0 0 64 64" className="w-full h-full text-white" fill="currentColor">
+              <path d="M22 24 C16 24 12 28 12 32 C12 36 16 40 22 40 C28 40 36 24 42 24 C48 24 52 28 52 32 C52 36 48 40 42 40 C36 40 28 24 22 24 Z" fill="none" stroke="currentColor" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M19 29 L16 32 L19 35" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M45 29 L48 32 L45 35" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
           </div>
-          <span className="hidden sm:inline-block font-bold text-xl text-slate-900 tracking-tight">kodemik</span>
+          <span className="font-extrabold text-xl text-slate-900 tracking-tight">kodemik</span>
         </Link>
 
         <nav className="flex items-center gap-4 sm:gap-6 text-sm font-semibold">
@@ -96,7 +100,7 @@ export default function Navbar() {
               </button>
             </>
           ) : (
-            /* Jika Belum Logged in — TIDAK ADA TULISAN ADMIN SAMA SEKALI */
+            /* Jika Belum Logged in */
             <div className="flex items-center gap-2">
               <Link
                 href="/login"
